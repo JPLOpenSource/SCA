@@ -1,0 +1,67 @@
+##
+## Defines the initial transition code.
+##
+##- input vars (in addition to $model, etc.):
+##    * $typeObj :  State Machine or Region
+##    * $typeName:  Type name of the State Machine or Region object
+##    * $isQHsm  :  Flag indicating whether this is Active or Hsm class
+##
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+###############################################################################
+
+/**
+ * Initial pseudostate of the state machine.
+ *
+ * This routine handles initial events of the state-machine.
+ */
+${qfNs}QState ${typeName}::initial (${typeName}* me, ${qfNs}QEvent const* e) {
+#*----*##unusedParam("e")
+##
+## Obtain unique signals thru list of transitions in state machine
+##  with signal events and time events
+##
+#*--*##if( !$isQHsm )
+#*----*##set( $signalEvSet = $model.getTransitionSignalEvents($typeObj) )
+#*----*##set( $completionSet = $model.getCompletionSignalSet($typeObj, $mapper) )
+#*----*##if( !($signalEvSet.empty && $completionSet.empty) )
+    /**
+     * Subscribe to all the signals to which this state machine needs
+     * to respond. This includes all the signals defined for any
+     * reachable submachines as well.  The signals are stored in the
+     * ownedMember association of the UML Namespace class.
+     */
+    if (me->active == me) {
+#*------*##foreach( $signalEv in $signalEvSet )
+        me->subscribe(${mapper.mapSignalEventToName($signalEv)});
+#*------*##end
+#*------*##if( !$completionSet.empty )
+        // Subscribe to "internal" events for completion transition.
+#*------*##end
+#*------*##foreach( $completionEv in $completionSet )
+        me->subscribe(${completionEv});
+#*------*##end
+    }  // Do NOT subscribe to events if a submachine
+
+#*----*##end
+#*--*##end
+##
+## Cause GUI to exit any final states in the state machine
+##
+#*--*##if( $autocoder.executionTraceOn )
+#*----*##set( $finalStateSet = $model.sort($model.getFinalStates($typeObj)) )
+#*----*##if( !$finalStateSet.empty )
+    // cause trace GUI to unhighlight FinalState
+    char logMsg[256];
+#*------*##foreach( $finalState in $finalStateSet )
+#*--------*##set( $fStateName = $mapper.mapToFunctionName($finalState) )
+    strcpy(logMsg, me->objName);
+    strcat(logMsg, " ${fStateName}");
+    strcat(logMsg, " EXIT");
+    LogEvent::log(logMsg);
+#*------*##end
+
+#*----*##end
+#*--*##end
+##
+## Next, should transition to the initial state
+##

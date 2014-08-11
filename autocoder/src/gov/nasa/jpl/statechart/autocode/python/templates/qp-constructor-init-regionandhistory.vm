@@ -1,0 +1,74 @@
+##
+## Instantiate all submachines and orthogonal regions, and
+## declare all history variables
+##
+##- input vars (in addition to $model, $hasImpl, etc.):
+##    * $typeObj:  State Machine or Region
+##    * $isQHsm:   flag indicating whether we're in an Active or Hsm class
+###############################################################################
+##
+## Instantiate all submachines
+##
+#*--*##set( $submStates = $model.sort($model.getLocalSubmachineStates($typeObj)) )
+#*--*##if( !$submStates.isEmpty() )
+
+        # Submachines and their impls instanced here, wire any TimeEvents
+#*----*##foreach( $submState in $submStates )
+#*------*##set( $stateName = $mapper.mapToFunctionName($submState) )
+#*------*##set( $submName = ${mapper.mapToTypeName($submState.submachine)} )
+#*------*##set( $submActive = "${submName}Active" )
+#*------*##if( $model.getCallActions($submState.submachine, true).size() > 0 )
+        self.__${stateName}Impl = ${stateName}_${submName}Impl()
+#*------*##else
+        self.__${stateName}Impl = self.__impl_obj
+#*------*##end
+## active_obj ensures proper access whether or not in orthogonal region/submachine
+        self.__${stateName} = ${submActive}(self.__${stateName}Impl,\
+                self.__window_name, active_obj=self.__active_obj, instance_name="${stateName}", is_substate=True)
+## wire submachine time events to corresponding time events of this Active
+#*------*##set( $timerEvQuery = $model.querySubmachineTransitionTimeEvents($submState) )
+#*------*##foreach( $timerEvPair in $timerEvQuery.eventTransitions )
+#*--------*##set( $submTimerName = $mapper.mapTimeEventToTimer($timerEvPair.event, $timerEvQuery.getSubmachinePrefixOfEvent($timerEvPair)) )
+#*--------*##set( $timerName = $mapper.mapTimeEventToTimer($timerEvPair.event, $timerEvQuery.getSubstatePrefixOfEvent($timerEvPair)) )
+        self.__${stateName}.${submTimerName} = self.__active_obj.${timerName}
+#*------*##end
+#*----*##end
+#*--*##end
+##
+## Instantiate all orthogonal regions
+##
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($typeObj)) )
+#*--*##if( !$localRegions.isEmpty() )
+
+        # Orthogonal regions instanced here
+#*----*##foreach( $region in $localRegions )
+#*------*##set( $lRegionType = $mapper.mapToQualifiedName($region) )
+#*------*##set( $varname = $mapper.mapToVarName($region) )
+#*------*##set( $ttlLen = $varname.length() + $lRegionType.length() )
+#*------*##set( $pad = $mapper.getPadding("", $ttlLen) )
+## active_obj ensures proper access whether or not in orthogonal region/submachine
+        self.__${varname} = ${lRegionType}(self.__impl_obj, \
+                  ${pad} self.__machine_name, \
+                  ${pad} self.__window_name, \
+                  ${pad} self.__active_obj, \
+                  ${pad} self#if( $isQHsm ).__parent_obj#end)
+#*----*##end
+#*--*##end
+##
+## Declare each history variable
+##
+#*--*##set( $histStates = $model.getOOHistoryStates($typeObj) )
+#*--*##if( !$histStates.isEmpty() )
+
+        # History states memory here.
+#*----*##foreach( $histState in $histStates )
+#*------*##set( $histTransition = $model.getInitialTransition($histState) )
+#*------*##if( $histTransition )
+#*--------*##set( $targetState = $model.getTarget($histState, $histTransition) )
+#*--------*##set( $parentState = $model.getParentState($histState) )
+#*--------*##set( $parentName = $mapper.mapToFunctionName($parentState) )
+#*--------*##set( $histVar = "__${parentName}_history" )
+        self.${histVar} = self.${mapper.mapToFunctionName($targetState)}
+#*------*##end
+#*----*##end
+#*--*##end

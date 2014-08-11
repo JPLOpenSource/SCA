@@ -1,0 +1,150 @@
+##
+## Defines Impl body file.
+##
+##* [SWC 2011.07.06] Updated legal declaration, disclaimer, and file info.
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+##* [SWC 2011.09.27] Implemented SMAP C naming convention for module items
+###############################################################################
+#*--*##set( $implName = "${mapper.mapToImplTypeName($sm)}" )
+##
+## File comments
+##
+//===========================================================================
+// This software contains Caltech/JPL confidential information.
+//
+// Copyright 2009-$year, by the California Institute of Technology.
+// ALL RIGHTS RESERVED. United States Government Sponsorship Acknowledged.
+// Any commercial use must be negotiated with the Office of Technology
+// Transfer at the California Institute of Technology.
+//
+// This software may be subject to US export control laws and
+// regulations. By accepting this document, the user agrees to comply
+// with all applicable U.S. export laws and regulations, including the
+// International Traffic and Arms Regulations, 22 C.F.R. 120-130 and the
+// Export Administration Regulations, 15 C.F.R. 730-744. User has the
+// responsibility to obtain export licenses, or other export authority as
+// may be required before exporting such information to foreign countries
+// or providing access to foreign persons.
+//===========================================================================
+//
+//       File: ${modulePathPrefix}${implName}.c
+// Created on: ${model.timestamp()}
+//     Author: ${model.username()}@jpl.nasa.gov
+// SCACmdLine: ${autocoder.cmdLineInvoked}
+//
+// This file was stubbed by the JPL StateChart Autocoders, which converts UML
+// Statecharts, in XML, to a C variant of Miro Samek's Quantum Framework.
+//===========================================================================
+\#include <stdio.h>
+## include files for trace GUI
+#*--*##if( $autocoder.executionTraceOn )
+\#include <stdlib.h>
+\#include <string.h>
+\#include <log_event.h>
+#*--*##end
+## include QF files, or a custom include file
+#*--*##if( $autocoder.hasCustomQfInclude() )
+\#include <${autocoder.qfInclude}>
+#*--*##else
+\#include <qf_port.h>
+\#include <qassert.h>
+#*--*##end
+#*--*##customSourceIncludes()
+\#include <${modulePathPrefix}${implName}.h>
+#*--*##if( $autocoder.signalNamespaceType.name().equals("LOCAL") )
+\#include <${modulePathPrefix}${modulePrefix}${sigFileName}.h>
+#*--*##else## point to a single global state chart signals header
+\#include <${baseSigModulePath}${modulePrefix}${sigFileName}.h>
+#*--*##end
+
+
+#dataTypeInt32() ${implName}_verbosity_level = 0;
+
+
+${implName} *${implName}_constructor (${implName} *mepl) {
+#*--*##if( $autocoder.executionTraceOn )
+    strncpy(mepl->machineName, "${typeName}", #smNameLength());
+    mepl->machineName[#smNameLength()-1] = '\0';  // null-terminate to be sure
+
+    AttributeMapper_init(mepl);
+##
+## For unit-test traces:  set initial values of boolean variables
+##
+#*----*##foreach( $func in $model.getAllCallActions() )
+#*------*##set( $funcName = $mapper.sanitize($func.name()) )
+#*------*##if( $func.isGuard() )
+    AttributeMapper_set(mepl, "${funcName}", 0);
+#*------*##end
+#*----*##end
+#*--*##end
+##
+## Generate the initial values of boolean variables
+##
+#*--*##foreach( $func in $model.getAllCallActions() )
+#*----*##set( $funcName = $mapper.sanitize($func.name()) )
+#*----*##if( $func.isGuard() )
+    mepl->$funcName = 0;
+#*----*##end
+#*--*##end
+
+    return mepl;
+}
+
+void ${implName}_set_qactive (${implName} *mepl, QActive *active) {
+    mepl->active = active;
+}
+
+#dataTypeInt32() ${implName}_get_verbosity () {
+    return ${implName}_verbosity_level;
+}
+
+
+////////////////////////////////////////////
+// Action and guard implementation methods
+////////////////////////////////////////////
+##
+## Generate the list of call methods
+##
+#*--*##foreach( $func in $model.getAllCallActions() )
+
+#*----*##set( $funcName = $mapper.sanitize($func.name()) )
+## TODO Impl action parameters: how to specify parameter types? perhaps incoming string be of form "param:Type"?
+#*----*##set( $functionParams = ${mapper.mapArgsToDeclarations($func)} )
+#*----*##if( $func.isGuard() )
+#*------*##if( $autocoder.ifDefineUnitTest() )## setter needed only for testing
+void ${implName}_set_${funcName} (${implName} *mepl, #dataTypeBoolean() flag) {
+#*--------*##if( $autocoder.executionTraceOn )
+    AttributeMapper_set(mepl, "${funcName}", flag);
+    mepl->${funcName} = flag;
+#*--------*##end
+}
+#*------*##end
+
+#*------*##if( $func.argList().isEmpty() )
+#dataTypeBoolean() ${implName}_${funcName} (${implName} *mepl) {
+#*------*##else
+#dataTypeBoolean() ${implName}_${funcName} (${implName} *mepl, ${functionParams}) {
+#*------*##end
+#*------*##if( $autocoder.executionTraceOn )
+    #dataTypeBoolean() rv = AttributeMapper_get(mepl, "${funcName}");
+    printf("%s.${funcName}() == %s\n", mepl->machineName, AttributeMapper_booltostr(rv));
+    return rv;  // or could use mepl->${funcName};
+#*------*##else
+    printf("${funcName}() == 0\n");
+    return 0;
+#*------*##end
+}
+#*----*##else
+#*------*##if( $func.argList().isEmpty() )
+void ${implName}_${funcName} (${implName} *mepl) {
+#*------*##else
+void ${implName}_${funcName} (${implName} *mepl, ${functionParams}) {
+#*------*##end
+#*------*##if( $autocoder.executionTraceOn )
+    printf("%s.${funcName}() default action implementation invoked\n", mepl->machineName);
+#*------*##else
+    printf("${funcName}() default action implementation invoked\n");
+#*------*##end
+}
+#*----*##end
+#*--*##end

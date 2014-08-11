@@ -1,0 +1,118 @@
+# Composite5e checks timer-events in a Submachine just one level down.
+
+# start with a tick, then wrap back with Ev1
+Composite5e S1 ENTRY
+>tick
+Composite5e S1 S1TimerEv
+Composite5e S1 EXIT
+Composite5e S2 ENTRY
+Composite5e S23:SubM ENTRY
+S23:SubM S1 ENTRY
+>Ev1
+Composite5e S2 Ev1
+Composite5e S23:SubM EXIT
+S23:SubM S1 EXIT
+Composite5e S2 EXIT
+Composite5e S1 ENTRY
+>Ev1
+Composite5e S1 Ev1
+Composite5e S1 EXIT
+Composite5e S2 ENTRY
+Composite5e S23:SubM ENTRY
+S23:SubM S1 ENTRY
+>Ev2
+# 3 ticks in a row
+>tick
+Composite5e S23:SubM S1TimerEv
+S23:SubM S1 S1TimerEv
+S23:SubM S1 EXIT
+S23:SubM S2 ENTRY
+>tick
+Composite5e S23:SubM S2TimerEv
+S23:SubM S2 S2TimerEv
+S23:SubM S2 EXIT
+S23:SubM S1 ENTRY
+>tick
+Composite5e S23:SubM S1TimerEv
+S23:SubM S1 S1TimerEv
+S23:SubM S1 EXIT
+S23:SubM S2 ENTRY
+
+# start the cycle over
+>Ev1
+Composite5e S2 Ev1
+Composite5e S23:SubM EXIT
+S23:SubM S2 EXIT
+Composite5e S2 EXIT
+Composite5e S1 ENTRY
+>Ev1
+Composite5e S1 Ev1
+Composite5e S1 EXIT
+Composite5e S2 ENTRY
+Composite5e S23:SubM ENTRY
+S23:SubM S1 ENTRY
+# now 4 ticks in a row, right before transition back to S1
+>tick
+Composite5e S23:SubM S1TimerEv
+S23:SubM S1 S1TimerEv
+S23:SubM S1 EXIT
+S23:SubM S2 ENTRY
+>tick
+Composite5e S23:SubM S2TimerEv
+S23:SubM S2 S2TimerEv
+S23:SubM S2 EXIT
+S23:SubM S1 ENTRY
+>tick
+Composite5e S23:SubM S1TimerEv
+S23:SubM S1 S1TimerEv
+S23:SubM S1 EXIT
+S23:SubM S2 ENTRY
+>tick
+Composite5e S23:SubM S2TimerEv
+S23:SubM S2 S2TimerEv
+S23:SubM S2 EXIT
+S23:SubM S1 ENTRY
+
+# start the cycle over
+>Ev1
+Composite5e S2 Ev1
+Composite5e S23:SubM EXIT
+S23:SubM S1 EXIT
+Composite5e S2 EXIT
+Composite5e S1 ENTRY
+# just tick away until we return to S1
+>tick
+Composite5e S1 S1TimerEv
+Composite5e S1 EXIT
+Composite5e S2 ENTRY
+Composite5e S23:SubM ENTRY
+S23:SubM S1 ENTRY
+>tick
+Composite5e S23:SubM S1TimerEv
+S23:SubM S1 S1TimerEv
+S23:SubM S1 EXIT
+S23:SubM S2 ENTRY
+>tick
+Composite5e S23:SubM S2TimerEv
+S23:SubM S2 S2TimerEv
+S23:SubM S2 EXIT
+S23:SubM S1 ENTRY
+>tick
+Composite5e S23:SubM S1TimerEv
+S23:SubM S1 S1TimerEv
+S23:SubM S1 EXIT
+S23:SubM S2 ENTRY
+>tick
+Composite5e S23:SubM S2TimerEv
+S23:SubM S2 S2TimerEv
+S23:SubM S2 EXIT
+S23:SubM S1 ENTRY
+# ready to return to S1
+>tick
+Composite5e S2 S2TimerEv
+Composite5e S23:SubM EXIT
+# Don't check on Submachine event in C++, because there's an interleave in
+#  timer event that is NOT relevant for this test case. 
+#S23:SubM S1 EXIT
+Composite5e S2 EXIT
+Composite5e S1 ENTRY

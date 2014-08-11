@@ -1,0 +1,108 @@
+# Composite7_1 checks a complex StateMachine with action on initial transition,
+# and internal transitions in super and orthogonal states, and leaf state within
+# a composite state.
+
+<Composite7_1 S1 ENTRY
+<Warning: no implementation object for Action1\(\)|Composite7_1.Action1\(\) default action implementation invoked
+<Composite7_1 S11 ENTRY
+>Ev3
+>Ev4
+>Ev5
+>Ev6
+>Ev2
+<Composite7_1 S11 Ev2
+<Warning: no implementation object for InternalHandler2\(\)|Composite7_1.InternalHandler2\(\) default action implementation invoked
+>Ev1
+<Composite7_1 S11 Ev1
+<Composite7_1 S11 EXIT
+<Composite7_1 S12 ENTRY
+<Warning: no implementation object for Action2\(\)|Composite7_1.Action2\(\) default action implementation invoked
+<Composite7_1 S111 ENTRY
+<Warning: no implementation object for Action3\(\)|Composite7_1.Action3\(\) default action implementation invoked
+<Composite7_1 S211 ENTRY
+>Ev3
+<Composite7_1 S12 Ev3
+<Warning: no implementation object for InternalHandler3\(\)|Composite7_1.InternalHandler3\(\) default action implementation invoked
+>Ev2
+<Composite7_1 S1 Ev2
+<Warning: no implementation object for InternalHandler1\(\)|Composite7_1.InternalHandler1\(\) default action implementation invoked
+>Ev1
+<Composite7_1 S12 Ev1
+<Composite7_1 S12 EXIT
+<Composite7_1 S111 EXIT
+<Composite7_1 S211 EXIT
+<Composite7_1 S11 ENTRY
+>Ev1
+<Composite7_1 S11 Ev1
+<Composite7_1 S11 EXIT
+<Composite7_1 S12 ENTRY
+<Warning: no implementation object for Action2\(\)|Composite7_1.Action2\(\) default action implementation invoked
+<Composite7_1 S111 ENTRY
+<Warning: no implementation object for Action3\(\)|Composite7_1.Action3\(\) default action implementation invoked
+<Composite7_1 S211 ENTRY
+>Ev4
+<Composite7_1 S12 Region1 Ev4
+<Composite7_1 S111 Ev4
+<Warning: no implementation object for InternalHandler4\(\)|Composite7_1.InternalHandler4\(\) default action implementation invoked
+<Composite7_1 S12 Region2 Ev4
+>Ev5
+<Composite7_1 S12 Region1 Ev5
+<Composite7_1 S111 Ev5
+<Composite7_1 S111 EXIT
+<Composite7_1 S112 ENTRY
+>Ev4
+<Composite7_1 S12 Region1 Ev4
+<Composite7_1 S12 Region2 Ev4
+>Ev3
+<Composite7_1 S12 Ev3
+<Warning: no implementation object for InternalHandler3\(\)|Composite7_1.InternalHandler3\(\) default action implementation invoked
+>Ev2
+<Warning: no implementation object for InternalHandler1\(\)|Composite7_1.InternalHandler1\(\) default action implementation invoked
+>Ev6
+<Composite7_1 S12 Region2 Ev6
+<Composite7_1 S211 Ev6
+<Composite7_1 S211 EXIT
+<Composite7_1 S212 ENTRY
+>Ev4
+<Composite7_1 S12 Region1 Ev4
+<Composite7_1 S12 Region2 Ev4
+<Warning: no implementation object for InternalHandler4\(\)|Composite7_1.InternalHandler4\(\) default action implementation invoked
+>Ev5
+<Composite7_1 S12 Region1 Ev5
+<Composite7_1 S112 Ev5
+<Composite7_1 S112 EXIT
+<Composite7_1 S111 ENTRY
+>Ev4
+<Composite7_1 S12 Region1 Ev4
+<Warning: no implementation object for InternalHandler4\(\)|Composite7_1.InternalHandler4\(\) default action implementation invoked
+<Composite7_1 S12 Region2 Ev4
+<Warning: no implementation object for InternalHandler4\(\)|Composite7_1.InternalHandler4\(\) default action implementation invoked
+>Ev3
+<Composite7_1 S12 Ev3
+<Warning: no implementation object for InternalHandler3\(\)|Composite7_1.InternalHandler3\(\) default action implementation invoked
+>Ev2
+<Warning: no implementation object for InternalHandler1\(\)|Composite7_1.InternalHandler1\(\) default action implementation invoked
+>Ev5
+<Composite7_1 S12 Region1 Ev5
+<Composite7_1 S111 Ev5
+<Composite7_1 S111 EXIT
+<Composite7_1 S112 ENTRY
+>Ev6
+<Composite7_1 S12 Region2 Ev6
+<Composite7_1 S212 Ev6
+<Composite7_1 S212 EXIT
+<Composite7_1 S211 ENTRY
+>Ev4
+<Composite7_1 S12 Region1 Ev4
+<Composite7_1 S12 Region2 Ev4
+>Ev3
+<Composite7_1 S12 Ev3
+<Warning: no implementation object for InternalHandler3\(\)|Composite7_1.InternalHandler3\(\) default action implementation invoked
+>Ev2
+<Warning: no implementation object for InternalHandler1\(\)|Composite7_1.InternalHandler1\(\) default action implementation invoked
+>Ev1
+<Composite7_1 S12 Ev1
+<Composite7_1 S12 EXIT
+<Composite7_1 S112 EXIT
+<Composite7_1 S211 EXIT
+<Composite7_1 S11 ENTRY

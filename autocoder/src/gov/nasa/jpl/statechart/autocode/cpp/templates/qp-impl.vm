@@ -1,0 +1,167 @@
+##
+## Defines Impl body file.
+##
+##* [SWC 2011.07.06] Updated legal declaration, disclaimer, and file info.
+###############################################################################
+#*--*##set( $className = "${smName}Impl" )
+##
+## File comments
+##
+//-*- Mode: C++; -*-
+//===========================================================================
+// This software contains Caltech/JPL confidential information.
+//
+// Copyright 2009-$year, by the California Institute of Technology.
+// ALL RIGHTS RESERVED. United States Government Sponsorship Acknowledged.
+// Any commercial use must be negotiated with the Office of Technology
+// Transfer at the California Institute of Technology.
+//
+// This software may be subject to US export control laws and
+// regulations. By accepting this document, the user agrees to comply
+// with all applicable U.S. export laws and regulations, including the
+// International Traffic and Arms Regulations, 22 C.F.R. 120-130 and the
+// Export Administration Regulations, 15 C.F.R. 730-744. User has the
+// responsibility to obtain export licenses, or other export authority as
+// may be required before exporting such information to foreign countries
+// or providing access to foreign persons.
+//===========================================================================
+//
+//       File: ${nsPathPrefix}${className}.cpp
+// Created on: ${model.timestamp()}
+//     Author: ${model.username()}@jpl.nasa.gov
+//
+// This file was stubbed by the JPL StateChart Autocoders, which converts UML
+// Statecharts, in XML, to a C++ variant of Miro Samek's Quantum Framework.
+//===========================================================================
+\#include <stdio.h>
+## include files for trace GUI
+#*--*##if( $autocoder.executionTraceOn )
+\#include <stdlib.h>
+\#include <string.h>
+\#include <log_event.h>
+#*--*##end
+## include QF files, or a custom include file
+#*--*##if( $autocoder.hasCustomQfInclude() )
+\#include <${autocoder.qfInclude}>
+#*--*##else
+\#include <qf_port.h>
+\#include <qassert.h>
+#*--*##end
+#*--*##customSourceIncludes()
+\#include <${nsPathPrefix}${className}.h>
+\#include <${nsPathPrefix}StatechartSignals.h>
+
+#*--*##if( $autocoder.namespaceEnabled )
+#*----*##headerNamespaces
+#*--*##end
+/**
+ * Default constructor.
+ */
+${className}::${className} () {
+#*--*##if( $autocoder.executionTraceOn )
+    strcpy(this->machineName, "${smName}");
+
+    AttributeMapper::init(this);
+#*--*##else
+    // nothing to do
+#*--*##end
+}
+
+/**
+ * Required virtual destructor.
+ */
+${className}::~${className} () {
+#*--*##if( $autocoder.executionTraceOn )
+    AttributeMapper::clean(this);
+#*--*##else
+    // nothing to do
+#*--*##end
+}
+
+void ${className}::setQActive (${qfNs}QActive* active) {
+    m_active = active;
+}
+
+
+////////////////////////////////////////////
+// Action and guard implementation methods
+////////////////////////////////////////////
+##
+## Generate the list of call methods
+##
+#*--*##foreach( $func in $model.getAllCallActions() )
+
+#*----*##set( $funcName = $mapper.sanitize($func.name()) )
+## TODO Impl action parameters: how to specify parameter types? perhaps incoming string be of form "param:Type"?
+#*----*##set( $functionParams = ${mapper.mapArgsToDeclarations($func)} )
+#*----*##if( $func.isGuard() )
+void ${className}::set_${funcName} (bool flag) {
+#*--*##if( $autocoder.executionTraceOn )
+    AttributeMapper::set(this, "${funcName}", flag);
+#*--*##end
+}
+
+bool ${className}::${funcName} (${functionParams}) {
+#*--*##if( $autocoder.executionTraceOn )
+    bool rv = AttributeMapper::get(this, "${funcName}");
+    printf("%s.${funcName}() == %s\n", this->machineName, AttributeMapper::booltostr(rv));
+    return rv;
+#*--*##else
+    printf("${funcName}() == 0\n");
+    return 0;
+#*--*##end
+}
+#*----*##else
+void ${className}::${funcName} (${functionParams}) {
+#*--*##if( $autocoder.executionTraceOn )
+    printf("%s.${funcName}() default action implementation invoked\n", this->machineName);
+#*--*##else
+    printf("${funcName}() default action implementation invoked\n");
+#*--*##end
+}
+#*----*##end
+#*--*##end
+###############################################################################
+## Define the Submachine Impl subclasses to allow overriding action behaviors
+##
+#*--*##set( $submStates = $model.sort($model.getSubmachineStates($sm)) )
+#*--*##if( !$submStates.isEmpty() )
+
+
+/////////////////////////////////////////////////////////////////////////
+// Override submachine-instance action and guard implementation methods
+/////////////////////////////////////////////////////////////////////////
+#*----*##foreach( $submState in $submStates )
+#*------*##set( $stateName = $mapper.mapToFunctionName($submState) )
+#*------*##set( $submName = $mapper.mapToTypeName($submState.submachine) )
+#*------*##set( $submImpl = "${submName}Impl" )
+#*------*##set( $substateImpl = "${stateName}_${submImpl}" )
+
+/**
+ * Default constructor.
+ */
+${substateImpl}::${substateImpl} () {
+#*--*##if( $autocoder.executionTraceOn )
+    strcpy(this->machineName, "${stateName}:${submName}");
+
+    AttributeMapper::init(this);
+#*--*##else
+    // nothing to do
+#*--*##end
+}
+
+/**
+ * Required virtual destructor.
+ */
+${substateImpl}::~${substateImpl} () {
+#*--*##if( $autocoder.executionTraceOn )
+    AttributeMapper::clean(this);
+#*--*##else
+    // nothing to do
+#*--*##end
+}
+#*----*##end
+#*--*##end
+#*--*##if( $autocoder.namespaceEnabled )
+#*----*##footerNamespaces
+#*--*##end

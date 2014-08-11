@@ -1,0 +1,43 @@
+# Composite1 checks a StateMachine with composite states and transitions
+
+<Composite1 S1 ENTRY
+>Ev2
+>Ev3
+>Ev1
+<Composite1 S1 Ev1
+<Composite1 S1 EXIT
+<Composite1 S2 ENTRY
+<Composite1 S21 ENTRY
+>Ev2
+>Ev1
+<Composite1 S21 Ev1
+<Composite1 S21 EXIT
+<Composite1 S22 ENTRY
+>Ev1
+<Composite1 S2 Ev1
+<Composite1 S22 EXIT
+<Composite1 S2 EXIT
+<Composite1 S1 ENTRY
+>Ev2
+>Ev1
+<Composite1 S1 Ev1
+<Composite1 S1 EXIT
+<Composite1 S2 ENTRY
+<Composite1 S21 ENTRY
+>Ev1
+<Composite1 S21 Ev1
+<Composite1 S21 EXIT
+<Composite1 S22 ENTRY
+>Ev2
+<Composite1 S22 Ev2
+<Composite1 S22 EXIT
+<Composite1 S21 ENTRY
+>Ev1
+<Composite1 S21 Ev1
+<Composite1 S21 EXIT
+<Composite1 S22 ENTRY
+>Ev1
+<Composite1 S2 Ev1
+<Composite1 S22 EXIT
+<Composite1 S2 EXIT
+<Composite1 S1 ENTRY

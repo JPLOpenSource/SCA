@@ -1,0 +1,267 @@
+##
+## Defines main() method for testing the generated State Machine code.
+##
+###############################################################################
+##
+## Get all state machines, but exclude the submachines
+#*--*##set( $machines = $model.sort($model.getStateMachines()) )
+#*--*##set( $discard = $machines.removeAll($model.getSubmachines()) )
+#*--*##if( $autocoder.namespaceEnabled && !$autocoder.qfNamespace.length()==0 )
+#*----*##set( $qfNs = $mapper.mapToNamespacePrefix($autocoder.qfNamespace) )
+#*--*##else
+#*----*##set( $qfNs = "" )
+#*--*##end
+##
+\#include <stdio.h>
+\#include <stdlib.h>
+\#include <string.h>
+\#include <qep_port.h>
+\#include <qassert.h>
+
+\#include <log_event.h>
+\#include <StatechartSignals.h>
+
+#*--*##foreach( $sm in $machines )
+#*----*##set( $smName = $mapper.mapToTypeName($sm) )
+#*----*##if( $autocoder.namespaceEnabled )
+#*------*##set( $nsPathPrefix = $mapper.mapToNamespacePathPrefix($sm.packageNames) )
+#*----*##else
+#*------*##set( $nsPathPrefix = "" )
+#*----*##end
+\#include <${nsPathPrefix}${smName}.h>
+\#include <${nsPathPrefix}${smName}Impl.h>
+#*--*##end
+
+Q_DEFINE_THIS_FILE;
+
+\#define MYQUEUESIZE 10       /* Queue size */
+\#define USER_ENTRY_SIZE 256  /* Number characters on inline prompt */
+\#define EVENT_SIZE 16        /* Array size for data of Medium Event */
+
+/* Placeholder to support MSAP-style U32 */
+typedef uint32_t U32;
+/* Use QEvent as type of the small-size event poll */
+typedef ${qfNs}QEvent SmallEvent;
+/* Define an event type with one piece of data for the medium-size event pool */
+struct MediumEvent : public ${qfNs}QEvent {
+    U32 data[EVENT_SIZE];
+};
+\#define MEDIUM_EVT_DATA_LIMIT EVENT_SIZE*sizeof(U32)
+/* Define a 256-byte event type for the large-size event pool */
+struct LargeEvent : public ${qfNs}QEvent {
+    U32 data[EVENT_SIZE*4];
+};
+\#define LARGE_EVT_DATA_LIMIT EVENT_SIZE*4*sizeof(U32)
+
+static ${qfNs}QSubscrList l_subscrSto[${qfNs}MAX_SIG]; /* publish-subscribe storage */
+static SmallEvent l_evPoolSm[MYQUEUESIZE];   /* small event pool: signal only */
+static MediumEvent l_evPoolMed[MYQUEUESIZE]; /* medium event pool: SIG+data */
+static LargeEvent l_evPoolLarge[2]; /* large event pool: lots of data */
+#*--*##foreach( $sm in $machines )
+## index of storage must correspond to storage of same name in main().
+static const ${qfNs}QEvent* test_queuestorage${velocityCount}[MYQUEUESIZE];
+#*--*##end
+
+// Declare first State Machine Impls, and then the active objects
+static struct ImplObjects {
+#*--*##foreach( $sm in $machines )
+#*----*##if( $autocoder.namespaceEnabled )
+#*------*##set( $nsPrefix = $mapper.mapToNamespacePrefix($sm.packageNames) )
+#*----*##else
+#*------*##set( $nsPrefix = "" )
+#*----*##end
+#*----*##set( $smName = $mapper.mapToTypeName($sm) )
+#*----*##set( $smVar = $smName.toLowerCase() )
+    ${nsPrefix}${smName}Impl ${smVar}Impl;
+#*--*##end
+
+    /**
+     * Sets the given named guard attribute of given StateMachine name to
+     * the designated True or False string value.
+     */
+    void setGuardAttribute (const char* sm, const char* attr, const char* val) {
+        printf("Got sm '%s', attr name '%s', and value '%s'\n", sm, attr, val);
+#*--*##foreach( $sm in $machines )
+#*----*##set( $smName = $mapper.mapToTypeName($sm) )
+#*----*##set( $smVar = $smName.toLowerCase() )
+        if (strcmp(sm, "${smName}") == 0) {
+            AttributeMapper::set((void*) &${smVar}Impl, attr, AttributeMapper::strtobool(val));
+        }
+#*--*##end
+    }
+} implObjs;
+
+static struct ActiveObjects {
+#*--*##foreach( $sm in $machines )
+#*----*##if( $autocoder.namespaceEnabled )
+#*------*##set( $nsPrefix = $mapper.mapToNamespacePrefix($sm.packageNames) )
+#*----*##else
+#*------*##set( $nsPrefix = "" )
+#*----*##end
+#*----*##set( $smName = $mapper.mapToTypeName($sm) )
+#*----*##set( $smVar = $smName.toLowerCase() )
+    ${nsPrefix}${smName}* ${smVar};
+#*--*##end
+
+    /**
+     * Stops and re-starts StateMachine active object of given name.
+     */
+    void initSM (const char* sm) {
+#*--*##foreach( $sm in $machines )
+#*----*##set( $smName = $mapper.mapToTypeName($sm) )
+#*----*##set( $smVar = $smName.toLowerCase() )
+#*----*##set( $priority = $velocityCount + 1 )
+        if (strcmp(sm, "${smName}") == 0) {
+            ${smVar}->reInit();  // set StateMachine to 'initial' state
+            ${smVar}->init((QEvent *)0);
+        }
+#*--*##end
+    }
+} activeObjs;
+
+
+////////////////////////////////////////////////////////////////////////////////
+// @fn receiveCmd()
+// @brief Read the next command from stdin as well as from xmlrpc, if any
+// @param cmdBuf char* for storing the read command
+// @return None
+////////////////////////////////////////////////////////////////////////////////
+void receiveCmd(char *cmdBuf) {
+#ifdef DEFINE_XMLRPC
+    LogEvent::read(cmdBuf);
+\#else /* DEFINE_XMLRPC */
+    scanf("%s", cmdBuf);
+#endif /* DEFINE_XMLRPC */
+}
+
+void runQF() {
+    char cmdBuf[USER_ENTRY_SIZE];
+    MediumEvent *event;
+    char *word;
+
+    for (;;) {
+        // Get the incoming string command from the dmsTerminal or the GUI
+        receiveCmd(cmdBuf);
+        printf("Got command: %s!\n", cmdBuf);
+
+        // Attempt to parse the command string for IMPL or ACTIVE calls
+        char tmpBuf[USER_ENTRY_SIZE];
+        char smName[USER_ENTRY_SIZE];
+        char attrName[USER_ENTRY_SIZE];
+        char valStr[USER_ENTRY_SIZE];
+        // scan for IMPL['SM'].set("attr", True/False), allowing blanks
+        int cnt = sscanf(strcpy(tmpBuf, cmdBuf),
+                "IMPL[%*['\"]%[^'\"]%*['\"]].set(%*['\"]%[^'\"]%*['\"],%[^)])",
+                smName, attrName, valStr);
+        if (cnt > 0) {  // found an IMPL attribute setter!
+            implObjs.setGuardAttribute(smName, attrName, valStr);
+            continue;
+        }
+        // next, attempt scan for ACTIVE['SM'].onStart(ACTIVE['SM'].top)
+        cnt = sscanf(strcpy(tmpBuf, cmdBuf),
+                "ACTIVE[%*['\"]%[^'\"]%*['\"]].onStart(ACTIVE[%*['\"]%*[^'\"]%*['\"]].top)",
+                smName);
+        if (cnt > 0) {
+            activeObjs.initSM(smName);
+            continue;
+        }
+
+        word = strtok(cmdBuf, " ");
+        if (strcmp(word, "quit") == 0) {  // quit the program
+            ${qfNs}QF::stop();
+            return;
+        }
+
+        // We assume the first word contains the signal that is to be published,
+        // and the remaining words are data to be used to populate the event.
+        int signal = strtoul(word, NULL, 10);
+        if (signal == DURING) {
+            ${qfNs}QF::tick();
+        } else {
+            event = Q_NEW(MediumEvent, signal);
+            // Loop through the remaining words and populate the event
+            int i = 0;
+            do {
+                word = strtok(NULL, " ");
+                if (word) {
+                    Q_ASSERT(i<EVENT_SIZE);
+                    event->data[i] = strtoul(word, NULL, 16);
+                } else {  // set data to zeros
+                    event->data[i] = 0;
+                }
+                i = i + 1;
+            } while (word);
+            // let's zero out the remaining data spaces to avoid bad data
+            for (; i < EVENT_SIZE; ++i) {
+                event->data[i] = 0;
+            }
+            printf("Publishing event with signal %d...\n", event->sig);
+            ${qfNs}QF::publish(event);
+        }
+        // hand control to QF for one round of publish
+        ${qfNs}QF::run();
+    }
+
+    return;
+}
+
+
+/*.................................................................*/
+void Q_onAssert(char const Q_ROM * const Q_ROM_VAR file, int line) {
+    fprintf(stderr, "Assertion failed in %s, line %d!\n", file, line);
+    ${qfNs}QF::stop();
+}
+
+void ${qfNs}QF::onStartup(void) {  /* qvanilla: nothing to do */  }
+
+void ${qfNs}QF::onCleanup(void) {
+    printf("\nBye bye!\n");
+    LogEvent::clean();
+}
+/*.................................................................*/
+
+
+int main(int argc, char* argv[]) {
+    int xmlrpcPort = LogEvent::defaultPort();
+
+#ifdef DEFINE_XMLRPC
+    if (argc > 2) {  // look for port
+        if (0 == strcmp("-p", argv[1])) {
+            xmlrpcPort = atoi(argv[2]);
+        }
+    }
+
+#endif /* DEFINE_XMLRPC */
+    // initialize logging, including any GUI connection
+    LogEvent::init(xmlrpcPort);
+
+    printf("Quantum Framework Test\nQEP %s\nQF  %s, QF/Linux port %s\n",
+            ${qfNs}QEP::getVersion(),
+            ${qfNs}QF::getVersion(), ${qfNs}QF::getPortVersion());
+
+    ${qfNs}QF::init();  // initialize framework
+    // initialize publish-subscribe
+    ${qfNs}QF::psInit(l_subscrSto, Q_DIM(l_subscrSto));
+    // initialize all 3 event pools, small, medium, and large
+    ${qfNs}QF::poolInit(l_evPoolSm, sizeof(l_evPoolSm), sizeof(l_evPoolSm[0]));
+    ${qfNs}QF::poolInit(l_evPoolMed, sizeof(l_evPoolMed), sizeof(l_evPoolMed[0]));
+    ${qfNs}QF::poolInit(l_evPoolLarge, sizeof(l_evPoolLarge), sizeof(l_evPoolLarge[0]));
+
+    // instantiate and start the State Machines
+#*--*##set( $smCount = $machines.size() )
+#*--*##foreach( $sm in $machines )
+#*----*##if( $autocoder.namespaceEnabled )
+#*------*##set( $nsPrefix = $mapper.mapToNamespacePrefix($sm.packageNames) )
+#*----*##else
+#*------*##set( $nsPrefix = "" )
+#*----*##end
+#*----*##set( $smName = $mapper.mapToTypeName($sm) )
+#*----*##set( $smVar = $smName.toLowerCase() )
+#*----*##set( $priority = $smCount - $velocityCount )## must be > 0!
+    activeObjs.${smVar} = new ${nsPrefix}${smName}("${smVar}", &implObjs.${smVar}Impl, (${qfNs}QActive*) 0 /*no parent*/);
+    activeObjs.${smVar}->start(${priority}, test_queuestorage${velocityCount}, Q_DIM(test_queuestorage${velocityCount}), (void *)0, 0, (${qfNs}QEvent *)0);
+#*--*##end
+
+    // execute interactive loop
+    runQF();
+}

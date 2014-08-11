@@ -1,0 +1,1 @@
+c:\tools\bcc31\bin\tasm /MX /ZI /O fpu.asm

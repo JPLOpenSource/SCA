@@ -1,0 +1,168 @@
+# Composite9 checks for timer event used within orthogonal regions,
+# interacting with two other state machines.
+
+# Agents are activated first
+Agent1 Inactive ENTRY
+Agent2 Inactive ENTRY
+# then the Master machine
+Composite9 S0 ENTRY
+Composite9 Inert ENTRY
+
+# Arm the Master
+>Arm
+Composite9 Inert Arm
+Composite9 Inert EXIT
+Composite9 Active ENTRY
+Composite9 S11 ENTRY
+Composite9 S14 ENTRY
+Composite9 S16 ENTRY
+Composite9 S161 ENTRY
+Composite9 S1611 ENTRY
+
+# Send and check on a series of ticks
+# 1st tick!
+>tick
+Composite9 Active Region1 S11TimerEv
+Composite9 S11 S11TimerEv
+Composite9 S11 EXIT
+Composite9 S12 ENTRY
+Composite9 S121 ENTRY
+Agent1 Inactive Activate_Agent1
+Agent1 Inactive EXIT
+Agent1 Standby ENTRY
+Agent1.AgentPrep\(\)
+
+# 2nd tick!
+>tick
+Agent1 Standby StandbyTimerEv
+Agent1 Standby EXIT
+Agent1 Active ENTRY
+Composite9 Active Region1 S121TimerEv
+Composite9 S121 S121TimerEv
+Composite9 S121 EXIT
+Composite9 S122 ENTRY
+Composite9 Active Region2 S14TimerEv
+Composite9 S14 S14TimerEv
+Composite9 S14 EXIT
+Composite9 S15 ENTRY
+Agent2 Inactive Activate_Agent2
+Agent2 Inactive EXIT
+Agent2 Standby ENTRY
+Agent2.AgentPrep\(\)
+Composite9 Active Region1 Agent1_Active
+Composite9 S122 Agent1_Active
+Composite9 S122 EXIT
+Composite9 S12 EXIT
+Composite9 S13 ENTRY
+
+# 3rd tick!
+>tick
+Agent2 Standby StandbyTimerEv
+Agent2 Standby EXIT
+Agent2 Active ENTRY
+Composite9 Active Region1 S13TimerEv
+Composite9 S13 S13TimerEv
+Composite9 S13 EXIT
+Composite9 S11 ENTRY
+Agent1 Active Deactivate_Agent1
+Agent1 Active EXIT
+Agent1 Inactive ENTRY
+Composite9 Active Region3 S16TimerEv
+Composite9 S16 S16TimerEv
+Composite9 S1611 EXIT
+Composite9 S161 EXIT
+Composite9 S16 EXIT
+Composite9 S17 ENTRY
+Composite9 Active Region2 Agent2_Active
+Composite9 S15 Agent2_Active
+Composite9 S15 EXIT
+Composite9 S14 ENTRY
+Agent2 Active Deactivate_Agent2
+Agent2 Active EXIT
+Agent2 Inactive ENTRY
+Composite9 Active Region1 Deactivate_Agent1
+Composite9 Active Region1 Deactivate_Agent1
+
+# 4th tick!
+>tick
+Composite9 Active Region3 S17TimerEv
+Composite9 S17 S17TimerEv
+Composite9 S17 EXIT
+Composite9 S16 ENTRY
+Composite9 S161 ENTRY
+Composite9 S1611 ENTRY
+Composite9 Active Region1 S11TimerEv
+Composite9 S11 S11TimerEv
+Composite9 S11 EXIT
+Composite9 S12 ENTRY
+Composite9 S121 ENTRY
+Agent1 Inactive Activate_Agent1
+Agent1 Inactive EXIT
+Agent1 Standby ENTRY
+Agent1.AgentPrep\(\)
+
+# 5th tick!
+>tick
+Agent1 Standby StandbyTimerEv
+Agent1 Standby EXIT
+Agent1 Active ENTRY
+Composite9 Active Region1 S121TimerEv
+Composite9 S121 S121TimerEv
+Composite9 S121 EXIT
+Composite9 S122 ENTRY
+Composite9 Active Region2 S14TimerEv
+Composite9 S14 S14TimerEv
+Composite9 S14 EXIT
+Composite9 S15 ENTRY
+Agent2 Inactive Activate_Agent2
+Agent2 Inactive EXIT
+Agent2 Standby ENTRY
+Agent2.AgentPrep\(\)
+Composite9 Active Region1 Agent1_Active
+Composite9 S122 Agent1_Active
+Composite9 S122 EXIT
+Composite9 S12 EXIT
+Composite9 S13 ENTRY
+
+# 6th tick!
+>tick
+Agent2 Standby StandbyTimerEv
+Agent2 Standby EXIT
+Agent2 Active ENTRY
+Composite9 Active Region1 S13TimerEv
+Composite9 S13 S13TimerEv
+Composite9 S13 EXIT
+Composite9 S11 ENTRY
+Agent1 Active Deactivate_Agent1
+Agent1 Active EXIT
+Agent1 Inactive ENTRY
+Composite9 Active Region2 Agent2_Active
+Composite9 S15 Agent2_Active
+Composite9 S15 EXIT
+Composite9 S14 ENTRY
+Agent2 Active Deactivate_Agent2
+Agent2 Active EXIT
+Agent2 Inactive ENTRY
+Composite9 Active Region1 Deactivate_Agent1
+
+# Disarm the Master
+>Disarm
+Composite9 Active Disarm
+Composite9 Active EXIT
+Composite9 S11 EXIT
+Composite9 S14 EXIT
+Composite9 S1611 EXIT
+Composite9 S161 EXIT
+Composite9 S16 EXIT
+Composite9 Inert ENTRY
+
+# Finally, check that arming works again
+>Arm
+Composite9 Inert Arm
+Composite9 Inert EXIT
+Composite9 Active ENTRY
+Composite9 S11 ENTRY
+Composite9 S14 ENTRY
+Composite9 S16 ENTRY
+Composite9 S161 ENTRY
+Composite9 S1611 ENTRY

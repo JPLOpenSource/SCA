@@ -1,0 +1,13 @@
+##
+## Write the code for an event transition out of this state,
+##  handling SignalEvents followed by TimeEvents, as supplied to us by $model
+##
+##- input vars (in addition to $model, etc.):
+##    * $eventName:  the substate-prefixed name of the Signal- or TimeEvent object
+###############################################################################
+
+    case ${eventName}:
+#*--*##if( $autocoder.executionTraceOn )
+        strcat(logMsg, " ${eventName}");
+        LogEvent::log(logMsg);
+#*--*##end

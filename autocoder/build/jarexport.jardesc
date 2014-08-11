@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="MacRoman"?>
+<jardesc>
+<jar path="autocoder/build/release/autocoder.jar"/>
+<options buildIfNeeded="true" compress="true" descriptionLocation="/autocoder/build/jarexport.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+<storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+<selectedProjects/>
+<manifest generateManifest="true" mainClassHandleIdentifier="=autocoder/src&lt;gov.nasa.jpl.statechart{Autocoder.java[Autocoder" manifestLocation="/autocoder/build/autocoder.manifest" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+<sealing sealJar="false">
+<packagesToSeal/>
+<packagesToUnSeal/>
+</sealing>
+</manifest>
+<selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+<file path="/autocoder/LICENSE.pdf"/>
+<javaElement handleIdentifier="=autocoder/src"/>
+<file path="/autocoder/lib/velocity-1.6.2-dep.jar"/>
+<javaElement handleIdentifier="=autocoder/test"/>
+<file path="/autocoder/build.xml"/>
+<file path="/autocoder/lib/log4j-1.2.15.jar"/>
+<file path="/autocoder/Makefile"/>
+</selectedElements>
+</jardesc>

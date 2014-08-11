@@ -1,0 +1,20 @@
+##
+## Defines "final" method for cleanly bailing out of submachine (or region).
+##
+##- input vars (in addition to $model, etc.):  None
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+###############################################################################
+
+QState ${typeName}_final (${typeName} *me, QEvent const *e) {
+    switch (e->sig) {
+    case Q_ENTRY_SIG:
+        me->myState = ${mapper.mapToEnumDecl($sm)}__TOP__;
+        return Q_HANDLED();
+    case Q_EXIT_SIG:
+        return Q_HANDLED();
+    case Q_BAIL_SIG:  // prevents dropped event if submachine already terminated
+        return Q_HANDLED();
+    }
+    return Q_SUPER(&QHsm_top);
+}

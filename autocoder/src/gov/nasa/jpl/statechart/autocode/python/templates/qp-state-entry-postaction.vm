@@ -1,0 +1,31 @@
+##
+## Generate Entry condition code, after the action list:
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##    * $isQHsm:     flag indicating whether we're in an Active or Hsm class
+###############################################################################
+## initialize submachines
+#*--*##if( $state.submachineState )
+            self.__${stateName}.onStart(self.__${stateName}.top)
+#*--*##end
+##
+## initialize all concurrent subregions
+#*--*##foreach( $region in $model.getChildOrthogonalRegions($state) )
+#*----*##set( $varname = $mapper.mapToVarName($region) )
+            self.__${varname}.onStart(self.__${varname}.top)
+#*--*##end
+##
+## start Do activity
+#*--*##if( $model.hasDoActivity($state) )
+## get the action name
+#*----*##set( $action = $state.getDo().actionList().get(0) )
+#*----*##set( $funcCall = $model.getCallParts($action) )
+#*----*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+            # Instance and invoke doActivity thread here...
+            self.__${stateName}_do_thread = do_activity_thread.DoThread(target=self.__${funcName})
+            self.__${stateName}_do_thread.start()
+            #
+#*--*##end
+            return 0

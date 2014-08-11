@@ -1,0 +1,59 @@
+# Composite3 checks a composite StateMachine with 2 orthogonal regions
+
+<Composite3 S1 ENTRY
+>Ev2
+>Ev3
+>Ev1
+<Composite3 S1 Ev1
+<Composite3 S1 EXIT
+<Composite3 S2 ENTRY
+<Composite3 S21 ENTRY
+<Composite3 S23 ENTRY
+>Ev1
+<Composite3 S2 Ev1
+<Composite3 S2 EXIT
+<Composite3 S21 EXIT
+<Composite3 S23 EXIT
+<Composite3 S1 ENTRY
+>Ev1
+<Composite3 S1 Ev1
+<Composite3 S1 EXIT
+<Composite3 S2 ENTRY
+<Composite3 S21 ENTRY
+<Composite3 S23 ENTRY
+>Ev2
+<Composite3 S2 Region1 Ev2
+<Composite3 S21 Ev2
+<Composite3 S21 EXIT
+<Composite3 S22 ENTRY
+>Ev2
+<Composite3 S2 Region1 Ev2
+<Composite3 S22 Ev2
+<Composite3 S22 EXIT
+<Composite3 S21 ENTRY
+>Ev3
+<Composite3 S2 Region2 Ev3
+<Composite3 S23 Ev3
+<Composite3 S23 EXIT
+<Composite3 S24 ENTRY
+>Ev3
+<Composite3 S2 Region2 Ev3
+<Composite3 S24 Ev3
+<Composite3 S24 EXIT
+<Composite3 S23 ENTRY
+>Ev2
+<Composite3 S2 Region1 Ev2
+<Composite3 S21 Ev2
+<Composite3 S21 EXIT
+<Composite3 S22 ENTRY
+>Ev3
+<Composite3 S2 Region2 Ev3
+<Composite3 S23 Ev3
+<Composite3 S23 EXIT
+<Composite3 S24 ENTRY
+>Ev1
+<Composite3 S2 Ev1
+<Composite3 S2 EXIT
+<Composite3 S22 EXIT
+<Composite3 S24 EXIT
+<Composite3 S1 ENTRY

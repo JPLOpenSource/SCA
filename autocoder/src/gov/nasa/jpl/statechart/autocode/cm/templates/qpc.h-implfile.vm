@@ -1,0 +1,35 @@
+##
+## Defines Impl header file.
+##
+###############################################################################
+#*--*##set( $sm = $model.statemachine.value )
+#*--*##set( $smName = $mapper.mapToTypeName($sm) )
+##
+/*
+ * filename:
+ *   ${smName}Impl.h
+ *
+ * Author:
+ *   ${model.username()}
+ *
+ * Description
+ *   Implementation class header
+ */
+#ifndef ${smName}Impl_h
+\#define ${smName}Impl_h
+
+struct ${smName}Impl_s
+{
+
+};
+
+typedef struct ${smName}Impl_s ${smName}Impl;
+
+##
+## Generate the signatures for action methods
+##
+#*--*##foreach( $action in $model.getCallActions($sm, false) )
+#*----*##set( $actionName = $mapper.sanitize($action.name()) )
+void ${smName}Impl_${actionName}(#if( $action.hasArgs() )${action.argStr()}#end);
+#*--*##end
+#endif  /* ${smName}Impl_h */

@@ -1,0 +1,36 @@
+##
+## Implement state handler declarations for a State Machine or Region
+##
+##- input vars:
+##    * $typeObj:  State Machine or Region object
+##    * $isQHsm:   flag indicating whether we're in an Active or Hsm class
+##    * $friends:  optional list of friend Classes if Active, null otherwise
+##
+##* [SWC 2010.02.09] implemented anew referencing C and new Python templates.
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+##* [SWC 2011.04.26] Moved friends declaration to private section.
+###############################################################################
+##
+## Declare function prototypes for every state, but exclude the regions. 
+## Each state does need to reference its enclosing, orthogonal region in 
+## order to generate an appropriate "me" pointer type
+##
+#*--*##set( $states = $model.getStates($typeObj, false) )
+#*--*##if( ! $states.isEmpty() )
+
+    /**
+     * Static state-handler methods
+     */
+#*----*##foreach( $state in $model.sort($states) )
+#*------*##set( $stateFunctionName = $mapper.mapToFunctionName($state) )
+#*------*##if( $isQHsm )
+## "me" points to ortho-region
+#*--------*##set( $enclosingRegion = $model.getEnclosingOrthogonalRegion($state) )
+#*--------*##set( $implType = $mapper.mapToQualifiedName($enclosingRegion) )
+#*------*##else
+## "me" points to State Machine
+#*--------*##set( $implType = "${smName}" )
+#*------*##end
+    static ${qfNs}QState ${stateFunctionName} (${implType} *me, ${qfNs}QEvent const *e);
+#*----*##end
+#*--*##end

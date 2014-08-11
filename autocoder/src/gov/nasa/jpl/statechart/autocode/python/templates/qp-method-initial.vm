@@ -1,0 +1,33 @@
+##
+## Defines the "top" state.
+##
+##- input vars (in addition to $model, etc.):
+##    * $typeObj :  State Machine or Region
+###############################################################################
+
+
+    def top(self):
+        """
+        The routine handles initial events and events that get bubbled 
+        to the top of the state-machine.  Events that get bubbled to the top can
+        either be ignored (return 0) or an error message can be generated.
+        """
+        if self.tEvt['sType'] == "init":
+## need to increase indentation _here_ in the case of Python
+#*--*##set( $discard = $mapper.incIndent() )
+##
+## Cause GUI to exit any final states in the state machine
+##
+#*--*##if( $autocoder.executionTraceOn )
+#*----*##foreach( $finalState in $model.sort($model.getFinalStates($typeObj)) )
+#*------*##set( $fStateName = $mapper.mapToFunctionName($finalState) )
+#*----*##if( $isQHsm )
+            self.__parent_obj.sendUpdate("${fStateName}","EXIT")
+#*----*##else
+            self.sendUpdate("${fStateName}","EXIT")
+#*----*##end
+#*----*##end
+#*--*##end
+##
+## Next, should transition to the initial state, if any
+##

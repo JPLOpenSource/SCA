@@ -1,0 +1,93 @@
+##
+## Implement class declaration for a Region
+##
+##- input vars:
+##    * $region:    Region object
+##    * $typeObj:   alias for $region
+##    * $typeName:  Type/struct name of the Region object
+##    * $smName:    Type/struct name of the State Machine object
+##    * $implName:  Type/struct name of the State Machine Impl object
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+##* [SWC 2011.09.27] Implemented SMAP C naming convention for module items
+##* [SWC 2012.09.04] Removed destructor function for C
+##* [SWC 2012.09.05] Created 2 constructor variations to eliminate objNameNew
+##  param entirely if execution trace disabled.
+##* [SWC 2012.09.06] Added flags that determine if SM terminable/terminator
+##  to code BAIL sig/event, Completion event, and  _final/_reinit functions
+###############################################################################
+##
+#*--*##set( $regionName = $mapper.mapToQualifiedName($region) )
+
+
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($typeObj)) )
+#*--*##if( !$localRegions.empty )
+/* Forward declarations for orthogonal region instances */
+#*----*##foreach( $localRegion in $localRegions )
+#*------*##set( $localRegionName = $mapper.mapToQualifiedName($localRegion) )
+#*------*##set( $varname = $mapper.mapToVarName($localRegion) )
+typedef struct ${localRegionName} ${localRegionName};
+#*----*##end
+
+#*--*##end
+/**
+ * Declare the state machine struct, encapsulating the extended state variables.
+ * It tracks any timers, owned orthogonal regions, history states, substates.
+ */
+struct ${regionName} {
+    QHsm super;  // C-style inheritance
+##
+## Instantiate common struct data and
+## all orthogonal regions and submachines and declare all history variables.
+##
+#*--*##parse( "${tpath}qp.h-class-commondata.vm" )
+};
+
+########### state handler function signatures ####
+
+/** 
+ * ${smName} State Machine orthogonal-region ${regionName} Constructor
+ *
+ * This State machine constructor is responsible for initializing
+ * the object, allocating and initializing any orthogonal regions, 
+ * and initializing the timers.
+ */
+#*--*##if( $autocoder.executionTraceOn )## add name string parameter
+${regionName} *${regionName}_constructor (${regionName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, ${smName} *parent);
+#*--*##else## no additional parameter
+${regionName} *${regionName}_constructor (${regionName} *me, ${implName} *implObj, QActive *active, ${smName} *parent);
+#*--*##end
+
+/**
+ * Returns the unique enum representing current state within this region.
+ */
+${smName}_state ${regionName}_get_current_state (${regionName} *me);
+##
+#*--*##if( $SM_TERMINABLE || $autocoder.ifDefineMain() || $autocoder.ifDefineUnitTest() )
+
+/**
+ * Returns flag indicating whether this StateMachine instance
+ * is instantiated as a substate of another StateMachine; queries parent.
+ */
+#dataTypeBoolean() ${regionName}_is_substate (${regionName} *me);
+#*--*##end
+##
+## Orthogonal regions must always be able to be terminated
+
+/**
+ * Re-initializes a region, invoked upon exit from region.
+ */
+void ${regionName}_reinit (${regionName} *me);
+
+/**
+ * Method to initialize region to initial pseudostates
+ */
+QState ${regionName}_initial (${regionName} *me, QEvent const *e);
+##
+#*--*##if( $SM_TERMINABLE || $isQHsm )
+
+/**
+ * Method representing state machine final state
+ */
+QState ${regionName}_final (${regionName} *me, QEvent const *e);
+#*--*##end

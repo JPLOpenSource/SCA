@@ -1,0 +1,11 @@
+<(test5|testObj) Test5T5S1 ENTRY
+>Ev1
+<(test5|testObj) Test5T5S1 EXIT
+<(test5|testObj) Test5T5S2 ENTRY
+>Ev2
+<(test5|testObj) Test5 handleEv2
+>Ev2
+<(test5|testObj) Test5 handleEv2
+>Ev1
+<(test5|testObj) Test5T5S2 EXIT
+<(test5|testObj) Test5T5S1 ENTRY

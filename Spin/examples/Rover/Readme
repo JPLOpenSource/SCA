@@ -1,0 +1,31 @@
+If you do a make clean, you will have to copy all the pml files to the autocode directory because this model has a lot of customization to get it to work:
+- Order of including the Rover and Arm model in the Main.pml
+- Removing some publishing of events in the driver in the Init.pml
+- Publishing an internal event still has some issues when the input queues have filled up.  A modification in Rover.pml was made so as not to send yourself an event on a publish.
+
+
+> make clean all
+> cp *.pml autocode
+
+To run the Spin simulation model:
+----------------------------------
+> spin autocode/Main.pml
+
+To run the SPIN verification model:
+------------------------------------
+> spin -a autocode/Main.pml
+> gcc -DSAFETY -o model pan.c 
+> model
+
+To replay a trail file:
+-----------------------
+> mv Main.pml.trail autocode/
+> spin -t -r autocode/Main.pml
+
+
+To verify the log file with LogScope:
+--------------------------------------
+> spin -u10000 autocode/Main.pml | convert.scala > log
+> /Users/watney/logscope/logscope log spec
+
+Note:  There should be some errors because in this model the Rover can be driving while the Arm is extended.  Only these errors should be reported.

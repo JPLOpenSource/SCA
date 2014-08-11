@@ -1,0 +1,35 @@
+##
+## Generate Entry condition code, first-half:
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##    * $isQHsm:     flag indicating whether we're in an Active or Hsm class
+###############################################################################
+        if self.tEvt['sType'] == "entry":
+            self.__state_name = state_name
+            printf("%s %s %s", machine, state_name, "ENTRY")
+#*--*##if( $autocoder.executionTraceOn )
+#*----*##if( $isQHsm )
+            self.__parent_obj.sendUpdate(state_name,"ENTRY")
+#*----*##else
+            self.sendUpdate(state_name,"ENTRY")
+#*----*##end
+#*--*##end
+##
+## handle deep history state: save history
+#*--*##if( $state.container.containsHistoryState() )
+#*----*##set( $histStateName = $mapper.mapToFunctionName($model.getParentState($state)) )
+            self.__${histStateName}_history = self.${stateName}
+#*--*##end
+##- enable Timers
+#*--*##foreach( $event in $model.getTimeEvents($state) )
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($event) )
+#*----*##set( $timeout = $mapper.mapTimeEventToTimeout($event) )
+## timers are ONLY defined in ACTIVE classes, so HSMs must access via active
+#*----*##if( $isQHsm )
+            self.__parent_obj.${timerName}.postIn(${timeout})
+#*----*##else
+            self.${timerName}.postIn(${timeout})
+#*----*##end
+#*--*##end

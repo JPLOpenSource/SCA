@@ -1,0 +1,153 @@
+##
+## Implement class and constructor for State Machine or Region.
+##
+##- input vars:
+##    * $_typeObj :  State Machine or Region
+##    * $_typeName :  State Machine name or Region name (mapper usage is different)
+##    * $_isQHsm :    flag indicating if this is QHsm (true), or QActive (false)
+##
+##* [SWC 2009.09.02] coded from Python examples.
+##* [SWC 2009.09.18] verified against C template.
+##* [SWC 2009.09.22] added region instantiaton and fixed history state
+###############################################################################
+
+
+##
+## Class signature
+##
+#*--*##if( $_isQHsm )
+class ${_typeName}(miros.Hsm):
+#*--*##else
+class ${smName}Active(active.Active):
+#*--*##end
+    """
+    ${smName} state machine#if( $_isQHsm ) orthogonal ${_typeName}#else active#end object.
+    """
+#*--*##if( $_isQHsm )
+    def __init__(self, impl_object=None, machine_name=None, window_name=None, active_obj=None):
+#*--*##else
+    def __init__(self, impl_object=None, window_name="${smGuiName}", active_obj=None, instance_name=None, is_substate=False):
+#*--*##end
+        """
+        Constructor
+        """
+#*--*##if( $_isQHsm )
+        miros.Hsm.__init__(self)
+#*--*##else
+        active.Active.__init__(self)
+#*--*##end
+##
+## Obtain all the state names within this state machine
+##
+#*--*##set( $nonOrthoStates = $model.sort($model.getStates($_typeObj, false)) )
+#*--*##set( $nameList = $mapper.getNamesInTargetLang($nonOrthoStates) )
+#*--*##set( $rv = $nameList.add("=======") )## for the longest label we have:  handler
+#*--*##set( $maxlen1 = $mapper.getLongestString($nameList) + 4 )
+#*--*##set( $maxlen2 = $maxlen1 + 6 )
+#*--*##set( $pad1 = $mapper.getPadding("state", $maxlen1) )
+#*--*##set( $pad2 = $mapper.getPadding("handler", $maxlen2) )
+        # --------------------------------------------------------------------
+        #               name ${pad1}         ${pad2}  parent's
+        #                of  ${pad1}  event  ${pad2}  event
+        #               state${pad1}  handler${pad2}  handler
+        # --------------------------------------------------------------------
+#*--*##set( $maxlen1 = $maxlen1 - 3 )## 3 for <"",>
+#*--*##set( $maxlen2 = $maxlen2 - 6 )## 6 for <self.,>
+#*--*##set( $pad1 = $mapper.getPadding("top", $maxlen1) )
+#*--*##set( $pad2 = $mapper.getPadding("top", $maxlen2) )
+        self.addState ( "top",${pad1}  self.top,${pad2}  None)
+#*--*##foreach( $nonOrthoState in $nonOrthoStates )
+#*----*##set( $parentName = $mapper.mapToFunctionName($model.getParentStateWithinOrthogonal($nonOrthoState)) )
+#*----*##set( $name = $mapper.mapToFunctionName($nonOrthoState) )
+#*----*##set( $pad1 = $mapper.getPadding($name, $maxlen1) )
+#*----*##set( $pad2 = $mapper.getPadding($name, $maxlen2) )
+        self.addState ( "${name}",${pad1}  self.${name},${pad2}  self.${parentName})
+#*--*##end
+##- add a final state for cleanly bailing out of submachine or region
+#*--*##set( $pad1 = $mapper.getPadding("final", $maxlen1) )
+#*--*##set( $pad2 = $mapper.getPadding("final", $maxlen2) )
+        self.addState ( "final",${pad1}  self.final,${pad2}  self.top)
+
+        # For GUI messages
+#*--*##if( $_isQHsm )
+        self.__machine_name = machine_name
+#*--*##else
+        self.__machine_name = "${smName}"
+        self.__is_substate = is_substate
+        if instance_name is not None:
+            self.__machine_name = instance_name + ":" + self.__machine_name
+#*--*##end
+        self.__window_name = window_name
+        # For manually coded implementation
+        # of all actions, guards, etc.
+        self.__impl_obj = impl_object
+        # For Active object access, 'None' if no super Active object 
+        self.__active_obj = active_obj
+##
+## Obtain list of transitions in state machine with timer events
+##
+#*--*##set( $transitions = $model.getTransitionsWithTimeEvent($model.statemachine, true) )
+#*--*##if( !$_isQHsm && !$transitions.empty )
+        # Timer event object instances
+#*----*##foreach( $transition in $transitions )
+#*------*##foreach( $timerEv in $transition.getTimeEvents() )
+#*--------*##set( $timerName = $mapper.mapTimeEventToTimer($timerEv) )
+        self.${timerName} = None
+#*------*##end
+#*----*##end
+#*--*##end
+##
+## Instantiate all submachines
+##
+#*--*##set( $submStates = $model.sort($model.getSubmachineStates($_typeObj)) )
+#*--*##if( !$submStates.isEmpty() )
+
+        # Submachines instanced here
+#*----*##foreach( $submState in $submStates )
+#*------*##set( $stateName = $mapper.mapToFunctionName($submState) )
+#*------*##set( $submName = "${mapper.mapToTypeName($submState.submachine)}Active" )
+        self.__${stateName} = ${submName}.${submName}(self.__impl_obj,\
+                self.__window_name, active_obj=self, instance_name="${stateName}", is_substate=True)
+#*----*##end
+#*--*##end
+##
+## Instantiate all orthogonal regions
+##
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($_typeObj)) )
+#*--*##if( !$localRegions.isEmpty() )
+
+        # Orthogonal regions instanced here
+#*----*##foreach( $region in $localRegions )
+#*------*##set( $lRegionType = $mapper.mapToRegionClass($region) )
+#*------*##set( $varname = $mapper.mapToVarName($region) )
+#*------*##set( $ttlLen = $varname.length() + $lRegionType.length() )
+#*------*##set( $pad = $mapper.getPadding("", $ttlLen) )
+        self.__${varname} = ${lRegionType}(self.__impl_obj, \
+                  ${pad} self.__machine_name, \
+                  ${pad} self.__window_name, \
+                  ${pad} self)
+#*----*##end
+#*--*##end
+##
+## Declare each history variable
+##
+#*--*##set( $histStates = $model.getOOHistoryStates($_typeObj) )
+#*--*##if( !$histStates.isEmpty() )
+        # History states memory here.
+#*----*##foreach( $histState in $histStates )
+#*------*##set( $parentState = $model.getParentState($histState) )
+#*------*##set( $parentName = $mapper.mapToFunctionName($parentState) )
+#*------*##set( $histVar = "__${parentName}_history" )
+#*------*##set( $histTransition = $model.getInitialTransition($histState) )
+#*------*##if( $histTransition )
+#*--------*##set( $targetState = $model.getTarget($histState, $histTransition) )
+        self.${histVar} = self.${mapper.mapToFunctionName($targetState)}
+#*------*##end
+#*----*##end
+#*--*##end
+##
+## Define initialize method if we're a State Machine
+##
+#*--*##if( !$_isQHsm )
+#*----*##parse( "${tpath}qppy-initialize.vm" )
+#*--*##end

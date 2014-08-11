@@ -1,0 +1,14 @@
+##
+## Process deep history pseudostate.
+##
+##- input vars (in addition to $model, etc.):
+##    * $target    :  Target state of transition
+##    * $isInitTran:  Flag indicating whether this is an initial transition
+###############################################################################
+#*--*##set( $spc = $mapper.indentation() )
+#*--*##set( $func = "stateTran" )
+#*--*##if( $isInitTran )
+#*----*##set( $func = "stateStart" )
+#*--*##end
+#*--*##set( $parentName = $mapper.sanitize($model.getParentState($target).name) )
+$spc        self.${func}(self.__${parentName}_history)

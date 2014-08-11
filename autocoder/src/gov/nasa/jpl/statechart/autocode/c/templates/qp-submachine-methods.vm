@@ -1,0 +1,14 @@
+##
+## Defines the submachine utility methods for a main machine to set entry point
+## and/or exit point.
+##
+##- input vars (in addition to $model, etc.):  None
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+###############################################################################
+
+
+void ${typeName}_set_entry_point (${typeName} *me, #dataTypeInt32() entry_point_id, QEvent const *e) {
+    me->entryPoint = entry_point_id;
+    me->entryEvent = e;
+}

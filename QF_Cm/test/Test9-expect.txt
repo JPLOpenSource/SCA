@@ -1,0 +1,17 @@
+<(test9|testObj1) Test9T9S1 ENTRY
+<(test9_1|testObj2) Test9_1T9_1S1 ENTRY
+>Ev1
+<(test9|testObj1) Test9T9S1 EXIT
+<(test9|testObj1) Test9T9S2 ENTRY
+>Ev2
+<(test9_1|testObj2) Test9_1T9_1S1 EXIT
+<(test9_1|testObj2) Test9_1T9_1S2 ENTRY
+>Ev1
+<(test9|testObj1) Test9T9S2 EXIT
+<(test9|testObj1) Test9T9S1 ENTRY
+>Ev1
+<(test9|testObj1) Test9T9S1 EXIT
+<(test9|testObj1) Test9T9S2 ENTRY
+>Ev2
+<(test9_1|testObj2) Test9_1T9_1S2 EXIT
+<(test9_1|testObj2) Test9_1T9_1S1 ENTRY

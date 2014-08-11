@@ -1,0 +1,18 @@
+<project name="Test directory ant utility" default="clean" basedir=".">
+
+    <!-- Global properties for this script -->
+
+    <target name="init">
+    </target>
+
+    <target name="clean" description="deletes autocoder-generated output">
+    	<echo message="Deleting all .h, .c, .cpp, .py, .pyc and .log auto-generated files under ${basedir}."/>
+        <!-- Delete all .h, .c, .cpp, and .py files -->
+        <delete>
+            <fileset dir="${basedir}" includes="**/*.h,**/*.c,**/*.cpp" excludes="**/reference/*,aresI/*"/>
+            <fileset dir="${basedir}" includes="**/*.py,**/*.pyc" excludes="**/reference/*,aresI/*,**/Application.py,**/gui.py,**/sim_state.py"/>
+            <fileset dir="${basedir}" includes="**/*.log,**/*.log.*"/>
+        </delete>
+    </target>
+
+</project>

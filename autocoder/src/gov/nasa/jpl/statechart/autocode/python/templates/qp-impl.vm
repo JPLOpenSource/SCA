@@ -1,0 +1,149 @@
+##
+## Main Velocity Template for Python Impl-file code-generation
+##
+###############################################################################
+##
+## Get some useful variables for the rest of the template 
+## 
+#*--*##set( $sm = $model.stateMachine )
+#*--*##set( $smName = $mapper.mapToTypeName($sm) )
+#*--*##set( $smGuiName = $smName.toLowerCase() )
+#
+# Copyright 2009, 2010 California Institute of Technology.
+# ALL RIGHTS RESERVED. U.S. Government Sponsorship acknowledged.
+#
+"""
+File: ${smName}Impl.py
+
+Date Created:  ${model.timestamp()}
+Created By:    ${model.username()}
+
+Python custom-implementation class for functions referenced in
+the ${smName} Statechart model.
+"""
+# Python imports here
+import sys
+import logging
+
+# QF imports here
+from qf import framework
+from qf import event
+#*--*##set( $submachines = $model.sort($model.getSubmachines($sm)) )
+#*--*##if( !$submachines.isEmpty() )
+
+# Submachine imports here
+#*----*##foreach( $subm in $submachines )
+#*------*##if( $model.getCallActions($subm, true).size() > 0 )
+#*--------*##set( $submName = "${mapper.mapToTypeName($subm)}Impl" )
+from ${submName} import *
+#*------*##end
+#*----*##end
+#*--*##end
+
+
+# Module globals initialized here
+LOGGER = logging.getLogger('${smName}Logger')
+
+
+def printf(format, *args):
+    # sys.stdout.write(format % args)
+    LOGGER.info(format % args)
+
+
+class ${smName}Impl(object):
+    """
+    ${smName} state machine implementation object.
+    """
+    def __init__(self, machine_name="${smName}"):
+        """
+        Constructor
+        """
+        self.__machine_name = machine_name
+        self.fr = framework.QF.getInstance()
+        self.activeObjects = self.fr.getActiveDict()
+        #
+        # guards default to False
+#*--*##if( $model.getAllCallActions().size() > 0 )
+#*----*##foreach( $func in $model.getAllCallActions() )
+#*------*##if( $func.guard )## we only care about setting guard's default val
+#*--------*##set( $funcName = $mapper.sanitize($func.name()) )
+        self.set('${funcName}', False)
+#*------*##else
+#*------*##end
+#*----*##end
+#*--*##end
+
+    def set(self, attr, value=True):
+        """
+        Sets the boolean value of an attribute, default to True
+        """
+        if type(value) == bool:
+            self.__dict__['_'+attr] = value
+            LOGGER.info("%s set to %s" % (attr, repr(value)))
+        else:
+            LOGGER.error('Value must be a bool, either "True" or "False" (no quotes)!')
+
+    def get(self, attrname):
+        """
+        Gets the boolean value of an attribute
+        """
+        return self.__dict__['_'+attrname]
+
+    def clear(self, attrname):
+        """
+        Clears the value of an attribute to False
+        """
+        self.__dict__['_'+attrname] = False
+##
+## Define impl-methods for functions (don't sort, or risk action disappearance!)
+##
+#*--*##foreach( $func in $model.getAllCallActions() )
+#*----*##set( $funcName = $mapper.sanitize($func.name()) )
+#*----*##set( $funcArgs = "" )
+#*----*##if( $func.hasArgs() )
+#*------*##set( $funcArgs = ", ${mapper.mapArgsToDeclarations($func)}" )
+#*----*##end
+
+    def ${funcName}(self${funcArgs}):
+        """
+        Implementation#if( $func.guard ) Guard#else Action#end method for ${funcName}().
+        The triggering event is supplied as a dictionary object 'e', so member
+        data "data1" of the original Event object is accessible as e['data1'] .
+        """
+#*----*##if( $func.guard )
+        LOGGER.info("%s.${funcName}() == %s" % (self.__machine_name, str(self.get('${funcName}'))))
+        return self.get('${funcName}')
+#*----*##else
+        LOGGER.info("%s.${funcName}() default action implementation invoked" % self.__machine_name)
+#*----*##end
+#*--*##end
+###############################################################################
+## Define the Submachine Impl subclasses to allow overriding action behaviors
+##
+#*--*##set( $submStates = $model.sort($model.getSubmachineStates($sm)) )
+#*--*##if( !$submStates.isEmpty() )
+
+#*----*##foreach( $submState in $submStates )
+#*------*##if( $model.getCallActions($submState.submachine, true).size() > 0 )
+#*--------*##set( $stateName = $mapper.mapToFunctionName($submState) )
+#*--------*##set( $submName = $mapper.mapToTypeName($submState.submachine) )
+#*--------*##set( $submImpl = "${submName}Impl" )
+#*--------*##set( $substateImpl = "${stateName}_${submImpl}" )
+
+
+class ${substateImpl}(${submImpl}):
+    """
+    ${substateImpl} SubMachine implementation override object.
+
+    Override the action methods of the SubMachine individually if custom
+    behavior is desired.
+    """
+    def __init__(self, machine_name="${stateName}:${submName}"):
+        """
+        Override constructor
+        """
+        ${submImpl}.__init__(self, machine_name)
+        self.__machine_name = machine_name
+#*------*##end
+#*----*##end
+#*--*##end

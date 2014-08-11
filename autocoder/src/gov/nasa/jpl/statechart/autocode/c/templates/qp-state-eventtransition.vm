@@ -1,0 +1,14 @@
+##
+## Write the code for an event transition out of this state,
+##  handling SignalEvents followed by TimeEvents, as supplied to us by $model
+##
+##- input vars (in addition to $model, etc.):
+##    * $eventName:  the substate-prefixed name of the Signal- or TimeEvent object
+##    * $traceName:  substate-prefixed GUI trace name of Signal- or TimeEvent
+##    * $eventTransPair:  the event-transition pair
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+###############################################################################
+
+    case ${eventName}:
+#*--*##traceEventTransition($eventTransPair, $eventName, $traceName)

@@ -1,0 +1,138 @@
+##
+## After eumerating the states, create forward declarations of
+## any Orthogonal regions that is not directly owned by the
+## current state machine.
+##
+##* [SWC 2009.09.09] verified constructor against old code in
+##    StateChartHeaderWriter.writeStateRegionDeclarations(),
+##    .writeOneRegionDeclaration(), and .writeQActiveDeclaration().
+###############################################################################
+##
+## First, generate forward references for the regions contained in submachines
+##
+#*--*##set( $externalRegions = $model.sort($model.getExternalOrthogonalRegions()) )
+#*--*##if( !$externalRegions.isEmpty() )
+
+/**
+ * Forward Declaration of Concurrent Region Types
+ *
+ * We cannot use forward declaration of typedefed
+ * structs, so the struct keyword remains
+ */
+#*----*##foreach( $region in $externalRegions )
+#*------*##set( $regionName = $mapper.mapToStructType($region) )
+#*------*##set( $extRegionType = "${regionName}Region" )
+struct ${extRegionType};
+#*----*##end
+#*--*##end
+##
+## Each local orthogonal regions needs to have its own
+## struct for maintaining the state machine state since
+## it runs independently of all other orthogonal regions.
+##
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions()) )
+#*--*##if( !$localRegions.isEmpty() )
+ 
+/** 
+ * Declaration of Local Concurrent Regions
+ *
+ * These regions are present in this state machine
+ */
+#*----*##foreach( $region in $model.sort($localRegions).entrySet() )
+#*------*##set( $regionName = $mapper.mapToStructType($region) )
+#*------*##set( $lRegionType = "${regionName}Region" )
+typedef struct ${lRegionType} {
+   QHsm super_;
+   QActive * parent;
+#*------*##if( $autocoder.executionTraceOn )
+   char objName[256];
+#*------*##end
+   ${smName}Impl* impl;
+#*------*##set( $histRecs = $model.getHistoryContainers() )
+##
+## For each composite state with a history, write a history variable
+##
+#*------*##if( !$histRecs.isEmpty() )
+
+   /* Histories */
+#*--------*##foreach( $hist in $histRecs.entrySet() )
+#*----------*##set( $stateName = $mapper.sanitize($model.getParentState($hist).value.name) )
+   QState my${stateName}history;
+#*--------*##end
+#*------*##end
+##
+## Write the timer variables.  Only emit the timers that are part of this region
+##   (dig thru submachines(?!))
+##
+#*------*##set( $timers = $model.sort($model.getStatesWithTimeEventTriggers($region, true)) )
+#*------*##if( !$timers.isEmpty() )
+
+   /* Timers */
+#*--------*##foreach( $timerState in $timers.entrySet() )
+#*----------*##foreach( $timerEv in $model.getTimeEvents($timerState) )
+   QTimeEvt ${mapper.mapTimeEventToTimer($timerEv)};
+#*----------*##end
+#*--------*##end
+#*------*##end
+#####
+## We do not current support recursing into orthogonal states within an orthogonal state
+#####
+
+   enum StateEnum${smName} mystate;
+} ${lRegionType};
+
+#*----*##end
+#*--*##end
+/**
+ * Declare the struct that encapsulates the top-level
+ * of this state machine.  This object is responsible
+ * for tracking any owned orthogonal regions and propagating
+ * events to these regions.
+ */
+typedef struct ${smName} {
+   QActive super_;   
+#*--*##if( $autocoder.executionTraceOn )
+   char objName[256];
+#*--*##end
+   ${smName}Impl* impl;
+##
+## For each composite state with a history, create a history variable
+##
+#*--*##set( $histRecs = $model.getHistoryContainers() )
+#*--*##if( !$histRecs.isEmpty() )
+
+   /* Histories */
+#*----*##foreach( $hist in $histRecs.entrySet() )
+#*------*##set( $stateName = $mapper.sanitize($model.getParentState($hist).value.name) )
+   QState my${stateName}history;
+#*----*##end
+#*--*##end
+##
+## Write the timer variables.  Only emit the timers that are part of this region
+##
+#*--*##set( $statesWithTimer = $model.getStatesWithTimeEventTriggers($model.statemachine, false) )
+#*--*##if( !$statesWithTimer.isEmpty() )
+
+   /* Timers */
+#*----*##foreach( $state in $model.sort($statesWithTimer).entrySet() )
+#*------*##foreach( $event in $model.getTimeEvents($state) )
+   QTimeEvt ${mapper.mapTimeEventToTimer($event)};
+#*------*##end
+#*----*##end
+#*--*##end
+##
+## For each concurrent composite state, create region structure to keep track of the concurrency         
+##
+#*--*##if( !$localRegions.isEmpty() )
+
+   /* Concurrent State Regions */
+#*----*##foreach( $region in $localRegions.entrySet() )
+#*------*##set( $regionName = $mapper.mapToStructType($region) )
+#*------*##set( $lRegionType = "${regionName}Region" )
+#*------*##set( $varname = $mapper.mapToVarName($region) )
+   struct ${lRegionType}* ${varname};
+#*----*##end
+#*--*##end
+
+   enum StateEnum${smName} mystate;
+} ${smName};

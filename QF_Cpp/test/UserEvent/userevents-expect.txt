@@ -1,0 +1,37 @@
+# This UserEventTest checks that impl functions with explicit event arg and
+# other args are autocoded, and function, properly
+
+# enable functionality test
+>=IMPL['UserEventTest'].set("FUNCTIONALITY",True)
+
+UserEventTest\.noUserEventOnInit\(\) 'var' originally 'None', setting to 'Z'
+UserEventTest S1 ENTRY
+UserEventTest\.noUserEvent\(\) received var value 'Z' and event signal '1'
+ZTestUserEvents Ready ENTRY
+
+>TEST_ACTIVATE
+ZTestUserEvents Ready TEST_ACTIVATE
+ZTestUserEvents Ready EXIT
+ZTestUserEvents TestingEv1 ENTRY
+
+UserEventTest S1 Ev1
+UserEventTest\.userEventOnTrans\(\) received event signal '5', var value 'Z', and literal '2\.50*'
+UserEventTest S1 EXIT
+# var value has changed to the event data at this point
+UserEventTest\.noUserEvent\(\) received var value 'str' and event signal '2'
+UserEventTest S2 ENTRY
+UserEventTest\.noUserEvent\(\) received var value 'str' and event signal '1'
+UserEventTest\.noUserEvent\(\) no access to user event on entry/exit: '0'
+UserEventTest S2 Ev2
+UserEventTest\.userEventAvailable\(\) received string 'str', event signal '6', and var value 'str'
+UserEventTest S2 Ev1
+UserEventTest\.isValue\(\) == True
+UserEventTest S2 EXIT
+# var value has restored to what's stored in the event data at this point
+UserEventTest\.noUserEvent\(\) received var value '2\.50*' and event signal '2'
+UserEventTest\.noUserEvent\(\) no access to user event on entry/exit: '0'
+UserEventTest S1 ENTRY
+UserEventTest\.noUserEvent\(\) received var value '2\.50*' and event signal '1'
+
+>TEST_DONE
+ZTestUserEvents completed

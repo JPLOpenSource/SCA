@@ -1,0 +1,133 @@
+== When running the StateChart Autocoder to autocode to a target implementation ==
+
+Exception in thread "main" java.lang.UnsupportedClassVersionError: Bad version number in .class file.
+	* Problem source:  The autocoder.jar file was built with a newer version of Java Compiler than the Java VM version available on your current platform.
+	* Explanation:  Whenever there is a major upgrade in Java features, an older Java VM will not be able to interpret the object file (.class) created by a newer Java compiler; case-in-point:  java 1.5.x will not be able to execute object code compiled by javac 1.6.x.
+	* Solution:  Re-run "ant clean all" on your current platform to rebuild autocoder.jar; this requires that you have the Apache Ant tool installed.
+
+
+== Autocoder complaint of UML Model validation Fatal or Warnings ==
+[The error messages below will be different for particular instances, SMx is an example instance.]
+
+Fatal: State Machine must have a name! ID: _16_6_2_8b90279_1275599429795_552036_541
+	* Solution:  Make sure to give a name to each StateMachine diagram.  Search the model for unnamed StateMachines (in MagicDraw, unnamed node looks like <> in the Containment Tree).  The XMI ID can be useful to search directly within the model XML file.
+
+Fatal: Duplicate name 'SMx' found for StateMachines 'Data::SMx' and 'SMx'!
+	* Explanation:  Sometimes, two State machines defined in different parts of the model tree may be given the same name.  In the model, this may be OK, but in code, this is not.
+	* Solution:  Give a different name to each StateMachine diagram.  If you require give the same name to the two instances for modeling reasons, perhaps give the containing diagram or package the same name?
+
+Fatal: Duplicate name 'DupState' found for States Data::SMx::::S1::::DupState and Data::SMx::::S3::::DupState!
+	* Problem source:  Two states with the same name potentially cause a problem in code, even when they may sit in different parts of the StateMachine's state hierarchy.
+	* Solution:  Find one of the two states and give it a unique name.
+
+Fatal: Initial pseudostate 'Data::SMx::::S2::::' must NOT have more than one outgoing transition! ID: _16_6_2_8b90279_1275599858673_789170_634
+	* Problem source:  The initial pseudostate identified in the error message has more than one outgoing transition, which results in ambiguous code branches, so is not allowed.
+	* Solution:  Find an remove all but one outgoing transitions from the pseudostate.  Sometimes, this may require searching for non-visible transitions in the model containment tree.  In this case, we suggest starting from the pseudostate in the containment tree, then looking under the Relations node on the peer level to the pseudostate, or using "Related Elements -> Used By" search.
+
+Fatal: Simple state with empty outgoing transition(s)! Machine Data::SMx
+  (s,t0,s'0):= (S22, <TRANSITION>, noIncomingTrigger)
+        Transition ID '_16_6_2_8b90279_1275600931838_74121_884'
+	* Problem source:  A simple state is not allowed to have any outgoing transition that lacks signal trigger, as it would result in invalid code branch condition (i.e., would not compile).  The offending transition is identified by its source and target states, since the transition itself is usually unnamed (as the name <TRANSITION> indicates).
+	* Solution:  Find the empty transition in the model and define a SignalEvent trigger for it.
+
+Fatal: State with more than ONE empty outgoing transitions! Machine Data::SMx
+  (s,t0,s'0):= (S3, <TRANSITION>, S3)
+        Transition ID '_16_6_2_8b90279_1275601723232_601798_970'
+  (s,t1,s'1):= (S3, <TRANSITION>, S3)
+        Transition ID '_16_6_2_8b90279_1275601724785_462536_974'
+	* Problem source:  Two empty outgoing transitions will result in ambiguous code branches, and is thus not allowed.  The offending transitions are listed by their source and target states.
+	* Explanation:  Unlike a simple state, a composite state is allowed to have at most ONE empty outgoing transition, which will be "triggered" if the composite state has an inner FinalState defined and when a transition to said FinalState occurs.
+	* Solution:  Find one or more of the offending transitions in the model, and delete them or define their SignalEvent triggers.  This may require searching the model containment tree if the transitions are not visible on the diagram.
+
+Fatal: Initial transition is NOT allowed to define either a trigger or a guard! Machine Data::SMx
+  (s,t1,s1):= (<INITIAL Pseudostate>, <TRANSITION> / someEffect(), S41)
+        Transition ID '_16_6_2_8b90279_1275600040215_97420_753'
+	* Problem source:  According to UML specs, an initial transition can only have an action, but cannot define a trigger nor a guard.  Otherwise, the problematic initial transition may result in unexpected State Machine behavior.  The error message identifies the initial transition by providing its source and target state, and the effect behavior, if defined on the transition.
+	* Solution:  Eliminate the trigger and guard from the initial transition identified in the error message.
+
+Fatal: Out-transitions with duplicate signal event! Machine Data::SMx
+  (s,t1,s1):= (S1, Bad_Trig, S4)
+        Event ID '_16_6_2_8b90279_1275601432149_497867_943'
+  (s,t2,s2):= (S1, Bad_Trig, S4)
+        Event ID '_16_6_2_8b90279_1275601421231_592822_939'
+	* Problem source:  Two transitions exiting the same state cannot define the same Signal trigger; otherwise, the execution would be ambiguous.
+	* Explanation:  This fatal message identifies the two transitions that define the duplicate signal.  The reason for so many pieces of information is that, often, transitions are unnamed, so the source and target states are given to help find the culprit transitions.
+	* Solution:  Find one of the two transition and change its trigger.  Note that one or more transitions may actually not be visible on the diagram.  In that case, use the Containment Tree to find the transition, remembering that transitions are defined within a "Relations" node.
+
+Fatal: TimeEvent with NO timer OpaqueExpression! Machine Data::SMx
+  (s,t1,s1):= (S1, <TRANSITION>, <TARGET>)
+        Event ID '_16_6_2_8b90279_1275601652007_740934_963'
+	* Problem source:  A TimerEvent was specified on the transition identified in the error message, but no timing expression was defined.
+	* Solution:  Define a timing expression, either as a literal integer or an identifier (referring to a variable name in the Impl class).
+
+Fatal! Function-overloading NOT fully checkable and may NOT behave!
+  Overloaded: overloaded() vs. overloaded(e)
+  Overloaded: ol2(e,"str") vs. ol2("str",e)
+	* Problem source:  As indicated in the error message, the same impl-function names have been used in two or more locations of the State Machine, but have been supplied with different kinds of parameters.  This results in function overloading, which is not always properly supported in the target language, and may lead to confusion and error.
+	* Solution:  Define the impl-functions consistently, with the same number of parameters, and matching parameter types.
+
+Fatal: Pseudostate entryPoint 'Data::SMx::::GhostEntryPoint' is a ghost; define it on EITHER a State or a StateMachine!
+	* See also:  The same FATAL message applies to Pseudostate exitPoints
+	* Problem source:  Entry and exit points only make sense when dropped on either a Composite State boundary or the boundary of a StateMachine.  Unfortunately, MagicDraw allows them to be dropped elsewhere.
+	* Solution:  Find the entry-/exitPoint identified in the error message and move it to the appropriate boundary.
+
+Fatal: Pseudostate exitPoint 'Data::SMx::::S2::noIncomingTrigger' must have a trigger on any incoming transition from a State!
+	* Note:  Does not apply to an entryPoint.
+	* Problem source:  One or more transition into an exitPoint does NOT define a trigger.
+	* Explanation:  An exitPoint actually involves an incoming transition from some source state, plus an outgoing transition to some target state.  For this exitPoint to function, a trigger needs to be defined on the incoming transition to the exitPoint.
+	* Solution:  Define a SignalEvent (or TimerEvent) trigger on the transition INTO the exitPoint.  Alternatively, make sure there are NO other hidden incoming transitions into the exitPoint by checking the model containment tree for all transitions referencing the said exitPoint.
+
+Fatal: Pseudostate entryPoint 'Data::SMx::::S2::twoOutgoing' must have no more than ONE outgoing transition!
+	* See also:  The same FATAL message applies to Pseudostate exitPoints
+	* Problem source:  Two or more outgoing transitions have been defined on the entry-/exitPoint indicated in the error message.
+	* Solution:  Find and eliminate the extraneous outgoing transitions.  You may need to search via the model containment tree, as the other transitions may be hidden in the diagram.
+
+Fatal: Pseudostate entryPoint 'Data::SMx::::S2::s2Entry' should NOT define either a guard or a trigger on its outgoing transition!
+	* See also:  The same FATAL message applies to Pseudostate exitPoints
+	* Problem source:  As is the case with initial transitions, outgoing transitions from an entry-/exitPoint must be taken; otherwise, the State Machine may behave unexpectedly.  For example, what state should the StateMachine be in if a transition is taken to an entryPoint (after some trigger occurs and the relevant guard condition matches), but the successive transition is NOT able to be taken?
+	* Solution:  Find and eliminate any trigger or guard the outgoing transition from the entry-/exitPoint indicated in the error message.
+
+
+Warning: No Initial State found in State machine Data::SMx, perhaps an error in the diagram?
+	* Explanation:  Although just a warning, this will usually result in the StateMachine not behaving as expected when it is executed.
+	* Solution:  Create an initial Pseudostate in the State machine SMx
+
+Warning: StateMachine Data::SMx has more than one region, is this intended?
+	* Problem source:  Multiple regions have been defined on the StateMachine identified in the error message.
+	* Explanation:  Sometimes, additional regions are accidentally added to a StateMachine.  While the UML spec does not prohibit multiple regions, its exeuction behavior would be ambiguous; hence, the Autocoder does not allow multiple regions.
+	* Solution:  Find and eliminate the additional regions.  Additional StateMachine regions are not visible in the diagram, and have to be found from the model containment tree, directly under the root node of the StateMachine itself.
+
+Warning: Region 'Data::SMx::::S1::' found with no initial state, is this intended?
+	* Problem source:  The region indicated in the warning message may be missing an initial state.
+	* Explanation:  While this is not invalid UML, it is usually not desired nor intended.  Exceptions are (a) if there is a direct transition defined into a state within that region or (b) if an entryPoint has been defined that indicates what state to enter into in said region.
+	* Solution:  If neither of the exceptions is true, then find the region and define an initial state and initial transition for the region.
+
+Warning: Initial pseudostate 'Data::SMx::::S3::::' with no outgoing transition, is this intended? ID: _16_6_2_8b90279_1275600027488_352479_709
+	* Explanation:  An initial pseudostate without an outgoing transition is probably an error.
+	* Solution:  Define a transition that originatest from the pseudostate identified in the warning message.
+
+Warning: junction state 'Data::SMx::::S5::::badJunction' has more than ONE outgoing transitions without a guard; transition might not behave properly!
+	* Problem source:  A junction state has multiple outgoing transitions, more than one of which have not defined a guard.  This is problematic because execution cannot determine which transition to take.  The Autocoder attempts to recover by choosing only one of these transitions to be the "else" branch.
+	* Solution:  Find the outgoing transitions from the indicated junction state, and define guard expressions on them.  Use an explicit "else" expression for the else transition.
+
+Warning: Pseudostate entryPoint 'Data::SMx::::S2::noOutgoing' should have exactly ONE outgoing transition!
+	* See also:  The same Warning message applies to Pseudostate exitPoints
+	* Problem source:  The indicated entry-/exitPoint has no outgoing transition, which is probably unintended.
+	* Solution:  Find the indicated entry-/exitPoint and define one and only one outgoing transition.
+
+Warning: Multiple actions in Do-Activity of State 'Data::SMx::::S3'; ignoring noMoreDoActAllowed()!
+	* Problem source:  The do-activity on the state indicated in the error message defines multiple actions, which is not supported.
+	* Solution:  Eliminate the additional actions, or wrap them inside a single impl-function and call that impl-function instead.
+
+
+== When running the Python GUI harness: sim_state_start.py ==
+
+AttributeError: 'UserEventTestImpl' object has no attribute 'arg1'
+	* General symptom:  A missing attribute in the Impl class.
+	* Problem source:  An Impl class attribute referenced, but not yet defined.
+	* Explanation:  When a guard or action is defined in the StateMachine model of the form "myGuard(e, val)," the Autocoder assumes that 'val' is an attribute defined in the Impl class, and will autocode that argument as "self.__impl_obj.val."
+	* Solution:  In the Impl class initialization, initialize that attribute to None first.
+
+
+
+

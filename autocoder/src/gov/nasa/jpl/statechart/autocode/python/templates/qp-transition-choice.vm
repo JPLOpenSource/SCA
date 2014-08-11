@@ -1,0 +1,9 @@
+##
+## Print 'choice' decision node label.
+##
+##- input vars (in addition to $model, etc.):
+##    * $target:  Target state of transition
+###############################################################################
+#*--*##set( $spc = $mapper.indentation() )
+$spc        #
+$spc        # Decision: $target.name

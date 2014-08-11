@@ -1,0 +1,99 @@
+##
+## Main Velocity Template for Python Impl-file code-generation
+##
+###############################################################################
+##
+## Get some useful variables for the rest of the template 
+## 
+#*--*##set( $sm = $model.statemachine )
+#*--*##set( $smName = $mapper.mapToTypeName($sm) )
+#*--*##set( $smGuiName = $smName.toLowerCase() )
+#
+# Copyright 2009, 2010 California Institute of Technology.
+# ALL RIGHTS RESERVED. U.S. Government Sponsorship acknowledged.
+#
+"""
+File: ${smName}Impl.py
+
+Date Created:  ${model.timestamp()}
+Created By:    ${model.username()}
+
+Python custom-implementation class for functions referenced in
+the ${smName} Statechart model.
+"""
+# Python imports here
+import sys
+import logging
+
+# QF imports here
+from qf import event
+
+
+# Module globals initialized here
+LOGGER = logging.getLogger('${smName}Logger')
+
+
+def printf(format, *args):
+    # sys.stdout.write(format % args)
+    LOGGER.info(format % args)
+
+
+class ${smName}Impl(object):
+    """
+    ${smName} state machine implementation object.
+    """
+    def __init__(self, machine_name="${smName}"):
+        """
+        Constructor
+        """
+        self.__machine_name = machine_name
+        #
+        print "*Accessible: IMPL['${smName}']"
+#*--*##if( $model.getAllCallActions().size() > 0 )
+#*----*##foreach( $func in $model.getAllCallActions() )
+#*------*##if( $func.guard )## we only care about setting guard's default val
+#*--------*##set( $funcName = $mapper.sanitize($func.name()) )
+        self.set('${funcName}', False)
+#*------*##else
+#*------*##end
+#*----*##end
+#*--*##end
+
+    def set(self, attr, value=True):
+        """
+        Sets the boolean value of an attribute, default to True
+        """
+        if type(value) == bool:
+            self.__dict__['_'+attr] = value
+            print attr, "set to", value
+        else:
+            print 'Value must be a bool, either "True" or "False" (no quotes)!'
+
+    def get(self, attrname):
+        """
+        Gets the boolean value of an attribute
+        """
+        return self.__dict__['_'+attrname]
+
+    def clear(self, attrname):
+        """
+        Clears the value of an attribute to False
+        """
+        self.__dict__['_'+attrname] = False
+##
+## Define impl-methods for functions (don't sort, or risk action disappearance!)
+##
+#*--*##foreach( $func in $model.getAllCallActions() )
+#*----*##set( $funcName = $mapper.sanitize($func.name()) )
+
+    def ${funcName}(self):
+        """
+        Implementation#if( $func.guard ) Guard#else Action#end method for ${funcName}()
+        """
+#*----*##if( $func.guard )
+        print "%s.${funcName}() == %s" % (self.__machine_name, str(self.get('${funcName}')))
+        return self.get('${funcName}')
+#*----*##else
+        print "%s.${funcName}() default action implementation invoked" % self.__machine_name
+#*----*##end
+#*--*##end

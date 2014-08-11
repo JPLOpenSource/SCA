@@ -1,0 +1,218 @@
+##
+## Macro definitions, define as few as possible, and only simple code.
+## This file defines macros pertaining to event publishing that might vary by
+## project, from the generic quantum usage.
+##
+##* [SWC 2011.05.09] created separate macros file for convenient project
+##  customization.
+##* [SWC 2011.09.27] Implemented SMAP C naming convention, adapted from C++ to C
+##* [SWC 2012.01.23] Added entry/exit/event-trans autocoding macros.
+##* [SWC 2012.01.24] New macro to customize include lines for header and source.
+##* [SWC 2012.07.20] Added int basic data types.
+###############################################################################
+##
+## Macro to return data type boolean
+#macro( dataTypeBoolean )
+bool## no line break
+#end
+##
+## Macro to return int/float data types
+#macro( dataTypeInt8 )
+int8_t## no line break
+#end
+#
+#macro( dataTypeUInt8 )
+uint8_t## no line break
+#end
+#
+#macro( dataTypeInt16 )
+int16_t## no line break
+#end
+#
+#macro( dataTypeUInt16 )
+uint16_t## no line break
+#end
+#
+#macro( dataTypeInt32 )
+int32_t## no line break
+#end
+#
+#macro( dataTypeUInt32 )
+uint32_t## no line break
+#end
+#
+#macro( dataTypeDouble )
+double## no line break
+#end
+#
+#macro( dataTypeDouble64 )
+long double## no line break
+#end
+##
+## Macro to return base event type
+#macro( dataTypeEvent )
+QEvent## no line break
+#end
+##
+## Macro to stamp out the QStateHandler type cast, with or without pointer,
+## as project requires; default: no pointer, as it's buried in the typedef
+#macro( dataTypeStateHandler )
+QStateHandler## no line break
+#end
+##
+## Macro to allow mission-specific str(n)len function
+#macro( safeStrlen $str )
+strlen($str)## no line break
+#end
+##
+## Macro that defines a string for "autocode" designation
+#macro( autocodeDesignation )
+##none defined...## no line break
+#end
+##
+## Macro to indicate max length of a state machine name
+#macro( smNameLength )
+128## no line break
+#end
+##
+## Macro to indicate max length of a log message string
+#macro( logMsgLength )
+256## no line break
+#end
+##
+## Macro to tailor the file name, such as additional "autocode" designation
+#macro( mapToFileName $elem $pkgs $appendix )
+#*--*##if ( $appendix.equals("signals") )
+## treat $elem as a string to prepend designation; no path prefixes
+${model.joinWithPrefixes($pkgs,"#autocodeDesignation","_").toLowerCase()}${elem}## no line break
+#*--*##else## treat $elem per usual as NamedElement
+${mapper.mapToNamespacePathPrefix($pkgs)}## don't lowercase...no line break
+${model.joinWithPrefixes($elem.getPackageNames(),"","_").toLowerCase()}## no line break
+#*----*##if ( !$appendix.equals("impl") )## impl files are not "autocoded"
+#autocodeDesignation## no line break
+#*----*##end
+${mapper.mapToSimpleTypeName($elem)}## no line break
+#*----*##if ( $appendix.equals("impl") )## append "_impl"
+_$appendix## no line break
+#*----*##end
+#*--*##end
+#end
+##
+## Macro to tailor the type name, such as additional autocode designation
+#macro( mapToTypeName $elem $appendix )
+${mapper.mapToNamespacePrefix($elem.packageNames).toLowerCase()}## no line break
+#*--*##if ( !$appendix.equals("impl") )## impl files are not "autocoded"
+#autocodeDesignation## no line break
+#*--*##end
+${mapper.mapToSimpleTypeName($elem)}## no line break
+#*--*##if ( $appendix.equals("impl") )## append "_impl"
+_$appendix## no line break
+#*--*##end
+#end
+##
+## Macro for providing any custom include lines in the state machine header file
+##- Nothing to customize in generic version
+#macro( customHeaderIncludes )
+#end
+##
+## Macro for providing any custom include lines in the state machine source file
+##- The generic version might call assert
+#macro( customSourceIncludes )
+\#include <assert.h>
+#end
+##
+## Macro to stamp out any diagnostic output for entry into a state
+#macro( traceStateEntry $_state $_stateName )
+#*--*##if( $autocoder.executionTraceOn )
+        strncat(logMsg, " ENTRY", #logMsgLength()-#safeStrlen('logMsg')-1/*null-char*/);
+        LogEvent_log(logMsg);
+#*--*##end
+#end
+##
+## Macro to stamp out any diagnostic output for exit out of a state
+#macro( traceStateExit $_state $_stateName )
+#*--*##if( $autocoder.executionTraceOn )
+        strncat(logMsg, " EXIT", #logMsgLength()-#safeStrlen('logMsg')-1/*null-char*/);
+        LogEvent_log(logMsg);
+#*--*##end
+#end
+##
+## Macro to stamp out any diagnostic output for event transition within a state
+#macro( traceEventTransition $_eventTransPair $_eventName $_traceName )
+#*--*##if( $autocoder.executionTraceOn )
+        strncat(logMsg, " ${_traceName}", #logMsgLength()-#safeStrlen('logMsg')-1/*null-char*/);
+        LogEvent_log(logMsg);
+#*--*##end
+#end
+##
+## Macro to declare the event variable local to each QState function.
+#macro( declareLocalEventVar )
+    #dataTypeEvent() *newEv;
+#end
+##
+## Macro to instantiate the new event instance for publishing/dispatching.
+#macro( instantiateLocalEventVar $signalName )
+#*--*##set( $spc = $mapper.indentation() )
+$spc    // Q_NEW() allocates next available event from size-matched ev POOL
+$spc    newEv = Q_NEW(#dataTypeEvent(), ${signalName});
+#end
+##
+## Macro to reference event var such that a proper QEvent* is returned
+#macro( localEventVar )
+newEv## prevent a line break
+#end
+##
+## Macro to publish a signal event, project might have different QF adaptation.
+#macro( publishEvent $evalStr)
+#*--*##set( $spc = $mapper.indentation() )
+$spc    QF_publish(#evaluate($evalStr));
+#end
+##
+## Macro to do event instance clean-up after a QHsm_dispatch call!
+#macro( cleanupLocalEventVar )
+#*--*##set( $spc = $mapper.indentation() )
+$spc        QF_gc(#localEventVar());  // with direct dispatch, make sure we garbage collect
+#end
+##
+## Macro to code a statement that eliminates unused param warning
+#macro( unusedParam $param )
+## do nothing in non-flight setting
+#end
+##
+## Macro to return a header include to help determine signal ID range
+#macro( idBaseHeaderFile )
+
+\#include <${modulePathPrefix}${modulePrefix}id_range.h>
+#end
+##
+## Macro to return the enum name or value for the ID range base
+#macro( idBaseEnum )
+${moduleDefPrefix}ID_RANGE_FIRST## no line break
+#end
+##
+## Macro to code the start of a switch statement for exit connection transitions
+## from a substate
+##
+## @param $exitPoint: exitPoint of source exit connection point of transition
+#macro( exitTransitionBegin $exitPoint )
+#*--*##set( $spc = $mapper.indentation() )
+$spc    switch (exitPoint) {
+$spc    case ${mapper.mapToEnumDecl($exitPoint)}:
+#end
+##
+## Macro to code a switch case of exit connection transition from a substate
+##
+## @param $exitPoint: exitPoint of source exit connection point of transition
+#macro( exitTransitionCase $exitPoint )
+#*--*##set( $spc = $mapper.indentation() )
+$spc    case ${mapper.mapToEnumDecl($exitPoint)}:
+#end
+##
+## Macro to code the end of a switch statement for exit connection transitions
+## from a substate
+#macro( exitTransitionEnd )
+#*--*##set( $spc = $mapper.indentation() )
+$spc    default:  // should NOT happen
+$spc        assert(0);
+$spc    }
+#end

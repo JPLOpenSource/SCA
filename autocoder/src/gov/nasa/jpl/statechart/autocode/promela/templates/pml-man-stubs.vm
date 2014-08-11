@@ -1,0 +1,34 @@
+##
+## Implement each state (variable $_state defined in parent velocity module scope)
+##
+##* [SWC 2010.04.07] Made guard code more efficient (removed 1->)
+###############################################################################
+// ------------------------------------------------------
+// Manually coded Promela functions
+// ------------------------------------------------------
+
+#*--*##foreach( $statemachine in $model.sort($model.getStateMachines()) )
+#*----*##set( $smName = $mapper.mapToTypeName($statemachine) )
+## Iterate over states, ordered
+#*----*##foreach( $vertex in $model.sort($model.getVertices($statemachine, true)) )
+## Find the actions
+#*------*##foreach( $action in $model.getCallActionsOfVertex($vertex) )
+
+#*--------*##set( $actionName = $mapper.sanitize($action.name()) )
+#*--------*##if( $action.isGuard() )## special processing for guards
+inline ${smName}_${actionName}(retVal)
+{
+  if 
+  :: retVal = true
+  :: retVal = false
+  fi
+}
+#*--------*##else## regular/entry/exit action
+inline ${smName}_${actionName}(${mapper.mapArgsToDeclarations($action)})
+{
+  printf("${smName}_${actionName}()\n");
+}
+#*--------*##end
+#*------*##end
+#*----*##end
+#*--*##end

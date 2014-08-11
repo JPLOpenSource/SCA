@@ -1,0 +1,3 @@
+# Simply don't expect an EOF.
+# If there's duplicate function definitions, Spin stops, and an EOF occurs.
+RepeatAction

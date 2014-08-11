@@ -1,0 +1,81 @@
+##
+## Macro definitions, define as few as possible, and only simple code.
+## This file defines macros pertaining to event publishing that might vary by
+## project, from the generic quantum usage.
+##
+##* [SWC 2011.05.09] created separate macros file for convenient project
+##  customization.
+##* [SWC 2012.01.24] New macro to customize include lines for header and source.
+###############################################################################
+##
+## Macro for providing any custom include lines in the state machine header file
+##- Nothing to customize in generic version
+#macro( customHeaderIncludes )
+#end
+##
+## Macro for providing any custom include lines in the state machine source file
+##- The generic version might call assert
+#macro( customSourceIncludes )
+\#include <assert.h>
+#end
+##
+## Macro to declare the event variable local to each QState function.
+#macro( declareLocalEventVar )
+    ${qfNs}QEvent* newEv;
+#end
+##
+## Macro to instantiate the new event instance for publishing/dispatching.
+#macro( instantiateLocalEventVar $signalName )
+#*--*##set( $spc = $mapper.indentation() )
+$spc    // Q_NEW() allocates next available event from size-matched ev POOL
+$spc    newEv = Q_NEW(${qfNs}QEvent, ${signalName});
+#end
+##
+## Macro to reference event var such that a proper QEvent* is returned
+#macro( localEventVar )
+newEv## prevent a line break
+#end
+##
+## Macro to publish a signal event, project might have different QF adaptation.
+#macro( publishEvent $evalStr)
+#*--*##set( $spc = $mapper.indentation() )
+$spc    ${qfNs}QF::publish(#evaluate($evalStr));
+#end
+##
+## Macro to do event instance clean-up after a QHsm::dispatch call!
+#macro( cleanupLocalEventVar )
+#*--*##set( $spc = $mapper.indentation() )
+$spc    ${qfNs}QF::gc(#localEventVar());  // with direct dispatch, make sure we garbage collect
+#end
+##
+## Macro to code a statement that eliminates unused param warning
+#macro( unusedParam $param )
+## do nothing in non-flight setting
+#end
+##
+## Macro to code the start of a switch statement for exit connection transitions
+## from a substate
+##
+## @param $exitPoint: exitPoint of source exit connection point of transition
+#macro( exitTransitionBegin $exitPoint )
+#*--*##set( $spc = $mapper.indentation() )
+$spc    switch (exitPoint) {
+$spc    case ${mapper.mapToEnumDecl($exitPoint)}:
+#end
+##
+## Macro to code a switch case of exit connection transition from a substate
+##
+## @param $exitPoint: exitPoint of source exit connection point of transition
+#macro( exitTransitionCase $exitPoint )
+#*--*##set( $spc = $mapper.indentation() )
+$spc    case ${mapper.mapToEnumDecl($exitPoint)}:
+#end
+##
+## Macro to code the end of a switch statement for exit connection transitions
+## from a substate
+#macro( exitTransitionEnd )
+#*--*##set( $spc = $mapper.indentation() )
+$spc    default:  // should NOT happen
+$spc        assert(0);
+$spc    }
+#end

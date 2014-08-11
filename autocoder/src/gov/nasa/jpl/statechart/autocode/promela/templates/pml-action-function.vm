@@ -1,0 +1,13 @@
+##
+## State entry/exit or Transition effect action as function call.
+##
+##- input vars (in addition to $model, etc.):
+##    * $funcCall:  Function Call object
+##    * $s:       spacing to use before action
+##
+##* [SWC 2009.09.17] ported from C template.
+##* [SWC 2010.09.07] New template file for refactoring to minimalist-style.
+###############################################################################
+##
+#*--*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+${s}${smName}_${funcName}(${mapper.mapArgsToInvocation($funcCall)});

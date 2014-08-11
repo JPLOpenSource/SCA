@@ -1,0 +1,26 @@
+##
+## Implement class and constructor for an Orthogonal Region.
+##
+##- input vars:
+##    * $typeObj:   Region object
+##    * $typeName:  Label of the Region object
+##
+##* [SWC 2010.09.15] Refactored templates for minimal logic within templates.
+###############################################################################
+#*--*##set( $shortRegionName = $mapper.mapToFunctionName($typeObj) )
+#*--*##set( $parentName = $mapper.mapToFunctionName($typeObj.state) )
+
+// -------------------------------------------------------
+//
+// Orthogonal ${shortRegionName} for state ${parentName}
+//
+// -------------------------------------------------------
+
+proctype ${typeName}(chan inp)
+{
+eventType e;
+#*--*##if( $model.hasGuardFunction($typeObj) )
+bool guard_return;
+#*--*##end
+##
+## Initialize any orthogonal region rendezvous channels and procs

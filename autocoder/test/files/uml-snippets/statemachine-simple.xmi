@@ -1,0 +1,23 @@
+        <packagedElement xmi:type='uml:StateMachine' xmi:id='_12_5_9120299_1181847072635_251404_234' name='Test1' visibility='public'>
+            <xmi:Extension extender='MagicDraw UML 16.0' extenderID='MagicDraw UML 16.0'>
+                <modelExtension>
+                    <event xmi:idref='_12_5_9120299_1181847090299_442764_299'/>
+                    <event xmi:idref='_12_5_9120299_1181847095120_585082_319'/>
+                </modelExtension>
+            </xmi:Extension>
+            <nestedClassifier xmi:type='uml:Signal' xmi:id='_12_5_9120299_1181847090283_973661_298' name='Ev1' visibility='public'/>
+            <region xmi:type='uml:Region' xmi:id='_12_5_9120299_1181847072651_996954_235' visibility='public'>
+                <subvertex xmi:type='uml:State' xmi:id='_12_5_9120299_1181847080749_68197_255' name='S1' visibility='public'/>
+                <subvertex xmi:type='uml:State' xmi:id='_12_5_9120299_1181847084151_657970_269' name='S2' visibility='public'/>
+                <subvertex xmi:type='uml:Pseudostate' xmi:id='_12_5_9120299_1181847095526_334673_321' visibility='public'/>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1181847088223_734116_283' visibility='public' source='_12_5_9120299_1181847080749_68197_255' target='_12_5_9120299_1181847084151_657970_269'>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_12_5_9120299_1181847090314_355739_300' visibility='public' event='_12_5_9120299_1181847090299_442764_299'/>
+                </transition>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1181847097305_162303_330' visibility='public' source='_12_5_9120299_1181847095526_334673_321' target='_12_5_9120299_1181847080749_68197_255'/>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1181847172122_377819_346' visibility='public' source='_12_5_9120299_1181847084151_657970_269' target='_12_5_9120299_1181847080749_68197_255'>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_12_5_9120299_1181847174494_438465_361' visibility='public' event='_12_5_9120299_1181847090299_442764_299'/>
+                </transition>
+            </region>
+        </packagedElement>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_12_5_9120299_1181847090299_442764_299' visibility='public' signal='_12_5_9120299_1181847090283_973661_298'/>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_12_5_9120299_1181847095120_585082_319' visibility='public'/>

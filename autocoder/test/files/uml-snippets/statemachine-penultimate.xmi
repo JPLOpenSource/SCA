@@ -1,0 +1,236 @@
+        <packagedElement xmi:type='uml:StateMachine' xmi:id='_16_5_3_8b90279_1251242250841_966792_467' xmi:uuid='f3ab3368-91cd-11de-8d7f-174d69a1804d' name='PenultimateSM' visibility='public'>
+            <xmi:Extension extender='MagicDraw UML 16.5'>
+                <modelExtension>
+                    <event xmi:idref='_16_5_3_8b90279_1251307305350_208621_834'/>
+                    <event xmi:idref='_16_5_3_8b90279_1251315808214_92026_900'/>
+                    <event xmi:idref='_16_5_3_8b90279_1251315876515_217454_904'/>
+                    <event xmi:idref='_16_5_3_8b90279_1251315892873_978766_906'/>
+                    <event xmi:idref='_16_5_3_8b90279_1251316082646_756053_918'/>
+                    <event xmi:idref='_16_5_3_8b90279_1251316118670_624822_921'/>
+                    <event xmi:idref='_16_5_3_8b90279_1251316149571_862423_923'/>
+                    <event xmi:idref='_16_5_3_8b90279_1251316211160_130928_925'/>
+                    <event xmi:idref='_16_5_3_8b90279_1251316226630_384374_931'/>
+                    <event xmi:idref='_16_5_3_8b90279_1251316280651_778824_937'/>
+                    <event xmi:idref='_16_5_3_8b90279_1251316319010_909042_941'/>
+                    <event xmi:idref='_16_5_3_8b90279_1252018436266_509434_3745'/>
+                </modelExtension>
+            </xmi:Extension>
+            <xmi:Extension extender='MagicDraw UML 16.5'>
+                <modelExtension>
+                    <observation xmi:idref='_16_5_3_8b90279_1251307305352_805085_836'/>
+                </modelExtension>
+            </xmi:Extension>
+            <xmi:Extension extender='MagicDraw UML 16.5'>
+                <modelExtension>
+                    <observation xmi:type='uml:DurationObservation' xmi:id='_16_5_3_8b90279_1251307305352_805085_836' xmi:uuid='7bed0b5b-9268-11de-8d7f-174d69a1804d' visibility='public'/>
+                </modelExtension>
+            </xmi:Extension>
+            <region xmi:type='uml:Region' xmi:id='_16_5_3_8b90279_1251242250841_490725_468' xmi:uuid='f3ab3369-91cd-11de-8d7f-174d69a1804d' visibility='public'>
+                <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251242297301_782530_493' xmi:uuid='f3ab336a-91cd-11de-8d7f-174d69a1804d' name='Real' visibility='public'>
+                    <entry xmi:type='uml:Activity' xmi:id='_16_5_3_8b90279_1251242311312_943477_505' xmi:uuid='f3ab336b-91cd-11de-8d7f-174d69a1804d' name='Awaken' visibility='public'/>
+                    <exit xmi:type='uml:Activity' xmi:id='_16_5_3_8b90279_1251242855829_989267_385' xmi:uuid='166c4470-91d1-11de-8d7f-174d69a1804d' name='Doze' visibility='public'/>
+                    <doActivity xmi:type='uml:StateMachine' xmi:id='_16_5_3_8b90279_1251242731449_884118_376' xmi:uuid='166c4471-91d1-11de-8d7f-174d69a1804d' name='LyingAwake' visibility='public'>
+                        <region xmi:type='uml:Region' xmi:id='_16_5_3_8b90279_1251242731449_119111_377' xmi:uuid='166c4472-91d1-11de-8d7f-174d69a1804d' visibility='public'/>
+                    </doActivity>
+                </subvertex>
+                <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_8b90279_1251242372002_762025_511' xmi:uuid='f3ab5a7c-91cd-11de-8d7f-174d69a1804d' visibility='public'/>
+                <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251242619171_38548_352' xmi:uuid='166c4473-91d1-11de-8d7f-174d69a1804d' name='Unreal' visibility='public'>
+                    <region xmi:type='uml:Region' xmi:id='_16_5_3_8b90279_1251242619171_308755_353' xmi:uuid='166c6b84-91d1-11de-8d7f-174d69a1804d' visibility='public'>
+                        <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251242929103_550651_426' xmi:uuid='166c6b85-91d1-11de-8d7f-174d69a1804d' name='Dreaming' visibility='public'>
+                            <region xmi:type='uml:Region' xmi:id='_16_5_3_8b90279_1251242929103_172369_427' xmi:uuid='166c6b86-91d1-11de-8d7f-174d69a1804d' visibility='public'>
+                                <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251243719014_507529_515' xmi:uuid='166c6b87-91d1-11de-8d7f-174d69a1804d' name='RaisedHeartRate' visibility='public'/>
+                                <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251243854333_454752_680' xmi:uuid='ade6a627-91d1-11de-8d7f-174d69a1804d' name='Sweating' visibility='public'/>
+                                <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_8b90279_1251243869917_63479_694' xmi:uuid='ade6a628-91d1-11de-8d7f-174d69a1804d' visibility='public'/>
+                                <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_8b90279_1251244007332_688328_716' xmi:uuid='ade6a629-91d1-11de-8d7f-174d69a1804d' visibility='public' kind='junction'/>
+                                <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251244023723_801716_726' xmi:uuid='ade6a62a-91d1-11de-8d7f-174d69a1804d' name='Grunting' visibility='public'/>
+                                <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251244030964_307393_740' xmi:uuid='ade6a62b-91d1-11de-8d7f-174d69a1804d' name='Screaming' visibility='public'/>
+                                <subvertex xmi:type='uml:FinalState' xmi:id='_16_5_3_8b90279_1251244580968_308229_808' xmi:uuid='ff8aa768-91d2-11de-8d7f-174d69a1804d' visibility='public'/>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251244011468_138563_720' xmi:uuid='ade6a62c-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251244007332_688328_716' target='_16_5_3_8b90279_1251243719014_507529_515'>
+                                    <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251316280651_133484_938' xmi:uuid='13028126-927a-11de-8d7f-174d69a1804d' visibility='public' event='_16_5_3_8b90279_1251316280651_778824_937'/>
+                                </transition>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251244016451_686395_723' xmi:uuid='ade6a62d-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251244007332_688328_716' target='_16_5_3_8b90279_1251243854333_454752_680'>
+                                    <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251316319010_660996_942' xmi:uuid='13028127-927a-11de-8d7f-174d69a1804d' visibility='public' event='_16_5_3_8b90279_1251316319010_909042_941'/>
+                                </transition>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251244044490_881713_754' xmi:uuid='ade6cd3e-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251244030964_307393_740' target='_16_5_3_8b90279_1251243854333_454752_680'/>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251244046618_270913_757' xmi:uuid='ade6cd3f-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251243854333_454752_680' target='_16_5_3_8b90279_1251244030964_307393_740'/>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251244050369_811069_760' xmi:uuid='ade6cd40-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251243719014_507529_515' target='_16_5_3_8b90279_1251244023723_801716_726'/>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251244058497_22144_766' xmi:uuid='ade6cd41-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251244023723_801716_726' target='_16_5_3_8b90279_1251243719014_507529_515'/>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251244060857_379185_769' xmi:uuid='ade6cd42-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251243869917_63479_694' target='_16_5_3_8b90279_1251244007332_688328_716'/>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251310819560_991189_863' xmi:uuid='164d83b9-926e-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251310808764_941945_861' target='_16_5_3_8b90279_1251242297301_782530_493'>
+                                    <effect xmi:type='uml:Activity' xmi:id='_16_5_3_8b90279_1251315766162_835867_897' xmi:uuid='ae343038-9278-11de-8d7f-174d69a1804d' name='JoltAwake' visibility='public'/>
+                                </transition>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251310923804_1371_873' xmi:uuid='164d83ba-926e-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251244030964_307393_740' target='_16_5_3_8b90279_1251310808764_941945_861' guard='_16_5_3_8b90279_1251311085313_246125_874'>
+                                    <ownedRule xmi:type='uml:Constraint' xmi:id='_16_5_3_8b90279_1251311085313_246125_874' xmi:uuid='164d83bb-926e-11de-8d7f-174d69a1804d' name='NightmareIntensity' visibility='public'>
+                                        <specification xmi:type='uml:OpaqueExpression' xmi:id='_16_5_3_8b90279_1251311085313_548995_875' xmi:uuid='164d83bc-926e-11de-8d7f-174d69a1804d' visibility='public' body='intensity&gt;THRESHOLD'/>
+                                    </ownedRule>
+                                    <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251316149572_218537_924' xmi:uuid='8e9745fa-9279-11de-8d7f-174d69a1804d' visibility='public' event='_16_5_3_8b90279_1251316149571_862423_923'/>
+                                </transition>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251311179707_642929_878' xmi:uuid='164d83bd-926e-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251243719014_507529_515' target='_16_5_3_8b90279_1251310808764_941945_861' guard='_16_5_3_8b90279_1251311204650_605881_879'>
+                                    <ownedRule xmi:type='uml:Constraint' xmi:id='_16_5_3_8b90279_1251311204650_605881_879' xmi:uuid='164d83be-926e-11de-8d7f-174d69a1804d' name='PhysicalDanger' visibility='public'>
+                                        <specification xmi:type='uml:OpaqueExpression' xmi:id='_16_5_3_8b90279_1251311204650_627524_880' xmi:uuid='164d83bf-926e-11de-8d7f-174d69a1804d' visibility='public' body='heartrate&gt;200'/>
+                                    </ownedRule>
+                                    <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251316118670_316922_922' xmi:uuid='8e976d0b-9279-11de-8d7f-174d69a1804d' visibility='public' event='_16_5_3_8b90279_1251316118670_624822_921'/>
+                                </transition>
+                            </region>
+                            <region xmi:type='uml:Region' xmi:id='_16_5_3_8b90279_1251242929103_234532_428' xmi:uuid='166c6b88-91d1-11de-8d7f-174d69a1804d' visibility='public'>
+                                <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251243537041_292554_479' xmi:uuid='166c6b89-91d1-11de-8d7f-174d69a1804d' name='SlashingDragons' visibility='public'>
+                                    <entry xmi:type='uml:Activity' xmi:id='_16_5_3_8b90279_1251316342091_518058_945' xmi:uuid='1302a838-927a-11de-8d7f-174d69a1804d' name='HeroDream' visibility='public'/>
+                                    <doActivity xmi:type='uml:Activity' xmi:id='_16_5_3_8b90279_1251243583935_827337_491' xmi:uuid='166c6b8a-91d1-11de-8d7f-174d69a1804d' name='SwingSword' visibility='public'/>
+                                </subvertex>
+                                <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251243620948_975784_497' xmi:uuid='166c6b8b-91d1-11de-8d7f-174d69a1804d' name='PursuedByMonster' visibility='public'>
+                                    <entry xmi:type='uml:Activity' xmi:id='_16_5_3_8b90279_1251316376389_419830_949' xmi:uuid='1302a839-927a-11de-8d7f-174d69a1804d' name='Nightmare' visibility='public'/>
+                                    <doActivity xmi:type='uml:Activity' xmi:id='_16_5_3_8b90279_1251243669235_969374_509' xmi:uuid='166c6b8c-91d1-11de-8d7f-174d69a1804d' name='RunningForLife' visibility='public'/>
+                                </subvertex>
+                                <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_8b90279_1251243766588_274627_529' xmi:uuid='166c6b8d-91d1-11de-8d7f-174d69a1804d' visibility='public'/>
+                                <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_8b90279_1251243771859_327355_533' xmi:uuid='166c929e-91d1-11de-8d7f-174d69a1804d' visibility='public' kind='junction'/>
+                                <subvertex xmi:type='uml:FinalState' xmi:id='_16_5_3_8b90279_1251244578137_117915_804' xmi:uuid='ff8ace79-91d2-11de-8d7f-174d69a1804d' visibility='public'/>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251243775266_435566_537' xmi:uuid='166c929f-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251243771859_327355_533' target='_16_5_3_8b90279_1251243537041_292554_479'/>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251243778386_782567_540' xmi:uuid='166c92a0-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251243771859_327355_533' target='_16_5_3_8b90279_1251243620948_975784_497'/>
+                                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251243795193_179002_543' xmi:uuid='166c92a1-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251243766588_274627_529' target='_16_5_3_8b90279_1251243771859_327355_533'/>
+                            </region>
+                        </subvertex>
+                        <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_8b90279_1251243148106_292801_461' xmi:uuid='166c92a2-91d1-11de-8d7f-174d69a1804d' visibility='public'/>
+                        <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251244601752_389830_812' xmi:uuid='ff8ace7a-91d2-11de-8d7f-174d69a1804d' name='REMing' visibility='public'/>
+                        <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251243149953_672870_465' xmi:uuid='166c92a3-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251243148106_292801_461' target='_16_5_3_8b90279_1251242929103_550651_426'/>
+                        <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251310638406_519753_846' xmi:uuid='fd4c4237-926c-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251242929103_550651_426' target='_16_5_3_8b90279_1251244601752_389830_812'>
+                            <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251316211160_183927_927' xmi:uuid='b7420a3e-9279-11de-8d7f-174d69a1804d' visibility='public' event='_16_5_3_8b90279_1251316211160_130928_925'/>
+                        </transition>
+                        <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251310642422_235592_849' xmi:uuid='fd4c6948-926c-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251244601752_389830_812' target='_16_5_3_8b90279_1251242929103_550651_426'>
+                            <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251316226630_896748_933' xmi:uuid='b7420a3f-9279-11de-8d7f-174d69a1804d' visibility='public' event='_16_5_3_8b90279_1251316226630_384374_931'/>
+                        </transition>
+                    </region>
+                    <entry xmi:type='uml:Activity' xmi:id='_16_5_3_8b90279_1251243046244_405612_450' xmi:uuid='166c92a4-91d1-11de-8d7f-174d69a1804d' name='Asleep' visibility='public'/>
+                </subvertex>
+                <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251244545019_891392_786' xmi:uuid='d915aee3-91d2-11de-8d7f-174d69a1804d' name='Nether' visibility='public'/>
+                <subvertex xmi:type='uml:FinalState' xmi:id='_16_5_3_8b90279_1251307254350_287616_826' xmi:uuid='7bedceac-9268-11de-8d7f-174d69a1804d' visibility='public'/>
+                <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_8b90279_1251310808764_941945_861' xmi:uuid='164dd1e0-926e-11de-8d7f-174d69a1804d' visibility='public' kind='junction'/>
+                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251242374250_140797_515' xmi:uuid='f3ab818d-91cd-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251242372002_762025_511' target='_16_5_3_8b90279_1251242297301_782530_493'>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251315892873_812587_907' xmi:uuid='1891cd7b-9279-11de-8d7f-174d69a1804d' visibility='public' event='_16_5_3_8b90279_1251315892873_978766_906'/>
+                </transition>
+                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251242692925_312774_370' xmi:uuid='166cb9b5-91d1-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251242619171_38548_352' target='_16_5_3_8b90279_1251242297301_782530_493' guard='_16_5_3_8b90279_1251315690765_487691_890'>
+                    <ownedRule xmi:type='uml:Constraint' xmi:id='_16_5_3_8b90279_1251315690765_487691_890' xmi:uuid='835fd531-9278-11de-8d7f-174d69a1804d' visibility='public'>
+                        <specification xmi:type='uml:OpaqueExpression' xmi:id='_16_5_3_8b90279_1251315690766_157795_892' xmi:uuid='835fd532-9278-11de-8d7f-174d69a1804d' visibility='public' body='alarm == true'/>
+                    </ownedRule>
+                </transition>
+                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251244551560_806884_798' xmi:uuid='d915aee6-91d2-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251242297301_782530_493' target='_16_5_3_8b90279_1251244545019_891392_786'>
+                    <effect xmi:type='uml:Activity' xmi:id='_16_5_3_8b90279_1252094239881_984336_4117' xmi:uuid='54d4bcda-998d-11de-9fe9-ff2584921790' name='slowHeartrate()' visibility='public'/>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251315808214_947850_901' xmi:uuid='c4978ac9-9278-11de-8d7f-174d69a1804d' visibility='public' event='_16_5_3_8b90279_1251315808214_92026_900'/>
+                </transition>
+                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251244561586_362515_801' xmi:uuid='d915aee7-91d2-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251244545019_891392_786' target='_16_5_3_8b90279_1251242619171_38548_352' guard='_16_5_3_8b90279_1251315656529_111706_886'>
+                    <ownedRule xmi:type='uml:Constraint' xmi:id='_16_5_3_8b90279_1251315656529_111706_886' xmi:uuid='835fd533-9278-11de-8d7f-174d69a1804d' name='NormalTiredness' visibility='public'>
+                        <specification xmi:type='uml:OpaqueExpression' xmi:id='_16_5_3_8b90279_1251315656529_210302_887' xmi:uuid='835ffc44-9278-11de-8d7f-174d69a1804d' visibility='public' body='tiredness == normal'/>
+                    </ownedRule>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251316034357_117817_916' xmi:uuid='4a1df9ef-9279-11de-8d7f-174d69a1804d' visibility='public'/>
+                </transition>
+                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251307264174_625600_830' xmi:uuid='7bedf5bd-9268-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251242297301_782530_493' target='_16_5_3_8b90279_1251307254350_287616_826'>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251315876515_162460_905' xmi:uuid='1891f48c-9279-11de-8d7f-174d69a1804d' visibility='public' event='_16_5_3_8b90279_1251315876515_217454_904'/>
+                </transition>
+                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251315641780_436516_885' xmi:uuid='835ffc45-9278-11de-8d7f-174d69a1804d' visibility='public' source='_16_5_3_8b90279_1251244545019_891392_786' target='_16_5_3_8b90279_1251244601752_389830_812' guard='_16_5_3_8b90279_1251315699694_327375_893'>
+                    <ownedRule xmi:type='uml:Constraint' xmi:id='_16_5_3_8b90279_1251315699694_327375_893' xmi:uuid='835ffc46-9278-11de-8d7f-174d69a1804d' name='OverlyTired' visibility='public'>
+                        <specification xmi:type='uml:OpaqueExpression' xmi:id='_16_5_3_8b90279_1251315699694_806809_894' xmi:uuid='835ffc47-9278-11de-8d7f-174d69a1804d' visibility='public' body='tiredness != normal'/>
+                    </ownedRule>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251316010972_830288_912' xmi:uuid='4a1df9f0-9279-11de-8d7f-174d69a1804d' visibility='public' event='_16_5_3_8b90279_1251316082646_756053_918'/>
+                </transition>
+                <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1252018424495_400183_3743' xmi:uuid='422b458d-98dd-11de-8b1b-bf1e4656c662' name='afraid' visibility='public' kind='internal' source='_16_5_3_8b90279_1251242297301_782530_493' target='_16_5_3_8b90279_1251242297301_782530_493'>
+                    <effect xmi:type='uml:Activity' xmi:id='_16_5_3_8b90279_1252088061306_969387_3748' xmi:uuid='439555a1-997f-11de-9fe9-ff2584921790' name='Awaken' visibility='public'/>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1252018436267_235281_3746' xmi:uuid='422b6c9e-98dd-11de-8b1b-bf1e4656c662' visibility='public' event='_16_5_3_8b90279_1252018436266_509434_3745'/>
+                </transition>
+            </region>
+        </packagedElement>
+        <packagedElement xmi:type='uml:Model' xmi:id='_16_5_3_8b90279_1251838430772_985797_3716' xmi:uuid='7eb23956-973a-11de-a6ef-b589fb5871ea' name='SMPackage' visibility='public'>
+            <packagedElement xmi:type='uml:StateMachine' xmi:id='_16_5_3_8b90279_1251838454695_328110_3727' xmi:uuid='7eb23957-973a-11de-a6ef-b589fb5871ea' name='MachineWithinBlock' visibility='public'>
+                <xmi:Extension extender='MagicDraw UML 16.5'>
+                    <modelExtension>
+                        <event xmi:idref='_16_5_3_8b90279_1251841267220_864165_3894'/>
+                        <event xmi:idref='_16_5_3_8b90279_1251841286086_303773_3897'/>
+                    </modelExtension>
+                </xmi:Extension>
+                <region xmi:type='uml:Region' xmi:id='_16_5_3_8b90279_1251838454695_603504_3728' xmi:uuid='7eb23958-973a-11de-a6ef-b589fb5871ea' visibility='public'>
+                    <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_8b90279_1251838478025_469092_3752' xmi:uuid='7eb26069-973a-11de-a6ef-b589fb5871ea' visibility='public'/>
+                    <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251838480008_386121_3756' xmi:uuid='7eb2606a-973a-11de-a6ef-b589fb5871ea' name='Alive' visibility='public'/>
+                    <subvertex xmi:type='uml:FinalState' xmi:id='_16_5_3_8b90279_1251838820173_53081_3773' xmi:uuid='7eb2606b-973a-11de-a6ef-b589fb5871ea' visibility='public'/>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251838815431_984362_3770' xmi:uuid='7eb2606c-973a-11de-a6ef-b589fb5871ea' visibility='public' source='_16_5_3_8b90279_1251838478025_469092_3752' target='_16_5_3_8b90279_1251838480008_386121_3756'>
+                        <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251841250360_206864_3891' xmi:uuid='3684b047-9740-11de-a6ef-b589fb5871ea' visibility='public' event='_16_5_3_8b90279_1251841267220_864165_3894'/>
+                    </transition>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251838822828_722261_3777' xmi:uuid='7eb2606d-973a-11de-a6ef-b589fb5871ea' visibility='public' source='_16_5_3_8b90279_1251838480008_386121_3756' target='_16_5_3_8b90279_1251838820173_53081_3773'>
+                        <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251841286086_802247_3898' xmi:uuid='3684b048-9740-11de-a6ef-b589fb5871ea' visibility='public' event='_16_5_3_8b90279_1251841286086_303773_3897'/>
+                    </transition>
+                </region>
+            </packagedElement>
+            <packagedElement xmi:type='uml:Package' xmi:id='_16_5_3_8b90279_1251840438305_666383_3725' xmi:uuid='4b21b4a1-973e-11de-a6ef-b589fb5871ea' name='Subpackage' visibility='public'>
+                <packagedElement xmi:type='uml:StateMachine' xmi:id='_16_5_3_8b90279_1251840455545_185693_3731' xmi:uuid='4b21b4a2-973e-11de-a6ef-b589fb5871ea' name='AnotherPackagedMachine' visibility='public'>
+                    <xmi:Extension extender='MagicDraw UML 16.5'>
+                        <modelExtension>
+                            <event xmi:idref='_16_5_3_8b90279_1251841354098_215599_3928'/>
+                        </modelExtension>
+                    </xmi:Extension>
+                    <region xmi:type='uml:Region' xmi:id='_16_5_3_8b90279_1251840455545_312072_3732' xmi:uuid='4b21dbb3-973e-11de-a6ef-b589fb5871ea' visibility='public'>
+                        <subvertex xmi:type='uml:State' xmi:id='_16_5_3_8b90279_1251841337338_634336_3903' xmi:uuid='601392fb-9740-11de-a6ef-b589fb5871ea' visibility='public'/>
+                        <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_8b90279_1251841339466_511226_3917' xmi:uuid='601392fc-9740-11de-a6ef-b589fb5871ea' visibility='public'/>
+                        <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251841342193_272259_3921' xmi:uuid='601392fd-9740-11de-a6ef-b589fb5871ea' visibility='public' source='_16_5_3_8b90279_1251841339466_511226_3917' target='_16_5_3_8b90279_1251841337338_634336_3903'/>
+                        <transition xmi:type='uml:Transition' xmi:id='_16_5_3_8b90279_1251841349139_367721_3926' xmi:uuid='6013ba0e-9740-11de-a6ef-b589fb5871ea' visibility='public' source='_16_5_3_8b90279_1251841337338_634336_3903' target='_16_5_3_8b90279_1251841337338_634336_3903'>
+                            <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_8b90279_1251841354098_738971_3929' xmi:uuid='6013ba0f-9740-11de-a6ef-b589fb5871ea' visibility='public' event='_16_5_3_8b90279_1251841354098_215599_3928'/>
+                        </transition>
+                    </region>
+                </packagedElement>
+                <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1251841354098_215599_3928' xmi:uuid='6013ba10-9740-11de-a6ef-b589fb5871ea' name='Reboot' visibility='public'/>
+            </packagedElement>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1251841267220_864165_3894' xmi:uuid='3684d759-9740-11de-a6ef-b589fb5871ea' name='Creation' visibility='public'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1251841286086_303773_3897' xmi:uuid='3684d75a-9740-11de-a6ef-b589fb5871ea' name='Destruction' visibility='public'/>
+        </packagedElement>
+        <packagedElement xmi:type='uml:Package' href='UML_Standard_Profile.xml#magicdraw_uml_standard_profile_v_0001'>
+            <xmi:Extension extender='MagicDraw UML 16.5'>
+                <referenceExtension referentPath='UML Standard Profile' referentType='Package'/>
+            </xmi:Extension>
+        </packagedElement>
+        <packagedElement xmi:type='uml:Package' href='MD_customization_for_SysML.mdzip#_12_0EAPbeta_be00301_1156851270584_552173_1'>
+            <xmi:Extension extender='MagicDraw UML 16.5'>
+                <referenceExtension referentPath='MD Customization for SysML' referentType='Package'/>
+            </xmi:Extension>
+        </packagedElement>
+        <packagedElement xmi:type='uml:Profile' href='SysML Profile.mdzip#_11_5EAPbeta_be00301_1147434586638_637562_1900'>
+            <xmi:Extension extender='MagicDraw UML 16.5'>
+                <referenceExtension referentPath='SysML Profile' referentType='Profile'/>
+            </xmi:Extension>
+        </packagedElement>
+        <packagedElement xmi:type='uml:Package' xmi:id='_16_5_3_8b90279_1252088114691_731923_3749' xmi:uuid='4395cad2-997f-11de-9fe9-ff2584921790' name='Signals' visibility='public'>
+            <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_8b90279_1252018482725_903905_3748' xmi:uuid='422997dc-98dd-11de-8b1b-bf1e4656c662' name='Awaken' visibility='public'/>
+            <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_8b90279_1252088128738_897814_3750' xmi:uuid='4395f1e3-997f-11de-9fe9-ff2584921790' name='Afraid' visibility='public'/>
+            <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_8b90279_1252088219966_663205_3751' xmi:uuid='4395f1e4-997f-11de-9fe9-ff2584921790' name='Born' visibility='public'/>
+            <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_8b90279_1252088233252_92608_3752' xmi:uuid='4395f1e5-997f-11de-9fe9-ff2584921790' name='LyingAwake' visibility='public'/>
+            <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_8b90279_1252088247667_336307_3753' xmi:uuid='4395f1e6-997f-11de-9fe9-ff2584921790' name='Doze' visibility='public'/>
+            <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_8b90279_1252088253979_85196_3754' xmi:uuid='4395f1e7-997f-11de-9fe9-ff2584921790' name='Passed' visibility='public'/>
+            <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_8b90279_1252088300383_327381_4114' xmi:uuid='68456ca8-997f-11de-9fe9-ff2584921790' name='Tired' visibility='public'/>
+            <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_8b90279_1252088308409_995317_4115' xmi:uuid='684593b9-997f-11de-9fe9-ff2584921790' name='Asleep' visibility='public'/>
+        </packagedElement>
+        <packagedElement xmi:type='uml:TimeEvent' xmi:id='_16_5_3_8b90279_1251307305350_208621_834' xmi:uuid='7bee6af0-9268-11de-8d7f-174d69a1804d' visibility='public'>
+            <when xmi:type='uml:TimeExpression' xmi:id='_16_5_3_8b90279_1251307305350_628502_835' xmi:uuid='7bee6af1-9268-11de-8d7f-174d69a1804d' visibility='public'>
+                <expr xmi:type='uml:Duration' xmi:id='_16_5_3_8b90279_1251307305349_329319_833' xmi:uuid='7bee6af2-9268-11de-8d7f-174d69a1804d' visibility='public'>
+                    <observation xmi:idref='_16_5_3_8b90279_1251307305352_805085_836'/>
+                    <expr xmi:type='uml:LiteralString' xmi:id='_16_5_3_8b90279_1251307305353_488309_837' xmi:uuid='7bee6af3-9268-11de-8d7f-174d69a1804d' visibility='public' value='age==72'/>
+                </expr>
+            </when>
+        </packagedElement>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1251315808214_92026_900' xmi:uuid='c497b1da-9278-11de-8d7f-174d69a1804d' name='Tired' visibility='public' signal='_16_5_3_8b90279_1252088300383_327381_4114'/>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1251315876515_217454_904' xmi:uuid='18921b9d-9279-11de-8d7f-174d69a1804d' name='Passed' visibility='public' signal='_16_5_3_8b90279_1252088253979_85196_3754'/>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1251315892873_978766_906' xmi:uuid='18921b9e-9279-11de-8d7f-174d69a1804d' name='Born' visibility='public' signal='_16_5_3_8b90279_1252088219966_663205_3751'/>
+        <packagedElement xmi:type='uml:TimeEvent' xmi:id='_16_5_3_8b90279_1251316082646_756053_918' xmi:uuid='66dc8707-9279-11de-8d7f-174d69a1804d' visibility='public'>
+            <when xmi:type='uml:TimeExpression' xmi:id='_16_5_3_8b90279_1251316082646_745163_919' xmi:uuid='66dc8708-9279-11de-8d7f-174d69a1804d' visibility='public'>
+                <expr xmi:type='uml:LiteralString' xmi:id='_16_5_3_8b90279_1251316087259_597215_920' xmi:uuid='66dc8709-9279-11de-8d7f-174d69a1804d' visibility='public' value='1'/>
+            </when>
+        </packagedElement>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1251316118670_624822_921' xmi:uuid='8e97e23c-9279-11de-8d7f-174d69a1804d' name='Overwhelmed' visibility='public'/>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1251316149571_862423_923' xmi:uuid='8e97e23d-9279-11de-8d7f-174d69a1804d' name='Overwhelmed' visibility='public'/>
+        <packagedElement xmi:type='uml:TimeEvent' xmi:id='_16_5_3_8b90279_1251316211160_130928_925' xmi:uuid='b7427f70-9279-11de-8d7f-174d69a1804d' visibility='public'>
+            <when xmi:type='uml:TimeExpression' xmi:id='_16_5_3_8b90279_1251316211160_890708_926' xmi:uuid='b7427f71-9279-11de-8d7f-174d69a1804d' visibility='public'>
+                <expr xmi:type='uml:LiteralString' xmi:id='_16_5_3_8b90279_1251316222987_437453_930' xmi:uuid='b7427f72-9279-11de-8d7f-174d69a1804d' visibility='public' value='30'/>
+            </when>
+        </packagedElement>
+        <packagedElement xmi:type='uml:TimeEvent' xmi:id='_16_5_3_8b90279_1251316226630_384374_931' xmi:uuid='b7427f73-9279-11de-8d7f-174d69a1804d' visibility='public'>
+            <when xmi:type='uml:TimeExpression' xmi:id='_16_5_3_8b90279_1251316226630_852849_932' xmi:uuid='b7427f74-9279-11de-8d7f-174d69a1804d' visibility='public'>
+                <expr xmi:type='uml:LiteralString' xmi:id='_16_5_3_8b90279_1251316232103_349357_936' xmi:uuid='b7427f75-9279-11de-8d7f-174d69a1804d' visibility='public' value='90'/>
+            </when>
+        </packagedElement>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1251316280651_778824_937' xmi:uuid='1303447a-927a-11de-8d7f-174d69a1804d' name='HeroDream' visibility='public'/>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1251316319010_909042_941' xmi:uuid='1303447b-927a-11de-8d7f-174d69a1804d' name='Nightmare' visibility='public'/>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_8b90279_1252018436266_509434_3745' xmi:uuid='422c2fef-98dd-11de-8b1b-bf1e4656c662' visibility='public' signal='_16_5_3_8b90279_1252088128738_897814_3750'/>

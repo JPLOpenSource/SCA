@@ -1,0 +1,116 @@
+##########################################
+# Expect test cases for Driving 2 state machine that 
+# exercises all transitions, guards and actions.
+##########################################
+Driving2 Parked ENTRY
+#
+# Set guard to true here.
+#
+>=IMPL['Driving2'].set("UnlockBrake")
+#
+# Test response is optional and only available in raw generated Impl files
+#
+UnlockBrake set to True
+#
+# Send the signal event Drive to trigger the transition
+#
+>Drive
+Driving2.UnlockBrake\(\) == True
+Driving2 Parked EXIT
+Driving2 Driving ENTRY
+Driving2 Stop ENTRY
+#
+# Next test forward driving states
+#
+>goForward
+Driving2 Stop EXIT
+Driving2 ForwardDriving ENTRY
+Driving2 Slow ENTRY
+
+>goFaster
+Driving2 Slow EXIT
+Driving2 Medium ENTRY
+
+>goFaster
+Driving2 Medium EXIT
+Driving2 Fast ENTRY
+
+>goSlower
+Driving2 Fast EXIT
+Driving2 Medium ENTRY
+
+>goSlower
+Driving2 Medium EXIT
+Driving2 Slow ENTRY
+
+>stop
+Driving2 Slow EXIT
+Driving2 ForwardDriving EXIT
+Driving2 Driving EXIT
+Driving2 Driving ENTRY
+Driving2 Stop ENTRY
+
+#
+# Next stop and test reverse driving states
+#
+>=IMPL['Driving2'].set("InReverse")
+InReverse set to True
+
+>goReverse
+Driving2.InReverse\(\) == True
+Driving2.BackupLightsOn\(\) default action implementation invoked
+Driving2 Stop EXIT
+Driving2 ReverseDriving ENTRY
+Driving2 Speed1 ENTRY
+
+>goFaster
+Driving2 Speed1 EXIT
+Driving2 Speed2 ENTRY
+
+>goSlower
+Driving2 Speed2 EXIT
+Driving2 Speed1 ENTRY
+
+>stop
+Driving2 Speed1 EXIT
+Driving2 ReverseDriving EXIT
+Driving2.BackupLightsOff\(\) default action implementation invoked
+Driving2 Driving EXIT
+Driving2 Driving ENTRY
+Driving2 Stop ENTRY
+
+#
+# Next return to Park state and test cases where UnlockBrake guard is disabled
+#
+>Park
+Driving2 Stop EXIT
+Driving2 Driving EXIT
+Driving2 Parked ENTRY
+
+>=IMPL['Driving2'].clear("UnlockBrake")
+>Drive
+Driving2.UnlockBrake\(\) == False
+
+#
+# Next return to stop state and test case where InReverse guard is disabled
+
+>=IMPL['Driving2'].set("UnlockBrake")
+UnlockBrake set to True
+
+>=IMPL['Driving2'].clear("InReverse")
+>Drive
+Driving2.UnlockBrake\(\) == True
+Driving2 Parked EXIT
+Driving2 Driving ENTRY
+Driving2 Stop ENTRY
+
+>goReverse
+Driving2 Stop goReverse
+Driving2.InReverse\(\) == False
+
+>Park
+Driving2 Stop EXIT
+Driving2 Driving EXIT
+Driving2 Parked ENTRY
+
+

@@ -1,0 +1,15 @@
+##
+## State entry/exit or Transition effect action published as Signal Event.
+##
+##- input vars (in addition to $model, etc.):
+##    * $actionSig:  action Signal object
+##
+##* [SWC 2009.09.17] ported from C template.
+##* [SWC 2010.01.19] refactored Velocity templates to be finer-grained, with
+##  more decision logic pushed into the Java writer class.
+##* [SWC 2011.10.03] changed action string to Signal object
+###############################################################################
+#*--*##set( $signalName = $mapper.mapSignalToName($actionSig) )
+#*--*##set( $spc = $mapper.indentation() )
+## active_obj ensures proper access whether or not in orthogonal region/submachine
+$spc        self.__active_obj._publish(event.Event("${signalName}"))

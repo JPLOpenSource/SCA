@@ -1,0 +1,387 @@
+##
+## Define some global variables
+##
+#*--*##set( $D ='$' )
+#*--*##set( $P ='#' )
+#*--*##set( $sm = $model.stateMachine )
+#*--*##set( $smName = $mapper.mapToTypeName($sm) )
+#*--*##set( $smGuiName = $smName.toLowerCase() )
+#*--*##set( $smDiagramElem = $model.getMachineDiagramElement() )
+#*--*##set( $winBound = $smDiagramElem.windowDimensions() )## always <= frame
+#*--*##set( $canvasName = "canvas" )
+##
+##
+#!/usr/bin/env python -i
+#
+# Copyright 2009, 2010 California Institute of Technology.
+# ALL RIGHTS RESERVED. U.S. Government Sponsorship acknowledged.
+#
+"""
+WARNING: This file was automatically generated - DO NOT HAND EDIT
+
+File: ${smName}.py
+
+Automatically generated ${smName} state machine trace GUI.
+Date Created:  07-Oct-2009 16:07:24
+Created By:    reder
+
+GUI widget to trace the execution of state machine "${smName}".
+"""
+from Tkinter import *
+
+if (sys.hexversion <= 0x010502f0):
+    FIRST = 'first'
+
+# Actual size of CASE window bound at code-generation time.
+MAGICDRAW_WINDOW_WIDTH = ${winBound.x}
+MAGICDRAW_WINDOW_HEIGHT = ${winBound.y}
+##
+## Store list of Substates for use in generating Application.py
+#*--*##set( $submStates = $model.sort($model.getSubmachineStates($sm)) )
+#*--*##if( !$submStates.isEmpty() )
+SUBMACHINE_STATES = [
+#*----*##foreach( $submState in $submStates )
+#*------*##set( $stateName = $mapper.mapToFunctionName($submState) )
+#*------*##set( $submName = $mapper.mapToTypeName($submState.submachine) )
+    "${stateName}:${submName}"#if( $velocityHasNext ),#end
+
+#*----*##end
+]
+#*--*##end
+
+
+class ${smName}(object):
+#*--*##parse( "${tpath}qpgui-init.vm" )
+
+
+    def ExitState(self, state):
+        """
+        Deactivate on exit
+        """
+        stateName = state.split(':')[0]
+        self.${canvasName}.itemconfigure(self.stateDict[stateName], width=2, outline= "blue")
+
+
+    def EnterState(self, state):
+        """
+        Activate on entry
+        """
+        stateName = state.split(':')[0]
+        self.${canvasName}.itemconfigure(self.stateDict[stateName], width=4, outline = "green")
+        self.moveActiveState(self.stateTagDict[stateName])
+        
+        
+    def __addScrollBars(self, hparam, wparam):
+        """
+        Method to add scroll bars.
+        """
+        # Scroll bars:
+        self.svert = Scrollbar(self.win, orient='vertical')
+        self.shoriz = Scrollbar(self.win, orient='horizontal')
+        # Grid the canvas and scrollbars here.
+        self.${canvasName}.grid(row=0, column=0, columnspan=3, sticky="NEWS")
+        self.svert.grid(row=0, column=3, columnspan=1, sticky="NS")
+        self.shoriz.grid(row=1, column=0, columnspan=3, sticky="EW")
+    
+        self.win.grid_columnconfigure(0, weight=1)
+        self.win.grid_columnconfigure(1, weight=1)
+        self.win.grid_columnconfigure(2, weight=1)
+
+        self.win.grid_rowconfigure(0, weight=1)
+        # Connect the canvas and scrollbars
+        self.svert.config(command=self.${canvasName}.yview)
+        self.shoriz.config(command=self.${canvasName}.xview)    
+        self.${canvasName}.config(xscrollcommand=self.shoriz.set)
+        self.${canvasName}.config(yscrollcommand=self.svert.set)
+    
+    
+    def __addZoomButtons(self):
+        """
+        Method to add zoom buttons and mouse bindings.
+        """        
+        # Add a couple of zooming buttons
+        self.factor = 1.1
+        def zoomincb():
+            self.zoom(self.factor)
+        def zoomoutcb():
+            self.zoom(1.0/self.factor)
+        zoomin = Button(self.win, text="Zoom In", command=zoomincb)
+        zoomout = Button(self.win, text="Zoom Out", command=zoomoutcb)
+        zoomin.grid(row=2, column=0)
+        zoomout.grid(row=2, column=1)
+
+        # Set up event bindings for canvas
+        self.${canvasName}.bind("<1>", self.zoomMark)
+        self.${canvasName}.bind("<B1-Motion>", self.zoomStroke)
+        self.${canvasName}.bind("<ButtonRelease-1>", self.zoomArea)
+    #-------------------------------------------------------
+    #  activate rect.
+    #-------------------------------------------------------
+    def moveActiveState(self, state_tag):
+        """
+        Move the active state into the field of view of the window.
+        """
+        c = self.${canvasName}
+        region = c.cget('scrollregion')
+        
+        for i in c.find_all():
+            if c.type(i) == "rectangle":
+                # Find matching tag
+                for tag in c.gettags(i):
+                    if tag != "current" and tag == state_tag:
+                        # Move to active state
+                        c.config(scrollregion=c.bbox(tag))
+                        # Bring back zoomed region
+                        c.configure(scrollregion=region)
+    #--------------------------------------------------------
+    #  zoomMark
+    #--------------------------------------------------------
+    def zoomMark(self, event):
+        """
+        Mark the first (x,y) coordinate for zooming.
+        """
+        self.zoomArea = dict()
+        x = event.x
+        y = event.y
+        self.zoomArea['x0'] = self.${canvasName}.canvasx(x)
+        self.zoomArea['y0'] = self.${canvasName}.canvasy(y)
+        self.${canvasName}.create_rectangle(x, y, x, y, outline='black', tag="zoomArea")
+    #--------------------------------------------------------
+    #  zoomStroke
+    #--------------------------------------------------------
+    def zoomStroke(self, event):
+        """
+        Zoom in to the area selected by itemMark and itemStroke.
+        """
+        x = event.x
+        y = event.y
+        self.zoomArea['x1'] = self.${canvasName}.canvasx(x)
+        self.zoomArea['y1'] = self.${canvasName}.canvasy(y)
+        self.${canvasName}.coords("zoomArea", self.zoomArea['x0'], self.zoomArea['y0'], self.zoomArea['x1'], self.zoomArea['y1'])
+    #--------------------------------------------------------
+    #  zoomArea
+    #--------------------------------------------------------
+    def zoomArea(self, event):
+        """
+        Zoom in to the area selected by itemMark and itemStroke.
+        """
+        x = event.x
+        y = event.y
+        #--------------------------------------------------------
+        #  Get the final coordinates.
+        #  Remove area selection rectangle
+        #--------------------------------------------------------
+        self.zoomArea['x1'] = self.${canvasName}.canvasx(x)
+        self.zoomArea['y1'] = self.${canvasName}.canvasy(y)
+        self.${canvasName}.delete("zoomArea")
+        #--------------------------------------------------------
+        #  Check for zero-size area
+        #--------------------------------------------------------
+        if (self.zoomArea['x0'] == self.zoomArea['x1']) or (self.zoomArea['y0'] == self.zoomArea['y1']):
+            return
+        #--------------------------------------------------------
+        #  Determine size and center of selected area
+        #--------------------------------------------------------
+        areaxlength = abs( self.zoomArea['x1'] - self.zoomArea['x0'] )
+        areaylength = abs( self.zoomArea['y1'] - self.zoomArea['y0'] )
+        xcenter = ( self.zoomArea['x0']+self.zoomArea['x1'] )/2.0
+        ycenter = ( self.zoomArea['y0']+self.zoomArea['y1'] )/2.0
+        #--------------------------------------------------------
+        #  Determine size of current window view
+        #  Note that canvas scaling always changes the coordinates
+        #  into pixel coordinates, so the size of the current
+        #  viewport is always the canvas size in pixels.
+        #  Since the canvas may have been resized, ask the
+        #  window manager for the canvas dimensions.
+        #--------------------------------------------------------
+        winxlength = self.${canvasName}.winfo_width()
+        winylength = self.${canvasName}.winfo_height()
+        #--------------------------------------------------------
+        #  Calculate scale factors, and choose smaller
+        #--------------------------------------------------------
+        xscale = winxlength/areaxlength
+        yscale = winylength/areaylength
+        if (xscale > yscale):
+            factor = yscale
+        else:
+            factor = xscale
+        #--------------------------------------------------------
+        #  Perform zoom operation
+        #--------------------------------------------------------
+        self.zoom(factor, xcenter, ycenter, winxlength, winylength)
+    #------------------------------------------------------------
+    # zoomText
+    #------------------------------------------------------------
+    def zoomtext(self, zdepth):
+        """
+        Adjust fonts
+        """
+        c = self.${canvasName}
+        for i in c.find_all():
+            if c.type(i) != "text":
+                continue
+            fontsize = 0
+            # get original fontsize and text from tags
+            # if they were previously recorded
+            for tag in c.gettags(i):
+                if tag != "current":
+                    if tag.find('_f') == 0:
+                        fontsize = tag.strip("_f")
+                    if tag.find('_t') == 0:
+                        text     = tag.strip("_t")
+            # if not, then record current fontsize and text
+            # and use them
+            font = c.itemcget(i,"font")
+            if fontsize==0:
+                text = c.itemcget(i,"text")
+                fontsize = int(font.split()[1])
+                c.addtag_withtag("_f%d" % fontsize,i)
+                c.addtag_withtag("_t%s" % text,i)
+            # scale font
+            newsize = int(int(fontsize) * zdepth)
+            #print fontsize, newsize, zdepth
+            if abs(newsize) >= 4:
+                newfont = "%s %d" % (font.split()[0],newsize)
+                c.itemconfigure(i,font=newfont,text=text)
+            else:
+                c.itemconfigure(i,text="")
+    #--------------------------------------------------------
+    #  zoom
+    #--------------------------------------------------------
+    def zoom(self, factor, xcenter=None, ycenter=None, winxlength="", winylength=""):
+        """
+        Zoom the canvas view, based on scale factor
+        and center point and size of new viewport.
+        If the center point is not provided, zoom
+        in/out on the current window center point.
+    
+        This procedure uses the canvas scale function to
+        change coordinates of all objects in the canvas.
+        """
+        #print "factor = %f" % factor
+        self.zdepth = self.zdepth*factor
+        #--------------------------------------------------------
+        #  If (xcenter, ycenter) were not supplied,
+        #  get the canvas coordinates of the center
+        #  of the current view.  Note that canvas
+        #  size may have changed, so ask the window
+        #  manager for its size.
+        #--------------------------------------------------------
+        if xcenter == None or ycenter == None:
+            winxlength = self.${canvasName}.winfo_width()
+            winylength = self.${canvasName}.winfo_height()
+            xcenter = self.${canvasName}.canvasx (winxlength/2.0)
+            ycenter = self.${canvasName}.canvasy (winylength/2.0)
+        #print "winxlength, winylength = %d, %d" % (winxlength, winylength)
+        #--------------------------------------------------------
+        #  Scale all objects in the canvas
+        #  Adjust our viewport center point
+        #--------------------------------------------------------
+        self.${canvasName}.scale("all",0,0,factor,factor)
+        xcenter = xcenter * factor
+        ycenter = ycenter * factor
+        #print "xcenter, ycenter = %7.2f, %7.2f" % (xcenter,ycenter)
+
+        #--------------------------------------------------------
+        #  Get the size of all the items on the canvas.
+        #
+        #  This is *really easy* using
+        #      ${D}canvas bbox all
+        #  but it is also wrong.  Non-scalable canvas
+        #  items like text and windows now have a different
+        #  relative size when compared to all the lines and
+        #  rectangles that were uniformly scaled with the
+        #  [${D}canvas scale] command.
+        #
+        #  It would be better to tag all scalable items,
+        #  and make a single call to [bbox].
+        #  Instead, we iterate through all canvas items and
+        #  their coordinates to compute our own bbox.
+        #--------------------------------------------------------
+        x0 = 1.0e30
+        x1 = -1.0e30
+        y0 = 1.0e30
+        y1 = -1.0e30
+        canvas = self.${canvasName}
+        for item in canvas.find_all():
+            if canvas.type(item) == "arc":
+                pass
+            elif canvas.type(item) == "line":
+                pass
+            elif canvas.type(item) == "oval":
+                pass
+            elif canvas.type(item) == "polygon":
+                pass
+            elif canvas.type(item) == "rectangle":
+                coords = canvas.coords(item)
+                for i in range(0, len(coords), 2):
+                    x = coords[i]
+                    y = coords[i+1]
+                    if x < x0:
+                        x0 = x
+                    if x > x1:
+                        x1 = x
+                    if y < y0:
+                        y0 = y
+                    if y > y1:
+                        y1 = y
+
+        #--------------------------------------------------------
+        #  Now figure the size of the bounding box
+        #--------------------------------------------------------
+        xlength = x1-x0
+        ylength = y1-y0
+
+        #--------------------------------------------------------
+        #  But ... if we set the scrollregion and xview/yview
+        #  based on only the scalable items, then it is not
+        #  possible to zoom in on one of the non-scalable items
+        #  that is outside of the boundary of the scalable items.
+        #
+        #  So expand the [bbox] of scaled items until it is
+        #  larger than [bbox all], but do so uniformly.
+        #--------------------------------------------------------
+        (ax0, ay0, ax1, ay1) = canvas.bbox("all")
+        ${P}print (ax0, ay0, ax1, ay1)
+        while (ax0<x0) or (ay0<y0) or (ax1>x1) or (ay1>y1):
+            # triple the scalable area size
+            x0 = x0-xlength
+            x1 = x1+xlength
+            y0 = y0-ylength
+            y1 = y1+ylength
+            xlength = xlength*3.0
+            ylength = ylength*3.0
+        ${P}print (x0, y0, x1, y1)
+        #--------------------------------------------------------
+        #  Now that we've finally got a region defined with
+        #  the proper aspect ratio (of only the scalable items)
+        #  but large enough to include all items, we can compute
+        #  the xview/yview fractions and set our new viewport
+        #  correctly.
+        #--------------------------------------------------------
+        newxleft = (xcenter-x0-(winxlength/2.0))/xlength
+        newytop  = (ycenter-y0-(winylength/2.0))/ylength
+        ${P}print "xlength, ylength = %f,%f" % (xlength,ylength)
+        ${P}print newxleft,newytop
+        canvas.configure(scrollregion = (x0,y0,x1,y1))
+        canvas.xview_moveto(newxleft)
+        canvas.yview_moveto(newytop)
+
+        #
+        # Scale the fonts
+        def zoomt():
+            self.zoomtext(self.zdepth)
+        canvas.after_cancel(self.id)
+        id = self.${canvasName}.after_idle(zoomt)
+
+        #--------------------------------------------------------
+        #  Change the scroll region one last time, to fit the
+        #  items on the canvas.
+        #--------------------------------------------------------
+        canvas.configure(scrollregion = canvas.bbox("all"))
+
+# Test main to display the generated widget
+if __name__ == "__main__":
+    c = ${smName}("${smName} Test",big_name=True)
+    c.win.geometry('979x755+14+58')
+    mainloop()

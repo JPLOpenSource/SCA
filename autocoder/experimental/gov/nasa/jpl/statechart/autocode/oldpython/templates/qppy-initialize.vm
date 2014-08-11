@@ -1,0 +1,52 @@
+##
+## Define initialize method and any non-state methods.
+##
+###############################################################################
+
+
+    def initialize(self):
+        """
+        Override active object initialize with
+        custom initialize routine.  Mostly used
+        to subscribe signals for state machine.
+        """
+##
+## Obtain unique signals thru list of transitions in state machine with signal events
+##
+        # Subscribe to signals here.
+#*--*##set( $transitions = $model.getTransitionsWithSignalEvent($sm, true) )
+#*--*##if( !$transitions.empty )
+##- first collect the set of unique signals
+#*----*##set( $signalEvSet = $model.addToSet(null, null) )
+#*----*##foreach( $transition in $transitions )
+#*------*##set( $signalEvSet = $model.addToSet($signalEvSet, $transition.getSignalEvents()) )
+#*----*##end
+#*----*##foreach( $signalEv in $model.sortBySignal($signalEvSet) )
+#*------*##set( $evName = $mapper.mapSignalEventToLiteral($signalEv) )
+        self._subscribe("$evName")
+#*----*##end
+#*--*##else
+        pass
+#*--*##end
+##- subscribe to the bail-event
+        self._subscribe(BAIL_EVENT.signal)
+##
+## Obtain unique signals thru list of transitions in state machine with timer events
+##
+
+        # Timer event objects created here.
+#*--*##set( $transitions = $model.getTransitionsWithTimeEvent($sm, true) )
+#*--*##if( !$transitions.empty )
+##- first collect the set of unique signals
+#*----*##set( $timeEvSet = $model.addToSet(null, null) )
+#*----*##foreach( $transition in $transitions )
+#*------*##set( $timeEvSet = $model.addToSet($timeEvSet, $transition.getTimeEvents()) )
+#*----*##end
+#*----*##foreach( $timerEv in $timeEvSet )
+#*------*##set( $evName = $mapper.mapTimeEventToLiteral($timerEv) )
+#*------*##set( $timerName = $mapper.mapTimeEventToTimer($timerEv) )
+        self.${timerName} = time_event.TimeEvt(self, "${evName}")
+#*----*##end
+#*--*##else
+        pass
+#*--*##end

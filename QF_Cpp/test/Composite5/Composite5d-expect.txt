@@ -1,0 +1,171 @@
+# Composite5d checks timer-events in a doubly-nested orthogonal regions
+# and orthogonal regions within a submachine within an orthogonal region.
+
+# start with a tick, then wrap back with Ev1
+Composite5d S1 ENTRY
+>tick
+Composite5d S1 S1TimerEv
+Composite5d S1 EXIT
+Composite5d S2 ENTRY
+Composite5d S21 ENTRY
+Composite5d S23:SubM ENTRY
+S23:SubM Ss1 ENTRY
+>Ev1
+Composite5d S2 Ev1
+Composite5d S2 EXIT
+Composite5d S21 EXIT
+Composite5d S23:SubM EXIT
+S23:SubM Ss1 EXIT
+Composite5d S1 ENTRY
+>Ev1
+Composite5d S1 Ev1
+Composite5d S1 EXIT
+Composite5d S2 ENTRY
+Composite5d S21 ENTRY
+Composite5d S23:SubM ENTRY
+S23:SubM Ss1 ENTRY
+>Ev2
+# 3 ticks in a row
+>tick
+Composite5d S2 S23_Ss1TimerEv
+Composite5d S2 Region2 S23_Ss1TimerEv
+Composite5d S23:SubM Ss1TimerEv
+S23:SubM Ss1 Ss1TimerEv
+S23:SubM Ss1 EXIT
+S23:SubM Ss2 ENTRY
+>tick
+Composite5d S2 S23_Ss2TimerEv
+Composite5d S2 Region2 S23_Ss2TimerEv
+Composite5d S23:SubM Ss2TimerEv
+S23:SubM Ss2 Ss2TimerEv
+S23:SubM Ss2 EXIT
+S23:SubM Ss1 ENTRY
+>tick
+Composite5d S2 Region2 S23_Ss1TimerEv
+Composite5d S23:SubM Ss1TimerEv
+S23:SubM Ss1 Ss1TimerEv
+S23:SubM Ss1 EXIT
+S23:SubM Ss2 ENTRY
+Composite5d S2 S21TimerEv
+Composite5d S2 Region1 S21TimerEv
+Composite5d S21 S21TimerEv
+Composite5d S21 EXIT
+Composite5d S22 ENTRY
+
+# start the cycle over
+>Ev1
+Composite5d S2 Ev1
+Composite5d S2 EXIT
+Composite5d S22 EXIT
+Composite5d S23:SubM EXIT
+S23:SubM Ss2 EXIT
+Composite5d S1 ENTRY
+>Ev1
+Composite5d S1 Ev1
+Composite5d S1 EXIT
+Composite5d S2 ENTRY
+Composite5d S21 ENTRY
+Composite5d S23:SubM ENTRY
+S23:SubM Ss1 ENTRY
+# now 4 ticks in a row, right before transition back to S1
+>tick
+Composite5d S2 S23_Ss1TimerEv
+Composite5d S2 Region2 S23_Ss1TimerEv
+Composite5d S23:SubM Ss1TimerEv
+S23:SubM Ss1 Ss1TimerEv
+S23:SubM Ss1 EXIT
+S23:SubM Ss2 ENTRY
+>tick
+Composite5d S2 S23_Ss2TimerEv
+Composite5d S2 Region2 S23_Ss2TimerEv
+Composite5d S23:SubM Ss2TimerEv
+S23:SubM Ss2 Ss2TimerEv
+S23:SubM Ss2 EXIT
+S23:SubM Ss1 ENTRY
+>tick
+Composite5d S2 Region2 S23_Ss1TimerEv
+Composite5d S23:SubM Ss1TimerEv
+S23:SubM Ss1 Ss1TimerEv
+S23:SubM Ss1 EXIT
+S23:SubM Ss2 ENTRY
+Composite5d S2 S21TimerEv
+Composite5d S2 Region1 S21TimerEv
+Composite5d S21 S21TimerEv
+Composite5d S21 EXIT
+Composite5d S22 ENTRY
+>tick
+Composite5d S2 S22TimerEv
+Composite5d S2 Region1 S22TimerEv
+Composite5d S22 S22TimerEv
+Composite5d S22 EXIT
+Composite5d S21 ENTRY
+Composite5d S2 S23_Ss2TimerEv
+Composite5d S2 Region2 S23_Ss2TimerEv
+Composite5d S23:SubM Ss2TimerEv
+S23:SubM Ss2 Ss2TimerEv
+S23:SubM Ss2 EXIT
+S23:SubM Ss1 ENTRY
+
+# start the cycle over
+>Ev1
+Composite5d S2 Ev1
+Composite5d S2 EXIT
+Composite5d S21 EXIT
+Composite5d S23:SubM EXIT
+S23:SubM Ss1 EXIT
+Composite5d S1 ENTRY
+# just tick away until we return to S1
+>tick
+Composite5d S1 S1TimerEv
+Composite5d S1 EXIT
+Composite5d S2 ENTRY
+Composite5d S21 ENTRY
+Composite5d S23:SubM ENTRY
+S23:SubM Ss1 ENTRY
+>tick
+Composite5d S2 S23_Ss1TimerEv
+Composite5d S2 Region2 S23_Ss1TimerEv
+Composite5d S23:SubM Ss1TimerEv
+S23:SubM Ss1 Ss1TimerEv
+S23:SubM Ss1 EXIT
+S23:SubM Ss2 ENTRY
+>tick
+Composite5d S2 S23_Ss2TimerEv
+Composite5d S2 Region2 S23_Ss2TimerEv
+Composite5d S23:SubM Ss2TimerEv
+S23:SubM Ss2 Ss2TimerEv
+S23:SubM Ss2 EXIT
+S23:SubM Ss1 ENTRY
+>tick
+Composite5d S2 Region2 S23_Ss1TimerEv
+Composite5d S23:SubM Ss1TimerEv
+S23:SubM Ss1 Ss1TimerEv
+S23:SubM Ss1 EXIT
+S23:SubM Ss2 ENTRY
+Composite5d S2 S21TimerEv
+Composite5d S2 Region1 S21TimerEv
+Composite5d S21 S21TimerEv
+Composite5d S21 EXIT
+Composite5d S22 ENTRY
+>tick
+Composite5d S2 S22TimerEv
+Composite5d S2 Region1 S22TimerEv
+Composite5d S22 S22TimerEv
+Composite5d S22 EXIT
+Composite5d S21 ENTRY
+Composite5d S2 S23_Ss2TimerEv
+Composite5d S2 Region2 S23_Ss2TimerEv
+Composite5d S23:SubM Ss2TimerEv
+S23:SubM Ss2 Ss2TimerEv
+S23:SubM Ss2 EXIT
+S23:SubM Ss1 ENTRY
+# ready to return to S1
+>tick
+Composite5d S2 S2TimerEv
+Composite5d S2 EXIT
+Composite5d S21 EXIT
+Composite5d S23:SubM EXIT
+# Don't check on Submachine event in C++, because there's an interleave in
+#  timer event that is NOT relevant for this test case. 
+#S23:SubM S1 EXIT
+Composite5d S1 ENTRY

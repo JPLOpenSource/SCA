@@ -1,0 +1,52 @@
+# This Calculator test exercises the Calculator StateMachine with actual
+# calculations and verifies functional correctness of Entry/Exit behavior for
+# Composite and Submachine states.
+
+# initial entries
+Calculator On ENTRY
+Calculator Ready ENTRY
+Calculator Begin ENTRY
+
+# first calculation
+>TEST_TEST_ACTIVATE
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Computation error as expected
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+>TEST_TEST_NEXT_CALC
+\+\+\+ Correct computation result
+
+# final result, there should be NO errors
+>TEST_TEST_LIST_DONE
+Calculation error count == 0

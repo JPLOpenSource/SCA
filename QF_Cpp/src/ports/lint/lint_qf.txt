@@ -1,0 +1,88 @@
+
+--- Module:   ..\..\qf\source\qa_defer.cpp
+_
+}
+..\..\qf\source\qa_defer.cpp  41  Info 1762: Member function
+    'QActive::defer(QEQueue *, const struct QEvent *)' could be made const
+
+--- Module:   ..\..\qf\source\qa_fifo.cpp
+
+--- Module:   ..\..\qf\source\qa_get_.cpp
+
+--- Module:   ..\..\qf\source\qa_lifo.cpp
+
+--- Module:   ..\..\qf\source\qa_run.cpp
+
+--- Module:   ..\..\qf\source\qa_sub.cpp
+
+--- Module:   ..\..\qf\source\qa_usub.cpp
+
+--- Module:   ..\..\qf\source\qa_usuba.cpp
+
+--- Module:   ..\..\qf\source\qeq_fifo.cpp
+
+--- Module:   ..\..\qf\source\qeq_get.cpp
+
+--- Module:   ..\..\qf\source\qeq_init.cpp
+
+--- Module:   ..\..\qf\source\qeq_lifo.cpp
+
+--- Module:   ..\..\qf\source\qf_act.cpp
+
+--- Module:   ..\..\qf\source\qf_gc.cpp
+
+--- Module:   ..\..\qf\source\qf_log2.cpp
+
+--- Module:   ..\..\qf\source\qf_new.cpp
+
+--- Module:   ..\..\qf\source\qf_pool.cpp
+
+--- Module:   ..\..\qf\source\qf_psini.cpp
+
+--- Module:   ..\..\qf\source\qf_pspub.cpp
+
+--- Module:   ..\..\qf\source\qf_pwr2.cpp
+
+--- Module:   ..\..\qf\source\qf_tick.cpp
+        _
+        }
+..\..\qf\source\qf_tick.cpp  86  Warning 550: Symbol 'dummy' (line 84) not
+    accessed
+..\..\qf\source\qf_tick.cpp  84  Info 830: Location cited in prior message
+
+--- Module:   ..\..\qf\source\qmp_get.cpp
+
+--- Module:   ..\..\qf\source\qmp_init.cpp
+
+--- Module:   ..\..\qf\source\qmp_put.cpp
+
+--- Module:   ..\..\qf\source\qte_arm.cpp
+
+--- Module:   ..\..\qf\source\qte_ctor.cpp
+
+--- Module:   ..\..\qf\source\qte_darm.cpp
+
+--- Module:   ..\..\qf\source\qte_rarm.cpp
+
+--- Module:   ..\..\qf\source\qvanilla.cpp
+_
+}
+..\..\qf\source\qvanilla.cpp  99  Info 818: Pointer parameter 'stkSto' (line
+    87) could be declared as pointing to const [MISRA Rule 81]
+..\..\qf\source\qvanilla.cpp  87  Info 830: Location cited in prior message
+_
+}
+..\..\qf\source\qvanilla.cpp  103  Info 1762: Member function
+    'QActive::stop(void)' could be made const
+
+--- Global Wrap-up
+
+Info 765: external 'QF_readySet_' (line 42, file ..\..\qf\source\qvanilla.cpp)
+    could be made static [Misra Rule 23]
+..\..\qf\source\qvanilla.cpp  42  Info 830: Location cited in prior message
+Info 765: external 'QF_intLockNest_' (line 40, file ..\..\qf\source\qf_act.cpp)
+    could be made static [Misra Rule 23]
+..\..\qf\source\qf_act.cpp  40  Info 830: Location cited in prior message
+Info 714: Symbol 'QF_intLockNest_' (line 40, file ..\..\qf\source\qf_act.cpp)
+    not referenced
+..\..\qf\source\qf_act.cpp  40  Info 830: Location cited in prior message

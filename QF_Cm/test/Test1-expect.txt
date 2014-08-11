@@ -1,0 +1,4 @@
+<(test1|testObj) Test1S1 ENTRY
+>Ev1
+<(test1|testObj) Test1S1 EXIT
+<(test1|testObj) Test1S2 ENTRY

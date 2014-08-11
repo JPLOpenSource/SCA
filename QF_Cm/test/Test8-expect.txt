@@ -1,0 +1,43 @@
+<(test8|testObj) Test8T8S1 ENTRY
+>DURING
+<(test8|testObj) Test8T8S1 EXIT
+<(test8|testObj) Test8T8S2 ENTRY
+<(test8|testObj) Test8T8S21 ENTRY
+>DURING
+>DURING
+>DURING
+<(test8|testObj) Test8T8S21 EXIT
+<(test8|testObj) Test8T8S22 ENTRY
+>DURING
+<(test8|testObj) Test8T8S22 EXIT
+<(test8|testObj) Test8T8S21 ENTRY
+>DURING
+<(test8|testObj) Test8T8S21 EXIT
+<(test8|testObj) Test8T8S2 EXIT
+<(test8|testObj) Test8T8S1 ENTRY
+>DURING
+<(test8|testObj) Test8T8S1 EXIT
+<(test8|testObj) Test8T8S2 ENTRY
+<(test8|testObj) Test8T8S21 ENTRY
+>DURING
+>DURING
+>Ev1
+<(test8|testObj) Test8T8S21 EXIT
+<(test8|testObj) Test8T8S2 EXIT
+<(test8|testObj) Test8T8S1 ENTRY
+>Ev1
+<(test8|testObj) Test8T8S1 EXIT
+<(test8|testObj) Test8T8S2 ENTRY
+<(test8|testObj) Test8T8S21 ENTRY
+>DURING
+>DURING
+>DURING
+<(test8|testObj) Test8T8S21 EXIT
+<(test8|testObj) Test8T8S22 ENTRY
+>DURING
+<(test8|testObj) Test8T8S22 EXIT
+<(test8|testObj) Test8T8S21 ENTRY
+>DURING
+<(test8|testObj) Test8T8S21 EXIT
+<(test8|testObj) Test8T8S2 EXIT
+<(test8|testObj) Test8T8S1 ENTRY

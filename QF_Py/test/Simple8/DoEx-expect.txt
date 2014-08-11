@@ -1,0 +1,46 @@
+# Simple8 checks state with Do activity.
+
+# Entry; do activity begins on entry
+DoEx s1 ENTRY
+DoEx.s1Entry\(\) default action implementation invoked
+DoEx.s1Do\(\) default action implementation invoked
+#- let's let do go all the way
+Running thread iteration 0
+Running thread iteration 1
+Running thread iteration 2
+Running thread iteration 3
+Running thread iteration 4
+Running thread iteration 5
+Running thread iteration 6
+Running thread iteration 7
+Running thread iteration 8
+Running thread iteration 9
+
+# Let's transition to S2 to stop Do activity
+>Ev1
+DoEx s1 Ev1
+DoEx s1 EXIT
+DoEx.s1Exit\(\) default action implementation invoked
+DoEx s2 ENTRY
+
+
+# Let's transition back to S1 and make sure Do restarted
+>Ev1
+DoEx s2 Ev1
+DoEx s2 EXIT
+DoEx s1 ENTRY
+DoEx.s1Entry\(\) default action implementation invoked
+DoEx.s1Do\(\) default action implementation invoked
+Running thread iteration 0
+Running thread iteration 1
+Running thread iteration 2
+
+# Let's transition to S2 again to stop Do activity
+>Ev1
+DoEx s1 Ev1
+DoEx s1 EXIT
+DoEx.s1Exit\(\) default action implementation invoked
+DoEx s2 ENTRY
+#- make sure we do NOT see do output (i.e., pexpect times out looking for it)f
+!Running thread iteration 3
+!Running thread iteration.*

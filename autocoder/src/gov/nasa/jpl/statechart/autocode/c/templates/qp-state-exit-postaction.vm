@@ -1,0 +1,37 @@
+##
+## Generate Exit condition code, after the action list:
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:  the State Machine state to implement
+###############################################################################
+## disable Timers
+#*--*##foreach( $event in $model.getTimeEvents($state) )## usually just one
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($event) )
+#*----*##if( $isQHsm )
+        QTimeEvt_disarm(&(me->parent->${timerName}));
+#*----*##else
+        QTimeEvt_disarm(&(me->${timerName}));
+#*----*##end
+#*--*##end
+##
+## exit from orthogonal subregions
+#*--*##foreach( $localRegion in $model.getChildOrthogonalRegions($state) )
+#*----*##set( $lRegionType = $mapper.mapToQualifiedName($localRegion) )
+#*----*##set( $varname = $mapper.mapToVarName($localRegion) )
+        QF_ACTIVE_DISPATCH_((QHsm *)(me->${varname}),
+#*----*##if( $isQHsm )
+                            &(me->parent->${mapper.mapToEnumDecl($sm)}_BAIL_EVENT_));
+#*----*##else
+                            &(me->${mapper.mapToEnumDecl($sm)}_BAIL_EVENT_));
+#*----*##end
+        ${lRegionType}_reinit(me->${varname});
+#*--*##end
+##
+## exit from submachines
+#*--*##if( $state.submachineState )
+#*----*##set( $stateVarName = $mapper.mapToVarName($state) )
+        QF_ACTIVE_DISPATCH_((QHsm *)&(me->${stateVarName}),
+                            &(((#mapToTypeName($sm,'') *)(me->active))->${mapper.mapToEnumDecl($sm)}_BAIL_EVENT_));
+        #mapToTypeName($state.submachine,"")_reinit(&(me->${stateVarName}));
+#*--*##end
+        return Q_HANDLED();

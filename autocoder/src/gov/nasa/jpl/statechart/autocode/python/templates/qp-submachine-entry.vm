@@ -1,0 +1,12 @@
+##
+## Implement initial entry into a entryPoint target, based on entryPoint
+## set prior to starting this SubMachine.
+##
+##- input vars (in addition to $model, etc.):
+##    * $if:      the if keyword to use
+##    * $pseudo:  the entryPoint Pseudostate to implement
+##
+##* [SWC 2010.04.14] new pattern implemented for submachine entryPoint
+###############################################################################
+#*--*##set( $entryName = $mapper.mapToFunctionName($pseudo) )
+            ${if} self.__entryPoint == '$entryName':

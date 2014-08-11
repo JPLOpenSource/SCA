@@ -1,0 +1,45 @@
+##
+## Implement each state (variable $state defined in Velocity context).
+## This VM file is the beginning of state code, other files complete it.
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:  the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##    * $shouldDeclareEv:  flag indicating whether to declare var newEv
+##
+##* [SWC 2010.02.18] implemented anew referencing C and new Python templates.
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+###############################################################################
+
+/**
+ * State ${stateName}
+ */
+${qfNs}QState ${typeName}::${stateName} (${typeName}* me, ${qfNs}QEvent const* e) {
+#*--*##if( $autocoder.executionTraceOn )
+    char stateName[128];
+    strcpy(stateName, me->objName);
+#*----*##if( $state.submachineState )
+#*------*##set( $submName = $mapper.mapToTypeName($state.submachine) )
+    strcat(stateName, " ${stateName}:${submName}");
+#*----*##else
+    strcat(stateName, " ${stateName}");
+#*----*##end
+
+    char logMsg[256];
+    strcpy(logMsg, stateName);
+#*--*##end
+#*--*##if( $shouldDeclareEv || $checkSubmInstance )
+
+#*----*##if( $shouldDeclareEv )
+## call project-overriddable macro to declare an event variable before switch
+#*----*##declareLocalEventVar()
+#*----*##end
+#*----*##if( $checkSubmInstance )
+    int32_t exitPoint;
+#*----*##end
+#*--*##end
+
+##
+## Generate code for initial transition within state
+##
+    switch (e->sig) {

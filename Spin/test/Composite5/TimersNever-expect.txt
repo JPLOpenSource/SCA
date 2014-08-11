@@ -1,0 +1,2 @@
+# For 20 seconds, we never want to see any of these 3 strings
+@20@!(s114TimerEv|s12TimerEv|s13Entry)

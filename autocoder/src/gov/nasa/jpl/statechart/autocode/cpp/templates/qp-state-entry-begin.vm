@@ -1,0 +1,34 @@
+##
+## Generate Entry condition code, first-half:
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+###############################################################################
+
+    case ${qfNs}Q_ENTRY_SIG:
+        me->myState = ${mapper.mapToEnumDecl($state)};
+#*--*##if( $autocoder.executionTraceOn )
+        strcat(logMsg, " ENTRY");
+        LogEvent::log(logMsg);
+#*--*##end
+##
+## handle deep history state: save history
+#*--*##if( $state.container.containsHistoryState() )
+#*----*##set( $histStateName = $mapper.mapToVarName($model.getParentState($state)) )
+        me->${histStateName}History = (${qfNs}QStateHandler) &${typeName}::${stateName};
+#*--*##end
+##- enable Timers
+#*--*##foreach( $event in $model.getTimeEvents($state) )
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($event) )
+#*----*##set( $timeout = $mapper.mapTimeEventToTimeout($event) )
+## generic "active" (this or parent) allows QF access to master Active
+#*----*##if( $isQHsm )
+## this state is within an orthogonal region
+        me->parent->${timerName}->postIn(me->active, ${timeout});
+#*----*##else
+        me->${timerName}->postIn(me->active, ${timeout});
+#*----*##end
+#*--*##end

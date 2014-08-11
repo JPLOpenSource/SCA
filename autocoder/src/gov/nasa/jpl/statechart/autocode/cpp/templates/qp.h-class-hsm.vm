@@ -1,0 +1,71 @@
+##
+## Implement class declaration for a Region
+##
+##- input vars:
+##    * $region:  Region object
+##
+##* [SWC 2010.02.09] implemented anew referencing C and new Python templates.
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+##* [SWC 2011.04.26] Factored private section out to conform to project
+##  coding standards of section ordering:  public, protected, then private.
+##* [SWC 2012.09.06] Added flags that determine if SM terminable/terminator
+##  to code BAIL sig/event, Completion event, and  _final/_reinit functions
+###############################################################################
+##
+#*--*##set( $regionName = $mapper.mapToQualifiedName($region) )
+
+
+/**
+ * Declare the orthogonal-region class, which encapsulates the
+ * extended state variables and static member state-handler methods.
+ * It also tracks any owned orthogonal regions and propagate events
+ * to these regions.
+ */
+class ${regionName} : public ${qfNs}QHsm {
+##
+## Declare spy friend class to faciliate testing
+
+    friend class ${regionName}Spy;
+
+public:
+    /** 
+     * ${smName} State Machine orthogonal-region ${regionName} Constructor
+     *
+     * This State machine constructor is responsible for initializing
+     * the object, allocating and initializing any orthogonal regions, 
+     * and initializing the timers.
+     */
+    ${regionName} (const char* objNameNew, ${smName}Impl* implPtr, ${qfNs}QActive* active, ${smName}* parent);
+    /**
+     * Default virtual destructor
+     */
+    virtual ~${regionName} ();
+    /**
+     * Returns the unique enum representing current state within this region.
+     */
+    virtual ${smName}State getCurrentState();
+    /**
+     * Returns flag indicating whether this StateMachine instance
+     * is instantiated as a substate of another StateMachine; queries parent.
+     */
+    virtual bool isSubstate ();
+##
+#*--*##if( $SM_TERMINABLE || $SM_HAS_FINAL_STATE || $autocoder.ifDefineMain() || $autocoder.ifDefineUnitTest() )
+    /**
+     * Re-initializes a region, invoked upon exit from region.
+     */
+    virtual void reInit ();
+#*--*##end
+
+protected:
+    /**
+     * Method to initialize region to initial pseudostates
+     */
+    static ${qfNs}QState initial (${regionName}* me, ${qfNs}QEvent const* e);
+##
+#*--*##if( $SM_TERMINABLE || $isQHsm )
+    /**
+     * Method representing state machine final state
+     */
+    static ${qfNs}QState final (${regionName}* me, ${qfNs}QEvent const* e);
+#*--*##end

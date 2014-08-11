@@ -1,0 +1,138 @@
+##
+## Macro definitions, define as few as possible, and only simple code.
+##
+##* [SWC 2013.02.13] Enhanced QHsm with ignore_dropped and handled flags, and
+##  added logic after submachine event dispatch (footerSubmachineCaseEnd) to
+##  determine if handled, or whether to propagate to super state, thereby
+##  allowing dropped event to be caught.
+###############################################################################
+##
+## Macro to code a simple 'else', properly indented.
+#macro( elseStmt )
+#*--*##set( $s = $mapper.indentation() )
+${s}        else:
+#end
+##
+## Macro to stamp out a Python code from string, properly indented.
+#macro( literalCode $codeStr )
+#set( $s = $mapper.indentation() )
+${s}        ${codeStr}
+#end
+##
+## Macro to code default initial transitions in a Composite state.
+#macro( initialTransitionCase )
+        elif self.tEvt['sType'] == "init":
+#end
+##
+## Macro to code announcing a completion event from within a Submachine.
+## @param $exitPoint: if supplied, the Target exitPoint PseudoState via which to exit
+#macro( machineCompletionEvent $exitPoint )
+#*--*##set( $s = $mapper.indentation() )
+${s}        self.tEvt['sType'] = "#%s_Complete#" % self.__machine_name
+#*--*##if( $exitPoint )
+${s}        self.tEvt['exitPoint'] = "${mapper.mapToEnumDecl($exitPoint)}"
+#*--*##end
+${s}        self._publish(self.tEvt)
+#end
+##
+## Macro to code announcing a completion event from within a Composite state.
+#macro( stateCompletionEvent $containingState )
+#*--*##set( $s = $mapper.indentation() )
+#*--*##set( $containingStateName = $mapper.mapToFunctionName($containingState) )
+${s}        self.tEvt['sType'] = "#${containingStateName}_Complete#"
+${s}        self._publish(self.tEvt)
+#end
+##
+## Macro to code a transition to the hidden final state.
+#macro( gotoHiddenFinal )
+#*--*##set( $s = $mapper.indentation() )
+${s}        self.stateTran(self.final)
+#end
+##
+## Macro to code junction pseudostate with unknown branch.
+#macro( gotoChoiceBranchUnknown )
+#*--*##set( $s = $mapper.indentation() )
+## choice state starts one indentation level deeper
+${s}            LOGGER.error("No junction guard conditions matched!")
+#end
+##
+## Macro to code "terminate" pseudostate.
+#macro( gotoPseudostateTerminate )
+#*--*##set( $s = $mapper.indentation() )
+${s}        # TODO: terminate Pseudostate! Currently unsupported, use cautiously!
+${s}        self._stop()
+#end
+##
+## Macro to code a print message warning of unknown target type.
+##
+## @param $target:  Target state of transition
+#macro( gotoTargetUnknown $target )
+#*--*##set( $s = $mapper.indentation() )
+${s}        # Encountered ${model.getType($target)}, which we don't yet know how to handle!
+${s}        pass
+#end
+##
+## Macro to code termination of a state transition guard block; none in Python.
+#macro( footerGuardBlock )
+#end
+##
+## Macro to code termination of a guarded case, meaning there is a guard block.
+#macro( footerGuardedCaseEnd )
+#*--*##set( $s = $mapper.indentation() )
+${s}        return 0
+#end
+##
+## Macro to code termination of a case, already transitioned, in a state.
+#macro( footerCaseEnd )
+#*--*##set( $s = $mapper.indentation() )
+${s}        return 0
+#end
+##
+## Macro to code termination of a non-transition, but handled case in a state.
+## Just pass in Python.
+#macro( footerCaseHandled )
+#*--*##set( $s = $mapper.indentation() )
+${s}        pass
+#end
+##
+## Macro to code termination of a non-transition case, but submachine state,
+## for which we need to check if the submachine handled the event.
+#macro( footerSubmachineCaseEnd )
+#*--*##set( $s = $mapper.indentation() )
+${s}        if self.__${stateName}.isHandled():
+${s}            return 0  # Submachine handled the event
+${s}        # else, submachine dropped the event!
+#end
+##
+## Macro to code termination of the initial method, assumes an if block.
+#macro( footerInitialMethod )
+## need to decrease the indentation done in qp-method-initial for Python.
+#*--*##set( $discard = $mapper.decIndent() )
+            return 0
+        return 0
+#end
+##
+## Macro to code the start of a switch statement for exit connection transitions
+## from a substate
+##
+## @param $exitPoint: exitPoint of source exit connection point of transition
+#macro( exitTransitionBegin $exitPoint )
+#*--*##set( $s = $mapper.indentation() )
+${s}        if self.tEvt['exitPoint'] == "${mapper.mapToEnumDecl($exitPoint)}":
+#end
+##
+## Macro to code a switch case of exit connection transition from a substate
+##
+## @param $exitPoint: exitPoint of source exit connection point of transition
+#macro( exitTransitionCase $exitPoint )
+#*--*##set( $s = $mapper.indentation() )
+${s}        elif self.tEvt['exitPoint'] == "${mapper.mapToEnumDecl($exitPoint)}":
+#end
+##
+## Macro to code the end of a switch statement for exit connection transitions
+## from a substate
+#macro( exitTransitionEnd )
+#*--*##set( $s = $mapper.indentation() )
+${s}        else:  # should NOT happen
+${s}            assert False, "Unexpected exitPoint %d!" % self.tEvt['exitPoint']
+#end

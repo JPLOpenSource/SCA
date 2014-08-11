@@ -1,0 +1,32 @@
+##
+## Define an action function.
+##
+##- input vars (in addition to $model, etc.):
+##    * $funcCall  :  Call action FunctionCall object
+###############################################################################
+#*----*##set( $actionName = $mapper.sanitize($funcCall.name()) )
+#*----*##set( $funcArgs = "" )
+#*----*##if( $funcCall.hasArgs() )
+#*------*##set( $funcArgs = ", $mapper.mapArgsToDeclarations($funcCall)" )
+#*----*##end
+
+
+    def __${actionName}(self${funcArgs}):
+        """
+        Implementation method for ${actionName}()
+        """
+        if self.__impl_obj != None:
+            impl_obj = self.__impl_obj
+            if "${actionName}" in dir(self.__impl_obj):
+                # Execute self.__impl_obj.${actionName}() here.
+## use $mapper.mapArgsToDeclarations so identifier names are same as method params
+                try:  # 2.2 pattern: event arg "e" must be explicit in model
+                    expr = "impl_obj.${actionName}(${mapper.mapArgsToDeclarations($funcCall)})"
+                    eval(expr, {}, locals() )
+                except TypeError:  # 2.1 pattern: event arg "e" implicit
+                    expr = "impl_obj.${actionName}(self.tEvt${funcArgs})"
+                    eval(expr, {}, locals() )
+            else:
+                LOGGER.error("Warning: ${actionName}() is not implemented!")
+        else:
+            LOGGER.error("Warning: no implementation object for ${actionName}()")

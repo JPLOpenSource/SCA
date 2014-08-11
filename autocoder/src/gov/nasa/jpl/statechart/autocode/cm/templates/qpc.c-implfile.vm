@@ -1,0 +1,37 @@
+##
+## Defines Impl body file.
+##
+###############################################################################
+#*--*##set( $sm = $model.statemachine.value )
+#*--*##set( $smName = $mapper.mapToTypeName($sm) )
+##
+/////////////////////////////////////////////////////////////////////
+// Filename:
+//   ${smName}Impl.c
+//
+// Author:
+//   ${model.username()}
+//
+// Description:
+//   Implementation class
+/////////////////////////////////////////////////////////////////////
+
+\#include <stdlib.h>
+\#include <stdio.h>
+\#include "qf_port.h"
+\#include "qassert.h"
+\#include "${smName}Impl.h"
+\#include "StatechartSignals.h"
+\#include "log_event.h"
+
+
+##
+## Generate the list of call methods
+##
+#*--*##foreach( $action in $model.getCallActions($sm, false) )
+#*----*##set( $actionName = $mapper.sanitize($action.name()) )
+void ${smName}Impl_${actionName}(#if( $action.hasArgs() )${action.argStr()}#end)
+{
+    LogEvent_log("testObj ${smName} ${actionName}");
+}
+#*--*##end

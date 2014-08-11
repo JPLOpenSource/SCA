@@ -1,0 +1,40 @@
+# Simple6 checks to make sure that duplicate guards/actions are not produced.
+# In actuality, there's no easy way to tell if duplicate methods exist...
+
+# Entry; Action1 invoked on entry 
+Simple6 S1 ENTRY
+Simple6.Action1\(\) default action implementation invoked
+
+# Let's transition to S2, but 1st without setting guard1, then set it; Action2 invoked on transition
+>Ev1
+Simple6 S1 Ev1
+Simple6.guard1\(\) == False
+>=IMPL['Simple6'].set("guard1", True)
+guard1 set to True
+>Ev1
+Simple6 S1 Ev1
+Simple6.guard1\(\) == True
+Simple6.Action2\(\) default action implementation invoked
+Simple6 S1 EXIT
+Simple6 S2 ENTRY
+
+# We should be able transition back to S1 without trouble; Action1 invoked on exiting S2
+>Ev1
+Simple6 S2 Ev1
+Simple6.guard1\(\) == True
+Simple6 S2 EXIT
+Simple6.Action1\(\) default action implementation invoked
+Simple6 S1 ENTRY
+Simple6.Action1\(\) default action implementation invoked
+
+# Let's go back to S2, and then unset guard1 to make sure we can't transition to S1
+>Ev1
+Simple6 S1 Ev1
+Simple6.guard1\(\) == True
+Simple6.Action2\(\) default action implementation invoked
+Simple6 S1 EXIT
+Simple6 S2 ENTRY
+>=IMPL['Simple6'].clear("guard1")
+>Ev1
+Simple6 S2 Ev1
+Simple6.guard1\(\) == False

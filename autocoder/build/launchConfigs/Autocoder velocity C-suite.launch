@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/autocoder/src/gov/nasa/jpl/statechart/Autocoder.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="gov.nasa.jpl.statechart.Autocoder"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-c Test1.xml Test2.xml Test3.xml Test4.xml Test5.xml Test6.xml Test7.xml Test8.xml Test9.xml Test9_1.xml"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="autocoder"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx128m"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:autocoder/test/files/c-suite/md16.5}"/>
+</launchConfiguration>

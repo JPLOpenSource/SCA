@@ -1,0 +1,9 @@
+##
+## Process deep history pseudostate.
+##
+##- input vars (in addition to $model, etc.):
+##    * $target    :  Target state of transition
+###############################################################################
+#*--*##set( $spc = $mapper.indentation() )
+#*--*##set( $parentName = $mapper.mapToVarName($model.getParentState($target)) )
+$spc    return Q_TRAN(me->${parentName}History);

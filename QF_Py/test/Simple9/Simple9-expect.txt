@@ -1,0 +1,25 @@
+# Simple9 checks transition- or state- actions with direct Python-code, or
+# impl functions with multiple arguments.
+
+<Simple9 S1 ENTRY
+<Simple9.action1\(\) invoked with args \(foo:<type 'str'>, 2:<type 'int'>, bar:<type 'str'>\)
+>Ev1
+<Simple9 S1 Ev1
+<Simple9.action2\(\) invoked with args \(OPC1:<type 'str'>, bar:<type 'str'>\)
+<Simple9 S1 EXIT
+<Simple9 S2 ENTRY
+<hello world!
+<Simple9.action2\(\) invoked with args \(OPC2:<type 'str'>, car:<type 'str'>\)
+>Ev1
+<Simple9 S2 Ev1
+<Simple9 S2 EXIT
+<Simple9 S1 ENTRY
+<Simple9.action1\(\) invoked with args \(foo:<type 'str'>, 2:<type 'int'>, bar:<type 'str'>\)
+>Ev2
+>Ev1
+<Simple9 S1 Ev1
+<Simple9.action2\(\) invoked with args \(OPC1:<type 'str'>, bar:<type 'str'>\)
+<Simple9 S1 EXIT
+<Simple9 S2 ENTRY
+<hello world!
+<Simple9.action2\(\) invoked with args \(OPC2:<type 'str'>, car:<type 'str'>\)

@@ -1,0 +1,28 @@
+
+--- Module:   ..\..\qs\source\qs.cpp
+
+--- Module:   ..\..\qs\source\qs_.cpp
+
+--- Module:   ..\..\qs\source\qs_blk.cpp
+                             _
+    if (n > (QSCtr)(*pNbytes)) {
+..\..\qs\source\qs_blk.cpp  45  Note 961: Violates MISRA Advisory Rule 44,
+    redundant explicit casting
+                             _
+        n = (QSCtr)(*pNbytes);
+..\..\qs\source\qs_blk.cpp  46  Note 961: Violates MISRA Advisory Rule 44,
+    redundant explicit casting
+                          _
+    *pNbytes = (uint16_t)n;
+..\..\qs\source\qs_blk.cpp  48  Note 961: Violates MISRA Advisory Rule 44,
+    redundant explicit casting
+
+--- Module:   ..\..\qs\source\qs_byte.cpp
+
+--- Module:   ..\..\qs\source\qs_f32.cpp
+
+--- Module:   ..\..\qs\source\qs_f64.cpp
+
+--- Module:   ..\..\qs\source\qs_mem.cpp
+
+--- Module:   ..\..\qs\source\qs_str.cpp

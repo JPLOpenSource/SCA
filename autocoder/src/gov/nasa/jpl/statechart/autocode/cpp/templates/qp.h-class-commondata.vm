@@ -1,0 +1,47 @@
+##
+## Declares all submachines, orthogonal regions, and history variables.
+##
+##- input vars (in addition to $model, etc.):
+##    * $typeObj :  State Machine or Region
+##
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+###############################################################################
+##
+## Declare submachines
+##
+#*--*##set( $submStates = $model.sort($model.getSubmachineStates($typeObj)) )
+#*--*##if( !$submStates.empty )
+
+    /* Submachine instances */
+#*----*##foreach( $submState in $submStates )
+#*------*##set( $stateName = $mapper.mapToVarName($submState) )
+#*------*##set( $submTypeName = $mapper.mapToTypeName($submState.submachine) )
+    ${submTypeName}* ${stateName};
+    ${submTypeName}Impl* ${stateName}Impl;
+    ${qfNs}QEvent const* ${stateName}LastEvt;
+#*----*##end
+#*--*##end
+##
+## Declare orthogonal regions
+##
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($typeObj)) )
+#*--*##if( !$localRegions.empty )
+
+    /* Orthogonal region instances */
+#*----*##foreach( $localRegion in $localRegions )
+#*------*##set( $varname = $mapper.mapToVarName($localRegion) )
+    ${qfNs}QHsm* ${varname};
+#*----*##end
+#*--*##end
+##
+## Declare deep history state variables
+##
+#*--*##set( $states = $model.getOOHistoryStates($typeObj) )
+#*--*##if( !$states.empty )
+
+    /* Deep-history state variables */
+#*----*##foreach( $anyState in $states )
+#*------*##set( $histStateName = $mapper.mapToVarName($model.getParentState($anyState)) )
+    ${qfNs}QStateHandler ${histStateName}History;
+#*----*##end
+#*--*##end

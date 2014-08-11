@@ -1,0 +1,2 @@
+> python hsmtst.py
+(comment/uncomment the test_non_interactive() or test_interactive in the file.

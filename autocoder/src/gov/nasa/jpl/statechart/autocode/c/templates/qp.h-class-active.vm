@@ -1,0 +1,154 @@
+##
+## Implement class declaration for a State Machine
+##
+##- input vars:
+##    * $sm:        State Machine object
+##    * $typeObj:   alias for $sm
+##    * $typeName:  Type/struct name of the State Machine object
+##    * $implName:  Type/struct name of the State Machine Impl object
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+##* [SWC 2011.09.27] Implemented SMAP C naming convention for module items
+##* [SWC 2012.09.04] Removed destructor function for C
+##* [SWC 2012.09.05] Created 4 constructor variations depending on flags, to
+##  allow for submachine to be instantiated with parent substate argument, and
+##  to eliminate objNameNew param entirely if execution trace disabled.
+##* [SWC 2012.09.06] Added flags that determine if SM terminable/terminator
+##  to code BAIL sig/event, Completion event, and  _final/_reinit functions
+###############################################################################
+
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($typeObj)) )
+#*--*##if( !$localRegions.empty )
+/* Forward declarations for orthogonal-region struct field of containing SM */
+#*----*##foreach( $localRegion in $localRegions )
+#*------*##set( $localRegionName = $mapper.mapToQualifiedName($localRegion) )
+#*------*##set( $varname = $mapper.mapToVarName($localRegion) )
+typedef struct ${localRegionName} ${localRegionName};
+#*----*##end
+
+#*--*##end
+/**
+ * Declare the state machine struct, encapsulating the extended state variables.
+ * It tracks any timers, owned orthogonal regions, history states, substates.
+ */
+typedef struct ${typeName} {
+    QActive super;  // C-style inheritance
+##
+## Instantiate common struct data and
+## all orthogonal regions and submachines and declare all history variables.
+##
+#*--*##parse( "${tpath}qp.h-class-commondata.vm" )
+##
+## Declare timers for transitions in state machine with timer events
+##
+#*--*##set( $timerEvSet = $model.getTransitionTimeEvents($sm) )
+#*--*##set( $submTimerEvQuery = $model.querySubmachineTransitionTimeEvents($sm) )
+#*--*##if( !$timerEvSet.empty || !$submTimerEvQuery.eventTransitions.empty )
+
+    /* Timer event object instances */
+#*--*##end
+#*--*##foreach( $timerEv in $timerEvSet )
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($timerEv) )
+    QTimeEvt ${timerName};
+#*--*##end
+#*--*##foreach( $submTimerPair in $submTimerEvQuery.eventTransitions )
+#*----*##set( $evPrefix = $submTimerEvQuery.getSubstatePrefixOfEvent($submTimerPair) )
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($submTimerPair.event, $evPrefix) )
+    QTimeEvt ${timerName};
+#*--*##end
+##
+#*--*##if( $SM_TERMINABLE || $SM_TERMINATOR || $SM_HAS_FINAL_STATE )
+
+#*----*##set( $smEnum = "${mapper.mapToEnumDecl($sm)}" )
+#*--*##end
+#*--*##if( $SM_TERMINATOR )
+    /* Bail event to terminate orthogonal/submachine substate */
+    QEvent ${smEnum}_BAIL_EVENT_;
+#*--*##end
+#*--*##if( $SM_TERMINABLE || $SM_HAS_FINAL_STATE )
+    /* Completion event for exiting from composite/orthogonal/submachine state */
+    QCompletionEvt ${smEnum}_COMPLETION_EVENT_;  // sig and substate modifiable
+#*--*##end
+} ${typeName};
+
+######## Constructor and state-handler function signatures ########
+/** 
+ * ${smName} Constructor
+ *
+ * This State machine constructor is responsible for initializing
+ * the object, allocating and initializing any orthogonal regions, 
+ * and initializing the timers.
+ */
+#*--*##if( $autocoder.executionTraceOn && $SM_TERMINABLE )## add name string && parent-substate parameters
+${typeName} *${typeName}_constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, #dataTypeInt32() parent_substate);
+#*--*##elseif( $autocoder.executionTraceOn && !$SM_TERMINABLE )## add name string parameter only
+${typeName} *${typeName}_constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active);
+#*--*##elseif( !$autocoder.executionTraceOn && $SM_TERMINABLE )## add parent-substate parameter only
+${typeName} *${typeName}_constructor (${typeName} *me, ${implName} *implObj, QActive *active, #dataTypeInt32() parent_substate);
+#*--*##else## no additional parameter
+${typeName} *${typeName}_constructor (${typeName} *me, ${implName} *implObj, QActive *active);
+#*--*##end
+##
+## Getter method for pointer to impl object, which mission can disable if unneeded
+#*--*##if(! $autocoder.configOptionTrue("config.suppress.getimpl") )
+
+/**
+  * Returns the instance of the Implementation class for this QActive.
+  */
+${implName} *${typeName}_get_impl (${typeName} *me);
+#*--*##end
+##
+## Getter methods for submachine QActive instance access
+#*--*##foreach( $submState in $model.sort($model.getSubmachineStates($sm)) )
+#*----*##set( $stateName = $mapper.mapToVarName($submState) )
+#*----*##set( $stateTypeName = $mapper.mapToTypeName($submState) )
+#*----*##set( $submTypeName = "#mapToTypeName($submState.submachine,'')" )
+
+/*
+ * Returns the ${stateName} Sub Machine QActive instance.
+ */
+${submTypeName} *${typeName}_get_subm_${stateTypeName} (${typeName} *me);
+#*--*##end
+
+/**
+ * Returns the unique enum representing the current state of this machine.
+ */
+${typeName}_state ${typeName}_get_current_state (${typeName} *me);
+##
+#*--*##if( $SM_TERMINABLE || $SM_HAS_FINAL_STATE || $autocoder.ifDefineMain() || $autocoder.ifDefineUnitTest() )
+
+/**
+ * Returns whether this StateMachine instance is instantiated as a substate
+ * of another StateMachine, true if "active" is NOT "this".
+ */
+#dataTypeBoolean() ${typeName}_is_substate (${typeName} *me);
+
+/**
+ * Re-initializes only if instanced as a SubMachine state.
+ */
+void ${typeName}_reinit (${typeName} *me);
+#*--*##end
+#*--*##if( $model.hasMachineEntryPoint() )
+
+/**
+ * Sets the entry point into this StateMachine as a Submachine, also
+ * supplying the event that triggered the entry transition.
+ * This should be invoked _before_ starting this StateMachine with
+ * onStart() to affect the behavior of initial entry into this machine.
+ * Setting entry to NULL(0) causes default initial entry.
+ */
+void ${typeName}_set_entry_point (${typeName} *me, #dataTypeInt32() entry_point_id, QEvent const *e);
+#*--*##end
+
+/**
+ * Method to initialize state machine to the initial pseudostate
+ */
+QState ${typeName}_initial (${typeName} *me, QEvent const *e);
+##
+#*--*##if( $SM_TERMINABLE )
+
+/**
+ * Method representing state machine final state
+ */
+QState ${typeName}_final (${typeName} *me, QEvent const *e);
+#*--*##end

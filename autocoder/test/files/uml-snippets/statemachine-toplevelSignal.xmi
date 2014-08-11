@@ -1,0 +1,36 @@
+        <packagedElement xmi:type='uml:StateMachine' xmi:id='_12_5_9120299_1182965947700_151596_234' name='Test5' visibility='public'>
+            <xmi:Extension extender='MagicDraw UML 16.0' extenderID='MagicDraw UML 16.0'>
+                <modelExtension>
+                    <event xmi:idref='_12_5_9120299_1182966006749_287524_324'/>
+                    <event xmi:idref='_12_5_9120299_1182966010374_728506_343'/>
+                    <event xmi:idref='_12_5_9120299_1182966156677_561012_367'/>
+                </modelExtension>
+            </xmi:Extension>
+            <nestedClassifier xmi:type='uml:Signal' xmi:id='_12_5_9120299_1182966006718_156655_323' name='Ev1' visibility='public'/>
+            <region xmi:type='uml:Region' xmi:id='_12_5_9120299_1182965947716_950683_235' visibility='public'>
+                <subvertex xmi:type='uml:State' xmi:id='_12_5_9120299_1182965954497_655330_255' name='T5S1' visibility='public'/>
+                <subvertex xmi:type='uml:Pseudostate' xmi:id='_12_5_9120299_1182965973623_941251_269' visibility='public'/>
+                <subvertex xmi:type='uml:State' xmi:id='_12_5_9120299_1182965988186_238208_294' name='T5S2' visibility='public'/>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1182965975373_750006_278' visibility='public' source='_12_5_9120299_1182965973623_941251_269' target='_12_5_9120299_1182965954497_655330_255'/>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1182966000015_18724_308' visibility='public' source='_12_5_9120299_1182965954497_655330_255' target='_12_5_9120299_1182965988186_238208_294'>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_12_5_9120299_1182966006749_791747_325' visibility='public' event='_12_5_9120299_1182966006749_287524_324'/>
+                </transition>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1182966034860_784973_346' visibility='public' source='_12_5_9120299_1182965988186_238208_294' target='_12_5_9120299_1182965954497_655330_255'>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_12_5_9120299_1182966036953_459229_361' visibility='public' event='_12_5_9120299_1182966006749_287524_324'/>
+                </transition>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1182966074924_503639_362' visibility='public' kind='internal' source='_12_5_9120299_1182965988186_238208_294' target='_12_5_9120299_1182965988186_238208_294'/>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1182966150005_811020_365' visibility='public' kind='internal' source='_12_5_9120299_1182965988186_238208_294' target='_12_5_9120299_1182965988186_238208_294'>
+                    <effect xmi:type='uml:Activity' xmi:id='_12_5_9120299_1182966685197_977563_369' name='handleEv2()' visibility='public'/>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_12_5_9120299_1182966156692_520108_368' visibility='public' event='_12_5_9120299_1182966156677_561012_367'/>
+                </transition>
+            </region>
+        </packagedElement>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_12_5_9120299_1182966131176_424185_364' name='Ev2' visibility='public'/>
+        <packagedElement xmi:type='uml:Package' href='UML_Standard_Profile.xml#magicdraw_uml_standard_profile_v_0001'>
+            <xmi:Extension extender='MagicDraw UML 16.0' extenderID='MagicDraw UML 16.0'>
+                <referenceExtension referentPath='UML Standard Profile' referentType='Package'/>
+            </xmi:Extension>
+        </packagedElement>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_12_5_9120299_1182966006749_287524_324' visibility='public' signal='_12_5_9120299_1182966006718_156655_323'/>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_12_5_9120299_1182966010374_728506_343' visibility='public'/>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_12_5_9120299_1182966156677_561012_367' visibility='public' signal='_12_5_9120299_1182966131176_424185_364'/>

@@ -1,0 +1,160 @@
+##
+## Implement each state (variable $state defined in parent velocity module scope)
+##
+##- input var:
+##    * $state :  the State Machine state to implement
+##
+##* [SWC 2009.09.15] verified simple state against old code in
+##     StateChartCWriter.writeOneMethodBody(), including .writeSwitchCase().
+###############################################################################
+#*--*##set( $stateFunctionName = $mapper.mapToFunctionName($state) )
+#*--*##set( $stateName = $mapper.sanitize(${state.value.name}) )
+
+/**
+ * Implementation of ${stateName}
+ */
+## N.B.: using set below causes "RHS of #set statement null" velocity message
+#*--*##if( $model.getEnclosingOrthogonalRegion($state) )## not null
+#*----*##set( $regionName = $mapper.mapToStructType($model.getEnclosingOrthogonalRegion($state) ) )
+#*----*##set( $typeName = "${regionName}Region" )
+#*--*##else
+#*----*##set( $typeName = $smName )
+#*--*##end
+QSTATE ${stateFunctionName}(${typeName}* me, QEvent const *e) {
+
+#*--*##if( $autocoder.executionTraceOn )
+## Execution trace, mainly for GUI
+   char stateName[256];
+
+   strcpy(stateName, me->objName);
+   strcat(stateName, "${stateName}");
+#*--*##end
+
+   switch (e->sig) {
+#*--*##set( $discard = $mapper.incIndent() )## indent in switch block
+##
+## Generate Entry condition code:
+## (Note: even if we don't have any entry actions, we still want to signal
+##  to the user that we've entered a new state.)
+##
+
+     case Q_ENTRY_SIG:
+      me->mystate = $mapper.mapToEnumDecl($state);
+#*--*##if( $autocoder.executionTraceOn )
+      strcat(stateName, " ENTRY");
+      LogEvent_log(stateName);
+#*--*##end
+##
+## initialize all concurrent subregions (matches old code to make it work)
+#*--*##foreach( $region in $model.sort($model.getLocalOrthogonalRegions($state)).entrySet() )
+#*----*##set( $varname = $mapper.mapToVarName( $region ))
+#*----*##set( $regionName = $mapper.mapToStructType($region) )
+#*----*##set( $lRegionType = "${regionName}Region" )
+      QHsm_ctor_(&me->${varname}->super_, (QState)${lRegionType}_initial);
+      QHsm_init(&(me->${varname}->super_), e);
+#*--*##end
+#*--*##doAction( $state.value.entry )
+#*--*##enableTimers( $state )
+      return 0;
+##
+## Generate Exit condition code:
+##
+
+     case Q_EXIT_SIG:
+#*--*##if( $autocoder.executionTraceOn )
+      strcat(stateName, " EXIT");
+      LogEvent_log(stateName);
+#*--*##end
+#*--*##doAction( $state.value.exit )
+#*--*##propagateEvents( $state )
+##
+## handle deep history state: save history
+#*--*##if( !$model.getHistoryContainers($state).isEmpty() )
+#*----*##set( $stateName = $mapper.sanitize($state.value.name) )
+      me->my${stateName}history = QHsm_getState_(&(me->super_.super_));
+##- TODO handle case when we're a QHsm state??
+#*--*##end
+#*--*##disableTimers( $state )
+      return 0;
+##
+## Generate code for every time-out transition out of this state
+##
+#*--*##foreach( $transition in $model.getTransitionsWithTimeEvent($state) )
+#*----*##foreach( $timeEv in $transition.getTimeEvents() )
+#*------*##set( $timeEvName = $mapper.mapTimeEventToLiteral($timeEv) )
+
+     case ${timeEvName}:
+#*------*##if( $autocoder.executionTraceOn )
+      strcat(stateName, " ${timeEvName}");
+      LogEvent_log(stateName);
+#*------*##end
+#*------*##stateTransition( $state, $transition, "Q_TRAN" )
+#*------*##propagateEvents( $state )
+      return 0;
+#*----*##end
+#*--*##end
+##
+## Generate code for initial transition within state
+##
+#*--*##if( $state.value.composite && !($state.value.orthogonal) && !($state.value.submachineState) )
+
+     case Q_INIT_SIG:
+#*----*##set( $initialState = $model.getInitialState($state) )
+#*----*##set( $initTransition = $model.getInitialTransition($initialState) )
+#*----*##if( $initTransition )
+#*------*##stateTransition( $initialState, $initTransition, "Q_INIT" )
+#*----*##end
+      return 0;
+#*--*##end
+##
+## TODO handle submachine state
+##
+#*--*##if( $state.value.composite && !($state.value.orthogonal) && $state.value.submachineState )
+#*----*##parse( "${tpath}qpc.c-submachinestate.vm" )
+#*--*##end
+##
+## If orthogonal, build set of signal events applicable to this orthogonal region
+#*--*##if( $state.value.orthogonal )
+#*----*##set( $kidDesiredEvents = $model.makeSet() )
+#*----*##foreach( $kidState in $model.getChildrenStates($state).entrySet() )
+#*------*##foreach( $transition in $model.getTransitionsWithSignalEvent($kidState) )
+#*--------*##set( $kidDesiredEvents = $model.addToSet($kidDesiredEvents, $transition.getSignalEvents()) )
+#*------*##end
+#*----*##end
+#*--*##end
+##
+## Generate code for every transition out of this state
+##
+#*--*##foreach( $transition in $model.getTransitionsWithSignalEvent($state) )
+##- get set of signal events and remove from the orthogonal desired set
+#*----*##set( $signalEvents = $transition.getSignalEvents() )
+#*----*##if( $kidDesiredEvents )## variable has been set
+#*------*##set( $kidDesiredEvents = $model.removeFromSet($kidDesiredEvents, $signalEvents) )
+#*----*##end
+#*----*##foreach( $signalEv in $signalEvents )
+#*------*##set( $sname = $mapper.mapSignalEventToName($state.key, $signalEv) )
+
+     case $sname:
+#*------*##if( $autocoder.executionTraceOn )
+      strcat(stateName, " $sname");
+      LogEvent_log(stateName);
+#*------*##end
+#*------*##stateTransition( $state, $transition, "Q_TRAN" )
+      return 0;
+#*----*##end
+#*--*##end
+##
+## If orthogonal, dispatch signal and timer events as necessary.
+##
+#*--*##if( $state.value.orthogonal && !$kidDesiredEvents.isEmpty() )
+#*----*##parse( "${tpath}qpc.c-statedispatch.vm" )
+#*--*##end
+##
+#*--*##set( $discard = $mapper.decIndent() )## done with switch block
+   }
+##
+## Default: return parent state
+##
+#*--*##set( $parentState = $model.getParentStateSkipOrthogonoal($state) )
+   return (QSTATE) $mapper.mapToFunctionName($parentState);
+}

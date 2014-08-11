@@ -1,0 +1,133 @@
+##
+## Macro definitions, define as few as possible, and only simple code.
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+##* [SWC 2012.09.05] Changed completion-event handling to set the integer enum
+##  value of the "parent substate" at completion
+##* [SWC 2013.02.13] Enhanced QHsm with ignore_dropped and handled flags, and
+##  added logic after submachine event dispatch (footerSubmachineCaseEnd) to
+##  determine if handled, or whether to propagate to super state, thereby
+##  allowing dropped event to be caught.
+###############################################################################
+##
+## Macro to code a simple 'else', properly indented.
+#macro( elseStmt )
+#*--*##set( $s = $mapper.indentation() )
+${s}    } else {
+#end
+##
+## Macro to stamp out literal code from string, properly indented.
+#macro( literalCode $codeStr )
+#set( $s = $mapper.indentation() )
+${s}    // Literal code NOT supported: "${codeStr}"
+#end
+##
+## Macro to code default initial transitions in a Composite state.
+#macro( initialTransitionCase )
+
+    case Q_INIT_SIG:
+#end
+##
+## Macro to code announcing a completion event from within a Submachine.
+##
+## @param $exitPoint: if supplied, the Target exitPoint PseudoState via which to exit
+#macro( machineCompletionEvent $exitPoint )
+#*--*##set( $s = $mapper.indentation() )
+#*--*##set( $smEnum = "${mapper.mapToEnumDecl($sm)}" )
+${s}    me->${smEnum}_COMPLETION_EVENT_.completion_evt.super.sig = ${mapper.mapToSignalEnum($sm)};
+#*--*##if( $SM_TERMINABLE )
+${s}    me->${smEnum}_COMPLETION_EVENT_.completion_evt.substate = me->parentState;
+#*----*##if( $exitPoint )
+${s}    me->${smEnum}_COMPLETION_EVENT_.completion_evt.exitPoint = $mapper.mapToEnumDecl($exitPoint);
+#*----*##end
+#*--*##else
+${s}    me->${smEnum}_COMPLETION_EVENT_.completion_evt.substate = 0;
+#*--*##end
+#*--*##publishEvent("&(me->${smEnum}_COMPLETION_EVENT_.base_evt)")
+#end
+##
+## Macro to code announcing a completion event from within a Composite state.
+#macro( stateCompletionEvent $containingState )
+#*--*##set( $s = $mapper.indentation() )
+#*--*##set( $smEnum = "${mapper.mapToEnumDecl($sm)}" )
+${s}    me->${smEnum}_COMPLETION_EVENT_.completion_evt.super.sig = ${mapper.mapToSignalEnum($containingState)};
+${s}    me->${smEnum}_COMPLETION_EVENT_.completion_evt.substate = 0;  // _TOP_ state == none!
+#*--*##publishEvent("&(me->${smEnum}_COMPLETION_EVENT_.base_evt)")
+#end
+##
+## Macro to code a transition to the hidden final state.
+#macro( gotoHiddenFinal )
+#*--*##set( $s = $mapper.indentation() )
+${s}    return Q_TRAN(&${typeName}_final);
+#end
+##
+## Macro to code junction pseudostate with unknown branch.
+#macro( gotoChoiceBranchUnknown )
+#*--*##set( $s = $mapper.indentation() )
+${s}        // No junction guard conditions matched!
+#end
+##
+## Macro to code "terminate" pseudostate.
+#macro( gotoPseudostateTerminate )
+#*--*##set( $s = $mapper.indentation() )
+${s}    // TODO: terminate Pseudostate currently unsupported, do NOT use!
+#end
+##
+## Macro to code a print message warning of unknown target type.
+##
+## @param $target:  Target state of transition
+#macro( gotoTargetUnknown $target )
+#*--*##set( $s = $mapper.indentation() )
+${s}    // Encountered ${model.getType($target)}, which we don't yet know how to handle!
+#end
+##
+## Macro to code termination of a state transition guard block.
+#macro( footerGuardBlock )
+#*--*##set( $s = $mapper.indentation() )
+${s}    }
+#end
+##
+## Macro to code termination of a guarded case, meaning there is a guard block.
+#macro( footerGuardedCaseEnd )
+#*--*##if( $checkSubmInstance )
+#*----*##set( $discard = $mapper.decIndent() )
+#*--*##end
+#*--*##set( $s = $mapper.indentation() )
+${s}    }
+${s}    return Q_HANDLED();
+#end
+##
+## Macro to code termination of a case, already transitioned, in a state.
+## Nothing to do in C.
+#macro( footerCaseEnd )
+#end
+##
+## Macro to code termination of a non-transition, but handled case in a state.
+#macro( footerCaseHandled )
+#*--*##set( $s = $mapper.indentation() )
+${s}    return Q_HANDLED();
+#end
+##
+## Macro to code termination of a non-transition case, but submachine state,
+## for which we need to check if the submachine handled the event.
+#macro( footerSubmachineCaseEnd )
+#*--*##set( $s = $mapper.indentation() )
+${s}    if (me->${mapper.mapToVarName($state)}.super.super.handled) {
+${s}        return Q_HANDLED();  // Submachine handled the event
+${s}    } else {
+#*--*##set( $parentState = $model.getParentStateWithinOrthogonal($state) )
+#*--*##set( $pStateName = $mapper.mapToPrefixedFunctionName($parentState, "${typeName}") )
+${s}        return Q_SUPER(&${pStateName});  // Submachine dropped the event!
+${s}    }
+#end
+##
+## Macro to code termination of the initial method.
+#macro( footerInitialMethod )
+}
+#end
+##
+## Macro to code termination of a C header definition.
+#macro( footerHeaderDef )
+
+#endif /* ${smDefName} */
+#end

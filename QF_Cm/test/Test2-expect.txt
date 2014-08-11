@@ -1,0 +1,22 @@
+<(test2|testObj) Test2T2S1 ENTRY
+>Ev1
+<(test2|testObj) Test2T2S1 EXIT
+<(test2|testObj) Test2T2S2 ENTRY
+<(test2|testObj) Test2T2S21 ENTRY
+>Ev1
+<(test2|testObj) Test2T2S21 EXIT
+<(test2|testObj) Test2T2S22 ENTRY
+>Ev1
+<(test2|testObj) Test2T2S22 EXIT
+<(test2|testObj) Test2T2S2 EXIT
+<(test2|testObj) Test2T2S1 ENTRY
+>Ev1
+<(test2|testObj) Test2T2S1 EXIT
+<(test2|testObj) Test2T2S2 ENTRY
+<(test2|testObj) Test2T2S21 ENTRY
+>Ev1
+<(test2|testObj) Test2T2S21 EXIT
+<(test2|testObj) Test2T2S22 ENTRY
+>Ev2
+<(test2|testObj) Test2T2S22 EXIT
+<(test2|testObj) Test2T2S21 ENTRY

@@ -1,0 +1,31 @@
+<(test4|testObj) Test4T4S1 ENTRY
+>Ev1
+<(test4|testObj) Test4T4S1 EXIT
+<(test4|testObj) Test4T4S2 ENTRY
+<(test4|testObj) Test4T4S21 ENTRY
+<(test4|testObj) Test4T4S23 ENTRY
+>Ev2
+<(test4|testObj) Test4T4S21 EXIT
+<(test4|testObj) Test4T4S22 ENTRY
+>Ev2
+<(test4|testObj) Test4T4S22 EXIT
+<(test4|testObj) Test4T4S21 ENTRY
+>Ev3
+<(test4|testObj) Test4T4S23 EXIT
+<(test4|testObj) Test4T4S24 ENTRY
+>Ev3
+<(test4|testObj) Test4T4S24 EXIT
+<(test4|testObj) Test4T4S23 ENTRY
+>Ev3
+<(test4|testObj) Test4T4S23 EXIT
+<(test4|testObj) Test4T4S24 ENTRY
+>Ev1
+<(test4|testObj) Test4T4S2 EXIT
+<(test4|testObj) Test4T4S21 EXIT
+<(test4|testObj) Test4T4S24 EXIT
+<(test4|testObj) Test4T4S1 ENTRY
+>Ev1
+<(test4|testObj) Test4T4S1 EXIT
+<(test4|testObj) Test4T4S2 ENTRY
+<(test4|testObj) Test4T4S21 ENTRY
+<(test4|testObj) Test4T4S23 ENTRY

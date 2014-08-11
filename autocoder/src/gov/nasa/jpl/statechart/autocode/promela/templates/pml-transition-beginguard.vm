@@ -1,0 +1,20 @@
+##
+## Handle state transition guard.
+##
+##- input vars (in addition to $model, etc.):
+##    * $exprStr:  transition object
+##    * $if     :  language guard keyword
+##
+##* [SWC 2009.09.17] ported from C template.
+##* [LJR 2009.10.27] taken from Python and transformed into Promela
+##* [SWC 2010.08.29] Refactored templates for minimal logic within templates.
+###############################################################################
+##
+#*--*##set( $s = $mapper.indentation() )
+#*--*##if( $model.isCallAction($exprStr) )
+#*----*##set( $funcCall = $model.getCallParts($exprStr) )
+#*----*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+#*--*##end
+${s}${smName}_${funcName}(guard_return);
+${s}if
+${s}:: guard_return ->

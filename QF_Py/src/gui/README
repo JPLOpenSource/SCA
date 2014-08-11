@@ -1,0 +1,8 @@
+This is the readme file for the state machine GUI display launch instructions:
+
+1. filename: sm_guipanel.py  (added to the depot on 11/3/2009)
+
+2. It's a Python program. To launch it, at the command prompt, please do:
+
+$ ./sm_guipanel.py
+

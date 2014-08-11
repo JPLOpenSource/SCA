@@ -1,0 +1,21 @@
+#!/bin/sh
+
+F=$1
+if [ "x$F" == "x" ] ; then
+    echo "Must supply exactly one argument, the StateMachine to compile!";
+    exit 1;
+fi
+
+# TAILOR THIS! the root path for gcc includes and library
+QFCPP_PATH=/Users/scheng/work/devdata/devstream/Autocoders/QF_Cpp
+QFCPP_INCLUDE=$QFCPP_PATH/include
+LOGEV_PATH=$QFCPP_PATH/lib/xmlrpc
+
+# Handle Mac Darwin environment linkage
+if [ `uname -s` == "Darwin" ] ; then
+    DARWIN_OPTS="-Wl,-all_load "
+fi
+
+# Compile and link state machine
+g++ -DDEFINE_MAIN -DDEFINE_XMLRPC -c -Wall -g -I. -I${LOGEV_PATH} -I${QFCPP_INCLUDE} main.cpp ${LOGEV_PATH}/log_event.cpp ${F}.cpp ${F}Impl.cpp
+g++ -o ${F} *.o -L${QFCPP_PATH}/linux ${DARWIN_OPTS}-lqf -lqep -lpthread `xmlrpc-c-config client --ldadd`

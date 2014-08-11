@@ -1,0 +1,16 @@
+# Simple1 checks a simple StateMachine with 2 states and 1 event
+
+<Simple1 S1 ENTRY
+>Ev1
+<Simple1 S1 Ev1
+<Simple1 S1 EXIT
+<Simple1 S2 ENTRY
+>Ev1
+<Simple1 S2 Ev1
+<Simple1 S2 EXIT
+<Simple1 S1 ENTRY
+>Ev2
+>Ev1
+<Simple1 S1 Ev1
+<Simple1 S1 EXIT
+<Simple1 S2 ENTRY

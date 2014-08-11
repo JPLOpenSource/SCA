@@ -1,0 +1,69 @@
+/*
+Ensure that a state is not re-entered before exiting
+*/
+monitor LimitEnter {
+  always {
+    Enter(sm, state), !StateEnter(sm, state) => StateEnter(sm, state)
+    Enter(sm, state), StateEnter(sm, state) => error
+  }
+  
+  StateEnter(sm, state) {
+    Exit(sm, state) => ok
+  }
+}
+
+/*
+Ensure that a state is not re-exited before entering
+*/
+monitor LimitExit {
+  always {
+    Exit(sm, state), !StateExit(sm, state) => StateExit(sm, state)
+    Exit(sm, state), StateExit(sm, state) => error
+  }
+  
+  StateExit(sm, state) {
+    Enter(sm, state) => ok
+  }
+}
+
+/* 
+Ensure that the state hierarchy is correct for Enter and Exit
+*/
+monitor ParentChildOrder {
+  init {
+      Init() =>
+      Parent("Simple","s1","s11"),
+      Parent("Simple","s1","s12")
+  }
+  
+  always Parent(sm,s1,s2)
+  
+/*
+Ensure that a child state always exits before its parent state exits
+*/
+  init always {
+    Exit(sm,s), Parent(sm,super,s), Exited(sm,super) => error
+    Exit(sm,s) => Exited(sm,s)
+  }
+  
+  Exited(sm,state) {
+    Enter(sm,state) => ok
+  }
+
+/* 
+Ensure that a parent state always enters before its child state enters
+*/
+
+  init always {
+    Enter(sm,s), Parent(sm,super,s), !Entered(sm,super) => error
+    Enter(sm,s) => Entered(sm,s)
+  }
+  
+  Entered(sm,state) {
+    Exit(sm,state) => ok
+  }
+}
+
+
+
+

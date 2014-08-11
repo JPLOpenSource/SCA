@@ -1,0 +1,382 @@
+<!--  Used to test orthogonal regions encapsulated within a state inside a superstate. -->
+        <packagedElement xmi:type='uml:Package' xmi:id='_16_0_1_f6c0376_1253316006767_101027_370' name='SysAcsModes' visibility='public'>
+            <packagedElement xmi:type='uml:StateMachine' xmi:id='_16_0_1_f6c0376_1253580506737_987361_687' name='SysAcsModes' visibility='public'>
+                <xmi:Extension extender='MagicDraw UML 16.5'>
+                    <modelExtension>
+                        <event xmi:idref='_16_0_1_f6c0376_1253580506737_98254_689'/>
+                        <event xmi:idref='_16_0_1_f6c0376_1253580506737_5031_692'/>
+                        <event xmi:idref='_16_0_1_f6c0376_1253580506737_369425_696'/>
+                        <event xmi:idref='_16_0_1_f6c0376_1253580506737_433639_697'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254171233355_387298_380'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254171504390_210658_744'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254171742726_307836_764'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254171931549_686394_774'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254171975781_168638_779'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254172044201_555944_784'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254172158899_424807_790'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254172385172_543965_797'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254172445404_825564_805'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254172748880_233968_811'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254172999427_93910_819'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254173050897_629578_823'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254173138007_353888_827'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254173167507_309629_831'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254173248867_184953_835'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254173270335_661803_839'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254173773245_640147_846'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254173950336_646935_853'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254174133135_151276_858'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254181359758_162305_415'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254181392227_798355_419'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254182013156_984325_602'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254182635695_308422_612'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254183680373_746031_631'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254183837637_744455_639'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254184230210_960913_647'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254184294584_503273_654'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254184546472_953813_661'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254185175544_251577_674'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254185453041_34198_683'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254185492855_318104_687'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254185552199_620281_691'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254185665622_861203_695'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254185785497_381044_699'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254185825435_618540_703'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254185852951_497234_707'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254185989060_977826_726'/>
+                        <event xmi:idref='_16_5_3_f6c0376_1254186015685_750728_728'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254348044381_401428_797'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254348118809_679459_798'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254348804205_764996_807'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254348888108_579079_812'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254348950820_58660_817'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254368230756_580539_721'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254368359816_410971_728'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254368434765_266953_735'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254368528382_57557_742'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254368597157_770504_749'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254370036272_556704_758'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254370120224_563983_765'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254370854514_658209_857'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254371023499_717374_865'/>
+                        <event xmi:idref='_16_5_3_63b0213_1254371185304_260499_876'/>
+                    </modelExtension>
+                </xmi:Extension>
+                <region xmi:type='uml:Region' xmi:id='_16_0_1_f6c0376_1253580506784_575221_720' visibility='public'>
+                    <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580555588_996442_1007' visibility='public'>
+                        <region xmi:type='uml:Region' xmi:id='_16_0_1_f6c0376_1253580555588_824835_1008' visibility='public'>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506800_596895_778' name='SYS_SCIENCE' visibility='public'>
+                                <entry xmi:type='uml:OpaqueBehavior' xmi:id='_16_0_1_f6c0376_1253580506815_924738_806' name='Radar_ON();&#10;Radiometer_ON();&#10;SMA_ON()' visibility='public'/>
+                            </subvertex>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506800_932129_776' name='SYS_STANDBY' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506800_375618_779' name='SYS_SAFE_RWA' visibility='public'>
+                                <entry xmi:type='uml:OpaqueBehavior' xmi:id='_16_0_1_f6c0376_1253580506815_799964_808' name='Radiometer_OFF();&#10;Radar_OFF();&#10;CatbedHeaters_ON();&#10;Abort_Sequences_and_Commanding();&#10;Disable_XBand();&#10;SBand_ON_at_2kbps()' visibility='public'/>
+                            </subvertex>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506800_142444_775' name='SYS_SAFE_RCS' visibility='public'>
+                                <entry xmi:type='uml:OpaqueBehavior' xmi:id='_16_0_1_f6c0376_1253580506815_501293_801' name='SMA_OFF();&#10;CatbedHeaters_ON();&#10;Abort_Sequences_and_Commanding();&#10;Disable_XBand();&#10;SBand_ON_at_2kbps()' visibility='public'/>
+                            </subvertex>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506800_614326_773' name='SYS_TEST' visibility='public'/>
+                            <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_0_1_f6c0376_1253635770929_765297_1341' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506800_229773_777' name='SYS_RBA_DEPLOY' visibility='public'>
+                                <entry xmi:type='uml:OpaqueBehavior' xmi:id='_16_0_1_f6c0376_1253580506815_151772_804' name='SMA_OFF()' visibility='public'/>
+                            </subvertex>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_5_3_f6c0376_1254181626349_172678_564' name='SYS_SA_DEPLOY' visibility='public'>
+                                <entry xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254181626349_93121_565' name='SMA_OFF()' visibility='public'/>
+                            </subvertex>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_5_3_63b0213_1254370672983_553784_803' name='SYS_LAUNCH' visibility='public'>
+                                <region xmi:type='uml:Region' xmi:id='_16_5_3_63b0213_1254370672983_964751_804' visibility='public'>
+                                    <subvertex xmi:type='uml:State' xmi:id='_16_5_3_63b0213_1254370728220_433720_821' name='WaitingForSeparation' visibility='public'/>
+                                    <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_63b0213_1254370777783_743368_835' visibility='public'/>
+                                    <subvertex xmi:type='uml:State' xmi:id='_16_5_3_63b0213_1254370828820_562509_842' name='Delaying' visibility='public'/>
+                                    <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254370783420_420787_839' visibility='public' source='_16_5_3_63b0213_1254370777783_743368_835' target='_16_5_3_63b0213_1254370728220_433720_821'/>
+                                    <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254370844682_868650_856' visibility='public' source='_16_5_3_63b0213_1254370728220_433720_821' target='_16_5_3_63b0213_1254370828820_562509_842'>
+                                        <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254370854514_700263_858' visibility='public' event='_16_5_3_63b0213_1254370854514_658209_857'/>
+                                    </transition>
+                                    <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254371138632_631499_872' name='LaunchVehicleSeparation' visibility='public' source='_16_5_3_63b0213_1254370828820_562509_842' target='_16_0_1_f6c0376_1253580506800_142444_775'>
+                                        <effect xmi:type='uml:Activity' xmi:id='_16_5_3_63b0213_1254371155558_636203_873' name='SysMode_toSafeRcs' visibility='public'/>
+                                        <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254371185304_421576_878' visibility='public' event='_16_5_3_63b0213_1254371185304_260499_876'/>
+                                    </transition>
+                                </region>
+                            </subvertex>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253635772350_452341_1345' visibility='public' source='_16_0_1_f6c0376_1253635770929_765297_1341' target='_16_0_1_f6c0376_1253580506800_614326_773'/>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254171910862_507228_773' visibility='public' source='_16_0_1_f6c0376_1253580506800_142444_775' target='_16_0_1_f6c0376_1253580506800_932129_776'>
+                                <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254171945298_762825_778' name='SysMode_toStby' visibility='public'/>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254171931549_458957_775' visibility='public' event='_16_5_3_f6c0376_1254171931549_686394_774'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254181828424_382491_590' visibility='public' source='_16_5_3_f6c0376_1254181626349_172678_564' target='_16_0_1_f6c0376_1253580506800_142444_775'>
+                                <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254181828424_985758_591' name='SysMode_toSafeRcs' visibility='public'/>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254181828424_114274_592' visibility='public' event='_16_5_3_f6c0376_1254172385172_543965_797'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254181901314_72705_601' visibility='public' source='_16_0_1_f6c0376_1253580506800_142444_775' target='_16_5_3_f6c0376_1254181626349_172678_564' guard='_16_5_3_63b0213_1254347567797_709517_788'>
+                                <ownedRule xmi:type='uml:Constraint' xmi:id='_16_5_3_63b0213_1254347567797_709517_788' visibility='public'>
+                                    <specification xmi:type='uml:OpaqueExpression' xmi:id='_16_5_3_63b0213_1254347567797_187105_789' visibility='public' body='SAsDeployed()'/>
+                                </ownedRule>
+                                <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254182141389_490707_608' name='SysMode_toSADply' visibility='public'/>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254182013156_377550_603' visibility='public' event='_16_5_3_f6c0376_1254182013156_984325_602'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254182423979_364293_611' visibility='public' source='_16_0_1_f6c0376_1253580506800_229773_777' target='_16_0_1_f6c0376_1253580506800_932129_776'>
+                                <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254182647867_202698_616' name='SysMode_toStby' visibility='public'/>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254182635695_621352_613' visibility='public' event='_16_5_3_f6c0376_1254182635695_308422_612'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254183664530_871422_630' visibility='public' source='_16_0_1_f6c0376_1253580506800_596895_778' target='_16_0_1_f6c0376_1253580506800_932129_776'>
+                                <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254183691764_31304_635' name='SysMode_toStby' visibility='public'/>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254183680373_351038_632' visibility='public' event='_16_5_3_f6c0376_1254183680373_746031_631'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254183828856_235915_638' visibility='public' source='_16_0_1_f6c0376_1253580506800_596895_778' target='_16_0_1_f6c0376_1253580506800_375618_779'>
+                                <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254183846902_748659_643' name='SysMode_toSafeRwa' visibility='public'/>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254183837637_647543_640' visibility='public' event='_16_5_3_f6c0376_1254183837637_744455_639'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254371018033_320276_864' visibility='public' source='_16_0_1_f6c0376_1253580506800_614326_773' target='_16_5_3_63b0213_1254370672983_553784_803'>
+                                <effect xmi:type='uml:Activity' xmi:id='_16_5_3_63b0213_1254371078589_91624_869' name='SysMode_toLaunch' visibility='public'/>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254371023499_718601_866' visibility='public' event='_16_5_3_63b0213_1254371023499_717374_865'/>
+                            </transition>
+                        </region>
+                        <region xmi:type='uml:Region' xmi:id='_16_0_1_f6c0376_1253580555588_396587_1009' visibility='public'>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_288567_860' name='ACS_POINT_RWA' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_876020_857' name='ACS_CTRL_IDLE' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_20618_835' name='ACS_SUNPOINT_RCS' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_541510_834' name='ACS_SUNSEARCH_RWA' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_504371_833' name='ACS_DETUMBLE_RWA' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_977919_848' name='ACS_DELTAV' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_679968_846' name='ACS_AQR3J_RWA' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_680931_843' name='ACS_AQR3J_RCS' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_344010_844' name='ACS_POINT_RCS' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_204758_845' name='ACS_SUNPOINT_RWA' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506815_327082_826' name='ACS_TEST' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506815_521893_823' name='ACS_LAUNCH' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253581330307_176815_1209' name='ACS_DETUMBLE_RCS' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253581374948_217560_1222' name='ACS_SUNSEARCH_RCS' visibility='public'/>
+                            <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_0_1_f6c0376_1253635780347_936016_1348' visibility='public'/>
+                            <subvertex xmi:type='uml:State' xmi:id='_16_0_1_f6c0376_1253580506831_775902_849' name='ACS_OTM' visibility='public'/>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253581168742_614088_1177' visibility='public' source='_16_0_1_f6c0376_1253580506831_204758_845' target='_16_0_1_f6c0376_1253580506831_679968_846'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254185785497_767594_700' visibility='public' event='_16_5_3_f6c0376_1254185785497_381044_699'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253581173367_666827_1180' visibility='public' source='_16_0_1_f6c0376_1253580506831_679968_846' target='_16_0_1_f6c0376_1253580506831_288567_860'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254185825435_813118_704' visibility='public' event='_16_5_3_f6c0376_1254185825435_618540_703'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253581183320_228913_1183' visibility='public' source='_16_0_1_f6c0376_1253580506831_20618_835' target='_16_0_1_f6c0376_1253580506831_680931_843'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254185665622_379826_696' visibility='public' event='_16_5_3_f6c0376_1254185665622_861203_695'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253581185711_912144_1186' visibility='public' source='_16_0_1_f6c0376_1253580506831_680931_843' target='_16_0_1_f6c0376_1253580506831_344010_844'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254185852951_155761_708' visibility='public' event='_16_5_3_f6c0376_1254185852951_497234_707'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253581268946_327768_1207' visibility='public' source='_16_0_1_f6c0376_1253580506815_327082_826' target='_16_0_1_f6c0376_1253580506815_521893_823'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254171504390_753118_745' visibility='public' event='_16_5_3_f6c0376_1254171504390_210658_744'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253581426480_27828_1236' visibility='public' source='_16_0_1_f6c0376_1253581330307_176815_1209' target='_16_0_1_f6c0376_1253581374948_217560_1222'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254348888108_458147_813' visibility='public' event='_16_5_3_63b0213_1254348888108_579079_812'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253581466996_368859_1239' visibility='public' source='_16_0_1_f6c0376_1253581374948_217560_1222' target='_16_0_1_f6c0376_1253580506831_20618_835'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254348950821_272105_818' visibility='public' event='_16_5_3_63b0213_1254348950820_58660_817'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253581573497_700679_1242' visibility='public' source='_16_0_1_f6c0376_1253580506831_541510_834' target='_16_0_1_f6c0376_1253580506831_204758_845'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254185552199_736523_692' visibility='public' event='_16_5_3_f6c0376_1254185552199_620281_691'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253581770733_946063_1245' visibility='public' source='_16_0_1_f6c0376_1253580506815_521893_823' target='_16_0_1_f6c0376_1253581330307_176815_1209'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254171742726_109823_765' visibility='public' event='_16_5_3_f6c0376_1254171742726_307836_764'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253635782378_494895_1352' visibility='public' source='_16_0_1_f6c0376_1253635780347_936016_1348' target='_16_0_1_f6c0376_1253580506815_327082_826'/>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254172092542_273655_789' visibility='public' source='_16_0_1_f6c0376_1253580506831_20618_835' target='_16_0_1_f6c0376_1253580506831_20618_835'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254172158899_527976_791' visibility='public' event='_16_5_3_f6c0376_1254172158899_424807_790'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254172433826_29977_804' visibility='public' source='_16_0_1_f6c0376_1253580506831_876020_857' target='_16_0_1_f6c0376_1253581330307_176815_1209'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254172445404_791768_806' visibility='public' event='_16_5_3_f6c0376_1254172445404_825564_805'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254172981458_734792_818' visibility='public' source='_16_0_1_f6c0376_1253580506831_288567_860' target='_16_0_1_f6c0376_1253580506831_288567_860'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254172999427_499706_820' visibility='public' event='_16_5_3_f6c0376_1254172999427_93910_819'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254173935320_35789_852' visibility='public' source='_16_0_1_f6c0376_1253580506831_204758_845' target='_16_0_1_f6c0376_1253580506831_204758_845'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254173950336_8431_854' visibility='public' event='_16_5_3_f6c0376_1254173950336_646935_853'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254184175304_377490_646' visibility='public' source='_16_0_1_f6c0376_1253580506831_504371_833' target='_16_0_1_f6c0376_1253581330307_176815_1209'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254184230210_716760_648' visibility='public' event='_16_5_3_f6c0376_1254184230210_960913_647'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254184279272_241705_653' visibility='public' source='_16_0_1_f6c0376_1253580506831_204758_845' target='_16_0_1_f6c0376_1253581330307_176815_1209'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254184294584_859153_655' visibility='public' event='_16_5_3_f6c0376_1254184294584_503273_654'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254184539909_501091_660' name='BurnDone' visibility='public' source='_16_0_1_f6c0376_1253580506831_977919_848' target='_16_0_1_f6c0376_1253580506831_344010_844'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254184983742_417833_666' visibility='public' event='_16_5_3_f6c0376_1254185989060_977826_726'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254185122866_365721_671' visibility='public' source='_16_0_1_f6c0376_1253580506831_20618_835' target='_16_0_1_f6c0376_1253580506831_876020_857'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254185175544_466522_675' visibility='public' event='_16_5_3_f6c0376_1254185175544_251577_674'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_f6c0376_1254185441290_380377_682' visibility='public' source='_16_0_1_f6c0376_1253580506831_876020_857' target='_16_0_1_f6c0376_1253580506831_288567_860'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_f6c0376_1254185453041_154037_684' visibility='public' event='_16_5_3_f6c0376_1254185453041_34198_683'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254368203011_288480_720' visibility='public' source='_16_0_1_f6c0376_1253580506831_344010_844' target='_16_0_1_f6c0376_1253580506831_977919_848'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254368230756_888751_722' visibility='public' event='_16_5_3_63b0213_1254368230756_580539_721'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254368347173_595119_727' visibility='public' source='_16_0_1_f6c0376_1253580506831_288567_860' target='_16_0_1_f6c0376_1253580506831_344010_844'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254368359817_830481_729' visibility='public' event='_16_5_3_63b0213_1254368359816_410971_728'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254368401473_713669_734' visibility='public' source='_16_0_1_f6c0376_1253580506831_344010_844' target='_16_0_1_f6c0376_1253580506831_288567_860'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254368434765_935188_736' visibility='public' event='_16_5_3_63b0213_1254368434765_266953_735'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254368513674_52140_741' visibility='public' source='_16_0_1_f6c0376_1253580506831_344010_844' target='_16_0_1_f6c0376_1253580506831_775902_849'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254368528382_735650_743' visibility='public' event='_16_5_3_63b0213_1254368528382_57557_742'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254368585974_78955_748' name='DeltaVAchieved' visibility='public' source='_16_0_1_f6c0376_1253580506831_775902_849' target='_16_0_1_f6c0376_1253580506831_344010_844'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254368597157_136564_751' visibility='public' event='_16_5_3_63b0213_1254368597157_770504_749'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254370002969_262461_757' visibility='public' source='_16_0_1_f6c0376_1253580506831_876020_857' target='_16_0_1_f6c0376_1253580506831_504371_833'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254370036273_598337_759' visibility='public' event='_16_5_3_63b0213_1254370036272_556704_758'/>
+                            </transition>
+                            <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254370114557_979153_764' visibility='public' source='_16_0_1_f6c0376_1253580506831_504371_833' target='_16_0_1_f6c0376_1253580506831_541510_834'>
+                                <trigger xmi:type='uml:Trigger' xmi:id='_16_5_3_63b0213_1254370120224_310212_766' visibility='public' event='_16_5_3_63b0213_1254370120224_563983_765'/>
+                            </transition>
+                        </region>
+                    </subvertex>
+                    <subvertex xmi:type='uml:State' xmi:id='_16_5_3_63b0213_1254347046149_762837_749' visibility='public'>
+                        <region xmi:type='uml:Region' xmi:id='_16_5_3_63b0213_1254347046150_339764_750' visibility='public'>
+                            <!-- subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_63b0213_1254347096219_874663_767' visibility='public'/ -->
+                            <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_0_1_f6c0376_1253580506800_761054_780' visibility='public'/>
+                        </region>
+                    </subvertex>
+                    <subvertex xmi:type='uml:Pseudostate' xmi:id='_16_5_3_63b0213_1254347132761_552367_774' visibility='public'/>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253580506815_277886_785' visibility='public' source='_16_0_1_f6c0376_1253580506800_375618_779' target='_16_0_1_f6c0376_1253580506800_142444_775' guard='_16_5_3_63b0213_1254347512391_680402_786'>
+                        <ownedRule xmi:type='uml:Constraint' xmi:id='_16_5_3_63b0213_1254347512391_680402_786' visibility='public'>
+                            <specification xmi:type='uml:OpaqueExpression' xmi:id='_16_5_3_63b0213_1254347512391_907702_787' visibility='public' body='ModeBlock_01()'/>
+                        </ownedRule>
+                        <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254173572830_525834_844' name='SysMode_toSafeRcs' visibility='public'/>
+                        <trigger xmi:type='uml:Trigger' xmi:id='_16_0_1_f6c0376_1253580506815_479132_811' visibility='public' event='_16_0_1_f6c0376_1253580506737_98254_689'/>
+                    </transition>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253580506815_323480_786' visibility='public' source='_16_0_1_f6c0376_1253580506800_932129_776' target='_16_0_1_f6c0376_1253580506800_375618_779'>
+                        <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254173502598_815547_843' name='SysMode_toSafeRwa' visibility='public'/>
+                        <trigger xmi:type='uml:Trigger' xmi:id='_16_0_1_f6c0376_1253580506815_462084_812' visibility='public' event='_16_0_1_f6c0376_1253580506737_5031_692'/>
+                    </transition>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253580506815_673806_787' visibility='public' source='_16_0_1_f6c0376_1253580506800_932129_776' target='_16_0_1_f6c0376_1253580506800_229773_777'>
+                        <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254173855876_871783_849' name='SysMode_toRbaDply' visibility='public'/>
+                        <trigger xmi:type='uml:Trigger' xmi:id='_16_0_1_f6c0376_1253580506815_259623_813' visibility='public' event='_16_5_3_63b0213_1254348044381_401428_797'/>
+                    </transition>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253580506815_882206_790' visibility='public' source='_16_0_1_f6c0376_1253580506800_932129_776' target='_16_0_1_f6c0376_1253580506800_596895_778'>
+                        <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254172837607_392646_815' name='SysMode_toSci' visibility='public'/>
+                        <trigger xmi:type='uml:Trigger' xmi:id='_16_0_1_f6c0376_1253580506815_481338_816' visibility='public' event='_16_5_3_63b0213_1254348118809_679459_798'/>
+                    </transition>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253580506815_323118_793' visibility='public' source='_16_0_1_f6c0376_1253580506800_596895_778' target='_16_0_1_f6c0376_1253580506800_932129_776'>
+                        <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254173620314_379997_845' name='SysMode_toStby' visibility='public'/>
+                        <trigger xmi:type='uml:Trigger' xmi:id='_16_0_1_f6c0376_1253580506815_49159_818' visibility='public' event='_16_0_1_f6c0376_1253580506737_369425_696'/>
+                    </transition>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253580506815_194151_794' visibility='public' source='_16_0_1_f6c0376_1253580506800_229773_777' target='_16_0_1_f6c0376_1253580506800_932129_776'>
+                        <effect xmi:type='uml:OpaqueBehavior' xmi:id='_16_5_3_f6c0376_1254172533275_656777_809' name='SysMode_toStby' visibility='public'/>
+                        <trigger xmi:type='uml:Trigger' xmi:id='_16_0_1_f6c0376_1253580506815_216159_819' visibility='public' event='_16_0_1_f6c0376_1253580506737_433639_697'/>
+                    </transition>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253581082459_570378_1174' visibility='public' source='_16_0_1_f6c0376_1253580506831_288567_860' target='_16_0_1_f6c0376_1253580506831_876020_857'>
+                        <trigger xmi:type='uml:Trigger' xmi:id='_16_0_1_f6c0376_1253581082459_614439_1175' visibility='public' event='_16_5_3_f6c0376_1254173773245_640147_846'/>
+                    </transition>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_0_1_f6c0376_1253635766805_325873_1339' visibility='public' source='_16_0_1_f6c0376_1253580506800_761054_780' target='_16_0_1_f6c0376_1253580555588_996442_1007'/>
+                    <transition xmi:type='uml:Transition' xmi:id='_16_5_3_63b0213_1254347135865_843660_778' visibility='public' source='_16_5_3_63b0213_1254347132761_552367_774' target='_16_5_3_63b0213_1254347046149_762837_749'/>
+                </region>
+            </packagedElement>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_0_1_f6c0376_1253580506737_98254_689' name='Faults1' visibility='public' signal='_16_5_3_63b0213_1254347331054_948528_781'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_0_1_f6c0376_1253580506737_5031_692' name='Faults2' visibility='public' signal='_16_5_3_63b0213_1254347659201_94060_791'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_0_1_f6c0376_1253580506737_369425_696' name='Faults3' visibility='public' signal='_16_5_3_63b0213_1254347749380_556591_794'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_0_1_f6c0376_1253580506737_433639_697' name='RBA_Deploy' visibility='public' signal='_16_5_3_63b0213_1254347729684_728785_793'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254171233355_387298_380' name='ToLaunch_GC' visibility='public' signal='_16_5_3_63b0213_1254347290679_636675_779'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254171504390_210658_744' name='SysMode_toLaunch' visibility='public' signal='_16_5_3_63b0213_1254348211447_22459_800'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254171742726_307836_764' name='SysMode_toSafeRcs' visibility='public' signal='_16_5_3_63b0213_1254348260605_936259_801'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254171931549_686394_774' name='ToStandby_GC' visibility='public' signal='_16_5_3_63b0213_1254347306685_634949_780'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254171975781_168638_779' name='ToDeploy_GC' visibility='public'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254172044201_555944_784' name='SysMode_toRbaDply' visibility='public'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254172158899_424807_790' name='SysMode_toStby' visibility='public' signal='_16_5_3_63b0213_1254348323217_244967_803'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254172385172_543965_797' name='SA_Deploy' visibility='public' signal='_16_5_3_63b0213_1254347369058_904919_783'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254172445404_825564_805' name='SysMode_toSafeRcs' visibility='public' signal='_16_5_3_63b0213_1254348260605_936259_801'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254172748880_233968_811' name='SysMode_toStby' visibility='public' signal='_16_5_3_63b0213_1254348323217_244967_803'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254172999427_93910_819' name='SysMode_toSci' visibility='public' signal='_16_5_3_63b0213_1254348390870_15870_805'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254173050897_629578_823' name='ToOtm_GC' visibility='public' signal='_16_5_3_63b0213_1254350251174_452249_829'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254173138007_353888_827' name='ToPointRwa_GC' visibility='public' signal='_16_5_3_63b0213_1254350235935_145711_828'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254173167507_309629_831' name='ToPointRcs_GC' visibility='public' signal='_16_5_3_63b0213_1254350213000_915796_827'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254173248867_184953_835' name='ToSunPntRcs_GC' visibility='public' signal='_16_5_3_63b0213_1254349092516_385207_822'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254173270335_661803_839' name='ToSunPntRwa_GC' visibility='public' signal='_16_5_3_63b0213_1254349061389_103729_821'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254173773245_640147_846' name='SysMode_toRbaDply' visibility='public' signal='_16_5_3_63b0213_1254348415563_654195_806'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254173950336_646935_853' name='SysMode_toStby' visibility='public' signal='_16_5_3_63b0213_1254348323217_244967_803'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254174133135_151276_858' name='SysMode_toSafeRcs' visibility='public' signal='_16_5_3_63b0213_1254348260605_936259_801'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254181359758_162305_415' name='Breakwire' visibility='public'/>
+            <packagedElement xmi:type='uml:TimeEvent' xmi:id='_16_5_3_f6c0376_1254181392227_798355_419' visibility='public'>
+                <when xmi:type='uml:TimeExpression' xmi:id='_16_5_3_f6c0376_1254181392227_579958_420' visibility='public'>
+                    <expr xmi:type='uml:LiteralString' xmi:id='_16_5_3_63b0213_1254347401403_421579_784' visibility='public' value='5'/>
+                </when>
+            </packagedElement>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254182013156_984325_602' name='Sunpointed' visibility='public' signal='_16_5_3_63b0213_1254347353995_103684_782'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254182635695_308422_612' name='Faults4' visibility='public' signal='_16_5_3_63b0213_1254347764010_640228_795'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254183680373_746031_631' name='ToStandby_GC' visibility='public' signal='_16_5_3_63b0213_1254347306685_634949_780'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254183837637_744455_639' name='Faults5' visibility='public' signal='_16_5_3_63b0213_1254347776569_557799_796'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254184230210_960913_647' name='SysMode_toSafeRcs' visibility='public' signal='_16_5_3_63b0213_1254348260605_936259_801'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254184294584_503273_654' name='SysMode_toSafeRcs' visibility='public' signal='_16_5_3_63b0213_1254348260605_936259_801'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254184546472_953813_661' name='ToDeltaV_GC' visibility='public' signal='_16_5_3_63b0213_1254350096559_132815_824'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254185175544_251577_674' name='SysMode_toSaDply' visibility='public' signal='_16_5_3_63b0213_1254348289074_655990_802'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254185453041_34198_683' name='SysMode_toStby' visibility='public' signal='_16_5_3_63b0213_1254348323217_244967_803'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254185492855_318104_687' name='SysMode_toSafeRwa' visibility='public' signal='_16_5_3_63b0213_1254348337135_408746_804'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254185552199_620281_691' name='SunlineDetected' visibility='public' signal='_16_5_3_63b0213_1254350162635_500902_826'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254185665622_861203_695' name='Aq3J_Rcs_GC' visibility='public' signal='_16_5_3_63b0213_1254350378455_450846_831'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254185785497_381044_699' name='Aq3J_Rwa_GC' visibility='public' signal='_16_5_3_63b0213_1254350378455_450846_831'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254185825435_618540_703' name='ValidQuaternions' visibility='public' signal='_16_5_3_63b0213_1254350129790_461928_825'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_f6c0376_1254185852951_497234_707' name='ValidQuaternions' visibility='public' signal='_16_5_3_63b0213_1254350129790_461928_825'/>
+            <packagedElement xmi:type='uml:TimeEvent' xmi:id='_16_5_3_f6c0376_1254185989060_977826_726' visibility='public'>
+                <when xmi:type='uml:TimeExpression' xmi:id='_16_5_3_f6c0376_1254185989060_138747_727' visibility='public'>
+                    <expr xmi:type='uml:LiteralString' xmi:id='_16_5_3_63b0213_1254349144047_779246_823' visibility='public' value='10'/>
+                </when>
+            </packagedElement>
+            <packagedElement xmi:type='uml:TimeEvent' xmi:id='_16_5_3_f6c0376_1254186015685_750728_728' visibility='public'>
+                <when xmi:type='uml:TimeExpression' xmi:id='_16_5_3_f6c0376_1254186015685_550499_729' visibility='public'>
+                    <expr xmi:type='uml:LiteralString' xmi:id='_16_5_3_63b0213_1254350264668_919418_830' visibility='public' value='15'/>
+                </when>
+            </packagedElement>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254348044381_401428_797' name='RBA_Deploy' visibility='public' signal='_16_5_3_63b0213_1254347729684_728785_793'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254348118809_679459_798' name='ToScience_GC' visibility='public' signal='_16_5_3_63b0213_1254348162627_796362_799'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254348804205_764996_807' name='SysMode_toSunSearchRwa' visibility='public' signal='_16_5_3_63b0213_1254348835443_895011_811'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254348888108_579079_812' name='SysMode_toSunSearchRcs' visibility='public' signal='_16_5_3_63b0213_1254348921413_426998_816'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254348950820_58660_817' name='SysMode_toSunSearchRcs' visibility='public' signal='_16_5_3_63b0213_1254348921413_426998_816'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254368230756_580539_721' name='ToDeltaV_GC' visibility='public' signal='_16_5_3_63b0213_1254350096559_132815_824'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254368359816_410971_728' name='ToPointRcs_GC' visibility='public' signal='_16_5_3_63b0213_1254350213000_915796_827'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254368434765_266953_735' name='ToPointRwa_GC' visibility='public' signal='_16_5_3_63b0213_1254350235935_145711_828'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254368528382_57557_742' name='ToOtm_GC' visibility='public' signal='_16_5_3_63b0213_1254350251174_452249_829'/>
+            <packagedElement xmi:type='uml:TimeEvent' xmi:id='_16_5_3_63b0213_1254368597157_770504_749' visibility='public'>
+                <when xmi:type='uml:TimeExpression' xmi:id='_16_5_3_63b0213_1254368597157_46371_750' visibility='public'>
+                    <expr xmi:type='uml:LiteralString' xmi:id='_16_5_3_63b0213_1254368602073_494372_754' visibility='public' value='15'/>
+                </when>
+            </packagedElement>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254370036272_556704_758' name='SysMode_toSafeRwa' visibility='public' signal='_16_5_3_63b0213_1254348337135_408746_804'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254370120224_563983_765' name='SysMode_toSunSearchRwa' visibility='public' signal='_16_5_3_63b0213_1254348835443_895011_811'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254370854514_658209_857' name='Breaking' visibility='public' signal='_16_5_3_63b0213_1254370897374_239764_861'/>
+            <packagedElement xmi:type='uml:SignalEvent' xmi:id='_16_5_3_63b0213_1254371023499_717374_865' name='ToLaunch_GC' visibility='public' signal='_16_5_3_63b0213_1254347290679_636675_779'/>
+            <packagedElement xmi:type='uml:TimeEvent' xmi:id='_16_5_3_63b0213_1254371185304_260499_876' visibility='public'>
+                <when xmi:type='uml:TimeExpression' xmi:id='_16_5_3_63b0213_1254371185304_704197_877' visibility='public'>
+                    <expr xmi:type='uml:LiteralString' xmi:id='_16_5_3_63b0213_1254371191878_182815_879' visibility='public' value='5'/>
+                </when>
+            </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254347290679_636675_779' name='ToLaunch_GC' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254347306685_634949_780' name='ToStandby_GC' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254347331054_948528_781' name='Faults1' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254347353995_103684_782' name='Sunpointed' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254347369058_904919_783' name='SA_Deploy' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254347659201_94060_791' name='Faults2' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254347729684_728785_793' name='RBA_Deploy' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254347749380_556591_794' name='Faults3' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254347764010_640228_795' name='Faults4' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254347776569_557799_796' name='Faults5' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254348162627_796362_799' name='ToScience_GC' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254348211447_22459_800' name='SysMode_toLaunch' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254348260605_936259_801' name='SysMode_toSafeRcs' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254348289074_655990_802' name='SysMode_toSADply' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254348323217_244967_803' name='SysMode_toStby' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254348337135_408746_804' name='SysMode_toSafeRwa' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254348390870_15870_805' name='SysMode_toSci' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254348415563_654195_806' name='SysMode_toRbaDply' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254348835443_895011_811' name='SysMode_toSunSearchRwa' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254348921413_426998_816' name='SysMode_toSunSearchRcs' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254349061389_103729_821' name='ToSunPntRwa_GC' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254349092516_385207_822' name='ToSunPntRcs_GC' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254350096559_132815_824' name='ToDeltaV_GC' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254350129790_461928_825' name='ValidQuaternions' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254350162635_500902_826' name='SunlineDetected' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254350213000_915796_827' name='ToPointRcs_GC' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254350235935_145711_828' name='ToPointRwa_GC' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254350251174_452249_829' name='ToOtm_GC' visibility='public'/>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254350378455_450846_831' name='Aq3J_Rwa_GC' visibility='public'/>
+        <packagedElement xmi:type='uml:Package' href='UML_Standard_Profile.xml#magicdraw_uml_standard_profile_v_0001'>
+            <xmi:Extension extender='MagicDraw UML 16.5'>
+                <referenceExtension referentPath='UML Standard Profile' referentType='Package'/>
+            </xmi:Extension>
+        </packagedElement>
+        <packagedElement xmi:type='uml:Signal' xmi:id='_16_5_3_63b0213_1254370897374_239764_861' name='Breaking' visibility='public'/>

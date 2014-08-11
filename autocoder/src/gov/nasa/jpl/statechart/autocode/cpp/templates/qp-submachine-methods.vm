@@ -1,0 +1,14 @@
+##
+## Defines the submachine utility methods for a main machine to set entry point
+## and to retrieve last exit point.
+##
+##- input vars (in addition to $model, etc.):  None
+##
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+###############################################################################
+
+
+void ${typeName}::setEntryPoint (${smName}StateConnPoint entryPointId, ${qfNs}QEvent const* e) {
+    this->entryPoint = entryPointId;
+    this->entryEvent = e;
+}

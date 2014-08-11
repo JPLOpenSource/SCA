@@ -1,0 +1,24 @@
+##
+##- TODO process connection point reference to a submachine?!
+##    refer to lines 1341--1380 in StateChartCWriter.writeToConnectionPointReference()
+##
+## NOTE:  Connection point references point to a connection point Pseudostate
+## in the submachine, which has the following implications to make this work:
+## 1. Transition to a connection point reference must be translated into
+##    transition to a Submachine.
+## 2. Submachines must support transitions from connectionPoint Pseudostates
+##    to their target state, maybe not just via "onStart" call, but also needing
+##    to supply the connection point to start _into_ the submachine?
+##
+##- input vars (in addition to $model, etc.):
+##    * $substate:  Submachine state on which is defined ConnectionPointReference 
+##    * $target:    Target state of transition
+###############################################################################
+#*--*##set( $spc = $mapper.indentation() )
+#*--*##set( $substateName = $mapper.mapToFunctionName($substate) )
+#*--*##set( $entryPoint = $mapper.mapToFunctionName($target) )
+$spc        # invoke pseudostate to set initial target state in submachine
+$spc        self.__${substateName}.setEntryPoint('${entryPoint}')
+$spc        self.__${substateName}.tEvt = self.tEvt   # transfer event
+$spc        # then transition to target state in main machine
+$spc        self.stateTran(self.${substateName})

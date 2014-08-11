@@ -1,0 +1,56 @@
+# Composite6_2 checks a complex StateMachine with orthogonal regions in a
+# state within another state.
+
+<Composite6_2 Top ENTRY
+<Composite6_2 S1 ENTRY
+<Composite6_2 S11 ENTRY
+<Composite6_2 S21 ENTRY
+>Ev3
+>Ev1
+<Composite6_2 S1 Region1 Ev1
+<Composite6_2 S11 Ev1
+<Composite6_2 S11 EXIT
+<Composite6_2 S12 ENTRY
+<Composite6_2 S1 Region2 Ev2
+<Composite6_2 S21 Ev2
+<Composite6_2 S21 EXIT
+<Composite6_2 S22 ENTRY
+>Ev1
+<Composite6_2 S1 Region1 Ev1
+<Composite6_2 S12 EXIT
+<Composite6_2 S11 ENTRY
+>Ev2
+<Composite6_2 S1 Region2 Ev2
+<Composite6_2 S22 Ev2
+<Composite6_2 S22 EXIT
+<Composite6_2 S21 ENTRY
+<Composite6_2 S1 Region1 Ev1
+<Composite6_2 S11 EXIT
+<Composite6_2 S12 ENTRY
+<Composite6_2 S1 Region2 Ev2
+<Composite6_2 S21 EXIT
+<Composite6_2 S22 ENTRY
+>Ev2
+<Composite6_2 S1 Region2 Ev2
+<Composite6_2 S22 Ev2
+<Composite6_2 S22 EXIT
+<Composite6_2 S21 ENTRY
+<Composite6_2 S1 Region1 Ev1
+<Composite6_2 S12 EXIT
+<Composite6_2 S11 ENTRY
+>Ev2
+<Composite6_2 S1 Region2 Ev2
+<Composite6_2 S21 Ev2
+<Composite6_2 S21 EXIT
+<Composite6_2 S22 ENTRY
+>Ev1
+<Composite6_2 S1 Region1 Ev1
+<Composite6_2 S11 Ev1
+<Composite6_2 S11 EXIT
+<Composite6_2 S12 ENTRY
+<Composite6_2 S1 Region2 Ev2
+<Composite6_2 S22 EXIT
+<Composite6_2 S21 ENTRY
+<Composite6_2 S1 Region1 Ev1
+<Composite6_2 S12 EXIT
+<Composite6_2 S11 ENTRY

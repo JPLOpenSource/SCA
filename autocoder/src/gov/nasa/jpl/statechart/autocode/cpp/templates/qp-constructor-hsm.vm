@@ -1,0 +1,70 @@
+##
+## Implement class and constructor for a Region.
+##
+##- input vars:
+##    * $region:    Region object
+##    * $typeName:  Type name of the Region object
+##
+##* [SWC 2010.02.08] implemented anew referencing C and new Python templates.
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+###############################################################################
+## 
+#*--*##set( $typeObj = $region)
+/** 
+ * ${smName} State Machine orthogonal-region ${typeName} Constructor
+ */
+${typeName}::${typeName} (const char* objNameNew, ${smName}Impl* implObj, ${qfNs}QActive* active, ${smName}* parent)
+## Superclass constructor call
+: ${qfNs}QHsm((${qfNs}QStateHandler) &${typeName}::initial)
+{
+##
+## Print execution trace, if necessary
+##
+#*--*##if( $autocoder.executionTraceOn )
+## Output execution trace for GUI
+    strcpy(this->objName, objNameNew);
+#*--*##end
+##
+## Other data initialization
+##
+    this->impl = implObj;
+    this->active = active;
+    this->parent = parent;
+##
+## Instantiate all orthogonal regions, submachines and history variables
+##
+#*--*##parse( "${tpath}qp-constructor-commondata.vm" )
+}
+
+${typeName}::~${typeName} () {
+#*--*##set( $localRegionSet = $model.sort($model.getLocalOrthogonalRegions($typeObj)) )
+#*--*##set( $submStateSet = $model.sort($model.getLocalSubmachineStates($typeObj)) )
+#*--*##if( !$localRegionSet.empty || !$submStateSet.empty )
+
+    // Delete any orthgonal region and submachine instances
+#*----*##foreach( $localRegion in $localRegionSet )
+#*------*##set( $varname = $mapper.mapToVarName($localRegion) )
+    delete this->${varname};
+#*----*##end
+##
+#*----*##foreach( $submState in $submStateSet )
+#*------*##set( $stateName = $mapper.mapToVarName($submState) )
+    delete this->${stateName}Impl;
+    delete this->${stateName};
+#*----*##end
+#*--*##end
+}
+
+${smName}State ${typeName}::getCurrentState() {
+    return this->myState;
+}
+
+bool ${typeName}::isSubstate () {
+    return this->parent->isSubstate();
+}
+#*--*##if( $SM_TERMINABLE || $autocoder.ifDefineMain() || $autocoder.ifDefineUnitTest() )
+
+void ${typeName}::reInit () {
+    this->m_state = (${qfNs}QStateHandler) &${typeName}::initial;
+}
+#*--*##end

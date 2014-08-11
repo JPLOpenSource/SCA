@@ -1,0 +1,56 @@
+##
+## Macro definitions
+##
+###############################################################################
+##
+#macro(makeClass $_typeObj $_typeName $_isQHsm)
+#parse( "${tpath}qppy-constructor.vm" )
+#parse( "${tpath}qppy-commonmembers.vm" )
+#end
+##
+##
+#macro(makeState $_state $_isQHsm)
+#parse( "${tpath}qppy-state.vm" )
+#end
+##
+##
+#macro(stateTransition $_state $_transition $_func $_isQHsm)
+#parse( "${tpath}qppy-statetransition.vm" )
+#end
+##
+##
+#macro(doAction $_activity $_sp $_isQHsm)
+#parse( "${tpath}qppy-doaction.vm" )
+#end
+##
+##
+#macro(enableTimers $state)
+#foreach( $event in $model.getTimeEvents($state) )
+#set( $timerName = $mapper.mapTimeEventToTimer($event) )
+#set( $timeout = $mapper.mapTimeEventToTimeout($event) )
+#if( $model.getEnclosingOrthogonalRegion($state) && $state.container)
+## this state is within an orthogonal region
+            self#if( $_isQHsm ).__active_obj#end.${timerName}.postIn(${timeout})
+#else
+            self#if( $_isQHsm ).__active_obj#end.${timerName}.postIn(${timeout})
+#end
+#end
+#end
+##
+##
+#macro(disableTimers $state)
+#foreach( $event in $model.getTimeEvents($state) )## usually just one
+#set( $timerName = $mapper.mapTimeEventToTimer($event) )
+            self#if( $_isQHsm ).__active_obj#end.${timerName}.disarm()
+#end
+#end
+##
+##
+#macro(propagateEvents $state $ev)
+#foreach( $region in $model.getChildOrthogonalRegionsForEvents($state, $ev) )
+#set( $regionName = $mapper.mapToTypeName($region) )## don't use qualified name
+#set( $varname = $mapper.mapToVarName($region) )
+            printf("%s %s ${regionName} %s", machine, state_name, self.tEvt['sType'])
+            self.__${varname}.dispatch(self.tEvt)
+#end
+#end

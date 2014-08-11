@@ -1,0 +1,15 @@
+##
+## Process regular state (also handles submachine state automagically) or final.
+##
+##- input vars (in addition to $model, etc.):
+##    * $target    :  Target state of transition
+###############################################################################
+#*--*##set( $spc = $mapper.indentation() )
+#*--*##set( $tgtStateName = $mapper.mapToPrefixedFunctionName($target, "${typeName}") )
+#*--*##if( $model.hasSubMachineEntryPoint($target) )
+#*----*##set( $submType = "#mapToTypeName($target.submachine,'')" )
+#*----*##set( $substateVar = $mapper.mapToVarName($target) )
+$spc    // Unset submachine initial target state for default transition
+$spc    ${submType}_set_entry_point((${submType} *) me->${substateVar}, 0, 0);
+#*--*##end
+$spc    return Q_TRAN(&${tgtStateName});

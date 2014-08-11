@@ -1,0 +1,33 @@
+##
+## Implement state handler declarations for a State Machine or Region
+##
+##- input vars:
+##    * $typeObj:  State Machine or Region object
+##    * $isQHsm:   flag indicating whether we're in an Active or Hsm class
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+###############################################################################
+##
+## Declare function prototypes for every state, but exclude the regions. 
+## Each state does need to reference its enclosing, orthogonal region in 
+## order to generate an appropriate "me" pointer type
+##
+#*--*##set( $states = $model.getStates($typeObj, false) )
+#*--*##if( ! $states.isEmpty() )
+
+/**
+ * State-handler methods
+ */
+#*----*##foreach( $state in $model.sort($states) )
+#*------*##if( $isQHsm )
+## "me" points to ortho-region
+#*--------*##set( $enclosingRegion = $model.getEnclosingOrthogonalRegion($state) )
+#*--------*##set( $implType = $mapper.mapToQualifiedName($enclosingRegion) )
+#*------*##else
+## "me" points to State Machine
+#*--------*##set( $implType = "${typeName}" )
+#*------*##end
+#*------*##set( $stateFunctionName = $mapper.mapToPrefixedFunctionName($state, "${implType}") )
+QState ${stateFunctionName} (${implType} *me, QEvent const *e);
+#*----*##end
+#*--*##end
