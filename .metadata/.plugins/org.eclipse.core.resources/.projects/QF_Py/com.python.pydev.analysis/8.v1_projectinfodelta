@@ -1,0 +1,14 @@
+INSTUPqf.gui
+/Users/reder/Documents/Workspace/SCA/QF_Py/src/qf/gui.py
+INFOS:&&1|1|2|0&&2|3|2|1&&3|4|2|0&&2|5|2|0&&2|6|2|0&&3|7|2|0&&3|8|2|0&&3|9|2|0&&3|7|2|0&&3|10|2|0&&3|11|2|0
+mutex=11
+child=6
+newcmds=9
+qf.gui=2
+guiOutput=4
+suedoSocket=1
+send=3
+msgString=8
+Events=10
+parent=5
+keepRunning=7

@@ -1,0 +1,13 @@
+INSTUPverify.pythonv
+/Users/reder/Documents/Workspace/SCA/QF_Py/src/verify/pythonv.py
+INFOS:&&1|1|2|0&&2|3|2|1&&3|4|2|5&&3|6|2|5&&2|7|2|1&&2|8|2|1&&2|9|2|1&&2|10|2|1
+setUp=7
+_sendEvent=9
+__init__=3
+TESTDIR=6
+PythonVerifier.__init__=5
+doTestCase=10
+PythonVerifier=1
+BASEDIR=4
+verify.pythonv=2
+tearDown=8
