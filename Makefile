@@ -7,7 +7,7 @@
 #
 
  
-modules = autocoder QF-C
+modules = autocoder QF_Cpp QF_Cm QF_C
 
 all: 
 	for X in $(modules); do \
