@@ -1,0 +1,163 @@
+##
+## Implement each state (variable $_state defined in parent velocity module scope)
+##
+##- input var:
+##    * $_state  :  the State Machine state to implement
+##    * $_isQHsm :  flag indicating if inside class QHsm (true), or QActive (false)
+##
+##* [SWC 2009.09.02] coded from Python examples.
+##* [SWC 2009.09.18] verified against C template.
+###############################################################################
+#*--*##set( $stateName = $mapper.mapToFunctionName($_state) )
+
+
+    def ${stateName}(self):
+        """
+        State ${stateName}
+        """
+        machine = self.__machine_name
+#*--*##if( $_state.submachineState )
+#*----*##set( $submName = $mapper.mapToTypeName($_state.submachine) )
+        state_name = "${stateName}:${submName}"
+#*--*##else
+        state_name = "${stateName}"
+#*--*##end
+        if self.tEvt['sType'] == "init":
+##
+## Generate code for initial transition within state
+##
+#*--*##if( $_state.composite && !($_state.orthogonal) && !($_state.submachineState) )
+#*----*##set( $initialState = $model.getInitialState($_state) )
+#*----*##set( $initTransition = $model.getInitialTransition($initialState) )
+#*----*##if( $initTransition )## forget transition if null initial trans...
+#*------*##stateTransition( $initialState, $initTransition, "stateStart", $_isQHsm )
+#*----*##end
+#*--*##end
+            return 0
+##
+## Generate Entry condition code:
+##
+        elif self.tEvt['sType'] == "entry":
+            printf("%s %s %s", machine, state_name, "ENTRY")
+#*--*##if( $autocoder.executionTraceOn )
+            self.sendUpdate(state_name,"ENTRY")
+#*--*##end
+##
+## handle deep history state: save history
+#*--*##if( $_state.container.containsHistoryState() )
+#*----*##set( $histStateName = $mapper.mapToFunctionName($model.getParentState($_state)) )
+            self.__${histStateName}_history = self.${stateName}
+#*--*##end
+#*--*##enableTimers( $_state )
+#*--*##doAction( $_state.entry, "", $_isQHsm )
+##
+## initialize submachines
+#*--*##if( $_state.submachineState )
+#*----*##set( $stateName = $mapper.mapToFunctionName($_state) )
+            self.__${stateName}.onStart(self.__${stateName}.top)
+#*--*##end
+##
+## initialize all concurrent subregions
+#*--*##foreach( $region in $model.getChildOrthogonalRegions($_state) )
+#*----*##set( $varname = $mapper.mapToVarName($region) )
+            self.__${varname}.onStart(self.__${varname}.top)
+#*--*##end
+##
+## start Do activity
+#*--*##if( $model.hasDoActivity($_state) )
+## get the action name
+#*----*##set( $action = $_state.getDo().actionList().get(0) )
+#*----*##set( $funcCall = $model.getCallParts($action) )
+#*----*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+            # Instance and invoke doActivity thread here...
+            self.__do_thread = do_activity_thread.DoThread(target=self.__${funcName})
+            self.__do_thread.start()
+            #
+#*--*##end
+            return 0
+##
+## Generate Exit condition code:
+##
+        elif self.tEvt['sType'] == "exit":
+##
+## stop Do activity
+#*--*##if( $model.hasDoActivity($_state) )
+            # Destroy instance and kill doActivity thread if alive...
+            if self.__do_thread.isAlive() == True:
+                self.__do_thread.kill()
+            del self.__do_thread
+            #
+#*--*##end
+            printf("%s %s %s", machine, state_name, "EXIT")
+#*--*##if( $autocoder.executionTraceOn )
+            self.sendUpdate(state_name,"EXIT")
+#*--*##end
+#*--*##doAction( $_state.exit, "", $_isQHsm )
+#*--*##disableTimers( $_state )
+##
+## exit from orthogonal subregions
+#*--*##foreach( $region in $model.getChildOrthogonalRegions($_state) )
+#*----*##set( $varname = $mapper.mapToVarName($region) )
+            self.__${varname}.dispatch(BAIL_EVENT)
+#*--*##end
+##
+## exit from submachines
+#*--*##if( $_state.submachineState )
+#*----*##set( $stateName = $mapper.mapToFunctionName($_state) )
+            self.__${stateName}.dispatch(BAIL_EVENT)
+#*--*##end
+            return 0
+##
+## Handle "bail" event dispatched, either within the context of a submachine,
+##   or an orthogonal region of a composite state.
+##
+        elif self.tEvt['sType'] == BAIL_EVENT.signal:
+            self.stateTran(self.final)
+            return 0
+##
+## Write the code for every transition out of this state,
+##  handling SignalEvents followed by TimeEvents, as supplied to us by $model
+##
+##- if orthogonal, build set of trigger events applicable to sub orthogonal regions
+#*--*##set( $kidDesiredEvents = $model.getDesiredEvents($_state) )
+#*--*##foreach( $transition in $model.getTransitionsWithEvent($_state) )
+##- get set of trigger events and remove from the orthogonal desired set
+#*----*##set( $events = $model.sort($transition.getAllEvents()) )
+#*----*##set( $kidDesiredEvents = $model.removeFromSet($kidDesiredEvents, $events) )
+#*----*##foreach( $ev in $events )
+#*------*##set( $evName = $mapper.mapEventToLiteral($ev) )
+        elif self.tEvt['sType'] == "${evName}":
+            printf("%s %s %s", machine, state_name, self.tEvt['sType'])
+#*------*##stateTransition( $_state, $transition, "stateTran", $_isQHsm )
+#*------*##propagateEvents( $_state, $ev )
+            return 0
+#*----*##end
+#*--*##end
+##
+## If orthogonal, dispatch the Signal- and Time- events that haven't been
+##  processed above to child regions.
+##
+#*--*##if( $_state.orthogonal && !$kidDesiredEvents.isEmpty() )
+#*----*##foreach( $ev in $model.sort($kidDesiredEvents) )
+#*------*##set( $evName = $mapper.mapEventToLiteral($ev) )
+        elif self.tEvt['sType'] == "${evName}":
+#*------*##propagateEvents( $_state, $ev )
+            return 0
+#*----*##end
+#*--*##end
+##
+## Handle dispatch of events to submachine state
+##
+#*--*##if( $_state.submachineState )
+#*----*##foreach( $ev in $model.sort($model.getDesiredEvents($_state.submachine)) )
+#*------*##set( $evName = $mapper.mapEventToLiteral($ev) )
+        elif self.tEvt['sType'] == "${evName}":
+            printf("%s %s %s", machine, state_name, self.tEvt['sType'])
+            self.__${stateName}.dispatch(self.tEvt)
+            return 0
+#*----*##end
+#*--*##end
+##
+## Done with state!
+##
+        return self.tEvt['sType']

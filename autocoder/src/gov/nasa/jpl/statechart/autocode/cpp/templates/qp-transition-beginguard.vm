@@ -1,0 +1,18 @@
+##
+## Handle state transition guard.
+##
+##- input vars (in addition to $model, etc.):
+##    * $exprStr:  transition object
+##    * $if     :  language guard keyword
+##
+##* [SWC 2010.02.22] implemented anew referencing C and new Python templates.
+###############################################################################
+#*--*##set( $spc = $mapper.indentation() )
+#*--*##if( $model.isCallAction($exprStr) )
+#*----*##set( $funcCall = $model.getCallParts($exprStr) )
+#*----*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+##- there's parameters if callParts has more than 1 element
+$spc    ${if} (me->impl->${funcName}(${mapper.mapArgsToInvocation($funcCall)})) {
+#*--*##else
+$spc    ${if} (${exprStr}) {
+#*--*##end

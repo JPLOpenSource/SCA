@@ -1,0 +1,137 @@
+##
+## Implement class common members:  sendUpdate, top, final, entry, exit.
+##
+##- input vars:
+##    * $_typeObj :  State Machine or Region
+##    * $_typeName :  State Machine name or Region name (mapper usage is different)
+##    * $_isQHsm :    flag indicating if this is QHsm (true), or QActive (false)
+###############################################################################
+
+
+    def isSubstate(self):
+        """
+        Return flag indicating whether this StateMachine instance
+        is instantiated as a substate of another StateMachine.
+        """
+#*--*##if( $_isQHsm )
+        if self.__active_obj != None:
+            return self.__active_obj.isSubstate()
+        return False
+#*--*##else
+        return self.__is_substate
+#*--*##end
+
+
+    def sendUpdate(self, state_name, entry_exit):
+        """
+        Send gui entry or exit messages.
+        """
+#*--*##if( $_isQHsm )
+        if self.__active_obj != None:
+            self.__active_obj.sendUpdate(state_name, entry_exit)
+#*--*##else
+        windowName = self.__window_name
+        machineName = self.__machine_name
+        stateName = state_name.split(':')[0]
+        #
+        # determine if machine name has ':'
+        submParts = machineName.split(':')
+        if len(submParts) > 1:  # yes, reform window name
+            windowName = submParts[0] + '_' + submParts[1]
+            windowName = windowName.lower()
+            machineName = submParts[1]  # machine name should be a simple name
+        #
+        # now build the update string
+        str = "%s %s%s %s" % (windowName, machineName, stateName, entry_exit)
+        #print str
+        if self.__active_obj != None:
+            self.__active_obj._sendUpdate(str)
+        else:
+            self._sendUpdate(str)
+#*--*##end
+
+
+    def top(self):
+        """
+        The routine handles initial events and events that get bubbled 
+        to the top of the state-machine.  Events that get bubbled to the top can
+        either be ignored (return 0) or an error message can be generated.
+        """
+        if self.tEvt['sType'] == "init":
+##
+## Cause GUI to exit any final states in the state machine
+##
+#*--*##if( $autocoder.executionTraceOn )
+#*----*##foreach( $finalState in $model.sort($model.getFinalStates($_typeObj)) )
+#*------*##set( $fStateName = $mapper.mapToFunctionName($finalState) )
+            self.sendUpdate("${fStateName}","EXIT")
+#*----*##end
+#*--*##end
+##
+## Transition to the initial state
+##
+#*--*##set( $initialState = $model.getInitialState($_typeObj) )
+#*--*##set( $initTransition = $model.getInitialTransition($initialState) )
+#*--*##if( $initTransition )
+#*----*##stateTransition( $initialState, $initTransition, "stateStart", $_isQHsm )
+#*--*##end
+            return 0
+        else:
+            return 0
+##
+## Define "final" method for cleanly bailing out of submachine (or region).
+##
+
+
+    def final(self):
+        return 0
+##
+## Define methods for call actions (don't sort, or risk action disappearance!)
+##
+#*--*##foreach( $action in $model.getCallActions($_typeObj, false) )
+#*----*##set( $actionName = $mapper.sanitize($action.name()) )
+#*----*##set( $isGuard = $action.isGuard() )## special processing for guards
+
+
+    def __${actionName}(self):
+        """
+        Implementation#if( $isGuard ) Guard#end method for ${actionName}()
+        """
+#*----*##if( $isGuard )
+        res = False
+#*----*##end
+        if self.__impl_obj != None:
+            impl_obj = self.__impl_obj
+            if "${actionName}" in dir(self.__impl_obj):
+                # Execute self.__impl_obj.${actionName}() here.
+                e = "impl_obj." + "${actionName}()"
+#*----*##if( $isGuard )
+                res = eval(e, {}, locals() )
+#*----*##else
+                eval(e, {}, locals() )
+#*----*##end
+            else:
+                printf("Warning: ${actionName}() is not implemented!")
+        else:
+            printf("Warning: no implementation object for ${actionName}()")
+#*----*##if( $isGuard )
+        return res
+#*----*##end
+#*--*##end
+##
+##
+##    def __entry(self, state_name):
+###*--*##if( $_isQHsm )
+###*----*##set( $entryMethodName = "${_typeName}Entry" )
+###*--*##else
+###*----*##set( $entryMethodName = "Entry" )
+###*--*##end
+##        """
+##        Implementation method for entry()
+##        """
+##        if self.__impl_obj != None:
+##            impl_obj=self.__impl_obj
+##            if (state_name + "${entryMethodName}") in dir(self.__impl_obj):
+##                # Execute self.__impl_obj.<state_name>${entryMethodName}() here.
+##                e = "impl_obj." + state_name + "${entryMethodName}()"
+##                eval(e, {}, locals())

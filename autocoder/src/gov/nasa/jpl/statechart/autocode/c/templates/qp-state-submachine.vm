@@ -1,0 +1,35 @@
+##
+## Handle dispatch of events to submachine state
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##    * $eventName:  substate-prefixed name of the Signal- or TimeEvent object
+##    * $traceName:  substate-prefixed GUI trace name of Signal- or TimeEvent
+##    * $eventTransPair:  the event-transition pair
+##    * $isTimerEvent:    flag indicating if we're processing a TimerEvent
+##    * $query:      the IDesiredEvent query object
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+###############################################################################
+#*--*##set( $stateVarName = $mapper.mapToVarName($state) )
+
+    case ${eventName}:
+#*--*##if( $isTimerEvent )## mangle the signal name for Submachine
+#*----*##set( $submEvName = $mapper.mapEventToName($eventTransPair.event, $query.getSubmachinePrefixOfEvent($eventTransPair)) )
+#*----*##set( $submTraceName = $mapper.mapEventToLiteral($eventTransPair.event, $query.getSubmachinePrefixOfEvent($eventTransPair)) )
+## call project-overriddable macro to instantiate one-time TimerEvent object
+#*----*##instantiateLocalEventVar(${submEvName})
+#*----*##traceEventTransition($eventTransPair, $submEvName, $submTraceName)
+        // cache 'e' as last dispatched event for completion transition
+        me->${stateVarName}LastEvt = e;
+        // dispatch Signal stripped of substate name to submachine
+        QF_ACTIVE_DISPATCH_((QHsm *)&(me->${stateVarName}), #localEventVar());
+#*----*##cleanupLocalEventVar()
+#*--*##else
+## Signal events don't require mangling substate prefix
+#*----*##traceEventTransition($eventTransPair, $eventName, $traceName)
+        // cache 'e' as last dispatched event for completion transition
+        me->${stateVarName}LastEvt = e;
+        QF_ACTIVE_DISPATCH_((QHsm *)&(me->${stateVarName}), e);
+#*--*##end

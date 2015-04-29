@@ -1,0 +1,92 @@
+##
+## Instantiate all submachines, orthogonal regions, and history variables.
+##
+##- input vars (in addition to $model, etc.):
+##    * $typeObj:  State Machine or Region
+##    * $typeName:  Type/struct name of the State Machine or Region object
+##    * $isQHsm:   flag indicating whether we're in an Active or Hsm class
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+##* [SWC 2012.01.23] Fix: removed ptr submachine/region types to elim. mallocs!
+###############################################################################
+##
+## Instantiate all submachines
+##
+#*--*##set( $submStates = $model.sort($model.getLocalSubmachineStates($typeObj)) )
+#*--*##if( !$submStates.isEmpty() )
+
+    // Submachines initialized here
+#*----*##foreach( $submState in $submStates )
+#*------*##set( $subm = $submState.submachine )
+#*------*##set( $stateName = $mapper.mapToVarName($submState) )
+#*------*##set( $stateEnum = $mapper.mapToEnumDecl($submState) )
+#*------*##if( $autocoder.executionTraceOn )
+#*--------*##set( $stateLabel = $mapper.mapToFunctionName($submState) )
+#*------*##end
+#*------*##set( $smType = "#mapToTypeName($subm,'')" )
+#*------*##set( $smImpl = "#mapToTypeName($subm,'impl')" )
+    // construct the ${smImpl} SM impl object
+    (void)${smImpl}_constructor(&(me->${stateName}_impl));
+    // then construct the ${smType} State Machine object
+## generic "active" (me or parent) allows submachine access to master Active
+#*------*##if( $autocoder.executionTraceOn )
+    (void)${smType}_constructor(&(me->${stateName}), "${stateLabel}", &(me->${stateName}_impl), (QActive *)(me->active), (#dataTypeInt32())$stateEnum);
+    printf("SubMachine ${stateLabel}:${smType} addr: %p\n", &(me->${stateName}));
+#*------*##else
+    (void)${smType}_constructor(&(me->${stateName}), &(me->${stateName}_impl), (QActive *)(me->active), (#dataTypeInt32())$stateEnum);
+#*------*##end
+## wire submachine time events to corresponding time events of this Active
+#*------*##set( $timerEvQuery = $model.querySubmachineTransitionTimeEvents($submState) )
+#*------*##foreach( $timerEvPair in $timerEvQuery.eventTransitions )
+#*--------*##set( $submTimerName = $mapper.mapTimeEventToTimer($timerEvPair.event, $timerEvQuery.getSubmachinePrefixOfEvent($timerEvPair)) )
+#*--------*##set( $timerName = $mapper.mapTimeEventToTimer($timerEvPair.event, $timerEvQuery.getSubstatePrefixOfEvent($timerEvPair)) )
+    me->${stateName}.${submTimerName} = ((${smName} *)(me->active))->${timerName};
+#*------*##end
+#*----*##end
+#*--*##end
+##
+## Instantiate all orthogonal regions
+##
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($typeObj)) )
+#*--*##if( !$localRegions.isEmpty() )
+
+    // Orthogonal regions initialized here
+#*----*##foreach( $localRegion in $localRegions )
+#*------*##set( $lRegionType = $mapper.mapToQualifiedName($localRegion) )
+#*------*##set( $varname = $mapper.mapToVarName($localRegion) )
+    me->${varname} = &${lRegionType}_inst;
+#*------*##if( $autocoder.executionTraceOn && $isQHsm )## supply state label
+    (void)${lRegionType}_constructor(me->${varname}, me->objName, me->impl, me->active, me->parent);
+#*------*##elseif( !$autocoder.executionTraceOn && $isQHsm )## no state label
+    (void)${lRegionType}_constructor(me->${varname}, me->impl, me->active, me->parent);
+#*------*##elseif( $autocoder.executionTraceOn && !$isQHsm )## supply state label, and region expects specific Active subclass, "me"
+    (void)${lRegionType}_constructor(me->${varname}, me->objName, me->impl, me->active, me);
+#*------*##else## no state label, and region expects specific Active subclass, "me"
+    (void)${lRegionType}_constructor(me->${varname}, me->impl, me->active, me);
+#*------*##end
+#*----*##end
+#*--*##end
+##
+## Instantiate all history variables
+##
+#*--*##set( $histStates = $model.getOOHistoryStates($typeObj) )
+#*--*##if( !$histStates.isEmpty() )
+
+    // History-state memories initialized here
+#*----*##foreach( $histState in $histStates )
+#*------*##set( $histTransition = $model.getInitialTransition($histState) )
+#*------*##if( $histTransition )
+#*--------*##set( $targetState = $model.getTarget($histState, $histTransition) )
+#*--------*##set( $parentState = $model.getParentState($histState) )
+#*--------*##set( $parentName = $mapper.mapToVarName($parentState) )
+#*--------*##set( $histVar = "${parentName}History" )
+## Should output "type_state"
+    me->${histVar} = (#dataTypeStateHandler() )&${typeName}_${mapper.mapToFunctionName($targetState)};
+#*------*##end
+#*----*##end
+#*--*##end
+
+    // State is initially at TOP
+    me->myState = ${mapper.mapToEnumDecl($sm)}__TOP__;
+
+    return me;

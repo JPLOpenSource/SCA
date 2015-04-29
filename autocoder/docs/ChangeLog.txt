@@ -1,0 +1,2705 @@
+[2014.03.21]
+Autocoder version update to reflect the latest code base, containing project-specific adaptation capabilities.
+Missed unit-test fixes (expects, missing impls, corrupt zips) were brought in.
+Typo in 1 C++ template file.
+Features improvements from the Boeing efforts have been folded in.
+
+NOTE: SCL and BoeingPromela features are NOT yet incorporated.
+
+
+[2014.03.05]
+Promoted a NPE guard fix.
+
+SMAP mission adaptation enhancement: Added logic to short-circuit SMAP-specific writer if not applicable.
+
+
+[2014.03.03]
+SMAP mission adaptation enhancement: Allow suppressing MostlySimilarFile and Unreachable Computation in autocoded files.
+
+
+[2014.01.29]
+Fixed autocoder return value so that normal return has 0 status.
+
+
+[2013.11.20]
+UML: Added support to obtain OpaqueBehavior body and language specification.
+* Retro-added support for UML 2.0.
+* Added UML 2.3+ parsing of body and language mapping, with new OpaqueBehavior public functions implemented.
+* Bugfix to UMLElement.getStereotypeTagValueMap() to allow processing more than one Stereotypes!
+
+{BoeingSCL}
+SCL backend fixes:
+* Fix default entry transition to check that all children states are exited.
+* Updated diff-based SCL UTs.
+
+
+[2013.11.13]
+{BoeingSCL}
+* UML parsing: Fixed incoming transition XPath logic to search ancestor-or-self axis, but descending into children nodes (ancestor-or-self::*//transition)
+
+SCL backend fixes:
+* Fixed default-event transition EXIT rule code pattern so that guard condition is part of Rule Trigger Condition (RevK5), which means contrained to DB-item look-up.
+* Fixed default-event transition EXIT rule code pattern so that junction guard conditions are properly handled in addition to outermost guard-condition (UT_Junction).
+* Fixed EntryAction rule to also autocode exit-rule activation for default-event transitions (RevK5).
+* Removed stop/start directives from _Flight.per file template.
+* Added SCL Code Direct end-block marker.
+* Added special treatment of instance names with ID suffix to ensure proper numeric order.
+
+SCL Unit Test:
+* Python verifier fixed to report PASS correctly when no diffs.
+* SCL UTs reference output updated with newly expected output; all but one UT passes.
+
+
+[2013.10.30-31]
+{BoeingSCL}
+SCL backend fixes:
+* Fixed _PREVIOUS_STATE database type to signed int type RTDD (RevK5).
+* Fixed default_entry rule-firing condition to look check _current_ state status EXITED, as opposed to parent (RevK5)!
+* Added new default_event_exit.vm to check guard condition, and refactored default_event_entry.vm to simply activate default transition rule (RevK5 + UT_Junction).
+* Changed Time Rule SCL code pattern so that guard condition is part of Rule Trigger Condition (RevK5).
+* Fixed junction guard-else support in Signal and _default_ event rules (UT_Junction).
+
+
+[2013.10.24]
+{BoeingSCL Release}
+Updated accurev workspace as follows:
+Update started
+Scanning for recently touched elements- ok
+Checking touched elements for changes- ok
+Preparing for update- ok
+Calculating changes- ok
+Making 96 changes
+Removing "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-transition-end.vm" .
+Removing "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-activateSignals.vm" .
+Removing "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-activateTimers.vm" .
+Removing "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-end.vm" .
+Removing "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-begin.vm" .
+Moving "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth.per" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_Assigns.per" - ok
+Moving "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth.sml" to "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth_Common.sml" - ok
+Moving "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth.per" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth_Assigns.per" - ok
+Moving "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth.per" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth_Assigns.per" - ok
+Moving "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth.per" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth_Assigns.per" - ok
+Moving "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-transition-begin.vm" to "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-transition.vm" - ok
+Content (1 K) of "QF_Cpp/test/Composite6/Composite6_2-expect.txt" - ok
+Content (47 K) of "autocoder/src/gov/nasa/jpl/statechart/Autocoder.java" - ok
+Content (11 K) of "autocoder/src/gov/nasa/jpl/statechart/input/magicdraw/MagicDrawIdentifiers.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/input/magicdraw/MagicDrawLabel.java" - ok
+Content (26 K) of "autocoder/src/gov/nasa/jpl/statechart/input/magicdraw/MagicDrawReader.java" - ok
+Content (1 K) of "QF_Cpp/test/Simple1/Simple1-expect.txt" - ok
+Content (1 K) of "QF_Cpp/test/Simple3/Simple3-expect.txt" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/sml-state-machine.vm" - ok
+Content (6 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLInstanceValue.java" - ok
+Content (65 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_States.scl" - ok
+Content (33 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Content (5 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_Assigns.per" - ok
+Content (3 K) of "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth.sml" - ok
+Content (5 K) of "autocoder/src/gov/nasa/jpl/statechart/model/BreadthFirstWalker.java" - ok
+Content (1 K) of "autocoder/build/launchConfigs/Autocoder velocity - Boeing SCL Simplified.launch" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/model/PrefixOrderedWalker.java" - ok
+Content (13 K) of "autocoder/src/gov/nasa/jpl/statechart/template/InstancedVelocityModel.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/LiteralReal.java" - ok
+Content (8 K) of "autocoder/src/gov/nasa/jpl/statechart/model/visitor/AbstractVisitor.java" - ok
+Content (4 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLProperty.java" - ok
+Content (29 K) of "autocoder/src/gov/nasa/jpl/statechart/model/ModelScape.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/sml-module.vm" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth_Common.sml" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-initialize.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/LiteralBoolean.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/LiteralInteger.java" - ok
+Content (6 K) of "autocoder/src/gov/nasa/jpl/statechart/model/visitor/StateNameVisitor.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Element.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/model/visitor/Visitor.java" - ok
+Content (47 K) of "autocoder/src/gov/nasa/jpl/statechart/template/AbstractVelocityModel.java" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_Initialize.scl" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/db/config/EstimatingZoneStateOfHealth_ModelInstance.xml" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/LiteralString.java" - ok
+Content (65 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth_States.scl" - ok
+Content (33 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Content (5 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth_Assigns.per" - ok
+Content (3 K) of "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth.sml" - ok
+Content (65 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth_States.scl" - ok
+Content (33 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Content (5 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth_Assigns.per" - ok
+Content (3 K) of "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth.sml" - ok
+Content (65 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth_States.scl" - ok
+Content (33 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Content (5 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth_Assigns.per" - ok
+Content (3 K) of "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth.sml" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-action.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLConstraint.java" - ok
+Content (19 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLElement.java" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth_Initialize.scl" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth_Initialize.scl" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth_Initialize.scl" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-guard-begin.vm" - ok
+Content (8 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLNamedElement.java" - ok
+Content (151 K) of "autocoder/docs/ChangeLog.txt" - ok
+Content (40 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/SCLWriter.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-event-entry.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-guard-end.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-velocimacros.vm" - ok
+Content (35 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/UMLToSCLMapper.java" - ok
+Content (1 K) of "autocoder/build/launchConfigs/Autocoder velocity - Boeing SCL.launch" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/UML2_4_1.java" - ok
+Content (1 K) of "QF_Cpp/test/Composite1/Composite1-expect.txt" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth_Subsystems.per" - ok
+Content (1 K) of "QF_Cpp/test/Composite2/Composite2-expect.txt" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/UMLIdentifiers.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-entry.vm" - ok
+Content (1 K) of "QF_Cpp/test/Composite3/Composite3-expect.txt" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/UMLLabel.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-transition.vm" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth_FullAssign.per" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth_FullCompile.per" - ok
+Content (1 K) of "QF_Cpp/test/Composite4/Composite4-expect.txt" - ok
+Content (16 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/UMLStateChartTemplateWriter.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-exit-action.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-signal-event-entry.vm" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-signal-event-exit.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-time-event-entry.vm" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-time-event-exit.vm" - ok
+Content (6 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/UML2_0.java" - ok
+Content (12 K) of "autocoder/src/gov/nasa/jpl/statechart/model/visitor/TransitionPathVisitor.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-signal-event-during.vm" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-event-action.vm" - ok
+Content (349 K) of "autocoder/test/files/boeing-scl/Rules_prototypeRevK4.xml" - ok
+Content (352 K) of "autocoder/test/files/boeing-scl/Rules_prototypeRevK5.xml" - ok
+Update complete.
+
+
+[2013.10.23]
+{BoeingSCL}
+UML model query changes:
+* Added warning info if Pseudostate without outgoing transitions.
+
+SCL backend fixes:
+* Corrected PSTR DB XML attributes: quote string, length first, length includes null-terminator (UT_TypeTest).
+* Use of LONGLONG considered unsupported, so added error message (UT_TypeTest).
+* Boolean value autocode 1 for true, 0 for false (UT_LogicalGuards).
+* Skip processing of SclEvtMsgTopic in scl-action.vm if no SignalEvents in model (UT_ExtFunctionCalls).
+* In EntryAction rules, ordered "activate" statements _before_ clearing signal.
+* Fixed default_transition_rules to activate default_entry_rules (instead of default_transition_rules).
+* Fixed instance naming of Assigns.per file.
+* Added final autocoder output for last used SCL_DB_ID and SCL_RULE_ID.
+
+* Fix SCLWrite to code out default_entry_rule for _initial_ pseudo states only.
+
+* Added support for SclFunction stereotype to code out direct SCL code.
+
+
+[2013.10.18]
+{BoeingSCL}
+Minor fix to SML file DB value XML for String and LongLong types.
+Major fix to support uninstantiated State Machines.
+
+
+[2013.10.16]
+{BoeingSCL}
+Major overhaul and refactoring of SCL Junction handling logic:
+* SCLWriter loop logic to process transition refactored; initial transition simplified.
+* Guard begin and end templates refactored.
+* All invoking velocity templates fiddled to loop through transition path visitors.
+* Default-transition template merged; defunct 'end' template.
+
+UML metamodel enhanced to support Transition Path query:
+* PrefixOrdered- and BreadthFirstWalkers beefed up to support peer-traversal across transitions.
+* New TransitionPathVisitor class created to find fan-out paths between Vertices.
+* New "ELSE_CONSTRAINT" constant added to UMLConstraint class.
+* Changed UMLConstraint and UMLNamedElement constructors to handle null element.
+
+
+[2013.10.14]
+{BoeingSCL}
+SCL-backend bugfixes:
+* Implemented mapping of primitive data type to DB tag for configurable variables; fixed reference of type for instance Slot.
+* Added 2nd arg to clear_event_signal invocations.
+* Removed set statement of topic attr rom _Initialize rule..actually, removed the now obsolete entire _Initialize rule.
+* Fixed extra leading space in SML state enums.
+
+* Added RevK4 and RevK5 model files.
+
+
+[2013.10.11]
+Fixed Cpp unit test expect files so full C++ regression suite passes.
+
+
+[2013.10.10]
+{BoeingSCL}
+Enhancements and bugfixes:
+* Fixed missing else-block in default transition rule.
+* Fixed various indentation issues.
+* Removed GUARD template invocation from TIMER entry rule.
+* For consistency sake, move deactivate statement to right before the Debug msg block.
+
+{BoeingSCL}
+Added final state back into state processing; changed all other DB places to use the getStates query to include final state.
+
+
+[2013.10.09]
+{BoeingSCL}
+High-priority bugfixes for new exceptions:
+* Added warnings for when model contains unexpected default value in stereotype tags.
+* Changed entry-action and event-action templates so that signal clearing code is stamped out ONLY if there is any SignalEvent in the system; moved all SclEventMsgTopic queries in these cases into the if-clause.
+* Fixed one SCL comment syntax.
+* Fixed ClassCastException due to forcing Pseudostates to States; loosened to Vertex type.
+* Fixed missing "end if" in Timer Event Entry rule. 
+* Fixed incorrect subsystem in transition rules, to TARGET state as subsystem
+* Removed FinalState from list of states processed
+
+* Bugfix for action rule in default entry rule, as well as overall indentation for all action code.
+
+
+[2013.10.07]
+{BoeingSCL}
+Initial promote of fix to eliminate hard-coded stereotype topic names.
+* Promoted changed autocode products.
+
+UML metamodel changes:
+* Added support for PrimitiveType parsing, to identify String type.
+* Added literal type String identifier to UML Literal* interfaces.
+
+
+[2013.09.28]
+MD Diagram extension XMI structural change implemented for 17.0.2.
+
+{BoeingSCL}
+SCL bugfixes:
+* Fixed _Initialize.scl init of ZoneControllerState: prefix must use Instance Var name
+* Fixed database ID references in .sml files to point to actually used DB IDs.
+* Fixed missing SclEventMsgTopic error status set statement in external function call failure case.
+
+* Refactored out all usage of ${instance} variable; replaced by mapper functions, or use Mapper.getInstanceName().
+* Replaced hardcoding of SclEventMsgTopic in Velocity Template by mapper function; so name-hardwire moved to Mapper function only.
+
+
+[2013.09.27]
+Source release to PnP:
+Update started
+Scanning for recently touched elements- ok
+Checking touched elements for changes- ok
+Preparing for update- ok
+Calculating changes- ok
+Making 139 changes
+Removing "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/State_Inst_scl.vm" .
+Creating dir "autocoder/test/files/boeing-scl/config" .
+Creating dir "autocoder/test/files/boeing-scl/db" .
+Creating dir "autocoder/test/files/boeing-scl/db/config" .
+Creating dir "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth" .
+Creating dir "autocoder/test/files/boeing-scl/scl" .
+Creating dir "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth" .
+Moving "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-start.vm" to "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-begin.vm" - ok
+Moving "autocoder/test/files/boeing-scl/Zone1EstimatingZoneStateOfHealth-States.scl" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_States.scl" - ok
+Moving "autocoder/test/files/boeing-scl/Zone1EstimatingZoneStateOfHealth-Trans.scl" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Moving "autocoder/test/files/boeing-scl/Zone1EstimatingZoneStateOfHealth.per" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth.per" - ok
+Moving "autocoder/test/files/boeing-scl/Zone1EstimatingZoneStateOfHealth.sml" to "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth.sml" - ok
+Moving "autocoder/test/files/boeing-scl/EstimatingZoneStateOfHealth.sml" to "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth.sml" - ok
+Moving "autocoder/test/files/boeing-scl/InitializeEstimatingZoneStateOfHealth.sml" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_Initialize.scl" - ok
+Moving "autocoder/test/files/boeing-scl/ModelInstance.xml" to "autocoder/test/files/boeing-scl/db/config/EstimatingZoneStateOfHealth_ModelInstance.xml" - ok
+Moving "autocoder/test/files/boeing-scl/EstimatingZoneStateOfHealth_event_list.txt" to "autocoder/test/files/boeing-scl/config/EstimatingZoneStateOfHealth_event_list.txt" - ok
+Moving "autocoder/test/files/boeing-scl/Zone0EstimatingZoneStateOfHealth-States.scl" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth_States.scl" - ok
+Moving "autocoder/test/files/boeing-scl/Zone0EstimatingZoneStateOfHealth-Trans.scl" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Moving "autocoder/test/files/boeing-scl/Zone0EstimatingZoneStateOfHealth.per" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth.per" - ok
+Moving "autocoder/test/files/boeing-scl/Zone0EstimatingZoneStateOfHealth.sml" to "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth.sml" - ok
+Moving "autocoder/test/files/boeing-scl/Zone2EstimatingZoneStateOfHealth-States.scl" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth_States.scl" - ok
+Moving "autocoder/test/files/boeing-scl/Zone2EstimatingZoneStateOfHealth-Trans.scl" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Moving "autocoder/test/files/boeing-scl/Zone2EstimatingZoneStateOfHealth.per" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth.per" - ok
+Moving "autocoder/test/files/boeing-scl/Zone2EstimatingZoneStateOfHealth.sml" to "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth.sml" - ok
+Moving "autocoder/test/files/boeing-scl/Zone3EstimatingZoneStateOfHealth-States.scl" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth_States.scl" - ok
+Moving "autocoder/test/files/boeing-scl/Zone3EstimatingZoneStateOfHealth-Trans.scl" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Moving "autocoder/test/files/boeing-scl/Zone3EstimatingZoneStateOfHealth.per" to "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth.per" - ok
+Moving "autocoder/test/files/boeing-scl/Zone3EstimatingZoneStateOfHealth.sml" to "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth.sml" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-orthogonal-region-exit-action.vm" - ok
+Content (46 K) of "autocoder/src/gov/nasa/jpl/statechart/Autocoder.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-timer-rule.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-transition-end.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/per-state-machine.vm" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/sml-state-machine.vm" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/InstanceValue.java" - ok
+Content (6 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLInstanceValue.java" - ok
+Content (63 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_States.scl" - ok
+Content (32 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Content (5 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth.per" - ok
+Content (3 K) of "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth.sml" - ok
+Content (1 K) of "autocoder/build/launchConfigs/Autocoder velocity - Boeing SCL Simplified.launch" - ok
+Content (12 K) of "autocoder/src/gov/nasa/jpl/statechart/template/InstancedVelocityModel.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/input/ReaderNamespaceContext.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Property.java" - ok
+Content (4 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLProperty.java" - ok
+Content (29 K) of "autocoder/src/gov/nasa/jpl/statechart/model/ModelScape.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/sml-module.vm" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth.sml" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-initialize.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/xml-model-instance.vm" - ok
+Content (8 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLPackage.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLPackageableElement.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Classifier.java" - ok
+Content (47 K) of "autocoder/src/gov/nasa/jpl/statechart/template/AbstractVelocityModel.java" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone1_EstimatingZoneStateOfHealth_Initialize.scl" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/db/config/EstimatingZoneStateOfHealth_ModelInstance.xml" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/NamedElement.java" - ok
+Content (256 K) of "autocoder/test/files/boeing-scl/Rules_prototypeRevJ1.xml" - ok
+Content (63 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth_States.scl" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/StateMachine.java" - ok
+Content (32 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Content (5 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth.per" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Transition.java" - ok
+Content (3 K) of "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth.sml" - ok
+Content (63 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth_States.scl" - ok
+Content (32 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Content (5 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth.per" - ok
+Content (3 K) of "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth.sml" - ok
+Content (63 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth_States.scl" - ok
+Content (32 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth_Transitions.scl" - ok
+Content (5 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth.per" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLClass.java" - ok
+Content (3 K) of "autocoder/test/files/boeing-scl/db/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth.sml" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLClassifier.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLConstraint.java" - ok
+Content (17 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLElement.java" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLNamedElement.java" - ok
+Content (5 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLStateMachine.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLTimeEvent.java" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLTransition.java" - ok
+Content (46 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/SCLWriter.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLValueSpecification.java" - ok
+Content (4 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-velocimacros.vm" - ok
+Content (24 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/UMLToSCLMapper.java" - ok
+Content (1 K) of "autocoder/build/launchConfigs/Autocoder velocity - Boeing SCL.launch" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-entry.vm" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/UMLLabel.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-exit.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-transition-begin.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-activateSignals.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-activateTimers.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-end.vm" - ok
+Content (15 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/UMLStateChartTemplateWriter.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-begin.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-exit-action.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-signal-event-entry.vm" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-signal-event-exit.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-time-event-entry.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-time-event-exit.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-orthogonal-region-entry.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-orthogonal-region-default-exit.vm" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-action.vm" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone0_EstimatingZoneStateOfHealth_Initialize.scl" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone2_EstimatingZoneStateOfHealth_Initialize.scl" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/Zone3_EstimatingZoneStateOfHealth_Initialize.scl" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-guard-begin.vm" - ok
+Content (1 K) of "autocoder/build/launchConfigs/Autocoder velocity - Boeing SCL J2.launch" - ok
+Content (1 K) of "autocoder/build/launchConfigs/Autocoder velocity - Boeing SCL K.launch" - ok
+Content (247 K) of "autocoder/test/files/boeing-scl/Rules_prototypeRevJ2.xml" - ok
+Content (457 K) of "autocoder/test/files/boeing-scl/Rules_prototypeRevK.xml" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/DataType.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Enumeration.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/EnumerationLiteral.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/InstanceSpecification.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Operation.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLDataType.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLEnumeration.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLEnumerationLiteral.java" - ok
+Content (4 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLInstanceSpecification.java" - ok
+Content (347 K) of "autocoder/test/files/boeing-scl/Rules_prototypeRevK2.xml" - ok
+Content (351 K) of "autocoder/test/files/boeing-scl/Rules_prototypeRevK3.xml" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-event-entry.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-guard-end.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/per-subsystem.vm" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth_Subsystems.per" - ok
+Content (666 K) of "autocoder/autocoder.jar" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth_Categories.per" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/per-category.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/per-fullassign.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/per-fullcompile.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/per-project.vm" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth_Flight.per" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth_FullAssign.per" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/scl/EstimatingZoneStateOfHealth/EstimatingZoneStateOfHealth_FullCompile.per" - ok
+Content (81 K) of "autocoder/test/files/boeing-scl/UT_BasicStatesAndTransition.xml" - ok
+Content (234 K) of "autocoder/test/files/boeing-scl/UT_ComparisonGuards.xml" - ok
+Content (142 K) of "autocoder/test/files/boeing-scl/UT_ConfigData.xml" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Slot.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLSlot.java" - ok
+Update complete.
+
+
+[2013.09.25]
+{BoeingSCL}
+Minor fixes:
+* Increment Database ID in region-processing loop for module-level SML file.
+* Skip coding out eventSignalID_ENUM if no signal event in model.
+
+
+[2013.09.23-24]
+{BoeingSCL}
+Major SCL Mapper refactoring:
+* Moved nearly all SCL identifier formulation code into the UMLToSCLMapper for consistent name mapping.
+* Almost every velocity template file touched.
+* Publish event SCL code changed from separate function to inline, so eliminated unnecessary scl-event-function.vm.
+* Regenerated output files.
+
+
+[2013.09.21]
+{BoeingSCL}
+SCL back-end enhancement: Improved support for Instance Variable; removed need to hard code "Zone" name stem.
+* Fixed model instance xml file location.
+* Fixed problem with -Initialize.scl and the machine .sml entries showing duplicates.
+
+UML: support for new Slot UML element type added; refactored code originally added to UMLClassifier to get attribute overrides.
+
+
+[2013.09.20]
+{BoeingSCL}
+SCL back-end bug fixes and enhancements:
+* ModelInstance: Changed TOPICS to INSTANTIATED_TOPICS and added PUBLISHED_TOPICS.
+* Guard: Added knowledge of SclEventMsgTopic to code out guard on eventData instance ID.
+* Added support for non-instanced Application Config Data, supplying "-1" for instance ID
+* Fix SCL for publishing an event: refactored treatment of entry/exit/transition effect actions and moved topic-specific knowledge to scl-action.vm template file.
+* Added Mapper functions to map topic stereotype to name, topic, and identifier.
+* Fix incorrect external function call which shouldn't be instantiated (e.g. EXT_DoFunction4).
+
+
+[2013.09.17]
+{BoeingSCL}
+Changed null transition encounter from warning to info level output.
+
+
+[2013.09.16]
+{BoeingSCL}
+SCL back-end null-event transition and guard logic:
+* Separated guard template into two parts.
+* Revamped signal- and time-event-exit templates to use the common guard VM file.
+* Added mapper function for getting Region name.
+* Renamed entry-action-start.vm to entry-action-begin.vm for consistency.
+
+
+[2013.09.12]
+{BoeingSCL}
+Fixed state set statement in then clause.
+
+Enhanced UML Transition class with non-standard UML method to query whether the transition has trigger with no event.
+
+
+[2013.09.10]
+{BoeingSCL}
+Changed ULDD to RTDD for eventSignalID.
+
+
+[2013.09.08-09]
+{BoeingSCL}
+Improvements of SCL backend to Rev K3:
+* Added basic support for the notion of data "type" so that PrimitiveType can be read from model.
+* Added support for InstantiatedApplicationConfigData, thus fixing the NullPointerException..
+* Fixed patterned code for evaluating config data in guard conditions.
+* Fixed how topic stereotype names are queried and put into model.
+* Cleaned out stale implementation for fetching stereotypes, entry/exit points, etc.
+* Added K2 and K3 models to depot.
+* Regenerated output for K3.
+
+
+[2013.08.29]
+SMAP mission adaptation enhancement: Beefed up StateChart Autocoder to allow StateChart Signals ID and Signal IPC Msg ID to be skipped, or have new one designated for the end of the list.
+* Autocoder build ID updated, no version change.
+* ChangeLog.txt doc updated.
+* Jar rebuilt.
+
+
+[2013.08.14]
+SMAP mission adaptation enhancement: Improved autocoder to support EVR ID preservation.
+* EVR ID skipping logic fixed to allow contiguous IDs.
+* Added support for appending specific EVR names (regex OK) to end of list for NEW transitions.
+* Autocoder build ID updated and version incremented to 2.5.9 beta.
+* ChangeLog.txt doc updated.
+* Jar rebuilt.
+
+
+[2013.08.11]
+{BoeingSCL}
+* Several new UML metamodel classes added to support enumerations.
+* Added support for UML Enumeration.
+* Improved stereotype recognition and removed most hardcoded Topics.
+* Minor tweaks to SCL code spacing for consistency.
+* Autocoded files all updated.
+* SCL delivery to RevJ2.
+
+
+[2013.07.23-24]
+{BoeingSCL}
+* Added stereotyped action support.
+* Fixed guard name to show the referenced Constraint name.
+* Fixed SCL back-end SM Init file so each instance has a separate file.
+* Added new Init file for 3 other zone instances.
+
+
+[2013.07.22]
+AbstractVelocityModelTest: Reinstated IOException catch branch that Mike commented out.
+
+Significant Autocoder improvements in support of UML 2.4 and SCL backend - build version 2.6.2:
+* Improved handling of UML Constraints referencing Expressions and other Constraints.
+* Completed handling of improved and stream-lined modeling scheme for Guards, as well as Stereotyped constraints (refactored from Mike's initial implementation).
+* Added UMLToSCLMapper support to map the various forms of Guard expressions into SCL condition expressions.
+* UMLElement: Added refactored get Xpath query function that UMLExpression subclass uses.
+* Some refactoring and comment updates.
+* Added OMG UML 2.4 Superstructure and Infrastructure documents.
+
+Boeing SCL-specific:
+* Tweaked Initial states templates to eliminate FinalState from list and add eventSignalID and ControllerState init lines.
+* Added coded files for Model Instance of Initial states.
+* New Signals List velocity template and produce file added.
+* Added RevJ models from Boeing, plus Rev J run configs.
+
+Scanning for recently touched elements- ok
+Checking touched elements for changes- ok
+Preparing for update- ok
+Calculating changes- ok
+Making 58 changes
+Content (4 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLClass.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLClassifier.java" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLConstraint.java" - ok
+Content (15 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLElement.java" - ok
+Content (35 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/QuantumStateMachineWriter.java" - ok
+Content (5 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLNamespace.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLOpaqueExpression.java" - ok
+Content (29 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/promela/PromelaStateMachineWriter.java" - ok
+Content (5 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLStateMachine.java" - ok
+Content (5 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLInstanceValue.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/model/visitor/CallActionVisitor.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLTimeEvent.java" - ok
+Content (53 K) of "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth-States.scl" - ok
+Content (25 K) of "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth-Trans.scl" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLValueSpecification.java" - ok
+Content (5 K) of "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth.per" - ok
+Content (38 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/SCLWriter.java" - ok
+Content (4 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/ValueSpecification.java" - ok
+Content (36 K) of "autocoder/src/gov/nasa/jpl/statechart/model/ModelScape.java" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/template/InstancedVelocityModel.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/LiteralReal.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLLiteralReal.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLProperty.java" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLPackage.java" - ok
+Content (14 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/UMLToSCLMapper.java" - ok
+Content (47 K) of "autocoder/src/gov/nasa/jpl/statechart/template/AbstractVelocityModel.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-initialize.vm" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/UMLLabel.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/LiteralString.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLLiteralString.java" - ok
+Content (5 K) of "autocoder/test/gov/nasa/jpl/statechart/template/AbstractVelocityModelTest.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Classifier.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Constraint.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Element.java" - ok
+Content (44 K) of "autocoder/src/gov/nasa/jpl/statechart/Autocoder.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Namespace.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-signal-event-exit.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/StateMachine.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Expression.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/LiteralBoolean.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/LiteralInteger.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Profile.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Stereotype.java" - ok
+Content (5 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLExpression.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLLiteralBoolean.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLLiteralInteger.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLProfile.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLStereotype.java" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/InitializeEstimatingZoneStateOfHealth.sml" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/ModelInstance.xml" - ok
+Content (1 K) of "autocoder/build/launchConfigs/Autocoder velocity - Boeing SCL J.launch" - ok
+Content (1 K) of "autocoder/build/launchConfigs/Autocoder velocity - Boeing SCL J1.launch" - ok
+Content (257 K) of "autocoder/test/files/boeing-scl/Rules_prototypeRevJ.xml" - ok
+Content (256 K) of "autocoder/test/files/boeing-scl/Rules_prototypeRevJ1.xml" - ok
+Content (3 MB) of "autocoder/docs/UMLInfrastructure_v2.4-10-11-16.pdf" - ok
+Content (10 MB) of "autocoder/docs/UMLSuperstructure_v2.4-10-11-14.pdf" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-signals-list.vm" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/EstimatingZoneStateOfHealth_event_list.txt" - ok
+Update complete.
+
+
+[2013.07.20-21]
+Added support for most of the UML Expression constructs.
+Changed Constraint.getSpecification to return the generic ValueSpecification type.
+Fixed impacted changes to other types.
+Added fetching of owned behaviors to UMLNamespace constructor.
+
+New support for UML Literal Value Specification added.
+Also added Profile and Stereotype UML element types.
+Added 'expression' operator to ValueSpecification interface and implementation class to return Expression-typed reference.
+Added 'isLiteral' operator query to determine if a literal value specification.
+
+
+[2013.07.19]
+Update started
+Scanning for recently touched elements- ok
+Checking touched elements for changes- ok
+Preparing for update- ok
+Calculating changes- ok
+Making 12 changes
+Content (119 K) of "autocoder/docs/ChangeLog.txt" - ok
+Content (34 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/SCLWriter.java" - ok
+Content (47 K) of "autocoder/src/gov/nasa/jpl/statechart/template/AbstractVelocityModel.java" - ok
+Content (4 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLStateMachine.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLClassifier.java" - ok
+Content (6 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLConstraint.java" - ok
+Content (6 K) of "autocoder/test/gov/nasa/jpl/statechart/template/AbstractVelocityModelTest.java" - ok
+Content (36 K) of "autocoder/src/gov/nasa/jpl/statechart/model/ModelScape.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Classifier.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-initialize.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/xml-header.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/xml-model-instance.vm" - ok
+Update complete.
+
+
+[2013.07.12]
+Record of accurev changes since the 9 July 2013 release...
+Update started
+Scanning for recently touched elements- ok
+Checking touched elements for changes- ok
+Preparing for update- ok
+Calculating changes- ok
+Making 65 changes
+Moving "autocoder/Rules_prototypeSimplifiedRevH2.xml" to "autocoder/test/files/boeing-scl/Rules_prototypeSimplifiedRevH2.xml" - ok
+Moving "autocoder/ZoneID1EstimatingZoneStateOfHealth-States.scl" to "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth-States.scl" - ok
+Moving "autocoder/ZoneID1EstimatingZoneStateOfHealth-Trans.scl" to "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth-Trans.scl" - ok
+Moving "autocoder/ZoneID1EstimatingZoneStateOfHealth.per" to "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth.per" - ok
+Moving "autocoder/ZoneID1EstimatingZoneStateOfHealth.sml" to "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth.sml" - ok
+Moving "autocoder/Rules_prototypeRevH2-17.0.2.xml" to "autocoder/test/files/boeing-scl/Rules_prototypeRevH2-17.0.2.xml" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-orthogonal-region-exit-action.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-timer-rule.vm" - ok
+Content (4 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLClass.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLClassifier.java" - ok
+Content (6 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLConstraint.java" - ok
+Content (14 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLElement.java" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/input/validator/AbstractModelValidator.java" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLNamedElement.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/input/validator/IModelValidator.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLOpaqueExpression.java" - ok
+Content (49 K) of "autocoder/src/gov/nasa/jpl/statechart/input/validator/UMLValidator.java" - ok
+Content (12 K) of "autocoder/src/gov/nasa/jpl/statechart/model/UMLModelGroup.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/sml-state-machine.vm" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/InstanceValue.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLInstanceValue.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLTimeEvent.java" - ok
+Content (53 K) of "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth-States.scl" - ok
+Content (24 K) of "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth-Trans.scl" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLValueSpecification.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/SCLGenerator.java" - ok
+Content (5 K) of "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth.per" - ok
+Content (33 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/SCLWriter.java" - ok
+Content (3 K) of "autocoder/test/files/boeing-scl/ZoneID1EstimatingZoneStateOfHealth.sml" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/ValueSpecification.java" - ok
+Content (12 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/ProfileIdentifiers.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/ProfileLabel.java" - ok
+Content (35 K) of "autocoder/src/gov/nasa/jpl/statechart/model/ModelScape.java" - ok
+Content (6 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/UMLToSCLMapper.java" - ok
+Content (47 K) of "autocoder/src/gov/nasa/jpl/statechart/template/AbstractVelocityModel.java" - ok
+Content (5 K) of "autocoder/src/gov/nasa/jpl/statechart/template/GlobalVelocityModel.java" - ok
+Content (6 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/UMLLabel.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/input/IReader.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLLiteralString.java" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/XMIIdentifiers.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Classifier.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-default-entry.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Element.java" - ok
+Content (4 K) of "autocoder/src/gov/nasa/jpl/statechart/input/identifiers/XMI2_1.java" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/AbstractGenerator.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-entry-action-start.vm" - ok
+Content (44 K) of "autocoder/src/gov/nasa/jpl/statechart/Autocoder.java" - ok
+Content (31 K) of "autocoder/src/gov/nasa/jpl/statechart/Util.java" - ok
+Content (12 K) of "autocoder/src/gov/nasa/jpl/statechart/input/AbstractXmiReader.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-exit-action.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-signal-event-entry.vm" - ok
+Content (6 K) of "autocoder/src/gov/nasa/jpl/statechart/input/magicdraw/MagicDrawIdentifiers.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-time-event-entry.vm" - ok
+Content (27 K) of "autocoder/src/gov/nasa/jpl/statechart/input/magicdraw/MagicDrawReader.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-orthogonal-region-entry.vm" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/scl-orthogonal-region-default-exit.vm" - ok
+Content (277 K) of "autocoder/test/files/boeing-scl/Rules_prototypeRevI.xml" - ok
+Content (1 K) of "autocoder/build/launchConfigs/Autocoder velocity - Boeing SCL Simplified.launch" - ok
+Content (7 K) of "autocoder/src/gov/nasa/jpl/statechart/template/InstancedVelocityModel.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/LiteralReal.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/Property.java" - ok
+Content (2 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLLiteralReal.java" - ok
+Content (3 K) of "autocoder/src/gov/nasa/jpl/statechart/uml/UMLProperty.java" - ok
+Content (1 K) of "autocoder/src/gov/nasa/jpl/statechart/autocode/scl/templates/sml-module.vm" - ok
+Content (1 K) of "autocoder/test/files/boeing-scl/EstimatingZoneStateOfHealth.sml" - ok
+Update complete.
+
+
+[2013.07.11]
+{BoeingSCL}
+Re-orged Boeing test files.
+Created a few additional UML classes with major refactoring.
+SCL templates updated to fix bug report.
+ValueSpecification sub classes of instances get tired sson.
+
+Fixed Signal and Time Entry transition rule to use target state for the Subsystem name.
+Updated Autocoder build ID to reflect major change.
+Transition autocode file updated.
+
+Autocoder improvements for SCL back-end, though mostly in infrastructure:
+* New State Machine Module SML template.
+* New State Machine Module SML product for simplified Rev H.
+* Module SML autocoding support completed.
+* Improved UMLToSCLMapper to munge the necessary Region name, and refactored VM templates.
+* Added toString() override function to base UMLElement and UMLNamedElement to provide better string representation of UML objects.
+* Improved UMLValidator to allow specific validator methods to be skipped by specific back-end generators, and added 3 check functions to be skipped.
+* Changed launchConfig for Simple H2 to remove -noabort flag, which is not needed anymore!
+
+
+[2013.06.21]
+SMAP mission adaptation enhancement: Improved SCAutocoder to support project-specific injection of text.
+* Added missed SMAP-specific Main writer for SCA UT main function.
+* Added new Java interface file for project customization.
+* Added SMAP customization code to inject Scrub suppression for function over 75 lines, and orthogonal region definitions VariableScopeTooLarge.
+
+
+[2013.06.13]
+SMAP mission adaptation: Slight improvement to allow skipping EVR IDs.
+
+
+[2013.05.23]
+{BoeingSCL}
+New SCL backend added (option -scl), with placeholder Velocity template files.
+New option added to not abort (-noabort).
+
+
+[2013.04.26]
+SMAP mission adaptation minor fix: added mission declaration of orthogonal region 'final' function in header.
+
+
+[2013.04.16]
+SMAP mission adaptation: A small bug in EVR levels for SMAP Util fixed.
+
+
+[2013.02.20]
+Minor fix: Region name in C prepended with package name and optional _ac_
+
+
+[2013.02.18]
+Minor fix to treat BAIL event the same as completion event when completion is defined.
+
+
+[2013.02.13]
+HSM autocoder fix:  2.5.8 minor fix to Submachine event dispatch case, which is fixed to check handled flags only when no internal transition.
+
+Enhanced QHsm with ignore_dropped and handled flags, and added logic after submachine event dispatch (footerSubmachineCaseEnd) to determine if handled, or whether to propagate to super state, thereby allowing dropped event to be caught.
+
+Propagated coding pattern change into mission-generic C, C++, and Python back ends.
+
+
+[2013.02.12]
+Upgrade to QHsm struct to support ignore_dropped Event and Event handled flags.
+* Modified QF_ACTIVE_DISPATCH_ macro to set ignore_dropped to TRUE before dispatch submachine/orthogonal region event.
+* Modified quantum event processor function to inspect and assert based on ignore_dropped flag, and to set out-going "handled" flag, thus simplying the dropped-event assert logic.
+* Added to pattern to check if submachine event dispatch was handled, and return SUPER if not.
+* Rebuilt and updated build ID of autocoder.
+
+
+[2013.02.08]
+Update to eliminate repetitious #include of _prot.h.
+
+
+[2012.01.16-24]
+SCAutocoder minor version updated to 2.5.4 with these changes:
+Changed trace behavior so that SM objName attributes are always defined regardless of whether trace has been enabled; size of this name made customizable.
+Prepended _BAIL_/_COMPLETION_ w/ Q or SM name; moved Completion Event struct declaration to base statechart signals header.
+All mallocs eliminated; stack variables used instead for submachine and region objects.
+Fixed C makefile with -m32 flag in final executable build step.
+Entry, exit, and event transition code externalized to allow mission customization of trace output.
+New Velocity templates added to generate SMAP specific state enums, and EVR items.
+CSmIpcWriter enhanced with stamping out of EVR enum and XML entries; SM IPC template enhanced with init function.
+SMAP-specific EVRs added for entry, exit, and event transition EVR ACTIVITY LO.
+Added "generated command line" string, and incorporated into templates.
+Added hooks to allow project customization of #include lines in state machine header and source files.
+Eliminated a C++-remnant capability for submachine to override guard/action functions.
+
+
+[2011.10.01-03]
+Pervasive change to enable module-name-prefixing to files, functions, types, and enums:
+* Affected C unit tests were updated
+* Two new macros defined in project-velocimacros to allow _ac_ designation to be added to autocoded files
+* File name changes:  StatechartSignals -> <module>_statechart_signals ; IdRange.h -> <module>_id_range
+* New autocoder linux-testing-only SMAP project template override config directory
+* Signal enums added with _AC_ designation for project
+* Header top-level ifdef macro def names were fixed for autogen'd and impl headers 
+* Python unit-test script updated to account for signal file and ID range file name changes; also, expect pattern-matching set to ignore case
+All unit-tests re-run and verified to pass
+Re-compiled autocoder.jar.
+
+
+================================================================================
+[2011.08.25-27]
+Fix: BehaviorVisitor more precise in determining relevant action (so that QEvent local var is declared exactly only when a publish is needed).
+For guard conditions, appended '()' automatically if only an identifier provided.
+All unit tests verified to pass.
+
+
+[2011.08.03-05/22-23]
+New C backend added to autocoder:
+* Added new QF_C module from QF4.2, and added a suite of C test cases ported from C++; added python unit test program for the new C suites
+* Renamed old C back-end to cm (for C minor) and changed class names of Signal generators and annotation enum; numerous old files touched as a result.
+* QF_Cm/Quantum-FrameworkC3_3:  Renamed old QF_C directories, prep for new QF_C dir.
+* autocoder/.../cm:  Renamed autocoders old c back-end dir to 'cm'.
+* New version 4.2.0 of Quantum Framework C added to depot.
+
+Other fixes:
+* Changed QSignalSize in C++ to 4 bytes, as already done for C, to accommodate signals from full possible range of C enums
+* Brought in missed files in prior promotes: test file in QF_Cpp (Simple5-bad), .acignore, etc.
+* Added 'rerun only' command-line option to Python unit test framework
+
+Added logic to reliably handle signals that may or may not contain the necessary namespace qualification.
+
+
+[2011.07.26-27/29-30]
+Promela bug fixes for internal transition handling and missing entry/exit actions:
+* Added several debug outputs to determine source of problems, and for future usages
+* Fixed PromelaStateMachineWriter::makeState to consider an event signal processed only when it appears on a transition whose source state is the current state being processed
+* Fixed PromelaStateMachineWriter::makeStateTransition to more correctly handle juntion/choice branches with multiple outgoing transitions:  each guard condition needs its own else branch in Promela
+* Fixed FlattenedVelocityModel to exclude exit action of source parent state in state hierarchy _if_ source state is a pseudostate; likewise, include entry action of target parent state _if_ target state is a pseudostate
+* Added an addUnique operation to AbstractVisitor to avoid adding the same element multiple times to a visitor list:  VertexVisitor and LeafStateVisitor fixed to not produce duplicate states in Promela
+* New UMLValidation rule added to abort for the case where a composite state has no initial state within, but there is at least one incoming transition to the composite state
+* Created two new unit-tests to verify the Promela bug fixes
+* All Spin unit tests pass, and diff tests also pass.
+
+UML spec 2.3 docs added.
+
+
+[2011.05.13]
+SCAutocoder mod:  Added connection-point reference entryPoint check to QuantumStateMachineWriter to prevent index out of bound exception.
+
+
+[2011.05.09]
+Autocoder enhancement:
+* Changed VM implementation slightly to eliminate need for overriding event and submachine template files; now override project-velocimacros.vm instead; eliminated SMAP configs override event and submachine VM files.
+* Created new project-overridable project-velocimacros.vm to dealing with new QEvent instantiation in state machine code; added this file as required item to Velocity macro library list.
+* Changed BehaviorVisitor, ModelScape, and query Velocity model a bit to cache fired signals mapping by any Namespace object.
+* Added required empty project-overridable velocimacros file in all other template directories.
+* SCAutocoders/QF_Py/doc & autocoder/src/playground:  Eliminated from release.
+
+* Also made any QF::publish invocation in C++ backend overridable by project, in project-velocimacros.vm.
+
+* Added new project-overridable macro for unused parameters; designated initial method's e (always) and active constructor objNewName (in relevant case) unused param.
+
+
+[2011.05.05]
+Autocoder enhancement:  Added ability to specify custom configuration path, so that velocity templates can be overriden.
+Added config dir for SMAP-specific template override of event publishing.
+
+
+[2011.05.03]
+Autocoder bugfix:  Eliminated pointers use for static, private-event members, which required destruction, but causes segfault.  Shortened StateEnum name to <SM>State.  Fixed TargetLanguageMapper to exclude UML Class from qualified name composition.  Updated rev num to 2.4.2, recompiled binary.
+
+
+[2011.04.26]
+Autocoder changes:
+* Class section (and section element) ordering changed -- public first, then protected, then private -- to conform to project coding standards.
+* Version build date updated.
+* Binary recompiled.
+
+Autocoder enhancements to support friend class declaration:
+* Added new StateChart Autocoder profile SCAProfile for an SCAFriends stereotype.
+* Added to reader support for SCAProfile (ProfileLabel and ProfileIdentifiers); refactored code from UMLPackage that extracted C++Namespace stereotype info into ModelScape; and added logic to extract friendsList tag attribute to ModelScape.
+* Added query method to StateMachine UML interface (and UMLStateMachine implementation) to obtain friends list.
+* Modified CppQuantumStateMachineWriter to obtain friends list using the new stereotype-based query; removed old hack of using the initial state to designate a test class as a friend.
+* Updated C++ unit test UML models (Calculator.mdxml and UserEventTest.mdxml) that used the old hack for friend spec to using the newly defined SCAFriends stereotype.
+* Updated build version number; recompiled binary.
+
+Autocoder bugfix:  forgot to eliminate "static" qualifier of refactored cache data member.
+
+Autocoder bugfix:  all writer logic to check file existence needed to account for -dir option.
+
+
+[2011.04.25]
+Autocoders bugfixes:
+* Added logic in UML Package to grab UML Classes, if its path should be loaded (added umi:Class tag); added logic in UML Class similarly to grab nested classifiers.
+* Fixed logic for determining what path to load based on provided node elements to load; removed unneeded function UMLElement.shouldSkipByName().
+* Fixed UMLNamedElement.getPackageNames() so that, while scanning up a chain of packages, accumulate the C++Namespace stereotype names, but don't stop at the first non-C++Namespace!
+* Removed duplicate loop logic in OOVelocityModel and UMLValidator.
+* Adapted BehaviorVisitor to allow skipping/not skipping the Do Activities.
+* Refactored ModelScape slightly to make qualified name from name and its package prefix; also added debug output to check what signals have been searched and cached.
+* Changed Eclipse SMAP C++ launch config slightly.
+
+Updated version build number; promoted recompiled autocoder.jar.
+
+Autocoder enhancement for StatechartSignals:
+* Added -cppsigbase command-line option to allow for different location for the base signal; added command-line check to make sure at least -cppqfns is set if -cppsig is specified.
+* CppStateChartSignalWriter and CppQuantumStateMachineWriter modified to properly handle the base signal header file; qpp-statechartsignals.vm, qp.h-includes.vm, and qp-velocimacros tweaked to point to the proper base signal header; qp-main-vanilla.vm and qp-state-bail.vml edited to prepend proper namespace for MAX_SIG and BAIL_SIG signals.
+* Added a VM query to split package names and return empty array if a blank string supplied; modified qpc-velocimacros.vm to use it.
+* Bugfix of Util.isVarArgsEmpty() to check that first element is not null 
+* autocoder.jar rebuilt.
+
+
+[2011.04.20]
+Autocoder maintenance:
+* Promela back-end enhancements, released 2010.09.22, incorporated files into SMAP set.
+* Generic Quantum C++ rebuilt with 4 byte signal.
+* Python Docs from 2010.03.30 added.
+
+Autocoder support for C++ namespaces:
+* New Autocoder command-line options added, along with setters, getters, and usage help:
+  - -cppqfns:   to provide a string for the namespace of project-specific QF classes.
+  - -cppqfinc:  name of include file to access QF classes.
+  - -cppsig:    type of namespace organization to use for state chart signals (CppGenerator).
+  - -dir and -guidir:  to designate output to different locations (C/CppGenerator, PythonTimelineGuiWriter, PythonGuiSignalWriter, PythonExecutionTraceWriter).
+  - -check:     to perform only a check on the input file, no writing (AbstractGenerator).
+  - -cppsignals:  C++ specific style of statechart signals (i.e., namespace support).
+* New CppSignals Kind (IGenerator) added, new classes CppGenerator and CppStateChartSignalWriter added; C++ variant is used only when -cppsig designates using local signals namespaces.
+  - C Statecharts Signal template had to be enhanced slightly to support namespacing if global path is used and a QF namespace is provided (qpc-statechartsignals.vm and qpc-velocimacros.vm).
+* Performance enhancements to determine what model sub-branches to load and process
+  - New ModeScape class, extracted from UMLModel::ModelData, that can process XMI file using strictly XPath to prune model tree based on what state machines were designated to load.
+  - Read phase of generate divided into "read" and "createModels" (AbstractGenerate, AbstractXmiReader, MagicDrawReader).
+  - Read and createModels both chech to make sure model file has already been loaded.
+  - createModels first prunes the model tree.
+  - UML metamodel classes enhanced to query the ModelScape to determine what StateMachines and packages to create UMLElement instances for; this required passing ModelScape into all constructors, thereby touching every UML* class (also UMLStateMachineFullTest).
+  - UMLModel added getter for the associated ModelGroup and ModelScape objects.
+* Support in all writers to handle subdirectories based on C++ namespace (UMLStateChartTemplateWriter, CppQuantumStateMachineWriter); modified TargetLanguageMapper.mapToFileName to support namespaced directories, as well as a couple namespace prefix methods.
+* UML reader enhanced with basic UML profile support, in order to parse <<C++Namespace>> stereotype; this included supporting profile-specific prefixes (VersionSupport, ReaderNamespaceContext, AbstractXMLIdentifiers.java).
+* Added support for UML Packages to the UML metamodel classes (UMLLabel, Package, UMLPackage).
+  - VisibilityKind enhanced with an UNDEFINED enum literal, as default for UMLNamedElement (originally default to PRIVATE).
+  - Added UMLNamedElement.getPackageNames() query method to provide the fully qualified C++Namespace packages containing the UMLNamedElement (NamedElement).
+  - Added check for Package node to any StateMachine code that queries the parent node, so that we don't go past a containing package (UMLVertex, OOVelocityModel).
+* Added support for signal references defined in another used model (UMLIdentifiers, UML2_0, UMLSignalEvent).
+  - New UMLElement.href2uml method to obtain the UMLElement given an href URL.
+  - New UMLValidator check to make sure file referred by signal href is an input file.
+* C++ templates enhanced with support for namespace declarations, namespace type prefixes, namespace macro def prefixes, and namespaced path prefixes (touched nearly all C++ templates):
+  - added several VelocityContext vars to CppQuantumStateMachineWriter.
+  - added OOVM query to find required signals package for proper includes (BehaviorVisitor).
+  - added UMLValidator check to make sure that fired signals are explicitly defined signal.
+  - added #include for state chart signal headers, and path prefixes when LOCAL signal namespace is used.
+  - tightened up executionTrace checks to make sure that all unnecessary trace-related code are elided when trace is disabled, e.g., removed log_event include if no trace.
+  - Moved most method docs to .h files.
+  - Added new query method getCurrentState() (cf. qp.h-class.hsm).
+* C++ specific Makefile writer to handle namespaced subdirectories (CppMainWriter and new qf-makefile.vm).
+* Refactoring of query and mapper code:
+  - MagicDrawReader interfaces to handle just string [canonical] file paths (IReader).
+  - moved definition of "::" into Util (DesiredEventVisitor).
+  - TargetLanguageMapper.sanitize changed from static to class-member function (affected C, Python, Promela, and GUI writers); this allows UMLToCppMapper to override sanitize to sanitize package segments.
+* Minor enhancements:  
+  - added support for MagicDraw 17.0, with UML version 20090901.
+  - added model-by-filename query to UMLModelGroup.
+  - added ability to specify a regex for specific state machines.
+  - added cumulative time to Timer.
+  - added Util.reportException to print exception differently depending on verbose or not (UML2* classes and UML metamodel classes wherever XPathExpressionException is thrown).
+  - added Util.joinWithPrefixes and Util.isVarArgsEmpty to support package namespace handling.
+* Added/updated Eclipse launch configs for C++ to test namespace support.
+* Unit-testing:
+  - VelocityTest classes touched to pass in UMLModelGroup when instantiating a VM (*VelocityModelTest).
+  - Enhanced python unit-test verifier to clean (packaged) subdirectories.
+  - Enhanced cppv.py to use generated makefile, and to parse multiple StatechartSignals.h files in a namespaced context, and also to handle ID_RANGE references.
+  - Added new Namespaced Calculator example, along with 3 separate test cases to cppsuite.
+  - In QF_Cpp/test/Calculator example, changed includes to use <> rather than "".
+
+
+[2010.10.12]
+qp-makefile.vm:  New C++ Makefile velocity template.
+
+CppMainWriter:  Added Makefile as another autocoding product of the C++ backend.
+
+UMLModelGroup/MagicDrawReader:  Renamed getNickname method and related data to "filename." 
+
+Autocoder:  updated build date.
+Change log updated.
+
+
+[2010.10.11]
+* TargetLanguageMapper:  Fixed filename mapping so that, nominally, the first letter of the StateMachine  always gets capitalized.
+* Fixed Autocoder output to show the final finished status only once.
+
+
+[2010.09.28]
+Autocoder usability enhancement:
+* Refactored the Autocoder generator steps to read the UML model, validate the model first _before_ collection diagram information, and then generate code.
+* Also tweaked error output slightly so that no stacktrace is dumped for model validation errors, and more informative UMLModel name is given.
+* Added new exception class to distinguish validation from other model errors.
+* Bugfixed non-determinism in Spin ortho region run ordering by sorting regions first.
+
+- This required adding a readDiagrams() operation to the IReader interface, and
+- Changing the IModelValidator.validate() interfaces to return a status rather than throw exception.
+
+* Added Eclipse launch config for promela test.
+
+* Autocoder minor version updated to 2.3.
+* All Unit tests pass on all platforms Linux, MacOS, Cygwin; Spin pass on MacOS Darwin.
+
+
+[2010.09.23]
+QF_Cpp:  Added -m32 compilation flag to make sure C++ code can compile on 64-bit machines.
+
+Added a diffTest.sh script to verify that autocoded Promela code matches expected code originals.
+
+
+[2010.09.22]
+Summary of Promela enhancements, details follow:
+* Added support for TimeEvent in Promela code, using a simplified pattern.
+* Added UML validation rule that aborts if a single state has more than one time event transitions out of it.
+* Reorganized unit test suite a bit, synchronized the originals, and added 3 test cases.
+* Refactored Promela writers into a single writer to share a query model object and shave a bit of Promela autocoding overhead.
+
+Promela enhancement to support simple TimeEvent pattern:
+* For Promela TimeEvent analysis, new visitor to collect a map of source vertex to effective time-outs.
+* New query methods added to make use of this map and determine whether to skip a TimeEvent transition.
+* Added logic to Promela writer to skip time event transitions.
+* Added TimeEvents to events definition list in Main and triggers in Init driver.
+
+Other autocoder modifications:
+* Collapsed main file generation into a single Promela writer Java class, PromelaGenerator now has only one step.
+* Added TimeEvent.getWhenExpr() non-UML-standard query method, so that UMLTimeEvent class does not get referenced outside of the UML package (affected UMLTimeEvent, TargetLanguageMapper, and UMLToCMapper).
+* Bit of commenting and code cleanup.
+
+Promela unit-test suite reorganization and addition:
+* Readmes and originals moved from examples dir.
+* Old example files defunct.
+* New test cases RepeatAction (Composite06) and Timers (Composite05a/b) added with expect files.
+* New originals added for reference.
+* Added doTestCase parameter to change number of simulation steps, and to run forever.
+
+Python unit-test harness modifications:
+* Added Promela impl to recognition pattern for impl preservation (in case it's needed).
+* Added EOF as an error condition to check for with pexpect.
+
+
+[2010.09.21]
+Refactored verify/common.py into separate Python modules for ease of maintenance.
+
+Promela bugfix:  added autocode of ACTIVATE and EXIT event defs in Main.pml.
+
+Fixed orthogonal region test case expect file for correct run without the undefined event errors.
+
+
+[2010.09.17]
+Promela bugfix:  Init driver autocoding fixed so that leaf states below orthogonal regions do not appear.
+
+
+[2010.09.14-16]
+New support for orthogonal regions in Promela:
+* New pattern to autocode orthogonal regions is added to PromelaStateMachineWriter.
+* Fixed ordering of activity so that transition actions occur between exit and entry chains.
+* pml-velocimacros.vm:  added several Velocimacros to support various small bits of orthogonal region code patterns, e.g., region de/activation, exit branch.
+* pml-code.vm:  separated Promela proc definition into two separate Velocity template files.
+* pml-statebegin.vm and pml-transition-state.vm:  changed state labels to showing <state>_Init and <state>.
+* FlattenedVelocityModel:  added query methods to distinguish leaf states above orthogonal regions; modified ancestor chain methods to allow searching within a container element; changed method for finding transition path activity to return exit vs. entry actions in two separate lists.
+
+Code-refactoring done to Autocoders library in support of Promela orthogonal regions:
+* Visitor and AbstractVisitor:  incorporated from class NotBelowOrthogonalVisitor the flag and logic for including orthogonal regions, added new query method expandOrthogonalRegions() to interface (reversed meaning of flag from "exclude" to "include"); affected StateVisitor, StateNameVisitor, RegionVisitor, CallActionVisitor, HistoryStateOOVisitor, and ConnectionPointOOVisitor.
+* StateOOVisitor and RegionOOVisitor:  eliminated due to NotBelowOrthogonalVisitor refactoring, along with NBOV.
+* BreadthFirstWalker and PrefixOrderedWalker:  modified to make use of expandOrthogonalRegions() flag.
+* LeafStateVisitor:  changed to accommodate not descending into orthogonal regions.
+* OOVelocityModel:  methods getAllClassLevelElements, getAllOrthogonalRegions, getChildOrthogonalRegions, getLocalOrthogonalRegions, and getLocalSubmachineStates are hoisted into base class AbstractVelocityModel.
+* Pulled up into AbstractVelocityModel the method getStatemachine (renamed to getStateMachine) and its associated private member and set method; affected FlattenedVelocityModel, OOVelocityModel, TraceGuiVelocityModel, the writers QuantumStateMachineWriter and CppQuantumStateMachineWriter, as well as velocity templates qp-impl.vm, qp.h-impl.vm, and qpgui-code.vm.
+* AbstractVelocityModel:  also pulled up methods getAllCallActions and hasGuardFunction, and changed method getStates to allow choosing whether to include orthogonal regions.
+
+JUnit test updates:
+* Renaming of method getStateMachine().
+
+Changed Init.pml file pattern to print trace output of signal triggers.
+
+AbstractVelocityModel:  removed a fairly arbitrary rule to disallow setting new StateMachine instance; this prevented PubSub from being properly autocoded.
+
+PromelaStateMachineWriter:  fixed makeStateTransition() logic to ensure that the 'else' branch of a regular transition guard is properly stamped out; fixed makeState() to avoid stamping out irrelevant signal branches.
+
+pml-transition-beginguard.vm:  removed if guard, no longer needs to check on $if.
+
+
+[2010.09.07]
+UMLValidator:  fixed function-overloading check to scan behavior actionList, NOT the name of the behavior, so that lists of actions are properly handled.
+
+QF_Cpp/Makefile:  fixed var name typo of "BLDDIR" to "BINDIR".
+
+Promela enhancement:
+* Velocity templates refactored so that decision logic is pushed into Writer class; all files renamed to begin with "pml-" instead of "promela-".
+* ManStub code prints function name rather than just "skips."
+
+Promela bugfixes:
+* Fixed duplicate function declarations when same function used multiple times in a state; now function gets declared only once as <state>_<function>().
+* Fixed label chain with >double-depth state machines, where ancestor state of 2-levels or more above leaf state gets included; now these ancestor states ONLY get included when they're in the default transition chain.
+* Example bug-tickling State Machine files added with readme.txt.
+
+Removed accidentally promoted gen files.
+
+
+[2010.08.23]
+New DemoSM added for activity demo of signal communication with a StateMachine.
+
+
+[2010.08.06]
+UMLBehavior:  Bugfix to ";;" search/replace to NOT use '_SC_', but some other, more obscure combination.
+
+MagicDraw animator by Maddalena added.
+Added readme on MDAnimator usage.
+Remove old AutocoderTest code.
+
+
+[2010.08.04]
+Refactored part of HierarchyExample/Process1 to work with new pattern changes.
+Added new static main() method to ActivityBase to simplify main code in Activity subclasses.
+Fixed comment and status returns in IncrementExample.
+Added old server-based MDAnimator version under examples/Activities/OldExamples.
+Added new client-based MDAnimator code in examples/Activities/MDAnimator.
+Fixed MdGuiServer.py to handle new dictionary-type return value from step() and stop().
+Fixed a bug in the order of determining whether an action is literal code or a function call.
+
+
+[2010.07.26]
+bashrc.sh/cshrc.sh:  Fixed environment path set up to prevent duplicates.
+sim_state_start.pl:  Fixed destroy() to delete all active and impl instances, and take care of cleaning up logger handlers correctly.
+
+
+[2010.07.06]
+Autocoder bugfix:  added validation logic to look for cases when a substate references a submachine that has NOT been loaded.
+* UMLValidator:  Added new check method to check for non-loaded submachines.
+* Walkers, SubmachineVisitor:  Added if checks to make sure submachine reference isn't null.
+* BreadthFirstWalker:  Added other UML model traversal cases.
+* Changed Eclipse launch config for SMAP to designate ScModesComp.
+
+Revised invocation of getStatesBreadthFirst to NOT enter submachines after the BreadthFirstWalker mod.
+
+
+[2010.06.24-28]
+Summary of changes promoted:
+= IMPL object setup and access fixed in Python harness.
+= Submachine TimeEvents support fixed in autocoder (both C++ and Python).
+= MD 16.8 version supported.
+= State-unique Do-Activities fixed in Python backend.
+= All all C++ and Python unit-test model files updated to 16.8.
+= Minor updates to user guide, GUI figure for history, and QF Python msg printing, 
+
+Python backend bugfix:  Fixed IMPL object setup and access
+* qp-impl: Changed so that IMPL[?] accessible messages are no longer printed there.
+* sim_state_start: Modified to search for and make available submachine impl classes.
+* qp-velocimacros, qp-main, qp-method-action/guard, and qp-impl:  Changed Python code to use LOGGER instead of plain print statements.
+
+MagicDraw migration to 16.8:  OpaqueExpression body parsed differently
+* Added UML 2.3 identifier class.
+* Added MD 16.8 identifier inner class.
+* UMLLabel:  added new UML XMI tag "body".
+* UMLIdentifiers:  added new abstract method for getting the expression body, implemented it in UML2_0 for the old way and UML2_3 for the new way.
+* UMLOpaqueExpression:  changed to use the new UMLIdentifiers.value_getExprBody() method.
+* UMLElement:  added method comments and removed old code that's been commented-out.
+* Updated ALL Python and C++ unittest case MD models to version 16.8.
+* Created new allsuite-versions as new location to collect the various MD versions; populated 16.5, 16.6, and 16.8 (mainly .mdxml from C++ suite).
+
+Feature enhancement: Autocoder support for timer events in Submachines
+* Added a generic IDesiredEvent interface for querying desired events of a State and relevant information _after_ model traversal is done.
+* Renamed OrthogonalRegionEventVisitor to a DesiredEventVisitor for generic query of desired events, but caching information about whether orthogonal regions or submachine states might be interested in particular events; added new query methods to get event-transitions and substates interested in an event; added comparator for sorting events by their substate prefixes.
+* Added new Pair utility class.
+* Moved Entry utility class to top-level package and made Entry a subclass of Pair.
+* AbstractVelocityModel:  Added a NameComparator and changed sort routine to use this comparator explicitly; updated a few javadoc comments.
+* OOVelocityModel:  Exposed new method to query submachine-transition time events, and query and clear desired-events; removed getChildOrthogonalRegionsForEvents().
+* Modified TargetLanguageMapper.mapToVarName() and mapTimeEventTo*() methods to accept an optional prefix argument, changed all UMLTo*Mapper subclasses; also changed TargetLanguageMapper.mapToVarName() to specially handle TimerEvents; added optional prefix parameter to mapEventToName().
+* Util:  Added join method to join an array of elements into a String by a separator; fixed toCamelCase() to correctly camel-case a string.
+* QuantumStateMachineWriter:  Simplified the loop for event transitions by using IDesiredEvent query; added setting and removal of a few state and event context vars; changed footer use from VMACRO_FOOTER_ENDCASE to VMACRO_FOOTER_HANDLED.
+* qp-state-entry-begin:  Time events are an exception!  Ensure that only local timer-event variables are accessed, rather than uniformly through the active-object.
+* qp-transition-state:  Renamed local variable to prevent var name conflict.
+* Added eventName and changed QuantumSMWriter to populate that variable and propagate that down into the velocity templates.
+* Removed propagateEvents veloci-macro (qp-velocimacros) and moved code into qp-state-orthogonal.
+* qp-state-*:  As a result of adding IDesiredEvent query, also added eventTransPair and query context vars; made stateName a consistently accessible context variable throughout the qp-state* velocity templates; renamed local variable to prevent var name conflict; added isQHsm to doc.
+* qp-state-submachine:  Added special handling of timer-event dispatch to submachines.
+* qp-action-event:  Removed unnecessary isQHsm var.
+* GlobalVelocityModel, qpc-statechartsignals:  changed getTimeEvents() to getTimeEventNames(mapper) to include the Submachine-specific TimeEvent signals; moved all IDesiredEvent query methods from OOVelocityModel to AbstractVelocityModel.
+
+=> Python-specific backend enhancements for Submachine timers:
+* qp-constructor-active:  TimerEvent var instantiations moved to the constructor, added special name mangling for submachine timers; changed assignment of local activeObj var and removed unnecessary activeObj context var; fixed sendUpdate() method to call __active_obj directly.
+* qp-constructor-hsm, qp-action-event:  Made parent-Active access consistent in active as well as HSM classes.
+* qp-constructor-init-regionandhistory:  Added special handling of submachine-state timer event after initializing submachines; removed activeObj context-var use; added QActive* active for submachines to distinguish from <SMName>* parent in Orthogonal regions.
+* qp-state-exit-postaction:  added QActive* active for submachines to distinguish from parent Orthogonal regions.
+* qp-method-initial, qp-state-entry-begin, qp-state-exit-begin:  Changed call of sendUpdated to __parent_obj depending on isQHsm.
+
+=> C++-specific backend enhancements for Submachine timers:
+* qp.h-class-active/hsm:  Added submachine timer declarations, changed them to "public:"
+* qp-constructor-active:  Added submachine timer init and delete; recoded reInit slightly to format better accounting for the ifndef block.
+* qp-constructor-hsm, qp.h-class-hsm:  Added QActive* parent for submachines to distinguish from <SMName>* parent in Orthogonal regions.
+* qp-constructor-active/hsm, qp.h-class-active/hsm, qp-method-initial:  Renamed "parent" var name to "active".
+* qp-constructor-commondata:  Added special handling of submachine-state timer event after initializing submachines.
+* qp-statebegin:  Added new context var "firstTimeSubEv" to prevent redeclaring that var in switch cases.
+* qp-state-submachine:  Added new event declaration for propagating TimeEvent into submachines; added QF::gc call to ensure garbage collection of the transient event.
+* qp-state-orthogonal/qp-state-submachine:  Also removed last line to return Q_HANDLED().
+* qp-state-exit-postaction:  Added static_cast to cast to right type of region and submachine.
+* qp-transition-state:  Added call to submachine setEntryPoint to set entry to nothing so that default transition.
+* qp[.h]-impl:  Updated comments.
+
+Python backend bugfix:  Do-Activities should have state-specific variable names.
+* qp-state-entry/exit-postaction and qp-state-exit-begin:  Assigned state-specific names to do-activity variables.
+
+Python backend QF:
+* framework:  Reinstated print statement in tick to show timer events firing.
+* miros.py:  Removed try/catch block from dispatch to get full exception stack.
+
+Changed GUI of history state to an outlined circle rather than a filled square.
+
+Python test harness:  added verbose flag to the Autocoder for -v verbose unittest command-line option.
+
+Unit-test suite updates:
+* Added Python and C++ unittest Composite05c/d/e to test proper function of submachine timer event.
+* Added impl class and expect file for Python unittest NestedOrthoSubm to ensure proper function of multi-nesting of history state and doActivities.
+* Minor signal event updates to StateMachine of testcases Composite1 and Composite2.
+* Renamed Composite5 to Composite5a, and updated expect file.
+* Fixed Composite3b expect file to match a slight change in event dispatch to orthogonal regions, which occurs before transitioning out of the ortho-state if signals coincide.
+* Updated test/build.xml to preserve newly added impl files.
+
+Python user guide update:  corrected implemented features list, swapping shallow and deep history.
+
+Autocoder build date updated to reflect minor release.
+
+
+[2010.06.16]
+New Makefile added for generating and compiling CPP files.
+Debug flags removed.
+
+
+[2010.06.11]
+Autocoder enhancements:
+* Model Visitors beefed up to track states currently being visited: setVisiting and isVisiting methods added to Visitor interface; moveUp/moveDown changed to always call parent to make sure the "visiting" information is properly tracked.
+* Model Walker beefed up to NOT visit actively visited states, preventing infinite recursion.
+* UMLValidator:  added infinite recursion check, fatals; loosened on impl-function arg checking in the case when a param is an identifier.
+* New NestedOrthoSubm test cases added to Python test suite to test for proper handling of doActivity within orthogonal region, history within the same. (Test does NOT pass yet)
+* Python qp-impl velocity template fixed to not print submachine import when unnecessary.
+* Changes added to ChangeLog.
+
+
+[2010.06.04]
+Python unit-test:  added UMLValidation unit-test to exercise all validation cases.
+UMLValidator:  Some output messages adjusted and corrected.
+Python docs:  added FrequentlyEncounteredErrors.txt documentation, mainly on how to handle Autocoder UML validation error messages.
+
+
+[2010.06.03]
+Autocoder fix:  ensuring proper handling of case when region has no initial state (in C++).
+C++ unit-test fix:  changed abs to fabs to eliminate compilation warnings.
+All unit-tests pass triple runs on all 3 platforms, with no compilation warnings.
+
+Unit-test mod:  added STOP transition to Composite6 to facilitate better test termination on Cygwin; then removed it because sending event is actually causing the hang.
+
+Unit-test harness common.py:  added -p/--plain option to disable terminal color output.
+Unit-test harness common.py and cppsuite.py:  added internal flag to disable sending 'quit' for special cases.
+
+
+[2010.05.27-28/06.01-02]
+
+Summary of changes promoted:
+* New Autocoder version 2.2, with bugfixes and minor new features.
+* Event propagation fixed for C++, esp. with StateMachine entryPoint.
+* Because the Quantum pattern allows no user event in init/entry/exit, impl function event argument "e" is now required to be explicitly specified in the StateMachine model.
+* Fix of diagram capability:  support "href" syntax of MagicDraw model element reference.
+* New unittests added to test capabilities/bugfixes:  UserEventTest and Composite3b
+* New build-only option can be supplied to the test suite to quickly see autogen files.
+
+Autocoder bugfix/feature addition:
+* Autocoder:  incremented minor release version number to 2.2 and updated build number; reordered and deprecated several command-line options; added noimplcalls option and changed implcalls to default to true.
+* MagicDrawReader:  Added handling of references to an element in MagicDraw when an element is defined in another file, idref vs href; new KEY_HREF added to MagicDrawLabel.
+* Event object no longer autocoded into impl functions by default; explicit "e" argument required.
+* Python code template revised to reflect this explicit "e" argument requirment, also added backward compatible code for implicit "e" argument of impl code in 2.1 (qp-impl, qp-method-guard, qp-method-action, qp-action-function, qp-transition-beginguard).
+* C++ code template revised to reflect this explicit "e" argument requirment (qp[.h]-impl, qp-action-function, qp-transition-beginguard).
+* TargetLanguageMapper.mapToEnumDecl() unified across C, C++, and Python; so the redundant method eliminated from UMLToCppMapper.
+* UMLToCppMapper modified to substitute impl function argument "e" with proper "QEvent* e" parameter declaration; added mapArgsToInvocation() function to handle method invocations.
+* UMLToPythonMapper modified to treat impl function argument "e" as an "e" parameter; added mapArgsToInvocation() function to handle method invocations.
+* UMLToPythonMapper.isLiteral() moved to Util as a utility method; added isNumber() test.
+* AbstractVelocityModel.getStatesExpectingCompletionEvent() fixed to consider namespace when caching.
+* GlobalVelocityModel.getSubmachines() added to enable submachines to be filtered out from main.cpp.
+* Moved references to action/guard method templates into PythonQuantumStateMachineWriter, which is the ones that need those.
+* UMLValidator:  new check added to fatal on overloaded impl functions.
+
+C++-backend enhancements:
+* Added new StateMachine class member and method code to store entryEvent, in order to allow events to propagate into submachines (qp.h-class-active, qp-submachine*, qp-transition-connptref).
+* _BAIL_SIG_ moved to the global StateChartSignal file to avoid redefinition in each StateMachine header file.
+* _BAIL_SIG_ eliminated from template, include of StatechartSignals.h moved to .h file (qp[.h]-includes).
+* Added guard in SM::initial to skip event subscription in the context of a submachine.
+* Changed main.cpp to filter out submachines so that they're not repetitively instantiated, and to zero out custom-event data to prevent bad behavior.
+* CppQuantumStateMachineWriter:  Hack added to enable a Test StateMachine to be designated as friend class to the machines under test.
+
+Other modifications:
+* Added new ChangeLog file to autocoder docs.
+* Added a new Eclipse launch config for SMAP tests.
+* Modified an Autocoder launch config for SMAP tests.
+* C++ QF makefile revised to link "all" target to debug target.
+* Removed qp-method-action.vm and qp-method-guard.vm from C++ set of templates, and moved those string constants from the shared QuantumStateMachineWriter to PythonSMW.
+* Removed a few smap outdated test files.
+* Javadoc fix.
+
+C++ unit-test:
+* New Composite3b test for precedence of an exit transition signal from an orthogonal state over the same signal within one of its orthogonal regions.
+* Composite9 test output reordered due to change of Active object priorities.
+* Calculator2 test added and made to work; a new Test StateMachine added to enable functional testing; expect file added for C++ only; new TestCalculationsImpl files added to complete a working test, but Calculator.h header include moved to .cpp.
+* QEvent* casting changed to using static_cast.
+* New UserEventTest with expect file and Impl objects added to test for proper user-event functionality in impl functions for init/entry/exit vs. transition actions.
+
+Python unit-test:
+* New Composite3b test for precedence of an exit transition signal from an orthogonal state over the same signal within one of its orthogonal regions.
+* Calculator2 test:  epsilon value adjusted to ensure test passes.
+* New UserEventTest with expect file and Impl objects added to test for proper user-event functionality in impl functions for init/entry/exit vs. transition actions; also added a test to ensure 2.1 backward compatibility for the implicit 'e' in impl code.
+
+General unit-testing harness:
+* Python test harness new command-line option added to common.py:  new option to enable just autocoding+building the generated code, without running the test.
+* common.py:  added output to confirm loading of expect file.
+* common.py CVerifier:  -implcall autocoder option removed as default option.
+* common.py CppVerifier:  -sm StateMachine option for the autocoder reinstated, but added -signals option to make sure all signals are generated.
+* All unittests suites verified to work with change updates.
+
+
+[2010.05.19]
+Python backend:  fixed completion event use of machine name variable.
+
+Python test harness:
+* improved common.py to be able to clean the autocode dir before testing, and to allow clean only.
+* slight refactoring of common.py so clean is done as a common step in Verifier.doTestCase().
+
+
+[2010.05.12-13/17-18]
+Summary of significant changes:
+* New feature in C++ backend to support entry/exitPoint for composite state and submachines, and to support submachine instance-specific action behaviors.
+* Major refactoring of Python and C++ state-machine writers into a single QuantumStateMachineWriter to improve maintainnability.
+* Unit-test suites beefed up for both C++ and Python.
+* Python unit-testing harness improved with support for C++ impl files and a few useful command-line options.
+
+C++ feature enhancements:
+* Class member and constructor modified, adding a "parent" data member to an Active class in order to keep a reference in the submachine instance to the parent StateMachine.
+* qp-submachine-methods.vm and qp-submachine-entry.vm added to support entry/exitPoint for Submachine.
+* qpcpp.c-constructor-active.vm:  added ifndefs to allow unittest code to reset a StateMachine.
+* qpcpp-main-qvanilla.vm:  comment added to explain reInit invocation.
+* qp.h-includes.vm and qp-includes.vm:  added new CompletionEvt struct, added comments.
+* qp.h-class-active.vm and qp-constructor-active.vm:  added new data QActive parent and entryPoint and method setEntryPoint() for submachine; added static _COMPLETION_EVENT_ data.
+* qp.h-class-commondata.vm:  added a last-event data to store last event dispatched into a substate machine; histvar.
+* qp.h-impl.vm and qp-impl.vm:  improved Impl class to support overriding the virtual action methods of substate machines; header of submachine impls properly included.
+* qp-constructor-hsm.vm:  added missing delete of Impl instance.
+* qp-constructor-commondata.vm:  added instantiation of submachine-state-Impl object; changed submachine instantiation to supply proper parent QActive object; histvar.
+* qp-method-initial.vm:  added subscription to internal completion events.
+* qp-transition-connptref.vm:  added support for entryPoint into submachine.
+* qp-state-submachine.vm:  added caching of last dispatched event into submachine.
+* qp-state-bail.vm:  added new capability to handle composite-state and submachine completion event.
+* All class methods commented for clarity in log_event.h (.cpp comments moved to .h).
+* New macro def to designate unit-testing added to C++ unit-test compile step.
+
+Autocoder refactoring of Python and C++ QuantumStateMachineWriter to manage diverging capabilities, and to enable SubMachine entry and exit points to be implemented for C++:
+* New QuantumStateMachineWriter extracted from Python and C++ writers.
+* UMLStateChartTemplateWriter:  invokeVmacro method pulled up from QuantumSMWriter.
+* Templates renamed to be consistent across Python and C++ (and for C later).
+* Moved several trivial templates to Velocimacro (mostly footers) to reduce number of template files.
+* Added Velocimacro footerGuardedCaseEnd, removed noopStmt.
+* Introduced literalCode Velocimacro, so no language-specific quoted-string abstract method is needed.
+* AbstractVelocityModel:  getStatesWithEmptyTransitions renamed to more apt getStatesExpectingCompletionEvent; new query method added to obtain signal names for states expecting completion event.
+* OOVelocityModel:  getConnectionPoints revised to return just the top-level connection points of a StateMachine.
+* TargetLanguageMapper and UMLTo(Cpp|Python)Mapper:  pulled up mapToRegionClass method from C++ and Python mappers, and renamed to mapToQualifiedName.
+* TargetLanguageMapper:  added mapToEnumDecl; modified mapToTypeName to ensure first letter is uppercased; added mapToSignalEnum to convert generic NamedElement to a signal enum.
+* UMLValidator:  added fatal condition when a simple state has _any_ empty outgoing transition, if a composite state has more than one outgoing transitions, if entry/exitPoint outgoing transition is not exactly 1 or if there's trigger or guard on it.
+* Missing code documentation filled in.
+
+= Python backend =
+* PythonQuantumStateMachineWriter rewritten as subclass of QuantumStateMachineWriter.
+* qp-statebegin.vm:  slightly modified to pull out initial transition branch into macro.
+* qp-state-entry-begin.vm:  'elif' changed to 'if' as the first if branch.
+* spacing changed in action-function and action-event templates to work with more consistent use of indentation.
+* Indentations in templates and other minor tweaks done to make all Python unittest cases run properly again.
+* $typeName Velocity context variable added to constructor-active|hsm.vm.
+* Changed constructor-active to using AbstractVelocityModel.getStatesExpectingCompletionEvent().
+* Minor tweaks to variable use in constructor-init-regionandhistory, impl, and state-bail.
+* Velocimacro:  tweaked footerCaseEnd and footerCaseHandled; renamed pythonCode to literalCode.
+
+= C++ backend =
+* CppQuantumStateMachineWriter rewritten as subclass of QuantumStateMachineWriter.
+* CppMainWriter:  changed reference to QuantumStateMachineWriter for Velocimacro file.
+* UMLToCppMapper:  guard keywords preceded with "} " for cleaner-looking code; added mapArgsToDeclarations to support impl arguments for C++.
+* Deleted unnecessary header file Velocity template.
+* qp-main-qvanilla.vm:  defined two new UserEvent sizes to have a complete set of 3 event pools -- small, medium, and large.
+* qp-main-linux|qvanilla.vm:  changed state-machine instance name to using lowercase of StateMachine's type name.
+* qp-state-exit-postaction.vm:  removed extra cast to QEvent*.
+* Revised history variable to start with lowercase using mapToVarName.
+* Changed invocation of QF::new_ to the more concise Q_NEW macro.
+* Minor syntactic changes: glued pointer asterisk to type name.
+* Velocimacro:  prepended '} ' to elseStmt; adapted completion event macros, gotos, and footers; added C++ specific footer for header-ifndef.
+
+= C StateChartSignal backend =
+* UMLToCMapper:  changed mapToEnumDecl to call super's version.
+* qpc-statechartsignals.vm:  modified to autocode State-Machine internal signals for completion events.
+
+Python unit-test harness enhancement:
+* Added command-line options:  -k to keep files, -v to affect pExpect output.
+* Accounted for non Python files when preserving impls, but filter out .o and .pyc files.
+* Removed -sm option from C++ autocoding step because we want ALL the signals.
+* Improved suite runner help comment.
+* Tweaked framework_gui.py to look also for "State-Machine internal signals" as end of regular signal enums.
+* Changes to cpp suite:  renamed test names and changed description text, added Composite12, Submachine2, and Calculator cases.
+* Changes to python suite:  added Simple5b and Composite04c "bad" test cases, renamed test names and changed description text.
+
+Unit-test suite modifications:
+* Fixed empty internal transitions in C Test5.
+* Fixed rogue outgoing transitions in Simple2 and Simple5 (deleted two rogue empty outgoing transitions).
+* Fixed empty/internal transitions in Python Composite4b, Composite8_1, and Composite8_2 cases.
+* Fixed Python Simple7 with an add'l self-transition in S1 to make sure that the test case CAN end.
+* Added to C++ and Python test suite:  Simple5-bad and Composite4-bad.
+* Added to C++ test suite:  Composite8_1, Composite8_2, Composite12, Submachine2, and Calculator (CppSuite3).
+* Added C++ impl files for Submachine2.
+* Added C++ impl files for Calculator.
+
+Autocoder build version updated to May 18, 2010, @1530.
+All unit-tests pass triple runs on 3 platforms.
+
+
+[2010.05.11]
+Python test: changed test case name and 3 descriptions (trivial change).
+
+
+[2010.05.10]
+C++ capability fixes:
+* Added case when region classes should be friend classes for timer events in regions.
+* Fixed ability to re-initialize a StateMachine once it's in a final state.
+* Fixed how event is published, by using QF::new_, which needs to be adapted for SMAP.
+* Main method: enhanced with capability to parse IMPL guard set and ACTIVE reset, also enhanced with two different event pool, one for just signals, and another for events with a signle piece of data.
+* LogEvent file added with AttributeMapper class to enable guards to be set on the fly, but only if DEFINE_MAIN is enabled; Impl classes extended to use the AttributeMapper class for get/setting attributes.
+
+Autocoder enhancement:
+* Refactored timer event and timer name mapper methods, moving them from UMLTo*Mapper to the parent TargetLanguageMapper class for consistent naming.
+
+C/C++ unit-test harness:  Completed full set of 25 unit tests for C++!
+* Added ability in C/CppVerifier to supply an explicit list of StateMachine for building and testing.
+* Tweaked expect files for Simple6 and Composite10 to remove spaces in IMPL call.
+* Reinstated test Composite9 and added expect file for it; eliminated testScript.py as that's not supported outside of Python.
+* Eliminated tests Simple7 and Simple8 from C++, as Do activity is not supported.
+* Adjust naming of testCompositeX to double digit numbering for proper sorting.
+
+* Eclipse launcher for C++ changed to def DEFINE_MAIN.
+
+C/C++/Python unit-tests all confirmed to pass on MacOS.
+
+
+[2010.04.15-17]
+Summary of SCAutocoder feature additions:
+* UML Metamodel and Velocity query model:  added support for entry/exitPoints and completion event on Composite State and SubMachine State (ConnectionPointReference).
+* UML Validation added to check entry/exitPoints.
+* Python-backend only:  addition of pattern for handling entry/exitPoints and completion events.
+* Python Quantum framework:  addition of conversion of published event from dictionary to Event object.
+* Python Trace GUI:  added diagram support for entry/exitPoints and ConnectionPointReference.
+* Unit-tests for Python:  added a test case plus a complex Calculator example to showcase SubMachines with entry-/exitPoint.
+
+== Autocoder infrastructure for UML metamodel, query, and reader/writer ==
+* UML2_1_2:  Added specific support for finding transitions from a connectionPoint, by searching at the peer level.
+* UMLStateChartTemplateWriter:  Added flag and method to determine if writeCodePart actually wrote code.
+
+* Pseudostate:  Added interface method javadocs.
+* State:  Added getConnection and getConnectionPoint query methods.
+* ConnectionPointReference:  Added interface method javadocs, and new method to determine Pseudostate Kind.
+* UMLVertex:  Todo remark about whether getContainingStatemachine has right implementation.
+* UMLPseudostate:  Corrected implementation of getStatemachine to lookup parent element.
+* UMLState:  Added new methods for query.
+  - modified constructor to pick up ConnectionPointReference and ConnectionPoints based on Submachine state or Composite state
+  - modified isSubmachineState to look for the attribute instead of calling getSubmachine to acquire the actual object.
+  - added getConnection and getConnectionPoint query methods
+  - included ConnectionPointReference in getting outgoing and incoming transitions
+* UMLConnectionPointReference:  Updated class and method javadocs, and implemented new method to getKind().
+* UMLValidator:  Added new validation to check for valid entry- and exitPoints.
+  - fatal if more than one outgoing transition
+  - warn if transition has trigger
+  - fatal if not defined on either a StateMachine or a State, i.e., a ghost
+  - fatal if an incoming transition from a State to an exitPoint is missing trigger
+  - updated javadoc with hyperlinks to classes
+
+* PrefixOrderedVisitor:  Added visiting of ConnectionPoints on StateMachines and States.
+* AnonymousNameInjector:  Inject names on ConnectionPointReference using its referenced entry/exitPoint.
+* TransitionVisitor:  Renamed All<blah>Visitor to <blah>Visitor.
+* VertexVisitor:  Added visiting of a State's ConnectionPointReferences; updated javadoc.
+* ConnectionPointOOVisitor:  New model visitor to find ConnectionPoints.
+* AbstractVelocityModel:  Added new query methods.
+  - new empty transition queries to help handle completion events
+  - enhanced getTarget to handle cases when transition is coming out of a connection point, or a ConnectionPointReference.
+* OOVelocityModel:  Added new query methods.
+  - added new query methods for finding ConnectionPoints, and determining if there is entryPoint to the machine or a SubMachine state
+  - added sorting on getStates()
+  - improved javadoc a bit
+
+* VertexElement:  Added data and function members for computing coordinates for drawing X on a circle for exitPoints.
+* TraceGuiVelocityModel:  Changed parent class to AbstractVM, renamed used TransitionVisitor, and changed getAllStates() method to use parent getVertices() method.
+
+== Python back-end ==
+* PythonQuantumStateMachineWriter:  Added support for entry-/exitPoints into/out of Composite states and Submachines.
+  - more complex handling of top state to transition into different entryPoint targets
+  - new completion-event processing
+  - new cases of transition targets to handle entry-/exitPoints, ConnectionPointReferences, and FinalState completion events
+* qppy-constructor-active.vm:  Added event subscription for internal completion events.
+* qppy-constructor-init-addstates.vm:  Removed sort() call for getStates, added handling of entry point into submachine.
+* qppy-state-bail.vm:  Added handling of State completion event.
+* qppy-submachine-entry.vm:  New Velocity template for handling submachines entry and exit.
+* qppy-submachine-methods.vm:  Velocity template for setEntryPoint method.
+* qppy-transition-state.vm:  Added resetting of submachine entryPoint when transitioning just to the State.
+* qppy-transition-connptref.vm:  New support for transition to a connection point reference.
+* qppy-velocimacros.vm:  Added several code snippets as macros to avoid adding trivial VM files.
+
+== Python Trace GUI ==
+* qpgui-state.vm:  Added diagram support for entryPoint, exitPoint, and entry and exit ConnectionPointReferences.
+
+== Python Quantum framework ==
+* framework.py:  Added new utility method to ensure that an event object passed to publish() gets converted to an Event object.
+* miros.py:  Modified try/catch in dispatch() to test code that handles dictionary event vs Event object differently.
+
+== Python test harness ==
+* pythonsuite.py:  Added numbering to test names for test-report ordering, new Composite12 for to test Composite state entry/exitPoint and completion event, and new TestSuite for a complex Calculator using SubMachine entry/exitPoints.
+* common.py:  Fixed test ordering in TestReporter, using test method name instead of model name.
+* allsuites.py:  Added PythonSuite3
+* New Composite12 test added for Composite state entry/exitPoint and completion event.
+* Calculator: new functionality test (with Impl files) and Testsuite added for Python backend.
+
+* build.xml:  Added Calculator Impl classes to exclusion list.
+* Defunct'd unneeded launch configs and two Velocity template files.
+* New Eclipse launch config for sim_state_start.py.
+
+Minor fix to UMLValidator to prevent fatal abort if exitPoint has NO exit transition.
+
+
+[2010.04.13]
+Python test harness improvement and refactoring:
+* Changed import usage to show source package.
+* Merged PythonVerifier.doTestCase and doSpecialTestCase into one to reduce redundant code, changes propagated to suite classes using these methods.
+* Python verifier improved to support different test paths, and different model file from SM name.
+* Refactored Python, C, and C++ verifier base classes into common.py; renamed classes to <Lang>Verifier.
+
+Autocoder refactoring and enhancement:
+* Removed duplicate VertexVisitor class
+* Renamed AllTransitionVisitor to TransitionVisitor
+
+
+[2010.04.12]
+Python test-harness:  updated common.py to support test return value of integer rather than boolean.
+
+
+[2010.04.08]
+Autocoder build version updated for release.
+Autocoder Python backend fix:  check each submachine state to see if Impl class should be instantiated
+Python test harness update:  added ability to support model file separate from StateMachine name.
+
+
+[2010.04.07]
+Added Simple9 Impl class to complete the unit-test.
+
+Autocoder Python bugfixes:
+* import of SubMachine Impl class turned off if no submachine impl.
+* handling of LOGGER class in submachines, due to change in how submachines are imported (using from SubActive import *).
+
+Python unit-test build script updated to include new impl test files.
+All unit-tests pass!
+
+Autocoder meta-model enhancement:
+* Behavior support:  added (name-only) support for UML FunctionBehavior.
+* UMLValidator:  added model validation for FunctionBehavior, and for triggers and guards on initial transitions.
+* Added guard for null signal when sorting events by Signal.
+
+Promela back-end tweaks:
+* Tweaked implementation of guard functions with slightly more efficient forms.
+* Added comments to Velocity template files.
+
+
+[2010.04.06]
+Removed extraneous files.
+New junit test for FunctionCall class to test argument parsing.
+
+New Autocoder capabilities added to support impl function arguments:
+* new support for multiple function arguments when making call.
+* new support for declaring impl functions with multiple arguments, and passing that on to impl objects.
+* support to make function calls using variable through the impl-object.
+* UMLBehavior modified to support string-quoted action passed through as Python code, and to allow escaping semicolons.
+* FunctionCall class enhanced to process arguments with string literals; isFunctionCall query method moved from Util to this class; junit TestCase added for this class.
+* new utility methods to parse a string by a delimiter, preserving quotes.
+
+Fixed bug with literal python code.
+Added Simple9 unit-test case.
+
+
+[2010.04.05]
+Submachine2 test: Added custom Impl classes to test new submachine impl pattern.
+
+Autocoder enhancement:
+* Implemented new Submachine implementation pattern to allow different actions to be provided for different SubMachine states (instances), by overriding the Submachine Impl class within the Impl of the owning StateMachine.
+* New model query method added to query local Submachine states.
+* Updated Submachine2 test expect script and custom Impl classes.
+
+
+[2010.04.02]
+Added Makefile for some test cases for easy building.
+Put cppsuite.py C++ unit-test script in place.
+Fixed a flag to get SubMachine impl functions to show up properly in parent Active class impls.
+
+
+[2010.03.31]
+Promela back-end:
+* Fixed ordering in Main.pml for typedef.
+* Added Init driver to exercise StateMachine by states and enabled actions.
+* Enhanced AbstractVelocityModel with query method to determine whether a state machine subscribes to an event by name.
+
+
+[2010.03.30]
+Added reference autocoded C code for C++ to depot for record, then defunct it.
+Python test-suite path fixes.
+New acignore file to filter out .pyc files.
+Rover example added for Spin backend.
+Defunct'd reference autocoded C code.
+Added bashrc.sh for BASH environment setup of QF_Py PYTHONPATH.
+Renamed Submachine2/ expect file name for case-sensitive compare.
+Added to cshrc.sh comment.
+
+Python back-end fixes:
+* Added semicolon to initial goto statement.
+* Moved typedef to Main.pml.
+
+Promela enhancement:
+* Added query method to FlattenedVelocityModel to find all outgoing transitions of ancestor states.
+* Added Do block to driver to exercise all possible outgoing transitions from each leaf state.
+
+Autocoder:  added MagicDraw 16.6 as recognized exporter version.
+
+Python test-suite updates:
+* Kept a copy of 16.5 XML files in autocoder/test/files/python-suite/md16.5/ .
+* Updated all MagicDraw files to 16.6 and saved a new set in autocoder/test/files/python-suite/ .
+
+Updated Eclipse launchConfigs for Python test suite.
+
+
+[2010.03.29]
+Promote Summary:  Promela bugfix, Python impl convenience methods, and test script reorganization
+
+Promela back-end bugfix:
+* Added goto statement in proctype to transition to initial state.
+* Fixed guard function names in proctype to be prepended with statemachine name.
+
+Python back-end enhancements:
+* Added QF import and setup of QF and active objects for convenience in the Impl class.
+
+Python test-harness reorg under QF_Py/:
+* Moved test/verify/util to directory lib/python2.5/site-packages/
+* Renamed verify/all.py to verify/allsuite.py
+* Moved test/verify/*suite.py to directory bin/
+* Moved test/verify module to directory src/
+* Fixed import statements and fixed path dependencies in test scripts.
+
+Removed log_event files, replaced by same files under QF_C/xmlrpc/.
+
+Updated Autocoder version number for release.
+Unit test runs all pass!
+
+C++ backend and test:
+* Minor var name rename.
+
+Added C++ unittest script for 26 tests!
+
+
+[2010.03.22]
+Autocoder feature - SubMachine within Orthogonal regions:
+* Added new model visitor to find events interested in by submachines within orthogonal regions
+* Fixed Python back-end to properly propagating events to Submachines within orthogonal regions.
+* Added quick-hack support for User-Event, by passing self.tEvt through the impl method eval() call.
+* Fixed bug in miros.py to dispatch event as dictionary to "submachines."
+* Added new unit test, SubMachine2, to test for this case.
+
+
+[2010.03.10]
+Promela Bugfix:  removed extraneous comma in call function parameter.
+
+
+[2010.03.09]
+Added log_event.* and a test main.c to QF_C/xmlrpc support directory.
+
+
+[2010.03.04]
+C++ backend implementation, round 2:
+* C++ Writer, Mapper, and Velocity templates modified to support the Python-equivalent set of UML StateChart features; all tests will now compile
+* New templates added for common class elements in C++ header.
+* Template for main.cpp changed to use qvanilla so that each QF::run() is only a single round of dispatch; the original is renamed to a linux-only variant.
+
+QF_C++ modified:  qvanilla is now used instead of qf_port for linux; files changed and Makefile updated.
+
+Unit-test status:  all but five pass!
+* All 26 cases except Simple6, Simple7, Composite6_3, Composite10, and Composite11 pass.
+* The five non-passing cases are due to limitations in the interactive featuers of main.cpp.
+* common.py tweaked to enlarge pexpect.maxread parameter from 2000 to 4096.
+* Expect file for 9 cases revised to cater to C++ output.
+
+
+[2010.03.01]
+Eliminated unnecessary original py file from QF_Cpp test suite; changed mdzip to mdxml.
+Added new C++ template files.
+Added missing Python testcase MagicDraw XMLs (as MDXML) to C++ test suite.
+
+C++ back-end and templates:
+* Improving C++ templates, coding to the test cases (passing Simple1 thru 5 so far).
+* Added current set of Python testcase MagicDraw XMLs (but as MDXML) to C++ test suite.
+* Changed MagicDraw file extensions from MDZIP to MDXML; eliminated unnecessary original py file from QF_Cpp test suite.
+
+Touched MagicDraw XML files to adjust window boundaries for better presentation in Python Tk.
+
+For March 1st, 2010, release:
+* Added Java as a future target backend.
+* Marked C++ as unavailable backend.
+
+
+[2010.02.25]
+Python enhancement:  dropped-event notification
+* Python Active pattern enhanced to keep track of current state by setting a member var.
+* Bugfix to template for orthogonal region and submachines to pass the correct active object, no matter how many levels of class hierarchy.
+* Bugfix to miros.py detect dropped event correctly based on 'top' state, and to output state of event-drop.
+* gui_server.py updated to support "obj:Type" machine instance name.
+
+Autocoder update:  error messages for null initial state and duplicate state
+
+Unit-test improvements:
+* common.py added support for different file extensions and for removing subdirectory "linux".
+* Renamed a variable in C-suite.
+
+
+[2010.02.24]
+Python improvement:
+* Modified sim_state_start to invoke timeline via subprocess.Popen.
+* Improved sim_state_start destroy code, removed the need for special "#DESTROY#" event to be sent from unit-test, just hooked up to atexit instead.
+
+Autocoder improvement:  added check for existing timeline file.
+Unit-tests all passed!
+
+Autocoder code quality:  added FindBug results and Emma Junit-test coveage report files to depot.
+Added C++ launch config.
+
+Fixed JAR path setup for Cygwin environment in common.py.
+Fixed UMLValidator to not treat two equivalent states as duplicate names!
+
+
+[2010.02.23]
+No imports needed for C++.
+Added a few new C++ template files, QF-C++ xmlrpc files, and Composite5 example.
+Removed unneeded template and other files.
+
+C++ back-end generation, initial version prototyped:
+* Full-set of initial version of C++ template, modeled after Simple1, transcribed from Python templates with all other capabilities in place.
+* Generator, Writer, and Mapper for C++ updated.
+* May not compile yet!
+
+* Simple1 original autogenerated file set updated.
+* XML-RPC linkage code for C++ added.
+* QF test run output showing initial SM sequence.
+
+
+[2010.02.21-22]
+Timeline autocoding feature added:
+* Added new Generator and Writer to autocode a Python timeline GUI
+* Updated Autocoder.java with new command-line option "-timeline"
+
+Python changes:
+* sim_state_start.py: added timeline handler hooks, with -notimeline option to suppress
+
+Other enhancements:
+* Autocoder: abort-handling modified to return proper exit code to system; build date updated
+* PrefixOrderedWalker: changed traversal slightly to traverse initial state before other states in each region
+* UMLValidator: new ability to check for duplicate out-transition signal events from a state; better error output for model-debugging
+* Changed UMLStateChartTemplateWriter into a generic class to accept a TargetLanguageMapper as template type; this enables use of the specific mapper type in the specific writer subclasses.
+* Touched all Writer subclasses to supply their specific TargetLanguageMapper template subtype.
+* Made sure VelociMacros files returned from ALL writers to prevent Velocity run exceptions.
+* Added support to UMLStateMachine to read connectionPoints from XMI.
+* Added "2010" to copyright in Velocity template comments.
+* Added some missing class-level comments.
+
+Code modfications to address FindBug "bad-practice" issues:
+* Commented out (with TODO entry) eight unused private class data members.
+* Converted three bad uses of System.exits() to throwing FatalModelException in classes AbstractXmiReader, MagicDrawReader, and Autocoder.
+* Fixed two potential null deference in Util and Version.
+* Fixed two unnecessary nulling of data members in the finalize() method of UMLStateChartTemplateWriter.
+* Fixed one problem in UMLElement of accessing static member from instance method, even though it's not actually a problem given that the static member was private and only accessed in one method within a single-threaded application.
+* Fixed one ComparesTo-uses-Object-equals issue in Version by overriding the hashCode() and equals() methods.
+* Only one FindBug issue (ComparesTo-uses-Object-equals) was left unresolved because we're depending on equals comparing based on the default object hashCode, but needing to compare NamedElement by name string.
+
+
+[2010.02.19]
+Added dropped-event notification capability to Python QHsm:
+* -e option to sim_state_start
+* dropped-event flag through QF, QActive, to QHsm.
+
+Also added code in common.py to allow running EMMA instrumented Java code.
+
+
+[2010.02.11]
+Added reference C++ state machine code for Simple1 to depot.
+Added C++ sample Makefile for Simple1 to depot.
+
+
+[2010.02.02]
+{kept, tran# 1301}
+Code modfications to address various FindBug "bad-practice" issues:
+* Commented out (with TODO entry) eight unused private class data members.
+* Converted three bad uses of System.exits() to throwing FatalModelException in classes AbstractXmiReader, MagicDrawReader, and Autocoder.
+* Fixed two potential null deference in Util and Version.
+* Fixed two unnecessary nulling of data members in the finalize() method of UMLStateChartTemplateWriter.
+* Fixed one problem in UMLElement of accessing static member from instance method, even though it's not actually a problem given that the static member was private and only accessed in one method within a single-threaded application.
+* Fixed one ComparesTo-uses-Object-equals issue in Version by overriding the hashCode() and equals() methods.
+* Only one FindBug issue (ComparesTo-uses-Object-equals) was left unresolved because we're depending on equals comparing based on the default object hashCode, but needing to compare NamedElement by name string.
+
+Other enhancements prior to FindBug effort:
+* Changed UMLStateChartTemplateWriter into a generic class to accept a TargetLanguageMapper as template type; this enables use of the specific mapper type in the specific writer subclasses.
+* Touched all Writer subclasses to supply their specific TargetLanguageMapper template subtype.
+* Added support to UMLStateMachine to read connectionPoints from XMI.
+* Added "2010" to copyright in Velocity template comments.
+* Added missing class-level comments.
+
+C++ enhancements:
+* C++ header writing and template methods in progress.
+
+
+[2010.01.28]
+Fixed Ant build script of the Autocoder to NOT include lib JARs into jar.
+
+
+[2010.01.27]
+sim_state_start bugfix: better test for trace GUI implemented.
+unittest bugfix: fixed destroy code to ensure GUI is really destroyed between tests.
+
+Python unittest addition: 
+* Added a Simple6b test for duplicate transition events from the same state.
+* Added new unittest type for failed autocoding.
+
+sim_state_start-related bugfix:
+* Moved atexit into main so that script usage gets proper exit behavior.
+* Removed a debug print.
+* Slightly modified GUI destroy message.
+
+framework_gui bugfix: forgot to close socket after testing available ports.
+sim_state_start: commented out window state comment from Application gui.
+Updated compile script for C XML-RPC client code to get correct path.
+Coding style fix to gui_server.py.
+
+Unit-test updates:
+* Adjustments to Simple* diagram canvas to reduce extra whitespace.
+* Added Composite4b test (and expect file) to Python suite to test local vs self-transitions (but treat external and local the same).
+* Fixed C-suite to properly ignore -g option.
+
+** All blackbox unit-test suites pass in all supported major platforms.
+
+
+[2010.01.26]
+Bugfixed sim_state_start.py to discern between trace GUI and other Python files in autocode/ subdir, and ignore ignore the non-trace-GUI files.
+
+
+[2010.01.21]
+Added source folder "experimental" to hold code that shouldn't be released, but we want to keep around.
+"Moved" old Python templates to experimental source folder.
+
+Refactoring Velocity templates: Python templates refactored into smaller pattern chunks.
+
+Refactoring C++ Velocity templates: state-transition template refactored into small chunks.
+
+Refactoring C++ Velocity templates, almost ready to put real C++ code into place:
+* eliminated unnecesary top-level templates.
+* added new C++ templates.
+* missing header file generation templates.
+
+Refactoring Python Velocity templates:
+* eliminated unused python Velocity template file.
+* moved existing Python implementation to an 'experimental' source folder.
+* added query methods to AbstractVelocityModel to get signal and time events from transitions.
+* put in place newly refactored Velocity templates and Python template-based writer.
+** All existing C and Python blackbox unit-test suites pass.
+
+Misc: touched Composite5 to shrink empty canvas space.
+
+
+[2010.01.14]
+Refactoring qpcpp templates in progress:  removed and added Velocity template files.
+Added new C++ Main Writer.
+
+Refactoring for C++ back-end:
+* Refactoring qpcpp templates in progress:  removed and added Velocity template files.
+* Added new C++ Main Writer.
+* Modified C++ generator to incorporate new Main writer.
+* Refactored UMLStateChartTemplateWriter to support writing partial file via Writer stream.
+* Added query capabilities to get unique collections of SignalEvents and TimeEvents.
+
+Refactoring: eliminated unused python Velocity template file.
+Refactoring C++ templates: eliminated unnecesary top-level templates.
+Added new C++ templates from Velocity refactoring.
+
+
+[2010.01.13]
+Enhancements to Python and C backend, and Python trace GUI:
+
+* Added support for FinalState to Python backend, incl. cleaning up GUI state when resetting a StateMachine.
+* Added support for "else" or "no" as else branches of junction and choice Pseudostates.
+* Added support for "isRelative" to the UML TimeEvent element; adding UMLLabel for isRelative attribute.
+* Added FinalState as supported Node to visitor classes.
+
+* Added new unit test: Composite11/FinalState.xml for final state.
+* Added new unit test: Composite5/Composite5b.xml for 'after' relative time event.
+* Adjusted C unit tests to use GUI window name rather than 'testObj'
+
+* C back-end enhanced (as prototype for C++) to allow connection to a GUI server via xmlrpc-client.
+* gui_server and sim_state_start modified to support C back-end.
+
+More XML-RPC enhancements:
+* Enhanced framework_gui with ability to try socket ports until one is available.
+* C main and LogEvent code modified to support connecting to a specified port (passed in from command-line).
+* Added xmlrpc C library source tar-ball to QF-C/xmlrpc/.
+
+
+[2010.01.06]
+sim_state_start fix: fixed convenience defs to invoke QF singleton rather than reference 'qf'.
+
+Formatted indentation of GUI.py.
+
+Unit-test script bugfix:
+* Verifier class: increased time-out for spawning pexpect, added error resilience to OSError and lack of support of pexpect (Windows).
+* Composite9: fixed orthogonal region check logic, and adjusted timing and retry count.
+* PubSub7Agents: tweaked retry count and timing.
+* Python suite: fixed casing of directory name for Submachine1.
+
+Unit-test enhancement:  added ability to set expect timeout for just one line.
+* Changed Simple7 so time-out is 30sec on confirming receipt of Ev5
+
+New XML-RPC GUI connector: added new GUI connector
+*** These files constitute the scope of rollback if the XML-RPC solution is deemed unworkable ***
+* Overcomes non-support for subprocess.PIPE in Windows-native Python.
+* Added new gui_server.py file, armed with the ability to wait for all windows to be up and ready.
+* Incorporated changes into QF framework.py, framework_gui.py, and active.py.
+* Changed framework dependency on framework_gui away from accessing the GUI app object directly; new way is to invoke qf.updateGui() method.
+* Dependency on subprocess removed in framework_gui; it now uses os.system call in a separate thread to invoke gui_server.
+* Made framework_gui smart to retry up to 10 times for connection to gui_server.
+* Changed sim_state_start.py to look for gui_server.py instead of gui.py.
+* New capability in sim_state_start to generate Application.py with query method to check whether all windows are up.
+
+Enhancement to QF and test-scripts:
+* Added getIndexOfName() to allow querying the index number of a Active object by its name.
+* Changed test scripts of Composite9 and PubSub3 to use this new function.
+
+Enhancement to framework_gui for XML-RPC:  added up to 10 retries for XML-RPC call to sendUpdate.
+
+Added DoExImpl to exclusion list in 'clean' script.
+
+Revised includes/excludes list.
+
+
+[2009.12.30]
+Python bugfix: Do-Activity is performed after ENTRY, but killed before EXIT.
+Autocoder version string updated with new timestmp.
+
+
+[2009.12.29]
+Python back-end: added support for DoActivity.
+* New query added to AbstractVelocityModel to find do activity.
+* Renamed Do activity test to Simple8.
+* New unit-test capability added to NOT expect an output.
+* Incorporated Simple8 into Python test suite, with new expect file.
+
+Added example file for Do activity to Autocoder.
+Added Simple8 expect file, and an Impl file for Simple8.
+All existing unit-tests pass.
+
+Python back-end bugfix: Do-Activity action improperly referenced.
+* Also restricted do-activity to just one action.
+* Defaulted do action to function call.
+
+UML Validator fix: now ignore empty name in checks for duplicate state names, since name injector will differentiate those states.
+
+
+[2009.12.22]
+Python back-end and Trace:  Added support for 'choice' Pseudostate.
+* AbstractVelocityModel:  Added query to check for guards in Transitions; fixed getJunctionTransitons routine to sort transitions by the specification boy text.
+* Fixed Python templates to generate junction/choice code properly.
+* VertexElement:  Added methods to get fill color and diamond vertices; added javadocs.
+* Modified Python trace widget code to paint a diamond for choice states.
+* Fixed Composite10 State Machine model so that S3 has outgoing transition, and actions are all proper method calls.
+* Incorporated Composite10 into Python unit-test suite, adding an expect file.
+
+All existing unit test cases pass.
+
+
+[2009.12.21]
+Modified design of code for generating Application.py to support multiple StateMachine instances.
+Added a couple lines to Python generation code to allow sim_state_start to determine if there are submachine instances to worry about.
+
+Python back-end and trace GUI enhancement:  added support for submachines and multiple SM instances.
+- Python template modified so that *Active constructors can take instance names.
+- GUI Trace message format modified slightly to pass instance names around.
+- sim_state_start code to generate Application.py is modified to account for submachines.
+- Test suite enhanced with docstring comments for unittest test description.
+
+
+[2009.12.17]
+Python unittest bugfix for Cygwin:  platform-specific Jar path and GCC linkage issues.
+
+
+[2009.12.16]
+Python test case:  added expect file for Submachine1.
+
+* Removed spacing in Submachine1 diagram canvas.
+* Minor fix to unittest clean-up code when sending quit event.
+
+
+[2009.12.15]
+Python back-end enhancement + bugfixes:  Submachine support
+* Added support to generate code for submachines.
+* Added 'submachine' data member to UMLState according to UML spec.
+* Added query methods to AbstractVelocityModel to query for submachine states.
+* Made final state and BAIL event permanent fixtures of Active subclasses.
+* Modified Active subclass init signature to allow submachine state info to be passed in.
+* Modified trace GUI class and trace output for submachine states to enable Application.py to use the information.
+
+* Added UMLValidator checks for StateMachine without name, and duplicate State names.
+* Fixed NPE in MagicDrawReader when unnamed StateMachines encountered.
+* Removed unused state machine and duplicate states from SubMachine1.xml.
+
+Velocity template file for submachine turned out to be unnecessary.
+Add new model visitor for Submachine states.
+UnitTest fix to match VelocityModel class change.
+Removed qfstress suite from all.py.
+
+
+[2009.12.14/15]
+Summary: C and Python unit-test upgrades, details below.
+
+Python unittest suite upgrade:  Renamed package to 'verify' and reorganized test suites.
+* 'autocoder' is now 'verify'.
+* Introduced new Verifier base TestCase class.
+* Added python 'quit' call to common.py so that individual tests need not worry about doing that.
+* Improved clean-up in 'destroy' code to ensure that sim_state_start is in pristine state from run to run.
+* Added C test suite.
+* Enhanced reporter with ability to print Suite heading.
+* Added new all.py to run all of the tests in one go.
+* Added SelfAdaptFP example in Python.
+
+C upgrade:
+* Added new C back-end capability to generate Impl and Main files for standalone testing; useful later on for C++ testing.
+* Copied over test files from test_suite/ into QF-C/test/, essentially making test_suite obsolete.  (In the process Test9.xml and Test9_1.xml were merged into one MagicDraw project.)
+
+
+[2009.12.10]
+New Feature: Completed Promela generator to support HSM, PubSub, Guard, and Junction.
+
+Reworked the original files in Spin/examples/ to correct a few problems and get desired 'diff' output.
+
+Major enhancements:
+- Completed the Velocity template files for Promela to support the basic StateChart features.
+- Migrated shared functionality from OOVelocityModel to base class AbstractVelocityModel.
+- Created new FlattenedVelocityModel for Promela.
+- Created new model Visitors for collecting leaf states and vertices.
+- Added UMLToPromelaMapper
+- Added Vertex.getParentState() convenience query method; affected UMLVertex and UMLState.
+- Removed promel-import.vm.
+
+Misc improvements:
+- Removed TargetLanguageMapper as constructor argument from VelocityModel classes; affected all *Writer, *VelocityModel, and *VelocityModelTest classes.
+- Added sanitize() in UMLToPythonMapper.umlToTargetLang().
+- Added comments and code block braces to Util.java.
+- Added comments in a few classes.
+
+QF-Py: removed unnecessary Composite9 expect file.
+Added Hsm Test2.xml for self-transition and additional cross-hierarchy transitions.
+Spin: removed empty Hsm/Test.mdzip, added new originals/ for Guard and Junction.
+New shell script for quick autocoding diff 
+Promela Bugfix:  fixed self-transition exit
+
+
+[2009.12.07]
+Added new diagram element class for Transition-to-Self.
+
+Bugfix: erroneous diagram for transition-to-self arrows.
+
+Python enhancements:
+- Modified validate.py so its default is NOT using sim_state_start.
+- Enhanced validate.py with optparse, allowing GUI and sim_state_start as options, and listing available tests to improve usability.
+- Removed rogue lock member vars from active.py.
+
+
+[2009.12.06]
+Bugfix: removed duplicate guard/action impl methods when invoked multiple times in SM.
+- also fixed extra comma in parameter.
+
+Revamped QF-Py2.0/test/autocoder/validate.py to invoke sim_state_start with pExpect.
+Updated all expect files to reflect new validate capability, use of impl files that change output, use of regular expressions.
+Added new test case and expect file; renamed an example as a test case.
+
+All tests pass!
+
+
+[2009.12.02]
+Bugfix: Cleanly exit from composite inner state within orthogonal regions.
+
+Updated Python-backend reference files in autcoder Java.
+Updated test suite and launch configs for Python.
+Composite 9 expect file added.
+New Composite 8 testing exit out of composite inner state within orthogonal regions.
+New PairPeer example set added for infinite event chain between two peer SMs.
+
+Removed Owen's original (now extraneous) window geometry code from sim_state_start.py.
+
+
+[2009.12.01]
+Launch configs for Python tests.
+Reimplementation of mutex-locks for event publishing and timers: passing QActive object to QF instead of queue lock, locking on timer list access inside of QF, removed all lock access methods and non-local locks, cleaned up framework.publish/tick.
+
+Bugfixes:
+* dispatch event dictionary reference vs copy in miros.py
+* more specific exception handling for event dispatch in miros.py
+* eliminated CPU hogging in active.run() loop
+* made naming of __qf consistent in active.py
+* lengthened mutex blocking wait time in gui.py to reduce CPU usage further
+
+Added QF framework ability to destroy singleton instances (QF and SimStartState) for unit-testing.
+Added a few more Eclipse launch configs for Python tests.
+Changed the activating event in PubSub_7agents model to eliminate complicating SM race condition.
+Updates some comments.
+
+Some commented code left-in to keep a record of their existence in case of need.
+Renamed launch config file.
+Bugfixes:  unintended resource contention, mutex-lock implementation to avoid race condition, better exception handling, CPU hogging
+New capability:  singleton destruction and reinit for unit-testing
+Unit-testing:  Stress tests PubSub3 and PubSub-7agents both passed under Mac/Linux & Cygwin.
+(for more details, see keep log #1014 on 2009-12-01 @16:31:15)
+
+
+[2009.11.17]
+Modified validate.py to remove dependency on /usr/bin/env, to make it work in Cygwin.
+
+Fixes to thread locking code:  reduced the scope of lock for efficiency
+* active.py:  applied lock only right before queue.get().
+* gui.py:  used threading package to enable wait/notify so that GUI parent isn't hogging CPU.
+* time_event.py:  fixed reference in rearm() to self._arm().
+* deleted some unused statements.
+
+* validate.py:  added try code to reload sim_state_start (doesn't seem to work tho).
+* minor typo fix in UMLValidator.
+
+
+[2009.11.12/13]
+Added developer txt file with SLOCCount stats.
+Added new test script for stress testing QF.
+Added PubSub-7agent stress test and impl file.
+
+Updated MagicDraw Autocoder Design Model.
+
+Python fixes and unittest script updates:
+* Reinstated "qf" object for interactive Python usage.
+* Updated Python template to print StateMachine for region publish.
+* Updated Python blackbox test-suite expect output to match new trace prints (added StateMachine to events).
+* Added stress test script and Python unittest testcases.
+* Refactored Python test script into new util package.
+* Updated Composite 9... but incomplete.
+
+Removed compiled files from repo.
+Added several .acignore files to ignore compiled Python.
+
+Bugfix: path manipulation code in Util.java path search logic incompatible with DOS-based system.
+Modified stress tests to give more tries on checking expected states.
+Updated Autocoder Build version for today's release.
+Bugfix of Jar path issues.
+Eliminated old Velocity lib.
+Updated Composite5 expect file to reflect QF framework timer output changes.
+
+
+[2009.11.10/11]
+Added prelim CPP back-end files.
+
+Bugfix: Python framework event pub-sub race condition
+Added:  test files with 7 agent SMs.
+
+Summary:  race condition fix, python print statement, GUI window layout.
+
+Fixed Python: transition event output now shows state machine.
+Added window layout code in sim_state_start.py.
+Updated race condition test with another test, better output.
+Updated UML2_1_2 comment, removing TODO.
+
+Bugfix Python QF:  added a missed publish lock on timer queue.
+Cleaned up QF path issues in sim_state_start and completed main modularization.
+
+
+[2009.11.05]
+Updated UML model of Autocoder.
+
+
+[2009.11.03]
+Add MagicDraw model of Autocoder to autocoder/docs.
+Removed symlink, in favor of actual file.
+
+
+[2009.11.02]
+Added build dir for scripts and launch configs.
+Moved launchConfigs into a new build/ in QF-Py2.0.
+
+
+[2009.10.30]
+Added Impl-class template for Python.
+Added acignore file at root of Autocoder workspace.
+Updated Autocoder init output to show build ID.
+Fixed IndexOutOfBoundException when input file has no extension.
+Removed old/broken UML/XMI spec files.
+Added updated UML 2.1.2 specs.
+Updated UML spec docs.
+Renamed UML docs.
+Fixed recognition of junction (Decision) node in trace GUI.
+Added window bound as globals in Python trace.
+
+
+[2009.10.28]
+Bugfix to Autocoder error handling so that abort will exit application and return error number.
+
+
+[2009.10.27]
+Summary of new features: generation impl classes in Python, abort on duplicate SM name, option to allow duplicate name
+
+Impl-classes:
+* Added OOVelocityModel query method for caching CallActions, and finding all CallActions.
+* Made FunctionCall Comparable for sorting.
+* Tweaked NotBelowOrthogonalVisitor to allow forcing visits below ortho regions.
+
+Duplicate Machine names:
+* Added check to UMLValidator for duplicate Machine names.
+* Modified UMLElement.shouldSkipByName and its invocation, to keep print messages in UMLElement, and to track what SMs have already been skipped.
+* Modified Autocoder's test method for specifically-requested SMs.
+* Added TargetLanguageMapper to map StateMachine to filename, here taking care of duplicate SM names.
+* Added Autocoder option to allow duplicate SM names.
+
+Other fixes:
+* Modified all writers to invoke mapToFileName on their respective mappers.
+* Enclosing braces and comments.
+
+Minors:
+* Tailored Makefile for QF-Py2.0 smap example.
+* Updated Makefile of autocoder aresI example.
+* Updated acignore files.
+* Updated Ares-I subset launch config to enable flag -dup-smnames
+
+
+[2009.10.26]
+Added acignore to exclude unnecessary files in future.
+Added re-saved UML StateMachine test cases in mdzip, with their expect files.
+Added acignore files and C++ test case mdzip/expect files.
+Bug fix to validate.py.
+Edited comments of Generators and Writer, as all writers are template based now.
+
+{C++}
+Fixed QF_Cpp setup, removed bin/ dir.
+Adapted Makefile from original Quantum source, under ports/80x86/linux/gnu/.
+Copied port files from linux port subdir.
+Moved qvanilla to ports/, which is excluded from build.
+Fixed QF_Cpp setup, added Makefile, put unedited port files in place.
+
+
+[2009.10.21]
+New sim_state_start launchConfig for Ares1 launch.
+Release folder and added new Jar description file for source.
+Removed unused launchConfig.
+Cleanup: took out unnecessary debug output, removed extraneous files.
+Added new launchConfig file, moved autocoder launchConfigs to autocoder.
+Release folder and added new Jar description file for source.
+Removed unused launchConfig.
+Updated old autocoder test AresI Makefile for C testing.
+
+
+[2009.10.20]
+Added unittest expect file for Composite 8-2.
+Updated task spreadsheet.
+Modified python unittest script to eliminate dependence on StateChartSignals.h.
+Added unittest expect for case Composite 8-2.
+
+
+[2009.10.19]
+Added expect files for Python suite.
+Added Ant script for easy clean up of generated files.
+Added Python unit test code.
+Added Python launch configs.
+
+Added Python unittest and expect files (some moved from autocoder project) for the test-suite.
+Refactored Python template code and OOVelocityModel to get rid of qualified-names pairings; also got rid of transient ordering bug when Composite6_1 is run after Composite5.
+
+Minor changes:
+* C Test_suite Makefile modified to invoke -implcalls option
+* A few Python launch configs created
+
+Bugfix: Missed signals collection when caching!
+
+Refactoring:  Eliminated all qname-pair usage from Python-related code (OOVelocityModel and UMLToPythonMapper)
+* Kept the qname-pair usage in C for the time-being.
+* All mapper methods for C, and which use qname-pairs, have been moved into UMLToCMapper.
+
+Miscellaneous:
+* Reinstated test_suite application files.
+* Moved launchConfigs into build/ subdir.
+
+New function: support MagicDraw .mdzip and .mdxml file extension.
+Misc: moved unused class to jetisoned source dir.
+Bugfix: Trace GUI output will now omit states without diagram info for all 4 sets.
+
+
+[2009.10.14]
+Summary:  New & improved Python GUI and StateChartSignals writer, performance optimizations targeting Python, new signals option, jetisoned old code
+
+Completed template-based code for generating Python execution trace GUI.
+* New classes and new codes (esp. MagicDrawReader) for extracting diagram info from XML into internal model.
+* Created new VelocityModel subclass TraceGuiVelocityModel for querying diagram data.
+* UMLModelGroup added with new methods to associate model with diagram data.
+* MagicDrawLabel added with new labels.
+* Added template code, modified text widget anchor for correct look.
+* Modified Eclipse project classpath and Ant build script to exclude old source code (jetisoned!)
+
+StateChartSignals writer improved.
+* Fixed output of hexadecimal count in header file.
+* Signals and TimeEvents now sorted alphabetically.
+* New GUI code, incorporated scrollbars
+
+Optimization:
+* Added check for -signals option to determine whether to read diagram data.
+* Cached reader object and input files in reader so that same file isn't processed twice to output Python + signals; also added method to clear cache.
+* Added flags to indicate "memberChanged" to save duplicate model validation.
+* Moved away from using xpath to get simple Node attributes, saving some processing time.
+* Measurement timer code added in strategic places to do basic performance profiling.
+
+Added functionality, along with code refactoring
+* Refactored AbstractGenerator to simplify code for adding writers.
+* Renamed DepthFirstWalker to more correct name of PrefixOrderedWalker.
+* AnonymousNameInjector modified so that only Regions are numbered by depth, states and pseudostates are numbered globally.
+* Updated and added IGenerator interface methods to cache and use cached readers.
+* Added debug log level flag as Autocoder option.
+* Added launch configs and example files for testing.
+* Updated Python test references for faster diff matching.
+
+Added new launch configs for running examples: traffic light, Ares-1, and SMAP modes.
+Added Python GUI files to test examples.
+Added new GUI template files.
+Renamed launch configs for 2 test suites.
+
+Updated Python generator to write StateChartSignals.h by default; cleaned up code that loaded old writers.
+Updated Eclipse launch configs to remove extra use of -signals.
+
+New & improved Python GUI and StateChartSignals writer, performance optimizations targeting Python, new signals option, jetisoned old code
+
+
+[2009.10.08]
+Bugfix in Python for timers in Orthogonal Regions + corrected list of actions.
+
+
+[2009.10.07]
+Creatd new C Signal generator clas and utility FunctionCall class.
+Added new .acignore files.
+Copied new Python test suite tests and references from QF-Py2.0 project (6.2, 6.3, 7.1, Smap).
+Copied test Composite 8 from QF-Py2.0.
+Cleaned up deleted (missing) files.
+
+Bugfixes + features:  new signal generator, support action list, optimized dispatch of orthogonal region events, region exits, fix search of transitions, impl call option and comments, and various optimizations.
+* Autocoder new generator kind for signals only.
+* Autocoder new option to uncomment impl-calls.
+
+* Fixed C StateChartSignals template to output right counter for signal enums.
+* Fixed Python framework_gui to use the corrected C StateChartSignals enum count.
+* Changed Python StateChartSignals GUI to show Tick instead of DURING.
+
+* Autocoder new option added for -signals to generate just C and Python signal headers.
+* Optimized UMLNamedElement to cache name and qualified-name, and allow setting name; changed injector to no longer modify the DOM tree directly.
+* Optimized UMLModel to cache StateMachines, Signals, SignalEvents, and TimeEvents.
+* Optimized UMLNamespace to fetch member-element and member-behavior StateMachines in one go.
+* Optimized VelocityModel to use cached signals.
+* Optimized Velocity usage to cache loaded template files.
+
+* In Python, fixed orthogonal region dispatching to only dispatch to only relevant regions (new getChildOrthogonalRegions in OOVelocityModel).
+* In Python, added dispatch of exit event to orthogonal regions upon super-state exit.
+
+* Refactored code in Python template and associated query methods in OOVelocityModel and Mapper classes to handle transitions from SignalEvent and TimeEvent the same way.
+* Modified UMLTransition to provide convenience functions to fetch (and cache) SignalEvent and TimeEvent lists; updated affected files including JUnit test.
+* Got rid of getTimeEvent and getSignalEvent methods in VelocityModel hierarchy.
+* Modified UMLSignalEvent.getName to automatically get Signal name if that is available.
+
+* Refactored template code that handles initial transition; affected VelocityModel.
+* Refactored template code that handles function calls; added new FunctionCall class and added VelocityModel methods; removed action kind code from Behavior class; incorporated guards that are function calls.
+
+In-process transition code included:
+* Revamping VelocityModel classes and language mapper to get rid of apparently extraneous qualified-names in parameter and return types.
+* Adding Python GUI template code and reader capability to process MagicDraw geometry info.
+
+Minor:
+* Changed XMILabel for tags.
+* Class imports, comments, and blank lines.
+* Reduced interface footprint of TransitionTriggerVisitor.
+
+Updated Task Excel.
+
+Fixed minor Python bug on creating and using Exit event.
+
+
+[2009.10.05]
+Added new utility and Visitor classes.
+
+Bugfixes on Python orthogonal regions QHsm publish improved model loading speed:
+* Fixed Python publish event for orthogonal region QHsm subclasses; a few python template files changed to propagate isQHsm flag into doAction template.
+* Added new TransitionTriggerVisitor to refactor and simply a number of trigger related visitor classes.
+* Fixed VelocityModel.getInitialTransition to prevent IndexOutOfBoundException.
+
+* Optimized UMLModel loading speed by processing only partial event and signal sets.
+* Changed UMLModel instantiation to gather initial statistics even before new'ing.
+* Fixed one place where sub-StateMachines loading was missed.
+* Fixed StateMachine stat count to include sub-StateMachines.
+* Refactored and moved element-UMLModel mappings to UMLModelGroup class.
+* New Timer class added to output time elapsed at info level.
+
+* Added Version class and revamped MagicDrawReader version-checking code to be more robust to unknown versions of MagicDraw.
+
+* Refactored a number of outputs to use log-level methods in Util.
+* Added info level holder methods in Util for info messages.
+* Changed a few StringBuffer usages to using the faster StringBuilder.
+
+Patched old MagicDraw reader code to not dump exception on bad time out spec.
+Unset Util debug flag.
+
+(PythonGuiSignalWriter) Minor edits to variable names and comments.
+(PythonExecutionTraceWriter) New GUI trace writer added, but not yet complete.
+
+Bugfixes to C templates due to mismatches between template code and VelocityModel methods after previous VelocityModel refactoring.
+
+
+[2009.10.02]
+Renamed NonOrthogonalVisitor to a slightly more informative name of NotBelowOrthogonalVisitor.
+Added new RegionOOVisitor for Python (and later C++).
+Added new OrthogonalRegionVisitor for Python (and later C++).
+Added new AccuRev ignore files for sanity: eliminates unwanted "exclude" files.
+Updated .acignore to exclude autocoder.jar
+Added new test UML snippet, copied from SMAP modes.
+Added SMAP modes test and two derived simpler composites into python-suite.
+
+Bug fixes for SMAP model and template code enhancements:
+* Added JUnit test snippet for SMAP; also reflactored VeloityModelTest classes a bit to allow loading different snippets.
+* Added 3 more examples to python suite.
+* Added UML validation checks for SM region count and Initial state transition count.
+* Modified walkers to accept more generic NamedElement, and added a couple OO-specific visitors.
+* Refactored VelocityModel and OOVelocityModel some more to clean up unused code, and use the new visitors.
+* Reworked top-level loop in Python template to get orthogonal regions correctly; added new OOVelocityModel function for this query.
+* Added getInitialTransition function to VelocityModel, cleaned up C and Python template code (and made more reliable) using the new function.
+
+* Fixed Makefile for Ares-I test dir.
+* Modified launch config for Ares and Python suite.
+
+
+[2009.10.01]
+Renamed orthogonal visitor abstract class.
+Added launch config for transient bug due to input pairing.
+Enhanced UMLValidator, and bug fixes for SMAP and Composite 6 examples:
+
+* Fixed VelocityModel.getLocalOrthogonalRegions to calling getStates, so that getStates could be overridden in OOVelocityModel; this solves a bug with multi-level orthogonal regions, so the Python constructors instantiate the appropriate subset of region classes.
+* Added qualified name method in TargetLanguageMapper (moved from C mapper) so that Python mapper can produce qualified region class names.
+* Fixed problem with visitor for OO targets, so that they don't descend below orthogonal regions, and doesn't break when there's inner orthogonal regions below.
+
+UML Validator enhancements:
+* Reverted TimeEvent getWhen to return ValueSpecification.
+* Added validation for initial states, junction transitions, transition tarets, and expression subtype.
+* Collected all validation message output into UMLValidator (UMLModelGroup).
+ 
+
+[2009.09.30]
+Launch configs updated to parse the resource location in focus.
+
+Massive refactoring of VelocityModel, added new UML Model Validator, added StateChartSignal writers for C and Python GUI:
+* Visitors are now separate classes in their own package.
+* New Depth- and Breadth-First Walker classes extracted from VelocityModel traverse methods.
+* VelocityModel functions now separated into a hierarchy of a few classes for specific autocoding targets -- C, OO, and global -- to increase maintainability.
+* Changed UMLStateChartTemplateWriter and subclasses to handle VelocityModel subclasses.
+* JUnit tests updated to reflect VelocityModel subclasses as well.
+
+* Introduced ModelGroup concept to encapsulate a group of UML Models, and updated reader, writers, and generators to pass around ModelGroup objects.
+* Reader now reads an array of files, not just a single file.
+* Name injector moved into UMLModelGroup, and now performed after reading phase completes.
+* TimerEvent naming is now moved out of the TargetLanguageMapper and done in the injector.
+* New TLMapper method to map TimeEvent to a timer name in addition to event name.
+
+* Added new IOldWriter interface to distinguish the old writers; ExecutionTracePythonWriter temporary changed to not output the Python GUI StateChartSignals.
+* Generators refactored for more distinct phases of read, check model, and write.
+* Added support for UML LiteralString in TimeExpressions for UML 2.1.
+* Revamped UMLValidator to use depth-first tree walker, and added validator methods for signal and time events.
+
+* Added template-based StateChartSignal header writer for C to remove dependency on old code.
+* Added Python GUI StateChartSignal header writer.
+
+* Updated C and Python template code to refelct the various changes to VelocityModel and Mapper.
+
+* Autocoder version number updated.
+
+Changed qep_port signal byte size to 2 bytes.
+Corrected validate of UMLOpaqueBehavior.
+
+
+[2009.09.29]
+Added missing qppy-velocimacros.vm.
+
+
+[2009.09.24]
+Reinstated .keepme file.
+Updated velocity library to 1.6.2 to get new features (scoping, iterator, loop break).
+Saved Eclipse launch configurations for easier launching of Autocoder tests.
+Missing Test8 for MD 16.5 added.
+Updated Makefiles to clean more thoroughly.
+Cleaned up extraneous source dependency in Python project.
+
+Added missed Composite 3 reference.
+Added Simple 5 expect IO.
+Updated other references Simple 2 and 5, and updated Composite 3 expect IO.
+Updated test model and JUnit test with new Velocity tests, also updated Ares test model.
+
+Updated Python template with Junction capability, fixed region & naming:
+* Improved template use with Velocity 1.6.2; adjusted Velocity config settings (in UMLStateChartTemplateWriter); fixed null errors and changed global context to local to avoid global-variable pitfalls.
+* Moved Python and C velocity macros to a separate .vm file, as Velocity library loaded at startup; added info on VelociMacro file in UMLStateChartTemplateWriter and subclasses.
+* Added support for Junction pseudostates.
+* Fixed qppy-commonmembers to distinguish between guards and behaviors, with corresponding enhancement of CallActionVisitor in VelocityModel.
+* Moved "function call" test logic to Util, used in UMLBehavior and VelocityModel to test OpaqueExpression.
+* Enhanced TargetLanguageMapper with indent increase and decrease functions for easier nesting of Velocity templates.
+* Upgraded UMLModel & UMLLabel to scan for all subtypes of SignalEvent, both Send and Receive.
+* Fixed breadth-first search traversal in VelocityModel to account for depth changes up and down.
+* Fixed anonymous name injector to number names by "depth" of the tree.
+* Made corresponding fixes in C templates and fixed indenting; also replaced initial transition with call to stateTransition VM.
+* Minor change to Autocoder to print build date as part of version info.
+
+Eliminated autocoder manifest, removed compiled Python code from repo.
+
+Python template complete on all 10 test cases: added Junction capability, fixed region & naming, added test cases and Python examples, plus other fixes.
+
+
+[2009.09.22]
+Added MagicDraw 16.5 XML files for C test suite.
+10 XML files for Python test suite of 10 cases, along with expected input/output (minus Composite 3 and Simple 5).
+
+Checkpoint for Python templates: added breadth-first search of states, fixed parent state for orthogonal regions, fixed history target state.
+* Added new query functions in VelocityModel.
+* Added JUnit test cases for VelocityModel.
+* Added orthogonal regions to complex UML test snippet, and updated state count in test classes.
+* Changed Python writer to always have execution trace enabled.
+* Corrected entry and exit order of functions.
+* Added transition-effect functionality, removed __entry/__exit class members from Python template.
+* Fixed timer variable initialization location.
+
+
+[2009.09.21]
+Updated status of items in planning excel file.
+
+Patch fix for old reader failing on duplicate ID:
+* Patched XMI ID-checking routine in old reader to prevent duplicate ID problem when one file!
+* Function added in MDUmlReaderHelper and AbstractXMLIdentifiers to check whether an label is one we can about.
+* Preventive code added to MagicDrawReader and MagicDrawUmlReader to support unknown future MD versions.
+* Function added in MDUmlReaderHelper and MagicDrawIdentifiers to query latest MD version.
+* Changes to test aresI/ Makefile and config.dat for single AM test.
+
+Enhanced Autocoder UML metamodel to support OpaqueBehavior:
+* Added a UMLLabel for Opaque Behavior.
+* Changed UML Behavior and Activity interfaces and their implementations, moving call action designation to the super class Behavior.
+* Added UML OpaqueBehavior interface and implementation.
+* Changed UML State and Transition to use the more generic Behavior type for entry, exit, do, and effect.
+* Added method in UMLIdentifiers and UMLElement to support XPath search of multiple types.
+* Bugfix to C template for state entry and exit invocations.
+* Tweak to Ares-I Makefile to prevent multiple invocation of Autocoder on single XML file.
+
+Python templates largely completed; UML model fix for transition guard; other minor fixes.
+Patch fix for old reader failing on duplicate ID + preventive code for new MagicDraw versions.
+Enhanced UML metamodel to support OpaqueBehavior for entry/exit/transition-effect.
+
+
+[2009.09.18]
+Added new Python template files from implementing reference examples.
+Moved getNodeAttribute back from XmiUtil to Util.
+Minor comment change. (UMLTransition)
+Added fix in UML model to properly obtain Transition guard by ID.
+Added method to UMLIdentifiers to obtain an XPath to node by type and ID.
+Changed UML Metamodel for UMLConstraint to return OpaqueExpression as specification.
+
+Largely completed coding of Python template; incomplete on orthogonal region and transition action:
+* Overrode mapper methods to properly generate Python names.
+* Added indentation method to mapper to get indent spacing.
+* Fixed C templates in the process of porting over to Python templates.
+* Refactored VelocityModel getCallParts method, fixed set manip util methods to preserve order, and added timestamp and username utility.
+ 
+
+[2009.09.16]
+Reinstated all 9 test suite C tests: all pass now.
+Modified target clean to clean out symlinks.
+Added C-target reference output for test suite.
+Code added in old reaer to skip SMs that were not specified.
+
+Fixed template-code to correctly generate code for deep history state and orthogonal region, and passed Test3 and Test4 in test_suite.
+* Added logic in UMLToCMapper name-mapping to output region name when it is orthogonal.
+* Fixed code and added methods as necessary in VelocityModel, also implemented hashCode and equals for VM.Entry for proper hashing.
+* Verified C templates against corresponding code in old writer (StateChartCWriter); still incomplete is handling of all special transition states.
+* Comments added to template files.
+* New C template files introduced to reorganize templates for modularity and understandability.
+* A bit more of code cleaning and constraining member visibility.
+
+Added new model exception classes for model validation use later.
+Implemented Comparable interface on UMLNamedElement to facilitate correct sorting of UML elements.
+
+Added placeholder code in AbstractXmiReader to validate UML and XMI parts of input.
+Added exception-checking in UMLStateChartTemplateWriter to specifically process FatalModelExceptions.
+
+New Autocoder options added to write only specific StateMachines, to be verbose, to output version info, to display more complete help info, and to process options correctly.
+Added code in UMLNamespace and UMLElement to enable skipping non-designated SMs.
+Added methods in Model/UMLModel and UMLElement to allow indicating whether model exception occurred.
+Added code in AbstractGenerator to not proceed with write on model exception.
+Tweaked IGenerator.Kind label.
+
+Added Util methods to log warnings (for later hooking in of Logger).
+Added verbose warning when creating UMLSignalEvent if no associated signal declared.
+Added verbose warning when creating UMLTimeEvent if no OpaqueExpression defined.
+Added error-checking in TargetLanguageMapper when mapping Time and Signal events to names.
+
+Modified mapper methods for signal and time event names to carry qualified name of the source state for more informative error message.
+Changed C and Python templates accordingly.
+
+
+[2009.09.16]
+C-target references added, makefile modified to clean better.
+Autocoder new options and improvements: specific SMs, fixed deep history and orthogonal regions, StatechartSignals.py and other fixes, warning messages, new validation capabilities to come.
+
+
+[2009.09.09]
+Added missing UML metamodel elements, improved parsing, added diagnose output when processing state machine.
+
+
+[2009.09.08]
+Improvement to UML Model and parsing code:
+* Member visibility changed to private
+* New member function to check if a UML Transition is internal
+* UML-version-proofed code for parsing transition guard (affected UMLTransition, UMLLabel, UMLIdentifiers, UML2_0, and UML2_1_2)
+* Added code to UMLState to parse do activity node
+* Revised the return type from Behavior to Activity for member functions to query State entry, exit, doActivity, and Transition effect
+* Added UML Region member functions to get history state and query if history state exists
+* Changed code that parsed State Machines in UMLNamespace to only look at one Node level, and moved the all-descendant XPath search code to the UMLModel level
+* Output progress in UMLElement when constructing UML State Machine objects
+* Added construction code in UMLConstraint to parse constraint specification node
+* Added member functions to UML Activity to get action kind and query if one is a call action
+
+Improvement to Velocity Model and templates:
+* Added query methods for history containers, to get parts of call action, and to manipulate set
+* Fixed code to visit signals through transition trigger events as well as owned members
+* Added UML activity action support to C and Python templates: for entry, exit, and transition effect (also later "do activity", but not currently used in the templates)
+* Verified C constructor template code against corresponding function in old StateChartCWriter code
+* Fixed internal event capability in C template
+* Added Python template code to properly generate example Simple1
+
+
+[2009.09.03]
+Fix of readers and writers for SysML XMI files:
+* moved creation of signal events and time events from UMLNamespace to UMLModel so that it is done once per model rather than once per... element
+* exposed a new public NamedElement method to get parent
+* added a sanitize method to language mapper that chugs out non-alphanumeric characters
+* modified UMLToCMapper.umlToC to properly strip out only non-essential segment names, also added code to lowercase final segment of a function name if it's all uppercase
+* sanitize machine name in C quantum SM writer
+* sanitize names in Python execution trace writer
+* sanitize signal names in signal writer
+
+Updated C Velocity templates to sanitize names as needed.
+Autocoder main: complaint error message if target not supported
+Added AresI test set of files.
+
+Fix autocoder readers and writers to support SysML XMI files.
+(in addition, test files added.)
+
+AresI set of files for ease of testing.
+
+
+[2009.08.26]
+* Bugfix in UMLVertex to search for incoming and outgoing transitions outward to the top-most region.
+* Some code styling: comments, braces, and making members private.
+* Added member access methods to State and Transition.
+
+(*Writer, *Reader, VelocityModel)
+* Changed signature of the add mapping method to accept a map entry.
+* Juggled methods between abstract-class and subclass mappers in preparation for a second subclass instance.
+* Changed constructor parameter in UMLStateChartTemplateWriter, as mapper instantation needs to be a subclass choice.
+* Beefed up the IReader interface with two read methods.
+
+* Created abstract generator class as base class for future generators.
+* Moved most CGenerator functionality to abstract class.
+
+* Moved classes UML/XMILabel and UML/XMIIdentifiers into a separate package.
+* Extracted all version-specific UML and XMI identifier classes into separate files.
+* Moved version-specific UML DOM parsing functions into UMLx.y classes, with abstract methods defined in UMLIdentifiers.
+
+* Added platform checking code to link QC library properly on Darwin.
+* Updated utility to not remove reference target-lang outputs.

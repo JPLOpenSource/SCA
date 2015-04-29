@@ -1,0 +1,30 @@
+##
+## If orthogonal, dispatch the Signal- and Time- events that haven't been
+##  processed above to child regions.
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##    * $eventName:  substate-prefixed name of the Signal- or TimeEvent object
+##    * $traceName:  substate-prefixed GUI trace name of Signal- or TimeEvent
+##    * $eventTransPair:  the event-transition pair
+##    * $query:      the IDesiredEvent query object
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+###############################################################################
+
+    case ${eventName}:
+#*--*##traceEventTransition($eventTransPair, $eventName, $traceName)
+#*--*##foreach( $region in $query.getDesiringRegionsOfState($state, $eventTransPair) )
+#*----*##set( $regionName = $mapper.mapToTypeName($region) )## don't use qualified name
+#*----*##set( $varname = $mapper.mapToVarName($region) )
+## [SWC 2012.01.23] For now, don't worry about custom-tracing region transitions
+#*----*##if( $autocoder.executionTraceOn )
+        strncpy(logMsg, stateName, #logMsgLength());  // reinit logMsg with state name
+        strncat(logMsg, " ${regionName}", #logMsgLength()-#safeStrlen('logMsg')-1/*null-char*/);
+        strncat(logMsg, " ${traceName}", #logMsgLength()-#safeStrlen('logMsg')-1/*null-char*/);
+        LogEvent_log(logMsg);
+#*----*##end
+        QF_ACTIVE_DISPATCH_((QHsm *)(me->${varname}), e);
+## [SWC 2013.02.12] No need to check handled state for ortho regions
+#*--*##end

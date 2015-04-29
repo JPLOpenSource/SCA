@@ -1,0 +1,28 @@
+##
+## Generate Entry condition code, after the action list:
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:  the State Machine state to implement
+###############################################################################
+## initialize submachines
+#*--*##if( $state.submachineState )
+#*----*##set( $varName = $mapper.mapToVarName($state) )
+        me->${varName}->init(e);
+#*--*##end
+##
+## initialize all concurrent subregions
+#*--*##foreach( $region in $model.getChildOrthogonalRegions($state) )
+#*----*##set( $varname = $mapper.mapToVarName($region) )
+        me->${varname}->init(e);
+#*--*##end
+##
+## start Do activity
+###*--*##if( $model.hasDoActivity($state) )
+###*----*##set( $action = $state.getDo().actionList().get(0) )## get the action name
+###*----*##set( $funcCall = $model.getCallParts($action) )
+###*----*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+##        // Instance and invoke doActivity thread here...
+##        this->doThread = do_activity_thread.DoThread(target=self.__${funcName});
+##        this->doThread.start();
+###*--*##end
+        return Q_HANDLED();

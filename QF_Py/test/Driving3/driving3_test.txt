@@ -1,0 +1,122 @@
+##########################################
+# Expect test cases for Driving 3 state machine that 
+# exercises all transitions, guards and actions.
+##########################################
+Driving3 CAR ENTRY
+Driving3 Parked ENTRY
+Driving3 ParkingBrakeON ENTRY
+#
+# Parking brake off
+#
+>parkBrakeOff
+Driving3 ParkingBrakeON EXIT
+Driving3 ParkingBrakeOFF ENTRY
+UnlockBrake set to True
+#
+# Drive
+#
+>drive
+Driving3.UnlockBrake\(\) == True
+Driving3 Parked EXIT
+Driving3 Driving ENTRY
+Driving3 Stop ENTRY
+Driving3 Forward ENTRY
+Driving3.Reverse\(\) default action clear InReverse guard
+Driving3 BackUpLightsOff ENTRY
+#
+# goForward driving
+#
+>goForward
+Driving3 Stop EXIT
+Driving3 ForwardDriving ENTRY
+Driving3 Slow ENTRY
+
+>goFaster
+Driving3 Slow EXIT
+Driving3 Medium ENTRY
+
+>goFaster
+Driving3 Medium EXIT
+Driving3 Fast ENTRY
+
+>goSlower
+Driving3 Fast EXIT
+Driving3 Medium ENTRY
+
+>goSlower
+Driving3 Medium EXIT
+Driving3 Slow ENTRY
+
+>stop
+Driving3 Driving EXIT
+Driving3 Slow EXIT
+Driving3 ForwardDriving EXIT
+Driving3 Forward EXIT
+Driving3 BackUpLightsOff EXIT
+Driving3 Driving ENTRY
+Driving3 Stop ENTRY
+Driving3 Forward ENTRY
+Driving3.Reverse\(\) default action clear InReverse guard
+Driving3 BackUpLightsOff ENTRY
+#
+# goBackward driving
+#
+>shiftReverse
+Driving3 Forward EXIT
+Driving3 Reverse ENTRY
+InReverse set to True
+Driving3.Reverse\(\) default action set InReverse guard
+
+>goReverse
+Driving3.InReverse\(\) == True
+Driving3.BackupLightsOn\(\) turn lights on
+Driving3 Stop EXIT
+Driving3 ReverseDriving ENTRY
+Driving3 Speed1 ENTRY
+Driving3 BackUpLightsOff backUpOn
+Driving3 BackUpLightsOff EXIT
+Driving3 BackUpLightsOn ENTRY
+
+>goFaster
+Driving3 Speed1 EXIT
+Driving3 Speed2 ENTRY
+
+>goSlower
+Driving3 Speed2 EXIT
+Driving3 Speed1 ENTRY
+
+#
+# Stop
+#
+>stop
+Driving3 Driving EXIT
+Driving3 Speed1 EXIT
+Driving3 ReverseDriving EXIT
+Driving3.BackupLightsOff\(\) turn lights off
+Driving3 Reverse EXIT
+Driving3 BackUpLightsOn EXIT
+Driving3 Driving ENTRY
+Driving3 Stop ENTRY
+Driving3 Forward ENTRY
+Driving3.Reverse\(\) default action clear InReverse guard
+Driving3 BackUpLightsOff ENTRY
+#
+# Park
+#
+>park
+Driving3 Driving EXIT
+Driving3 Stop EXIT
+Driving3 Forward EXIT
+Driving3 BackUpLightsOff EXIT
+Driving3 Parked ENTRY
+#
+# parking brake back on
+#
+>parkBrakeOn
+Driving3 ParkingBrakeOFF EXIT
+Driving3 ParkingBrakeON ENTRY
+Driving3.UnLock\(\) default action clear UnlockBrake guard
+
+
+
+

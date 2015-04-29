@@ -1,0 +1,20 @@
+##
+## Implement each Promela proc.
+## This VM file marks the beginning of promela code, other files complete it.
+##
+##- input vars, for rest of templates:
+##    * $model:  the Velocity query model.
+##    * $sm:  the UML StateMachine object to autocode code from.
+##    * $smName:  the mapped type name of the StateMachine.
+##    * $smGuiName:  the mapped gui name (usually all lowercase) of SM.
+##
+##* [SWC 2010.08.29] Refactored templates for minimal logic within templates.
+###############################################################################
+##
+// --------------------------------------------
+// ${smName}.pml
+//
+// Implementation of ${smName} state-machine.
+// This should be auto-generated
+//
+// --------------------------------------------

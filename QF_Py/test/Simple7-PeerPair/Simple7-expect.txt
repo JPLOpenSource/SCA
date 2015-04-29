@@ -1,0 +1,101 @@
+# Simple7 checks to make sure that an infinite chain of events can be passed
+# (published) between two state machines without deadlocking.
+# One event triggers the infinite interaction, another event will stop it.
+
+Peer1 S1 ENTRY
+Peer2 S1 ENTRY
+
+# Initiate infinite chain with Ev1, check for 4 rounds
+>Ev1
+Peer1 S1 Ev1
+
+#- round 1
+Peer1 S1 EXIT
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer2 S1 EXIT
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 EXIT
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer2 S2 EXIT
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+
+#- round 2
+Peer1 S1 EXIT
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer2 S1 EXIT
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 EXIT
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer2 S2 EXIT
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+
+#- round 3
+Peer1 S1 EXIT
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer2 S1 EXIT
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 EXIT
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer2 S2 EXIT
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+
+#- round 4
+Peer1 S1 EXIT
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer2 S1 EXIT
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 EXIT
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer2 S2 EXIT
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+
+#- round 5
+Peer1 S1 EXIT
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer2 S1 EXIT
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 EXIT
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer2 S2 EXIT
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+
+#- round 6
+Peer1 S1 EXIT
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer1 S2 ENTRY|Peer2 S1 Ev2
+Peer2 S1 EXIT
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 Ev3|Peer2 S2 ENTRY
+Peer1 S2 EXIT
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer1 S1 ENTRY|Peer2 S2 Ev4
+Peer2 S2 EXIT
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+Peer1 S1 Ev1|Peer2 S1 ENTRY
+
+# Terminate infinite chain with Ev5
+# (we check for response from just 1 peer as the other would have simply paused)
+>Ev5
+@60@Peer[12] S[12] Ev5
+Peer[12] S[12] EXIT|Peer[12] S[12] Ev5
+Peer[12] S[12] EXIT|Peer[12] S[12] Ev5

@@ -1,0 +1,63 @@
+##
+## Implement each state (variable $_state defined in parent velocity module scope)
+##
+##* [SWC 2010.03.31] added driver to drive StateMachines by enabled actions in states.
+###############################################################################
+// --------------------------------------------
+// Init.pml
+//
+// Init proc.
+// Manually generated driver.
+//
+// --------------------------------------------
+
+init
+{
+  atomic {
+#*--*##foreach( $statemachine in $model.sort($model.getStateMachines()) )
+#*----*##set( $smName = ${mapper.sanitize($statemachine.name)} )
+    run ${smName}(evQ[${smName}_ID]);
+#*--*##end
+  }
+##
+##  // Exercise the state-machine with this sequence of events
+#*--*##foreach( $statemachine in $model.sort($model.getStateMachines()) )
+#*----*##set( $smName = $mapper.mapToTypeName($statemachine) )
+#*----*##foreach( $signal in $model.sort($model.getSignals()) )
+#*------*##set( $signalName = $mapper.sanitize($signal.name) )
+##  evQ[${smName}_ID]!${signalName};
+#*----*##end
+#*--*##end
+
+  // Driver to exercise state-machine with all possible, enabled events
+  do
+## Iterate through list of state machines
+#*--*##set( $smSet = $model.addToSet($model.makeSet(), $model.getStateMachines()) )
+#*--*##foreach( $statemachine in $model.sort($smSet) )
+#*----*##set( $smName = $mapper.mapToTypeName($statemachine) )
+## construct a new list of the state machines excluding this one
+#*----*##set( $otherSmList = $model.sort($model.removeFromSet($smSet, $statemachine)) )
+##- iterate through all leaf states in the state machine
+#*----*##foreach( $state in $model.sort($model.getLeafStatesAboveOrtho($statemachine)) )
+#*------*##set( $stateName = $mapper.mapToFunctionName($state) )
+  :: ${smName}@${stateName} ->
+    if
+##-- iterate through all the Events enabled in this leaf state
+#*------*##foreach( $ev in $model.getEnabledEvents($state, $mapper) )
+#*--------*##set( $signalName = $mapper.mapEventToLiteral($ev) )
+    :: atomic { evQ[${smName}_ID]!${signalName}## no line break yet
+##-- but also send the event to all other state machines that subscribe to it
+#*--------*##foreach( $otherSM in $otherSmList )
+#*----------*##set( $otherSMName = $mapper.mapToTypeName($otherSM) )
+#*----------*##if( $model.subscribesToEvent($otherSM, $ev, $mapper) )
+; evQ[${otherSMName}_ID]!${signalName}## no line break yet
+#*----------*##end
+#*--------*##end
+; printf("*** -> ${signalName}\n"); }## OK, now an explicit line break
+
+#*------*##end
+    fi
+#*----*##end
+#*--*##end
+  od
+}

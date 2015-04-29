@@ -1,0 +1,36 @@
+##
+## Implement class private section of class, separated here because it follows
+## the protected section, which is variable depending on number of states.
+##
+##- input vars:
+##    * $sm:  State Machine object
+##
+##* [SWC 2011.04.26] Factored out of qp.h-class-active/hsm to conform to project
+##  coding standards of section ordering:  public, protected, then private.
+###############################################################################
+
+private:
+#*--*##if( $autocoder.executionTraceOn )
+    char objName[256];
+#*--*##end
+    ${qfNs}QActive* active;  // containing machine if this is a submachine instance
+#*--*##if( $isQHsm )
+    ${smName}* parent;  // parent active machine for access to timers
+#*--*##end
+#*--*##if( $SM_TERMINABLE )
+##- this SM is referenced as a submachine, declare a parent-substate field
+    int32_t parentState;  // parent substate of this submachine instance
+#*--*##end
+    ${smName}Impl* impl;
+    enum ${smName}State myState;
+#*--*##if( !$isQHsm && $model.hasMachineEntryPoint() )
+    ${smName}StateConnPoint entryPoint;  // designates submachine entry point
+    ${qfNs}QEvent const* entryEvent;  // event that triggered entry into submachine
+#*--*##end
+##
+## Instantiate all orthogonal regions and submachines and declare all history variables
+##
+#*--*##parse( "${tpath}qp.h-class-commondata.vm" )
+## end of class scope
+
+};

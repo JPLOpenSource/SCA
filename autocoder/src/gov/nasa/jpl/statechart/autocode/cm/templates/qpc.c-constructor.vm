@@ -1,0 +1,114 @@
+##
+## Implement state machine class constructor
+##
+##- input vars:
+##    * $_typeObj :  State Machine or Region
+##    * $_typeName :  State Machine name or Region name (mapper usage is different)
+##    * $_isQHsm :    flag indicating if this is QHsm (true), or QActive (false)
+##
+##* [SWC 2009.09.04] verified constructor against old code in
+##    StateChartCWriter.writeStateMachineConstructor();
+###############################################################################
+
+/** 
+ * ${_typeName} Constructor
+ *
+ * This function is responsible for initializing the "me" struct,
+ * allocating and initializing any orthogonal regions, and 
+ * initializing the timers.
+ */
+${_typeName}* ${_typeName}_Constructor(${_typeName}* me, char* objNameNew, ${smName}Impl* implPtr#if( $_isQHsm ), QActive* parent#end) {
+##
+## Superclass constructor call (weird formatting necessary for desired output)
+##
+   #if( $_isQHsm )
+QHsm#else
+QActive#end
+_ctor_(&me->super_, (QState)${_typeName}_initial);
+##
+## Print execution trace, if necessary
+##
+#*--*##if( $autocoder.executionTraceOn )
+## Output execution trace for GUI
+   strcpy(me->objName, objNameNew);
+   strcat(me->objName, " ${smName}");## output SM name even for ortho region!
+#*--*##end
+##
+## Other data initialization
+##
+
+   me->impl = implPtr;
+#*--*##if( $_isQHsm )
+   me->parent = parent;
+#*--*##end
+##
+## Allocate and initialize all orthogonal region state machines
+##
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($_typeObj)) )
+#*--*##if( !$localRegions.isEmpty() )
+
+   /***
+    * Allocate and initialize the orthogonal region state machines
+    */
+#*----*##foreach( $region in $localRegions.entrySet() )
+#*------*##set( $regionName = $mapper.mapToStructType($region) )
+#*------*##set( $subRegionType = "${regionName}Region" )
+#*------*##set( $varname = $mapper.mapToVarName($region) )
+   me->$varname = (${subRegionType}*) malloc(sizeof(${subRegionType}));
+   ${subRegionType}_Constructor(me->${varname}, objNameNew, implPtr, &me->super_);
+#*----*##end
+#*--*##end
+##
+## Initialize history records
+##
+#*--*##set( $histRecs = $model.sort($model.getHistoryContainers($_typeObj)) )
+#*--*##if( !$histRecs.isEmpty() )
+
+   /***
+    * Initialize the deep histories 
+    */
+#*----*##foreach( $hist in $histRecs.entrySet() )
+#*------*##set( $stateName = $mapper.sanitize($model.getParentState($hist).value.name) )
+   me->my${stateName}history = NULL;
+#*----*##end
+#*--*##end
+##
+## Search for the timer events and initialize the timer constructors
+##
+#*--*##set( $timerStates = $model.getStatesWithTimeEventTriggers($_typeObj, true) )
+#*--*##if( !$timerStates.isEmpty() )
+
+   /***
+    * Initialize all the timers
+    *
+    * Each timer object is declared only once, within
+    * the top-level state chaning or an orthogonal
+    * region.  The top-level state captures each timer
+    * event and passes it to the proper state machine.
+    */
+#*--*##end
+#*--*##set( $statesByRegion = $model.getStatesByEnclosingRegion($timerStates) )
+#*--*##foreach( $stateByRegion in $statesByRegion.entrySet() )
+#*----*##if( $stateByRegion.key )## null == false
+#*------*##set( $accessor = $mapper.mapToVarName($stateByRegion.key) + "->" )
+## intentional blank line
+
+#*------*##set( $regionName = $mapper.mapToFunctionName($stateByRegion.key) )
+   /* ${regionName} Region Timers */
+#*----*##else
+#*------*##set( $accessor = "" )
+## intentional blank line
+
+   /* Top-Level Timers */
+#*----*##end
+#*----*##foreach( $state in $stateByRegion.value.entrySet() )
+#*------*##foreach( $event in $model.getTimeEvents($state) )
+#*--------*##set( $timerName = $mapper.mapTimeEventToTimer($event) )
+#*--------*##set( $timeEvName = $mapper.mapTimeEventToName($event) )
+   QTimeEvt_ctor(&(me->${accessor}${timerName}), ${timeEvName});
+#*------*##end
+#*----*##end
+#*--*##end
+
+   return me;
+}

@@ -1,0 +1,73 @@
+##
+## Implement class and constructor for a Region.
+##
+##- input vars:
+##    * $region:    Region object
+##    * $typeName:  Type name of the State Machine object
+##
+##* [SWC 2009.09.02] coded from Python examples.
+##* [SWC 2009.09.18] verified against C template.
+##* [SWC 2009.09.22] added region instantiaton and fixed history state
+##* [SWC 2010.01.14] refactored Velocity templates to be finer-grained, with
+##  more decision logic pushed into the Java writer class.
+###############################################################################
+## 
+#*--*##set( $typeObj = $region)
+
+
+##
+## Class signature
+##
+class ${typeName}(miros.Hsm):
+    """
+    ${smName} state machine orthogonal ${typeName} object.
+    """
+    # Static reference to global LOGGER to facilitate import as submachine
+    LOGGER = LOGGER
+    
+    def __init__(self, impl_object=None, machine_name=None, window_name=None, active_obj=None, parent_obj=None):
+        """
+        Constructor
+        """
+        miros.Hsm.__init__(self)
+##
+## Obtain all the state names within this state machine
+##
+#*--*##parse( "${tpath}qp-constructor-init-addstates.vm" )
+##
+
+        # For GUI messages
+        self.__machine_name = machine_name
+        self.__window_name = window_name
+        # For manually coded implementation
+        # of all actions, guards, etc.
+        self.__impl_obj = impl_object
+        # For Active and parent object access
+        self.__active_obj = active_obj
+        self.__parent_obj = parent_obj
+##
+## Instantiate all orthogonal regions and declare all history variables
+##
+#*--*##parse( "${tpath}qp-constructor-init-regionandhistory.vm" )
+
+
+    def isSubstate(self):
+        """
+        Return flag indicating whether this StateMachine instance
+        is instantiated as a substate of another StateMachine.
+        """
+        return self.__active_obj.isSubstate()
+
+
+    def getCurrentState(self):
+        """
+        Return the currently active leaf state
+        """
+        return self.__state_name
+
+
+    def sendUpdate(self, state_name, entry_exit):
+        """
+        Send gui entry or exit messages via the parent QHsm class.
+        """
+        self.__parent_obj.sendUpdate(state_name, entry_exit)

@@ -1,0 +1,29 @@
+##
+## Implement each state (variable $state defined in Velocity context).
+## This VM file is the beginning of state code, other files complete it.
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##
+##* [SWC 2009.09.02] coded from Python examples.
+##* [SWC 2009.09.18] verified against C template.
+##* [SWC 2010.01.19] refactored Velocity templates to be finer-grained, with
+##  more decision logic pushed into the Java writer class; file split into ~10.
+###############################################################################
+
+
+    def ${stateName}(self):
+        """
+        State ${stateName}
+        """
+        machine = self.__machine_name
+#*--*##if( $state.submachineState )
+#*----*##set( $submName = $mapper.mapToTypeName($state.submachine) )
+        state_name = "${stateName}:${submName}"
+#*--*##else
+        state_name = "${stateName}"
+#*--*##end
+##
+## Generate code for initial transition within state
+##

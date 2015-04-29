@@ -1,0 +1,18 @@
+##
+## Defines "final" method for cleanly bailing out of submachine (or region).
+##
+##- input vars (in addition to $model, etc.):  None
+##
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+###############################################################################
+
+${qfNs}QState ${typeName}::final (${typeName}* me, ${qfNs}QEvent const* e) {
+    switch (e->sig) {
+    case ${qfNs}Q_ENTRY_SIG:
+        me->myState = ${mapper.mapToEnumDecl($sm)}__TOP__;
+        return Q_HANDLED();
+    case ${qfNs}Q_EXIT_SIG:
+        return Q_HANDLED();
+    }
+    return Q_SUPER(&${qfNs}QHsm::top);
+}

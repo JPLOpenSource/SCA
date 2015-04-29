@@ -1,0 +1,170 @@
+# SubMachine1 checks a StateMachine with 2 simple submachines.
+
+# Initial entry
+<SubMachine1 Sub1:SubState1 ENTRY
+<Sub1:SubState1 SubState1_S1 ENTRY
+
+# Let's do a roundtrip to Sub2 and back without exercising submachines yet
+>SubEv1
+<SubMachine1 Sub1:SubState1 SubEv1
+<SubMachine1 Sub1:SubState1 EXIT
+<Sub1:SubState1 SubState1_S1 EXIT
+<SubMachine1 Sub2 ENTRY
+<SubMachine1 S1 ENTRY
+>SubEv2
+<SubMachine1 Sub2 SubEv2
+<SubMachine1 S1 EXIT
+<SubMachine1 Sub2 EXIT
+<SubMachine1 Sub1:SubState1 ENTRY
+<Sub1:SubState1 SubState1_S1 ENTRY
+
+# Now exercise submachines, each instance full cycle
+#- exercise Sub1 instance of SubState1 submachine
+>Ev1
+<SubMachine1 Sub1:SubState1 Ev1
+<Sub1:SubState1 SubState1_S1 Ev1
+<Sub1:SubState1 SubState1_S1 EXIT
+<Sub1:SubState1 SubState1_S2 ENTRY
+>Ev2
+<SubMachine1 Sub1:SubState1 Ev2
+<Sub1:SubState1 SubState1_S2 Ev2
+<Sub1:SubState1 SubState1_S2 EXIT
+<Sub1:SubState1 SubState1_S1 ENTRY
+>Ev1
+<SubMachine1 Sub1:SubState1 Ev1
+<Sub1:SubState1 SubState1_S1 Ev1
+<Sub1:SubState1 SubState1_S1 EXIT
+<Sub1:SubState1 SubState1_S2 ENTRY
+#
+#- move on to exercise S2 instance of SubState1 submachine
+>SubEv1
+<SubMachine1 Sub1:SubState1 SubEv1
+<SubMachine1 Sub1:SubState1 EXIT
+<Sub1:SubState1 SubState1_S2 EXIT
+<SubMachine1 Sub2 ENTRY
+<SubMachine1 S1 ENTRY
+>SubEv3
+<SubMachine1 S1 SubEv3
+<SubMachine1 S1 EXIT
+<SubMachine1 S2:SubState1 ENTRY
+<S2:SubState1 SubState1_S1 ENTRY
+>Ev1
+<SubMachine1 S2:SubState1 Ev1
+<S2:SubState1 SubState1_S1 Ev1
+<S2:SubState1 SubState1_S1 EXIT
+<S2:SubState1 SubState1_S2 ENTRY
+>Ev2
+<SubMachine1 S2:SubState1 Ev2
+<S2:SubState1 SubState1_S2 Ev2
+<S2:SubState1 SubState1_S2 EXIT
+<S2:SubState1 SubState1_S1 ENTRY
+>Ev1
+<SubMachine1 S2:SubState1 Ev1
+<S2:SubState1 SubState1_S1 Ev1
+<S2:SubState1 SubState1_S1 EXIT
+<S2:SubState1 SubState1_S2 ENTRY
+#
+#- move on to exercise S3 instance of SubState2 submachine
+>SubEv4
+<SubMachine1 S2:SubState1 SubEv4
+<SubMachine1 S2:SubState1 EXIT
+<S2:SubState1 SubState1_S2 EXIT
+<SubMachine1 S3:SubState2 ENTRY
+<S3:SubState2 SubState2_S1 ENTRY
+>Ev1
+<SubMachine1 S3:SubState2 Ev1
+<S3:SubState2 SubState2_S1 Ev1
+<S3:SubState2 SubState2_S1 EXIT
+<S3:SubState2 SubState2_S2 ENTRY
+>Ev2
+<SubMachine1 S3:SubState2 Ev2
+<S3:SubState2 SubState2_S2 Ev2
+<S3:SubState2 SubState2_S2 EXIT
+<S3:SubState2 SubState2_S3 ENTRY
+>Ev3
+<SubMachine1 S3:SubState2 Ev3
+<S3:SubState2 SubState2_S3 Ev3
+<S3:SubState2 SubState2_S3 EXIT
+<S3:SubState2 SubState2_S1 ENTRY
+>Ev1
+<SubMachine1 S3:SubState2 Ev1
+<S3:SubState2 SubState2_S1 Ev1
+<S3:SubState2 SubState2_S1 EXIT
+<S3:SubState2 SubState2_S2 ENTRY
+#
+#- let's transition a couple more times, then leave Sub2 and come back in
+>SubEv5
+<SubMachine1 S3:SubState2 SubEv5
+<SubMachine1 S3:SubState2 EXIT
+<S3:SubState2 SubState2_S2 EXIT
+<SubMachine1 S1 ENTRY
+>SubEv3
+<SubMachine1 S1 SubEv3
+<SubMachine1 S1 EXIT
+<SubMachine1 S2:SubState1 ENTRY
+<S2:SubState1 SubState1_S1 ENTRY
+>SubEv2
+<SubMachine1 Sub2 SubEv2
+<SubMachine1 S2:SubState1 EXIT
+<S2:SubState1 SubState1_S1 EXIT
+<SubMachine1 Sub2 EXIT
+<SubMachine1 Sub1:SubState1 ENTRY
+<Sub1:SubState1 SubState1_S1 ENTRY
+
+# Repeat on submachines to make sure they don't work just the first time.  :-)
+#- 2nd exercise of Sub1 instance of SubState1 submachine
+>Ev1
+<SubMachine1 Sub1:SubState1 Ev1
+<Sub1:SubState1 SubState1_S1 Ev1
+<Sub1:SubState1 SubState1_S1 EXIT
+<Sub1:SubState1 SubState1_S2 ENTRY
+>Ev2
+<SubMachine1 Sub1:SubState1 Ev2
+<Sub1:SubState1 SubState1_S2 Ev2
+<Sub1:SubState1 SubState1_S2 EXIT
+<Sub1:SubState1 SubState1_S1 ENTRY
+#
+#- move on to 2nd exercise of S2 instance of SubState1 submachine
+>SubEv1
+<SubMachine1 Sub1:SubState1 SubEv1
+<SubMachine1 Sub1:SubState1 EXIT
+<Sub1:SubState1 SubState1_S1 EXIT
+<SubMachine1 Sub2 ENTRY
+<SubMachine1 S1 ENTRY
+>SubEv3
+<SubMachine1 S1 SubEv3
+<SubMachine1 S1 EXIT
+<SubMachine1 S2:SubState1 ENTRY
+<S2:SubState1 SubState1_S1 ENTRY
+>Ev1
+<SubMachine1 S2:SubState1 Ev1
+<S2:SubState1 SubState1_S1 Ev1
+<S2:SubState1 SubState1_S1 EXIT
+<S2:SubState1 SubState1_S2 ENTRY
+#
+#- move on to 2nd exercise of S3 instance of SubState2 submachine
+>SubEv4
+<SubMachine1 S2:SubState1 SubEv4
+<SubMachine1 S2:SubState1 EXIT
+<S2:SubState1 SubState1_S2 EXIT
+<SubMachine1 S3:SubState2 ENTRY
+<S3:SubState2 SubState2_S1 ENTRY
+>Ev1
+<SubMachine1 S3:SubState2 Ev1
+<S3:SubState2 SubState2_S1 Ev1
+<S3:SubState2 SubState2_S1 EXIT
+<S3:SubState2 SubState2_S2 ENTRY
+>Ev2
+<SubMachine1 S3:SubState2 Ev2
+<S3:SubState2 SubState2_S2 Ev2
+<S3:SubState2 SubState2_S2 EXIT
+<S3:SubState2 SubState2_S3 ENTRY
+
+# Exit out and get back to start state
+>SubEv2
+<SubMachine1 Sub2 SubEv2
+<SubMachine1 S3:SubState2 EXIT
+<S3:SubState2 SubState2_S3 EXIT
+<SubMachine1 Sub2 EXIT
+<SubMachine1 Sub1:SubState1 ENTRY
+<Sub1:SubState1 SubState1_S1 ENTRY

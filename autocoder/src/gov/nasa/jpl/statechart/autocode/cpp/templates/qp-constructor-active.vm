@@ -1,0 +1,145 @@
+##
+## Implement class and constructor for a State Machine.
+##
+##- input vars:
+##    * $machine:   State Machine object
+##    * $typeName:  Type name of the State Machine object
+##
+##* [SWC 2010.02.08] implemented anew referencing C and new Python templates.
+##* [SWC 2010.06.25] added submachine TimerEvent features from Python side.
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+##* [SWC 2012.09.05] Created 2 constructor variations depending on Terminable,
+##  to allow for submachine to be instantiated with parent substate argument.
+###############################################################################
+##
+#*--*##set( $typeObj = $machine)## for passing into parsed Velocity templates
+/** 
+ * ${smName} Constructor
+ */
+#*--*##if( $SM_TERMINABLE )## add parent-substate parameters
+${smName}::${smName} (const char* objNameNew, ${smName}Impl* implObj, ${qfNs}QActive* active, int32_t parentSubstate)
+#*--*##else## no additional parameter
+${smName}::${smName} (const char* objNameNew, ${smName}Impl* implObj, ${qfNs}QActive* active)
+#*--*##end
+## Superclass constructor call
+: ${qfNs}QActive((${qfNs}QStateHandler) &${smName}::initial)
+{
+##
+## Print execution trace, if necessary
+##
+#*--*##if( $autocoder.executionTraceOn )
+## Output execution trace for GUI
+    strcpy(this->objName, objNameNew);
+    strcat(this->objName, ":${smName}");
+#*--*##else
+#*----*##unusedParam("objNameNew")
+#*--*##end
+#*--*##if( $SM_TERMINABLE )
+    this->parentState = parentSubstate;
+#*--*##end
+##
+## Other data initialization
+##
+    this->impl = implObj;
+    if (0 == active) {  // self IS the active object
+        this->active = this;
+    } else {  // set containing machine as active object
+        this->active = active;
+    }
+    this->impl->setQActive(this->active);  // give impl access to parent QActive
+##
+## Instantiate timers for transitions in state machine with timer events
+##
+#*--*##set( $timerEvSet = $model.getTransitionTimeEvents($sm) )
+#*--*##set( $submTimerEvQuery = $model.querySubmachineTransitionTimeEvents($sm) )
+#*--*##if( !$timerEvSet.empty || !$submTimerEvQuery.eventTransitions.empty)
+
+    // Timer events initialized here
+#*--*##end
+#*--*##foreach( $timerEv in $timerEvSet )
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($timerEv) )
+#*----*##set( $timerEvName = $mapper.mapTimeEventToName($timerEv) )
+    this->${timerName} = new ${qfNs}QTimeEvt(${timerEvName});
+#*--*##end
+##- special handling for submachine timer events
+#*--*##foreach( $submTimerPair in $submTimerEvQuery.eventTransitions )
+#*----*##set( $evPrefix = $submTimerEvQuery.getSubstatePrefixOfEvent($submTimerPair) )
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($submTimerPair.event, $evPrefix) )
+#*----*##set( $timerEvName = $mapper.mapTimeEventToName($submTimerPair.event, $evPrefix) )
+    this->${timerName} = new ${qfNs}QTimeEvt(${timerEvName});
+#*--*##end
+##
+## Instantiate all orthogonal regions, submachines and history variables
+##
+#*--*##parse( "${tpath}qp-constructor-commondata.vm" )
+}
+
+${smName}::~${smName} () {
+#*--*##set( $timerEvSet = $model.getTransitionTimeEvents($sm) )
+#*--*##if( !$timerEvSet.empty )
+
+    // Delete timer event instances
+#*----*##foreach( $timerEv in $timerEvSet )
+#*------*##set( $timerName = $mapper.mapTimeEventToTimer($timerEv) )
+    delete ${timerName};
+#*----*##end
+#*--*##end
+#*--*##foreach( $submTimerPair in $submTimerEvQuery.eventTransitions )
+#*----*##set( $evPrefix = $submTimerEvQuery.getSubstatePrefixOfEvent($submTimerPair) )
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($submTimerPair.event, $evPrefix) )
+    delete ${timerName};
+#*--*##end
+##
+#*--*##set( $localRegionSet = $model.sort($model.getLocalOrthogonalRegions($typeObj)) )
+#*--*##set( $submStateSet = $model.sort($model.getLocalSubmachineStates($typeObj)) )
+#*--*##if( !$localRegionSet.empty || !$submStateSet.empty )
+
+    // Delete any orthgonal region and submachine instances
+#*----*##foreach( $localRegion in $localRegionSet )
+#*------*##set( $varname = $mapper.mapToVarName($localRegion) )
+    delete this->${varname};
+#*----*##end
+##
+#*----*##foreach( $submState in $submStateSet )
+#*------*##set( $stateName = $mapper.mapToVarName($submState) )
+    delete this->${stateName}Impl;
+    delete this->${stateName};
+#*----*##end
+#*--*##end
+}
+
+${smName}Impl* ${typeName}::getImpl () {
+    return this->impl;
+}
+##
+## Implement the getter methods for submachine QActive instance access
+##
+#*--*##foreach( $submState in $model.sort($model.getSubmachineStates($typeObj)) )
+#*----*##set( $stateName = $mapper.mapToVarName($submState) )
+#*----*##set( $stateTypeName = $mapper.mapToTypeName($submState) )
+#*----*##set( $submTypeName = $mapper.mapToTypeName($submState.submachine) )
+
+${submTypeName}* ${typeName}::getSubm${stateTypeName} () {
+    return this->${stateName};
+}
+#*--*##end
+
+${smName}State ${typeName}::getCurrentState() {
+    return this->myState;
+}
+
+bool ${typeName}::isSubstate () {
+    return (this->active != this);
+}
+#*--*##if( $SM_TERMINABLE || $SM_HAS_FINAL_STATE || $autocoder.ifDefineMain() || $autocoder.ifDefineUnitTest() )
+
+void ${typeName}::reInit () {
+#*----*##if( $autocoder.ifDefineMain() || $autocoder.ifDefineUnitTest() )## don't check for substate ever
+    this->m_state = (${qfNs}QStateHandler) &${typeName}::initial;
+#*----*##else
+    if (this->isSubstate()) {
+        this->m_state = (${qfNs}QStateHandler) &${typeName}::initial;
+    }
+#*----*##end
+}
+#*--*##end

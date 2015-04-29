@@ -1,0 +1,20 @@
+make clean all
+
+Test.pdf contains the graphical Test state-machine from the MD Test.xml
+
+Run the model through the spin simulator:
+-----------------------------------------
+> spin autocode/Main.pml
+
+
+Run the spin output through logscope:
+--------------------------------------
+> spin -u8000 autocode/Main.pml | convert.scala > log
+> /Users/watney/logscope/logscope log spec
+
+The -u8000 parameter tells spin to run 8000 steps
+
+The file 'spec' contains the monitor specifications.
+It also contains the state-machine hierarchy, so if the state-machine changes then so should this file.
+
+The file 'convert.scala' is a scala script that translates the output from my spin model into a format that logscope can deal with.  Once again if anything changes in the state-machine, then this file also needs to change

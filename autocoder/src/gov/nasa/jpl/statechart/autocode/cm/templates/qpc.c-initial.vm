@@ -1,0 +1,58 @@
+##
+## Implement initialization function
+##
+##* [SWC 2009.09.08] verified initial func against old code in
+##     StateChartCWriter.writeQActiveInitialMethod(),
+##     except for transition guard being incomplete
+###############################################################################
+
+/**
+ * Initial function of the state machine
+ */
+void ${smName}_initial(${smName}* me, QEvent const *e) {
+
+##
+## Find the initial pseudostate and do effect action
+##
+#*--*##set( $initialState = $model.getInitialState($model.statemachine) )
+#*--*##set( $initTransition = $model.getInitialTransition($initialState) )
+#*--*##if( $initTransition )
+#*----*##doAction( $initTransition.effect )
+#*--*##end
+##
+## Subscribe to list of global signal events referenced by statechart
+##
+#*--*##set( $signals = $model.sort($model.getSignals($model.statemachine, true)) )
+#*--*##if( !$signals.isEmpty() )
+   /**
+    * Subscribe to all the signals to which this state machine needs 
+    * to respond. This includes all the signals defined for any
+    * reachable submachine as well.  The signals are stored in the
+    * ownedMember association of the UML Namespace class.
+    */
+#*----*##foreach( $signal in $signals )
+   QActive_subscribe_(& me->super_, $mapper.sanitize(${signal.name}));
+#*----*##end
+#*--*##end
+##
+## Initialize all the concurrent subregions
+##
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions()) )
+#*--*##if( !$localRegions.isEmpty() )
+###
+###   /**
+###    * Initialize the orthogonal regions
+###    */
+#*----*##foreach( $region in $localRegions.entrySet() )
+#*------*##set( $varname = $mapper.mapToVarName($region) )
+###   QHsm_init(&(me->${varname}->super_), e);
+#*----*##end
+#*--*##end
+
+##
+## Find the initial pseudostate and evaluate its transition tree
+##
+#*--*##if( $initialState )
+#*----*##stateTransition( $initialState, $initTransition, "Q_INIT" )
+#*--*##end
+}

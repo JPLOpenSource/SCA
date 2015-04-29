@@ -1,0 +1,26 @@
+##
+## Generate Exit condition code, first-half:
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##    * $isQHsm:     flag indicating whether we're in an Active or Hsm class
+###############################################################################
+        elif self.tEvt['sType'] == "exit":
+##
+## stop Do activity
+#*--*##if( $model.hasDoActivity($state) )
+            # Destroy instance and kill doActivity thread if alive...
+            if self.__${stateName}_do_thread.isAlive() == True:
+                self.__${stateName}_do_thread.kill()
+            del self.__${stateName}_do_thread
+            #
+#*--*##end
+            printf("%s %s %s", machine, state_name, "EXIT")
+#*--*##if( $autocoder.executionTraceOn )
+#*----*##if( $isQHsm )
+            self.__parent_obj.sendUpdate(state_name,"EXIT")
+#*----*##else
+            self.sendUpdate(state_name,"EXIT")
+#*----*##end
+#*--*##end

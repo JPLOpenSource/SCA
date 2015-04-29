@@ -1,0 +1,45 @@
+##
+## Implement each state (variable $state defined in Velocity context).
+## This VM file is the beginning of state code, other files complete it.
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:  the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##    * $shouldDeclareEv:  flag indicating whether to declare var newEv
+##    * $checkSubmInstance:  flag indicating whether to declare exitPoint var
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+###############################################################################
+
+/**
+ * State ${stateName}
+ */
+QState ${typeName}_${stateName} (${typeName} *me, QEvent const *e) {
+#*--*##if( $autocoder.executionTraceOn )
+    char stateName[#smNameLength()];
+    strncpy(stateName, me->objName, #smNameLength());
+#*----*##if( $state.submachineState )
+#*------*##set( $submName = $mapper.mapToTypeName($state.submachine) )
+    strncat(stateName, " ${stateName}:${submName}", #smNameLength()-#safeStrlen('stateName')-1/*null-char*/);
+#*----*##else
+    strncat(stateName, " ${stateName}", #smNameLength()-#safeStrlen('stateName')-1/*null-char*/);
+#*----*##end
+
+    char logMsg[#logMsgLength()];
+    strncpy(logMsg, stateName, #logMsgLength());  // strncat below null-terminates
+#*--*##end
+#*--*##if( $shouldDeclareEv || $checkSubmInstance )
+
+#*----*##if( $shouldDeclareEv )
+## call project-overriddable macro to declare an event variable before switch
+#*----*##declareLocalEventVar()
+#*----*##end
+#*----*##if( $checkSubmInstance )
+    #dataTypeInt32() exitPoint;
+#*----*##end
+#*--*##end
+
+##
+## Generate code for initial transition within state
+##
+    switch (e->sig) {

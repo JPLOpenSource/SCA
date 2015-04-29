@@ -1,0 +1,13 @@
+##
+## Implement initial entry into a entryPoint target, based on entryPoint
+## set prior to starting this SubMachine.
+##
+##- input vars (in addition to $model, etc.):
+##    * $if:      the if keyword to use
+##    * $pseudo:  the entryPoint Pseudostate to implement
+##
+##* [SWC 2010.04.14] new pattern implemented for submachine entryPoint
+##* [SWC 2012.09.05] added entryPoint enum to replace passing strings.
+###############################################################################
+    ${if} (me->entryPoint == ${mapper.mapToEnumDecl($pseudo)}) {
+        e = me->entryEvent;

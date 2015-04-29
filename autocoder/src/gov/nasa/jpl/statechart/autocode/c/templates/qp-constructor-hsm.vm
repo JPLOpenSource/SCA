@@ -1,0 +1,81 @@
+##
+## Implement class and constructor for a Region.
+##
+##- input vars:
+##    * $region:    Region object
+##    * $typeName:  Type/struct name of the Region object
+##    * $smName:    Type/struct name of the State Machine object
+##    * $implName:  Type/struct name of the State Machine Impl object
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+##* [SWC 2011.09.27] Implemented SMAP C naming convention for module items
+##* [SWC 2012.01.19] Fix: objName declared regardless of trace; sized with macro
+##* [SWC 2012.09.04] Removed C destructor function
+##* [SWC 2012.09.05] Created 2 constructor variations to eliminate objNameNew
+##  param entirely if execution trace disabled.
+###############################################################################
+## 
+#*--*##set( $typeObj = $region)
+
+###
+## Define local orthogonal regions here; this approach avoids the use of malloc
+##
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($typeObj)) )
+#*--*##if( !$localRegions.empty )
+
+/* Orthogonal region instances */
+#*----*##foreach( $localRegion in $localRegions )
+#*------*##set( $localRegionName = $mapper.mapToQualifiedName($localRegion) )
+${localRegionName} ${localRegionName}_inst;
+#*----*##end
+#*--*##end
+
+/** 
+ * ${smName} State Machine orthogonal-region ${typeName} Constructor
+ */
+#*--*##if( $autocoder.executionTraceOn )## add name string parameter
+${typeName} *${typeName}_constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, ${smName} *parent) {
+#*--*##else## no additional parameter
+${typeName} *${typeName}_constructor (${typeName} *me, ${implName} *implObj, QActive *active, ${smName} *parent) {
+#*--*##end
+##
+## Superclass constructor call
+    QHsm_ctor((QHsm *)me, (#dataTypeStateHandler() )${typeName}_initial);
+##
+#*--*##if( $autocoder.executionTraceOn )
+## Save supplied name of object
+    strncpy(me->objName, objNameNew, #smNameLength());
+    me->objName[#smNameLength()-1] = '\0';  // null-terminate to be sure
+#*--*##end
+##
+## Other data initialization
+##
+    me->impl = implObj;
+    me->active = active;
+    me->parent = parent;
+##
+## Instantiate all orthogonal regions, submachines and history variables
+##
+#*--*##parse( "${tpath}qp-constructor-commondata.vm" )
+}
+####
+## Because all timers, orthogonal region, submachine, and submachine impl
+## instances are statically declared in the C pattern, no destructor needed!
+####
+
+${smName}_state ${typeName}_get_current_state (${typeName} *me) {
+    return me->myState;
+}
+##
+#*--*##if( $SM_TERMINABLE || $autocoder.ifDefineMain() || $autocoder.ifDefineUnitTest() )
+
+#dataTypeBoolean() ${typeName}_is_substate (${typeName} *me) {
+    return ${smName}_is_substate((${smName} *)me->parent);
+}
+#*--*##end
+##
+## Orthogonal regions must always be able to be terminated
+
+void ${typeName}_reinit (${typeName} *me) {
+    ((QHsm *)me)->state = (#dataTypeStateHandler() ) &${typeName}_initial;
+}

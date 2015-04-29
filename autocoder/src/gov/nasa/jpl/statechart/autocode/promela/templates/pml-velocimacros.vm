@@ -1,0 +1,147 @@
+##
+## Macro definitions
+##
+###############################################################################
+##
+## Macro for a newline
+#macro( blankLine )
+
+#end
+##
+## Macro for separator lines between blocks of Promela code.
+#macro( separatorLines )
+
+
+#end
+##
+## Macro for one partial line of state label.
+##
+## @param $ancestorName:  Name of ancestor state to use as label.
+#macro( labelState $ancestorName )
+#*--*##set( $s = $mapper.indentation() )
+${s}${ancestorName}_Init:##
+#end
+##
+## Macro for one partial line of state label.
+##
+## @param $evName:  Name of the event to branch on
+#macro( signalBranch $evName )
+#*--*##set( $s = $mapper.indentation() )
+${s}:: e.sig == ${evName} ->
+#end
+##
+## Macro to make a else followed by some Promela execution.
+#macro( elseExec )
+#*--*##set( $s = $mapper.indentation() )
+${s}:: else ->
+#end
+##
+## Macro to make a no-op else
+#macro( elseNoop )
+#*--*##set( $s = $mapper.indentation() )
+${s}:: else
+#end
+##
+## Macro to code a print message warning of unknown target type.
+##
+## @param $target:  Target state of transition
+#macro( gotoTargetUnknown $target )
+#*--*##set( $s = $mapper.indentation() )
+${s}// Encountered ${model.getType($target)}, which we don't yet know how to handle!
+#end
+##
+## Macro marking the end of a Promela if-block.
+#macro( footerGuard )
+#*--*##set( $s = $mapper.indentation() )
+${s}fi;
+#end
+##
+## Macro marking the end of an orthogonal region atomic block.
+#macro( footerOrtho )
+  }
+#end
+##
+## Macro marking the end of a Promela block (function, proctype, etc.).
+#macro( footerBlock )
+}
+#end
+##
+## Macro to code orthogonal region rendezvous-point channel.
+##
+## @param parentName:  Name of parent state
+## @param count:  Number of orthogonal regions in this state
+#macro( rendezvousChannel $parentName $count )
+// Rendezvous point for orthogonal regions in state ${parentName}
+chan ${parentName}RegionChan[${count}] = [0] of {eventType};
+#end
+##
+## Macro to code start-up of an orthogonal region.
+##
+## @param parentName:  Name of parent state
+## @param regionName:  Name of orthogonal region to start
+## @param channelID:   ID of rendezvous channel to use for region
+#macro( runRegion $parentName $regionName $channelID )
+// Initiate Orthogonal region ${regionName}; blocks until ACTIVATE signal.
+run ${regionName}(${parentName}RegionChan[${channelID}]);
+#end
+##
+## Macro to code activation of an orthogonal region.
+##
+## @param parentName:  Name of parent state
+## @param channelID:   ID of rendezvous channel to use for region
+#macro( activateRegion $parentName $channelID )
+    ${parentName}RegionChan[${channelID}]!ACTIVATE;
+#end
+##
+## Macro to code deactivation of an orthogonal region.
+##
+## @param parentName:  Name of parent state
+## @param channelID:   ID of rendezvous channel to use for region
+#macro( deactivateRegion $parentName $channelID )
+#*--*##set( $s = $mapper.indentation() )
+${s}${parentName}RegionChan[${channelID}]!EXIT;
+#end
+##
+## Macro to code dispatch of an orthogonal region.
+##
+## @param parentName:  Name of parent state
+## @param regionName:  Name of orthogonal region
+## @param channelID:   ID of rendezvous channel to use for region
+#macro( dispatchRegion $parentName $regionName $channelID )
+#*--*##set( $s = $mapper.indentation() )
+${s}${parentName}RegionChan[${channelID}]!e;  // dispatch to ${regionName}
+#end
+##
+## Macro to begin the orthogonal-region null-state
+#macro( beginNullState )
+goto nullState;
+
+  // Orthogonal Region state-machines are atomic because they don't run
+  // as separate execution threads.
+  atomic
+  {
+    nullState: 
+        do
+        :: inp?e ->
+            if
+            :: e.sig == ACTIVATE ->
+#end
+##
+## Macro to end the orthogonal-region null-state
+#macro( endNullState )
+            :: else
+            fi;
+        od;
+#end
+##
+## Macro to begin the orthogonal-region exit-branch
+#macro( beginExitBranch )
+#*--*##set( $s = $mapper.indentation() )
+${s}:: e.sig == EXIT ->
+#end
+##
+## Macro to end the orthogonal-region exit-branch, which goes to null state
+#macro( endExitBranch )
+#*--*##set( $s = $mapper.indentation() )
+${s}    goto nullState;
+#end

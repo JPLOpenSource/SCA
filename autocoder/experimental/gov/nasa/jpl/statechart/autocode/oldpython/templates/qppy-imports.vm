@@ -1,0 +1,58 @@
+##
+## General imports and top-level shared routines
+##
+###############################################################################
+##
+#!/usr/bin/env python -i
+#
+# Copyright 2009, 2010 California Institute of Technology.
+# ALL RIGHTS RESERVED. U.S. Government Sponsorship acknowledged.
+#
+"""
+WARNING: This file was automatically generated - DO NOT HAND EDIT
+
+File: ${smName}Active.py
+
+Automatically generated ${smName} state machine.
+Date Created:  ${model.timestamp()}
+Created By:    ${model.username()}
+
+Python implementation of the ${smName} Statechart model
+as a Python Active object.
+"""
+# Python imports here
+import sys
+import logging
+
+# QF imports here
+from qf import miros
+from qf import active
+from qf import event
+from qf import time_event
+from qf import framework
+#*--*##if( $model.hasDoActivity($sm) )
+# Added for any do activity thread actions defined.
+from qf import do_activity_thread
+#*--*##end
+##
+## Stamp out imports for submachines
+##
+#*--*##set( $submachines = $model.sort($model.getSubmachines($sm)) )
+#*--*##if( !$submachines.isEmpty() )
+
+# Submachine imports here
+#*----*##foreach( $subm in $submachines )
+#*------*##set( $submName = "${mapper.mapToTypeName($subm)}Active" )
+import $submName
+#*----*##end
+#*--*##end
+
+# Module globals initialized here
+LOGGER = logging.getLogger('${smName}Logger')
+# Bail event for orthogonal region or submachine
+BAIL_EVENT = event.Event("#BAIL#")
+
+
+def printf(format, *args):
+    #sys.stdout.write(format % args)
+    LOGGER.info(format % args)

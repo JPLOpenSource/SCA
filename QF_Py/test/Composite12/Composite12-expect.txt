@@ -1,0 +1,99 @@
+# Composite12 checks for proper handling of entry-/exitPoints on Composite
+# State, as well as completion event from CompositState
+
+# Start with none of the Guards set to true, so default transition is taken.
+Composite12 S1 ENTRY
+Composite12 S11 ENTRY
+>Ev1
+Composite12 S1 Ev1
+Composite12 S11 EXIT
+Composite12 S1 EXIT
+Composite12 S2 ENTRY
+>Ev1
+Composite12 S2 Ev1
+Composite12 S2 EXIT
+Composite12 S1 ENTRY
+Composite12 S11 ENTRY
+>Ev2
+Composite12 S11 Ev2
+Composite12 S11 EXIT
+Composite12 S12 ENTRY
+
+# Test the Completion Event!
+>Ev2
+Composite12 S12 Ev2
+Composite12 S12 EXIT
+Composite12 FinalState0 ENTRY
+Composite12 FinalState0 EXIT
+Composite12 S1 EXIT
+Composite12 S3 ENTRY
+
+# Test exitPoint with choice
+>Ev1
+Composite12 S3 Ev1
+Composite12 S3 EXIT
+Composite12 S2 ENTRY
+>Ev3
+Composite12 S2 Ev3
+Composite12.hasCondition\(\) == False
+Composite12.shouldReEnter\(\) == False
+Composite12 S2 EXIT
+Composite12 S2 ENTRY
+
+# Set flag for reEntry into S1 and test it via entry and exitPoints
+>=IMPL['Composite12'].set("shouldReEnter",True)
+shouldReEnter set to True
+>Ev3
+Composite12 S2 Ev3
+Composite12.hasCondition\(\) == False
+Composite12.shouldReEnter\(\) == True
+Composite12 S2 EXIT
+Composite12 S1 ENTRY
+Composite12 S11 ENTRY
+
+# Test completion event again
+>Ev2
+Composite12 S11 Ev2
+Composite12 S11 EXIT
+Composite12 S12 ENTRY
+>Ev2
+Composite12 S12 Ev2
+Composite12 S12 EXIT
+Composite12 FinalState0 ENTRY
+Composite12 FinalState0 EXIT
+Composite12 S1 EXIT
+Composite12 S3 ENTRY
+>Ev1
+Composite12 S3 Ev1
+Composite12 S3 EXIT
+Composite12 S2 ENTRY
+
+# Set flag so entryPoint goes into intended inner target
+>=IMPL['Composite12'].set("hasCondition",True)
+hasCondition set to True
+>Ev3
+Composite12 S2 Ev3
+Composite12.hasCondition\(\) == True
+Composite12 S2 EXIT
+Composite12 S1 ENTRY
+Composite12 S12 ENTRY
+
+# Exit via exitPoint to re-enter
+>Ev3
+Composite12 S12 Ev3
+Composite12.shouldReEnter\(\) == True
+Composite12 S12 EXIT
+Composite12 S11 ENTRY
+
+# Completion event one last time
+>Ev2
+Composite12 S11 Ev2
+Composite12 S11 EXIT
+Composite12 S12 ENTRY
+>Ev2
+Composite12 S12 Ev2
+Composite12 S12 EXIT
+Composite12 FinalState0 ENTRY
+Composite12 FinalState0 EXIT
+Composite12 S1 EXIT
+Composite12 S3 ENTRY

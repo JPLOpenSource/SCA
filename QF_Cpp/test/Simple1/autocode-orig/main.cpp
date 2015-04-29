@@ -1,0 +1,157 @@
+#ifdef DEFINE_MAIN
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "qep_port.h"
+#include "qassert.h"
+
+#include "log_event.h"
+#include "StatechartSignals.h"
+
+#include "Simple1.h"
+#include "Simple1Impl.h"
+
+Q_DEFINE_THIS_FILE;
+
+#define MYQUEUESIZE 10       /* Queue size */
+#define USER_ENTRY_SIZE 256  /* Number characters on inline prompt */
+#define EVENT_SIZE 16
+typedef uint32_t U32;
+
+struct GenEvt : public QEvent {
+	U32 data[EVENT_SIZE];
+};
+
+static QEvent const *test_queuestorage1[MYQUEUESIZE];
+static QSubscrList l_subscrSto[MAX_SIG];  /* publish-subscribe */
+static GenEvt l_evPoolSto[MYQUEUESIZE];   /* event pool */
+
+
+////////////////////////////////////////////////////////////////////////////////
+// @fn receiveCmd()
+// @brief Read the next command from stdin as well as from xmlrpc, if any
+// @param cmdBuf char* for storing the read command
+// @return None
+////////////////////////////////////////////////////////////////////////////////
+void receiveCmd(char *cmdBuf) {
+#ifdef DEFINE_XMLRPC
+	LogEvent::read(cmdBuf);
+#else /* DEFINE_XMLRPC */
+	scanf("%s", cmdBuf);
+#endif /* DEFINE_XMLRPC */
+}
+
+extern "C" void *idleThread(void *me) {     // the expected P-Thread signature
+	char cmdBuf[USER_ENTRY_SIZE];
+	GenEvt *event;
+	char *word;
+
+	for (;;) {
+		// Get the incoming string command from the dmsTerminal or the GUI
+		receiveCmd(cmdBuf);
+
+		word = strtok(cmdBuf, " ");
+		if (strcmp(word, "quit") == 0) {  // quit the program
+			QF::stop();
+			return (void *)0;
+		}
+
+		// We assume the first word contains the signal that is to be published,
+		// and the remaining words are data to be used to populate the event.
+		int signal = strtoul(word, NULL, 10);
+		if (signal == DURING) {
+			QF::tick();
+		} else {
+            event = Q_NEW(GenEvt, signal);
+			// Loop through the remaining words and populate the event
+			int i = 0;
+			do {
+				word = strtok('\0', " ");
+				if (word) {
+					Q_ASSERT(i<EVENT_SIZE);
+					event->data[i] = strtoul(word, NULL, 16);
+				}
+				i = i + 1;
+			} while (word);
+			printf("Publishing event with signal %d...\n", event->sig);
+			QF::publish(event);
+		}
+	}
+
+	return (void *)0;
+}
+
+
+/*.................................................................*/
+void Q_onAssert(char const Q_ROM * const Q_ROM_VAR file, int line) {
+    fprintf(stderr, "Assertion failed in %s, line %d!\n", file, line);
+    QF::stop();
+}
+
+void QF::onStartup(void) {
+    // SCHED_FIFO corresponds to real-time preemptive priority-based scheduler
+    // NOTE: This scheduling policy requires the superuser priviledges
+    pthread_attr_t attr;
+    pthread_attr_init(&attr);
+    pthread_attr_setschedpolicy(&attr, SCHED_FIFO);
+
+    struct sched_param param;
+    param.sched_priority = sched_get_priority_min(SCHED_FIFO);
+    pthread_attr_setschedparam(&attr, &param);
+    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+    pthread_t idle;
+    if (pthread_create(&idle, &attr, &idleThread, 0) != 0) {
+               // Creating the p-thread with the SCHED_FIFO policy failed.
+               // Most probably this application has no superuser privileges,
+               // so we just fall back to the default SCHED_OTHER policy
+               // and priority 0.
+    	printf("Failed to create p-thread with SCHED_FIFO policy! Falling back to SCHED_OTHER.");
+        pthread_attr_setschedpolicy(&attr, SCHED_OTHER);
+        param.sched_priority = 0;
+        pthread_attr_setschedparam(&attr, &param);
+        Q_ALLEGE(pthread_create(&idle, &attr, &idleThread, 0) == 0);
+    }
+    pthread_attr_destroy(&attr);
+}
+
+void QF::onCleanup(void) {
+	printf("\nBye bye!\n");
+	LogEvent::clean();
+}
+/*.................................................................*/
+
+
+int main(int argc, char* argv[]) {
+	int xmlrpcPort = LogEvent::defaultPort();
+
+#ifdef DEFINE_XMLRPC
+	if (argc > 2) {  // look for port
+		if (0 == strcmp("-p", argv[1])) {
+			xmlrpcPort = atoi(argv[2]);
+		}
+	}
+
+#endif /* DEFINE_XMLRPC */
+	// Initialize logging, including any GUI connection
+	LogEvent::init(xmlrpcPort);
+
+	printf("Quantum Framework Test\nQEP %s\nQF  %s, QF/Linux port %s\n",
+			QEP::getVersion(),
+			QF::getVersion(), QF::getPortVersion());
+
+	QF::init();  // initialize framework
+	// initialize publish-subscribe
+	QF::psInit(l_subscrSto, Q_DIM(l_subscrSto));
+	// initialize the event pool
+	QF::poolInit(l_evPoolSto, sizeof(l_evPoolSto), sizeof(l_evPoolSto[0]));
+
+	// instantiate and start the State Machines
+	Simple1Impl simple1Impl;
+	Simple1 simple1("simple1", &simple1Impl, (QActive *)0, 0);
+	simple1.start(1, test_queuestorage1, Q_DIM(test_queuestorage1), (void *)0, 0, (QEvent *)0);
+
+	// hand control to QF
+	QF::run();
+}
+#endif  /* DEFINE_MAIN */

@@ -1,0 +1,15 @@
+##
+## State entry/exit or Transition effect action published as Signal Event.
+##
+##- input vars (in addition to $model, etc.):
+##    * $actionSig:  action Signal object
+##
+##* [SWC 2010.02.09] implemented anew referencing C and new Python templates.
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+##* [SWC 2011.04.11] added support for Signal namespace prefix.
+##* [SWC 2011.10.03] changed action string to Signal object
+###############################################################################
+#*--*##set( $signalName = $mapper.mapSignalToEnum($actionSig) )
+## call project-overriddable macro to instantiate one-time event object
+#*--*##instantiateLocalEventVar(${signalName})
+#*--*##publishEvent("#localEventVar()")

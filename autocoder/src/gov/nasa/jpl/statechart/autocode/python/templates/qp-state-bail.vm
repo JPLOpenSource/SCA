@@ -1,0 +1,20 @@
+##
+## Handle "bail" event dispatched, either within the context of a submachine,
+##   or an orthogonal region of a composite state.
+##
+##- input vars (in addition to $model, etc.):
+##    * $hasCompletionTransition:  flag indicating a completion transition
+##    * $isQHsm:  the state is in an orthogonal region, needs BAIL_SIG always
+##
+##* [SWC 2012.10.08] added SM_TERMINABLE check to avoid unnecessary bail code.
+##* [SWC 2012.11.14] added isQHsm check to ensure BAIL always done for ortho.
+###############################################################################
+##
+#*--*##if( $SM_TERMINABLE || $isQHsm )
+        elif self.tEvt['sType'] == BAIL_EVENT.signal:
+            self.stateTran(self.final)
+            return 0
+#*--*##end
+#*--*##if( $hasCompletionTransition )
+        elif self.tEvt['sType'] == "#%s_Complete#" % state_name:
+#*--*##end

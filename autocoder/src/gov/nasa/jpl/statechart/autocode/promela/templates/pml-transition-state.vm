@@ -1,0 +1,11 @@
+##
+## Process regular state (also handles submachine state automagically) or final.
+##
+##- input vars (in addition to $model, etc.):
+##    * $target    :  Target state of transition
+##    * $isInitTran:  Flag indicating whether this is an initial transition
+###############################################################################
+##
+#*--*##set( $s = $mapper.indentation() )
+#*--*##set( $stateName = $mapper.mapToFunctionName($target) )
+${s}goto ${stateName}_Init;

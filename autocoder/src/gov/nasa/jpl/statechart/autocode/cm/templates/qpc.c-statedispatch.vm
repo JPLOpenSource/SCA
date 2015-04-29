@@ -1,0 +1,35 @@
+## If orthogonal, dispatch to each region signal events that it's children
+## respond to that have not yet been processed.
+## Then dispatch any timer events to each orthogonal region as well.
+###############################################################################
+
+     /**
+      * Dispatch transition events to orthogonal regions
+      */
+#*--*##foreach( $signalEv in $model.sortBySignal($kidDesiredEvents) )
+#*----*##set( $sname = $mapper.mapSignalEventToName($state.key, $signalEv) )
+     case $sname:
+#*--*##end
+#*--*##propagateEvents( $state )
+      return 0;
+##
+#*--*##set( $timerStates = $model.getStatesWithTimeEventTriggers($state, true) )
+#*--*##set( $statesByRegion = $model.getStatesByEnclosingRegion($timerStates) )
+#*--*##foreach( $stateByRegion in $statesByRegion.entrySet() )
+#*----*##if( $stateByRegion.key )## not null, skipping top-level/empty region
+#*------*##set( $regionName = $mapper.sanitize($stateByRegion.value.name) )
+
+     /**
+      * Dispatch timer events to ${regionName}
+      */
+#*----*##end
+#*----*##foreach( $substate in $stateByRegion.value.entrySet() )
+#*------*##foreach( $event in $model.getTimeEvents($substate) )
+#*--------*##set( $timeEvName = $mapper.mapTimeEventToName($event) )
+     case ${timeEvName}:
+#*------*##end
+#*----*##end
+#*----*##set( $varname = $mapper.mapToVarName($stateByRegion.key) )
+      QHsm_dispatch(&(me->${varname}->super_), e);
+      return 0;
+#*--*##end

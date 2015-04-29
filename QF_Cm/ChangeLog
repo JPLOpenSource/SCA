@@ -1,0 +1,46 @@
+Wed Jan 31 18:05:36 2007	Garth Watney, 3-0611 (watney)
+
+	* version R1-00c
+	New files: qa_ctor.c qa_defer.c qa_fifo.c qa_get_.c qa_lifo.c
+		qa_sub.c qa_usub.c qa_usuba.c qep.c qep.h qep_pkg.h
+		qep_port.h qeq_fifo.c qeq_get.c qeq_init.c qeq_lifo.c
+		qf_act.c qf_gc.c qf_log2.c qf_new.c qf_pkg.h qf_pool.c
+		qf_port.c qf_port.h qf_psini.c qf_pspub.c qf_pwr2.c
+		qf_run.c qf_tick.c qfsm_dis.c qfsm_ini.c qhsm_dis.c
+		qhsm_in.c qhsm_ini.c qhsm_top.c qhsm_tra.c qk.h qmp_get.c
+		qmp_init.c qmp_put.c qmpool.h qpset.h qs_dummy.h qsched.h
+		qte_arm.c qte_ctor.c qte_darm.c qte_rarm.c
+	Deleted files: ./ReleaseNotes ./cplus.c ./cplus.h ./linux1.c
+		./port.h ./qactive.c ./qactive.h ./qepool.c ./qepool.h
+		./qequeue.c ./qevent.h ./qf.c ./qf_linux1.h ./qfpkg.h
+		./qfsm.c ./qfsm.h ./qhsm.c ./qhsm.h ./qhsm_new.c
+		./qhsmtran.c ./qtimer.c ./qtimer.h
+	FILES: Makefile(1.2.6.1), Makefile.yam(1.2.6.1),
+		Readme(1.1.1.1.8.1), qassert.h(1.2.6.1),
+		qequeue.h(1.2.6.1), qf.h(1.2.6.2, 1.2.6.1)
+
+	Update to QP version 3.3.00
+
+Mon Aug 22 15:13:49 2005	Edward G Benowitz (eddieb)
+
+	* version R1-00b
+	FILES: cplus.h(1.2.2.1), qhsm.c(1.2.2.1), qhsm.h(1.2.2.1)
+	Add clear function
+
+Tue Jul 26 14:13:12 2005	Edward G Benowitz (eddieb)
+
+	* version R1-00a
+	New files: Makefile cplus.c cplus.h linux1.c port.h qactive.c
+		qactive.h qassert.h qepool.c qepool.h qequeue.c qequeue.h
+		qevent.h qf.c qf.h qf_linux1.h qfpkg.h qfsm.c qfsm.h qhsm.c
+		qhsm.h qhsm_new.c qhsmtran.c qtimer.c qtimer.h
+	FILES: Makefile.yam(1.1.1.1.2.1)
+	Initial check in
+
+Tue Jul 26 13:41:47 2005	Edward G Benowitz (eddieb)
+
+	* version R1-00
+	Created QF-C module.
+
+
+

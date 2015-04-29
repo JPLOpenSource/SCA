@@ -1,0 +1,16 @@
+make clean all
+
+To run:
+-------
+> ../../bin/sim_state_start.py
+
+To log the run and verify spec with logscope:
+--------------------------------------------
+> script
+bash$ ../../bin/sim_state_start.py
+send events ...
+> quit()
+exit
+> mv typescript pylog
+> more pylog | convert.scala > log
+> logscope log spec

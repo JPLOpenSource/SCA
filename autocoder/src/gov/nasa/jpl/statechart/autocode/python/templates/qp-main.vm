@@ -1,0 +1,63 @@
+##
+## Main application file
+##
+###############################################################################
+
+
+def main():
+    """
+    Basic standalone test harness that all Python
+    active object modules use for unit testing.
+    """
+    # Enable logger as info messages only.
+    LOGGER.setLevel(logging.INFO)
+    # Log to stdout and stderr.
+    logger_output_handler = logging.StreamHandler(sys.stdout)
+    logger_output_handler.setLevel(logging.INFO)
+    logger_error_handler = logging.StreamHandler(sys.stderr)
+    logger_error_handler.setLevel(logging.ERROR)
+    # Include only message in output.
+    logger_formatter = logging.Formatter('%(message)s')
+    logger_output_handler.setFormatter(logger_formatter)
+    logger_error_handler.setFormatter(logger_formatter)
+    #
+    LOGGER.addHandler(logger_output_handler)
+    LOGGER.addHandler(logger_error_handler)
+##
+## Add LOGGER for submachines.
+##
+#*--*##set( $submachines = $model.sort($model.getSubmachines($sm)) )
+#*--*##if( !$submachines.isEmpty() )
+
+    # Add logger output for submachines.
+#*----*##foreach( $subm in $submachines )
+#*------*##set( $submName = "${mapper.mapToTypeName($subm)}Active" )
+    ${submName}.LOGGER.setLevel(logging.INFO)
+    ${submName}.LOGGER.addHandler(logger_output_handler)
+    ${submName}.LOGGER.addHandler(logger_error_handler)
+#*----*##end
+#*--*##end
+    #
+    # Instance the QF code for running main thread
+    # and create active object
+    qf = framework.QF.getInstance()
+    #
+    # Framework initiallization (GUI turned off)
+    #
+    qf.init(qf_gui=False)
+
+    # Active object start up and register with QF
+    ${smGuiName} = ${smName}Active()
+    # start active object register into qf
+    ${smGuiName}.startActive()
+    # start/initialize HSM
+    ${smGuiName}.onStart(${smGuiName}.top)
+    # start the active object thread
+    ${smGuiName}.start()
+    #
+    # Run event dispatch loop
+    qf.run()
+
+
+if __name__ == "__main__":
+    main()

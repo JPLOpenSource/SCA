@@ -1,0 +1,102 @@
+          Guard_s1Enter\(\)
+      \*\*\* -> Ev1
+          Guard_s1Exit\(\)
+          Guard_s2Enter\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev2
+          Guard_s2Exit\(\)
+          Guard_s1Enter\(\)
+      \*\*\* -> Ev1
+          Guard_s1Exit\(\)
+          Guard_s2Enter\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev2
+          Guard_s2Exit\(\)
+          Guard_s1Enter\(\)
+      \*\*\* -> Ev1
+      \*\*\* -> Ev1
+          Guard_s1Exit\(\)
+          Guard_s2Enter\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev3
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+          Guard_s2Process\(\)
+      \*\*\* -> Ev3
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+          Guard_s2Process\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev2
+          Guard_s2Exit\(\)
+          Guard_s1Enter\(\)
+      \*\*\* -> Ev1
+          Guard_s1Exit\(\)
+          Guard_s2Enter\(\)
+      \*\*\* -> Ev2
+          Guard_s2Exit\(\)
+          Guard_s1Enter\(\)
+      \*\*\* -> Ev1
+      \*\*\* -> Ev1
+      \*\*\* -> Ev1
+          Guard_s1Exit\(\)
+          Guard_s2Enter\(\)
+      \*\*\* -> Ev2
+          Guard_s2Exit\(\)
+          Guard_s1Enter\(\)
+      \*\*\* -> Ev1
+      \*\*\* -> Ev1
+      \*\*\* -> Ev1
+      \*\*\* -> Ev1
+          Guard_s1Exit\(\)
+          Guard_s2Enter\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev2
+      \*\*\* -> Ev3
+          Guard_s2Exit\(\)
+          Guard_s1Enter\(\)
+      \*\*\* -> Ev1
+      \*\*\* -> Ev1
+          Guard_s1Exit\(\)
+          Guard_s2Enter\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev2
+          Guard_s2Exit\(\)
+          Guard_s1Enter\(\)
+      \*\*\* -> Ev1
+      \*\*\* -> Ev1
+      \*\*\* -> Ev1
+          Guard_s1Exit\(\)
+          Guard_s2Enter\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev3
+          Guard_s2Process\(\)
+      \*\*\* -> Ev2
+          Guard_s2Exit\(\)
+          Guard_s1Enter\(\)
+      \*\*\* -> Ev1
+          Guard_s1Exit\(\)
+          Guard_s2Enter\(\)
+-------------
+depth-limit \(-u500 steps\) reached
+#processes: 2
+		queue 1 \(evQ\[0\]\): 
+		queue 2 \(evQ\[1\]\): 
+500:	proc  1 \(Guard\).*?34.*? \(state 37\)
+500:	proc  0 \(:init:\).*?16.*? \(state 18\)
+2 processes created

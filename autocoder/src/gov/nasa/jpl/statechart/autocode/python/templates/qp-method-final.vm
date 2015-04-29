@@ -1,0 +1,9 @@
+##
+## Defines "final" method for cleanly bailing out of submachine (or region).
+##
+##- input vars (in addition to $model, etc.):  None
+###############################################################################
+
+
+    def final(self):
+        return 0

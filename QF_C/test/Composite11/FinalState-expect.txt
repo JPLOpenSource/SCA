@@ -1,0 +1,58 @@
+# FinalState checks a composite StateMachine for Final State support
+
+# First, exercise machine to a final state.
+<FinalState S1 ENTRY
+<FinalState S11 ENTRY
+>Ev1
+<FinalState S11 EXIT
+<FinalState S12 ENTRY
+>Ev2
+<FinalState S12 EXIT
+<FinalState FinalState1 ENTRY
+>Ev3
+<FinalState FinalState1 EXIT
+<FinalState S1 EXIT
+<FinalState FinalState0 ENTRY
+# Nothing should happen with ANY event in final state
+>Ev1
+>Ev2
+>Ev3
+>Ev4
+@5@!FinalState.*
+
+# Manually reset machine, and make sure machine can still work as expected.
+>=ACTIVE['FinalState'].onStart(ACTIVE['FinalState'].top)
+<FinalState S1 ENTRY
+<FinalState S11 ENTRY
+>Ev1
+<FinalState S11 EXIT
+<FinalState S12 ENTRY
+>Ev1
+<FinalState S12 EXIT
+<FinalState S11 ENTRY
+>Ev1
+<FinalState S11 EXIT
+<FinalState S12 ENTRY
+>Ev2
+<FinalState S12 EXIT
+<FinalState FinalState1 ENTRY
+# Nothing should happen with ANY event in final state
+>Ev1
+>Ev2
+>Ev4
+@5@!FinalState.*
+
+# Manually reset machine again, and test it
+>=ACTIVE['FinalState'].onStart(ACTIVE['FinalState'].top)
+<FinalState S1 ENTRY
+<FinalState S11 ENTRY
+>Ev3
+<FinalState S11 EXIT
+<FinalState S1 EXIT
+<FinalState FinalState0 ENTRY
+# Nothing should happen with ANY event in final state
+>Ev1
+>Ev2
+>Ev3
+>Ev4
+@5@!FinalState.*

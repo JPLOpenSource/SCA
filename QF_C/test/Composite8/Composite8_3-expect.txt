@@ -1,0 +1,45 @@
+# Composite8_3 checks for proper exiting from inner composite states within
+# orthogonal regions.
+
+<Composite8_3 S1 ENTRY
+>Ev1
+<Composite8_3 S1 Ev1
+<Composite8_3 S1 EXIT
+<Composite8_3 S2 ENTRY
+<Composite8_3 S21 ENTRY
+<Composite8_3 S211 ENTRY
+<Composite8_3 S22 ENTRY
+<Composite8_3 S221 ENTRY
+<Composite8_3 S2211 ENTRY
+>Ev1
+<Composite8_3 S2 Ev1
+<Composite8_3 S2 EXIT
+<Composite8_3 S211 EXIT
+<Composite8_3 S21 EXIT
+<Composite8_3 S2211 EXIT
+<Composite8_3 S221 EXIT
+<Composite8_3 S22 EXIT
+<Composite8_3 S1 ENTRY
+>Ev1
+<Composite8_3 S1 Ev1
+<Composite8_3 S1 EXIT
+<Composite8_3 S2 ENTRY
+<Composite8_3 S21 ENTRY
+<Composite8_3 S211 ENTRY
+<Composite8_3 S22 ENTRY
+<Composite8_3 S221 ENTRY
+<Composite8_3 S2211 ENTRY
+>Ev2
+<Composite8_3 S2 Region1 Ev2
+<Composite8_3 S211 Ev2
+<Composite8_3 S211 EXIT
+<Composite8_3 S212 ENTRY
+>Ev1
+<Composite8_3 S2 Ev1
+<Composite8_3 S2 EXIT
+<Composite8_3 S212 EXIT
+<Composite8_3 S21 EXIT
+<Composite8_3 S2211 EXIT
+<Composite8_3 S221 EXIT
+<Composite8_3 S22 EXIT
+<Composite8_3 S1 ENTRY

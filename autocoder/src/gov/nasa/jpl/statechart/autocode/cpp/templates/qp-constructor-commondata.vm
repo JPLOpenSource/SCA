@@ -1,0 +1,77 @@
+##
+## Instantiate all submachines, orthogonal regions, and history variables.
+##
+##- input vars (in addition to $model, etc.):
+##    * $typeObj:  State Machine or Region
+##    * $isQHsm:   flag indicating whether we're in an Active or Hsm class
+##
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+###############################################################################
+##
+## Instantiate all submachines
+##
+#*--*##set( $submStates = $model.sort($model.getLocalSubmachineStates($typeObj)) )
+#*--*##if( !$submStates.isEmpty() )
+
+    // Submachines initialized here
+#*----*##foreach( $submState in $submStates )
+#*------*##set( $stateName = $mapper.mapToVarName($submState) )
+#*------*##set( $stateEnum = $mapper.mapToEnumDecl($submState) )
+#*------*##set( $stateLabel = $mapper.mapToFunctionName($submState) )
+#*------*##set( $submName = $mapper.mapToTypeName($submState.submachine) )
+#*------*##if( $model.getCallActions($submState.submachine, true).size() > 0 )
+#*--------*##set( $stateTypeName = $mapper.mapToTypeName($submState) )
+    this->${stateName}Impl = new ${stateTypeName}_${submName}Impl;
+#*------*##else
+    this->${stateName}Impl = new ${submName}Impl;
+#*------*##end
+## generic "active" (this or parent) allows submachine access to master Active
+    this->${stateName} = new ${submName}("${stateLabel}", this->${stateName}Impl, (${qfNs}QActive*) this->active, (int32_t)$stateEnum);
+## wire submachine time events to corresponding time events of this Active
+#*------*##set( $timerEvQuery = $model.querySubmachineTransitionTimeEvents($submState) )
+#*------*##foreach( $timerEvPair in $timerEvQuery.eventTransitions )
+#*--------*##set( $submName = $mapper.mapToTypeName($submState.submachine) )
+#*--------*##set( $submTimerName = $mapper.mapTimeEventToTimer($timerEvPair.event, $timerEvQuery.getSubmachinePrefixOfEvent($timerEvPair)) )
+#*--------*##set( $timerName = $mapper.mapTimeEventToTimer($timerEvPair.event, $timerEvQuery.getSubstatePrefixOfEvent($timerEvPair)) )
+    (static_cast<${submName}*>(this->${stateName}))->${submTimerName} = (static_cast<${smName}*>(this->active))->${timerName};
+#*------*##end
+#*----*##end
+#*--*##end
+##
+## Instantiate all orthogonal regions
+##
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($typeObj)) )
+#*--*##if( !$localRegions.isEmpty() )
+
+    // Orthogonal regions initialized here
+#*----*##foreach( $localRegion in $localRegions )
+#*------*##set( $lRegionType = $mapper.mapToQualifiedName($localRegion) )
+#*------*##set( $varname = $mapper.mapToVarName($localRegion) )
+#*------*##if( $isQHsm )
+    this->${varname} = new ${lRegionType}(this->objName, this->impl, this->active, this->parent);
+#*------*##else## region expects specific Active subclass, "this"
+    this->${varname} = new ${lRegionType}(this->objName, this->impl, this->active, this);
+#*------*##end
+#*----*##end
+#*--*##end
+##
+## Instantiate all history variables
+##
+#*--*##set( $histStates = $model.getOOHistoryStates($typeObj) )
+#*--*##if( !$histStates.isEmpty() )
+
+    // History-state memories initialized here
+#*----*##foreach( $histState in $histStates )
+#*------*##set( $histTransition = $model.getInitialTransition($histState) )
+#*------*##if( $histTransition )
+#*--------*##set( $targetState = $model.getTarget($histState, $histTransition) )
+#*--------*##set( $parentState = $model.getParentState($histState) )
+#*--------*##set( $parentName = $mapper.mapToVarName($parentState) )
+#*--------*##set( $histVar = "${parentName}History" )
+    this->${histVar} = (${qfNs}QStateHandler) &${typeName}::${mapper.mapToFunctionName($targetState)};
+#*------*##end
+#*----*##end
+#*--*##end
+
+    // State is initially at TOP
+    this->myState = ${mapper.mapToEnumDecl($sm)}__TOP__;

@@ -1,0 +1,32 @@
+To build:
+---------
+gmake clean all
+
+
+
+Description of "QF-C" module:
+------------------------------
+
+Quantum Platform for C (QP/C) version 3.3.00 GA (Generally Available) release.
+Downloaded from: http://www.quantum-leaps.com/downloads
+
+Steps in acquring a new QP release:
+-----------------------------------
+1) Download the zip file onto your linux work-station
+2) On the PC (through samba) right click on the zip file and "Extract All" to 
+  unzip this file
+3) In the old QF-C, search for "GW" to find any modifications.
+4) cp this directory to QF-C-<old_version>
+5) In QF-C
+	- rm *.h
+  - rm *.c
+  - cvs update YamVersion.h
+6) cp from new QP to QF-C
+	- include/*.h
+  - qf/source/*
+  - qep/source/*
+  - ports/80x86/doc/tcpp101/l/*.h
+7) Merge any mofifications found on step 3 
+
+
+

@@ -1,0 +1,19 @@
+##
+## If orthogonal, dispatch the Signal- and Time- events that haven't been
+##  processed above to child regions.
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##    * $eventName:  substate-prefixed name of the Signal- or TimeEvent object
+##    * $eventTransPair:  the event-transition pair
+##    * $query:      the IDesiredEvent query object
+###############################################################################
+        elif self.tEvt['sType'] == "${eventName}":
+            printf("%s %s %s", machine, state_name, self.tEvt['sType'])
+#*--*##foreach( $region in $query.getDesiringRegionsOfState($state, $eventTransPair) )
+#*----*##set( $regionName = $mapper.mapToTypeName($region) )## don't use qualified name
+#*----*##set( $varname = $mapper.mapToVarName($region) )
+            printf("%s %s ${regionName} %s", machine, state_name, self.tEvt['sType'])
+            self.__${varname}.dispatch(self.tEvt)
+#*--*##end

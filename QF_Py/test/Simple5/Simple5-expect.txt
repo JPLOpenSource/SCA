@@ -1,0 +1,21 @@
+# Simple5 checks a simple StateMachine with guards on a transition
+
+<Simple5 S1 ENTRY
+>Ev2
+>Ev3
+>Ev1
+<Simple5 S1 Ev1
+<Warning: no implementation object for Guard1\(\)|Simple5.Guard1\(\) == False
+<Warning: no implementation object for Guard2\(\)|Simple5.Guard2\(\) == False
+<Warning: no implementation object for Action3\(\)|Simple5.Action3\(\) default action implementation invoked
+<Simple5 S1 EXIT
+<Simple5 S4 ENTRY
+>Ev2
+<Simple5 S4 Ev2
+<Simple5 S4 EXIT
+<Simple5 S5 ENTRY
+>Ev2
+>Ev1
+<Simple5 S5 Ev1
+<Simple5 S5 EXIT
+<Simple5 S1 ENTRY

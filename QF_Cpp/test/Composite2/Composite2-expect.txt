@@ -1,0 +1,83 @@
+# Composite2 checks a composite-state StateMachine with deep history
+
+<Composite2 S1 ENTRY
+>Ev2
+>Ev3
+>Ev1
+<Composite2 S1 Ev1
+<Composite2 S1 EXIT
+<Composite2 S2 ENTRY
+<Composite2 S21 ENTRY
+>Ev3
+<Composite2 S2 Ev3
+<Composite2 S21 EXIT
+<Composite2 S2 EXIT
+<Composite2 S3 ENTRY
+>Ev3
+<Composite2 S3 Ev3
+<Composite2 S3 EXIT
+<Composite2 S2 ENTRY
+<Composite2 S21 ENTRY
+>Ev2
+>Ev1
+<Composite2 S21 Ev1
+<Composite2 S21 EXIT
+<Composite2 S22 ENTRY
+>Ev1
+<Composite2 S2 Ev1
+<Composite2 S22 EXIT
+<Composite2 S2 EXIT
+<Composite2 S1 ENTRY
+>Ev2
+>Ev1
+<Composite2 S1 Ev1
+<Composite2 S1 EXIT
+<Composite2 S2 ENTRY
+<Composite2 S21 ENTRY
+>Ev1
+<Composite2 S21 Ev1
+<Composite2 S21 EXIT
+<Composite2 S22 ENTRY
+>Ev2
+<Composite2 S22 Ev2
+<Composite2 S22 EXIT
+<Composite2 S21 ENTRY
+>Ev1
+<Composite2 S21 Ev1
+<Composite2 S21 EXIT
+<Composite2 S22 ENTRY
+>Ev3
+<Composite2 S2 Ev3
+<Composite2 S22 EXIT
+<Composite2 S2 EXIT
+<Composite2 S3 ENTRY
+>Ev1
+>Ev2
+>Ev3
+<Composite2 S3 Ev3
+<Composite2 S3 EXIT
+<Composite2 S2 ENTRY
+<Composite2 S22 ENTRY
+>Ev2
+<Composite2 S22 Ev2
+<Composite2 S22 EXIT
+<Composite2 S21 ENTRY
+>Ev3
+<Composite2 S2 Ev3
+<Composite2 S21 EXIT
+<Composite2 S2 EXIT
+<Composite2 S3 ENTRY
+>Ev3
+<Composite2 S3 Ev3
+<Composite2 S3 EXIT
+<Composite2 S2 ENTRY
+<Composite2 S21 ENTRY
+>Ev1
+<Composite2 S21 Ev1
+<Composite2 S21 EXIT
+<Composite2 S22 ENTRY
+>Ev1
+<Composite2 S2 Ev1
+<Composite2 S22 EXIT
+<Composite2 S2 EXIT
+<Composite2 S1 ENTRY

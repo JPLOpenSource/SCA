@@ -1,0 +1,82 @@
+##
+## Macro definitions (mystery: comment-style indentation causes extra spaces)
+##
+###############################################################################
+#macro(constructor $_typeObj $_typeName $_isQHsm)
+#parse( "${tpath}qpc.c-constructor.vm" )
+#end
+##
+##
+#macro(stateTransition $_state $_transition $_func)
+#parse( "${tpath}qpc.c-statetransition.vm" )
+#end
+##
+##
+#macro(doAction $_activity)
+#parse( "${tpath}qpc.c-doaction.vm" )
+#end
+##
+##* [SWC 2009.09.15] verified code against StateChartCWriter.writeOneMethodBody
+##    lines 600--620.
+##
+#macro(enableTimers $state)
+#foreach( $event in $model.getTimeEvents($state) )## usually just one
+#set( $timerName = $mapper.mapTimeEventToTimer($event) )
+#set( $timeout   = $mapper.mapTimeEventToTimeout($state.key, $event) )
+#if( $model.getEnclosingOrthogonalRegion($state) && $state.value.container)
+## this state is within an orthogonal region
+      QTimeEvt_postIn(&me->${timerName}, me->parent, $timeout);
+#else
+      QTimeEvt_postIn(&me->${timerName}, (QActive *) me, $timeout);
+#end
+#end
+#end
+##
+##* [SWC 2009.09.15] verified code against StateChartCWriter.writeOneMethodBody
+##    lines 705--710.
+##
+#macro(disableTimers $state)
+#foreach( $event in $model.getTimeEvents($state) )## usually just one
+#set( $timerName = $mapper.mapTimeEventToTimer($event) )
+      QTimeEvt_disarm(&me->${timerName});
+#end
+#end
+##
+##* [SWC 2009.09.15] verified code against StateChartCWriter.writeOneMethodBody
+##    lines 671--684.
+##
+#macro(propagateEvents $state)
+#set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($state)) )
+#foreach( $region in $localRegions.entrySet() )
+#set( $varname = $mapper.mapToVarName($region) )
+      QHsm_dispatch(&(me->${varname}->super_), e);
+#end
+#end
+##
+## Macro to code namespaces
+#macro( headerNamespaces )
+#*--*##set( $lvl = 0 )
+#*--*##foreach( $ns in $model.splitByPkgs($autocoder.qfNamespace) )
+#*----*##set( $spc = $mapper.indentation($lvl) )
+${spc}namespace $ns {
+#*----*##set( $lvl = $lvl + 1 )
+#*--*##end
+#end
+##
+## Macro to code namespace closing braces
+#macro( footerNamespaces )
+#*--*##set( $pkgList = $model.splitByPkgs($autocoder.qfNamespace) )
+## count levels of namespaces
+#*--*##set( $lvl = 0 )
+#*--*##foreach( $ns in $pkgList )
+#*----*##set( $lvl = $lvl + 1 )
+#*--*##end
+## insert closing braces innermost to outermost
+
+#*--*##foreach( $ns in $pkgList )
+#*----*##set( $lvl = $lvl - 1 )
+#*----*##set( $spc = $mapper.indentation($lvl) )
+${spc}}
+#*--*##end
+#end
+##

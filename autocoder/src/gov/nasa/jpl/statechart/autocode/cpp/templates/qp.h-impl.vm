@@ -1,0 +1,142 @@
+##
+## Defines Impl header file.
+##
+##* [SWC 2011.07.06] Updated legal declaration, disclaimer, and file info.
+###############################################################################
+#*--*##set( $className = "${smName}Impl" )
+##
+## File comments
+##
+//-*- Mode: C++; -*-
+//===========================================================================
+// This software contains Caltech/JPL confidential information.
+//
+// Copyright 2009-$year, by the California Institute of Technology.
+// ALL RIGHTS RESERVED. United States Government Sponsorship Acknowledged.
+// Any commercial use must be negotiated with the Office of Technology
+// Transfer at the California Institute of Technology.
+//
+// This software may be subject to US export control laws and
+// regulations. By accepting this document, the user agrees to comply
+// with all applicable U.S. export laws and regulations, including the
+// International Traffic and Arms Regulations, 22 C.F.R. 120-130 and the
+// Export Administration Regulations, 15 C.F.R. 730-744. User has the
+// responsibility to obtain export licenses, or other export authority as
+// may be required before exporting such information to foreign countries
+// or providing access to foreign persons.
+//===========================================================================
+//
+//       File: ${nsPathPrefix}${className}.h
+// Created on: ${model.timestamp()}
+//     Author: ${model.username()}@jpl.nasa.gov
+//
+// This file was stubbed by the JPL StateChart Autocoders, which converts UML
+// Statecharts, in XML, to a C++ variant of Miro Samek's Quantum Framework.
+//===========================================================================
+#ifndef ${nsDefPrefix}${className}_h
+\#define ${nsDefPrefix}${className}_h
+
+#*--*##if( $autocoder.hasCustomQfInclude() )
+\#include <${autocoder.qfInclude}>
+#*--*##else
+\#include <qf_port.h>
+\#include <qassert.h>
+#*--*##end
+#*--*##customHeaderIncludes()
+#*--*##set( $submachines = $model.sort($model.getSubmachines($sm)) )
+#*--*##if( !$submachines.isEmpty() )
+/* Submachine impls */
+#*----*##foreach( $subm in $submachines )
+#*------*##set( $submName = "${mapper.mapToTypeName($subm)}Impl" )
+\#include <${nsPathPrefix}${submName}.h>
+#*----*##end
+#*--*##end
+
+#*--*##if( $autocoder.namespaceEnabled )
+#*----*##headerNamespaces
+#*--*##end
+class ${className} {
+##
+## Declare spy friend class to faciliate testing
+
+    friend class ${className}Spy;
+
+public:
+    ${className} ();  // Default constructor
+    virtual ~${className} ();  // Required virtual destructor
+
+    virtual void setQActive (${qfNs}QActive* active);
+
+    ////////////////////////////////////////////
+    // Action and guard implementation methods
+    ////////////////////////////////////////////
+##
+## Generate the signatures for action methods
+##
+#*--*##foreach( $func in $model.getAllCallActions() )
+#*----*##set( $funcName = $mapper.sanitize($func.name()) )
+#*----*##set( $returnType = "void" )
+#*----*##if( $func.isGuard() )
+#*------*##set( $returnType = "bool" )
+    virtual void set_${funcName} (bool flag);
+#*----*##end
+#*----*##if( $func.hasArgs() )
+## TODO Impl action parameters: how to specify parameter types? perhaps incoming string be of form "param:Type"?
+    virtual ${returnType} ${funcName} (${mapper.mapArgsToDeclarations($func)});
+#*----*##else
+    virtual ${returnType} ${funcName} ();
+#*----*##end
+#*--*##end
+
+private:
+#*--*##if( $autocoder.executionTraceOn )
+    char machineName[256];
+#*--*##end
+    /** Cache of pointer to the container QActive object, for ease of access */
+    ${qfNs}QActive* m_active;
+
+};
+###############################################################################
+## Define the Submachine Impl subclasses to allow overriding action behaviors
+##
+#*--*##set( $submStates = $model.sort($model.getSubmachineStates($sm)) )
+#*--*##if( !$submStates.isEmpty() )
+
+#*----*##foreach( $submState in $submStates )
+#*------*##set( $stateTypeName = $mapper.mapToTypeName($submState) )
+#*------*##set( $submName = $mapper.mapToTypeName($submState.submachine) )
+#*------*##set( $submImpl = "${submName}Impl" )
+#*------*##set( $substateImpl = "${stateTypeName}_${submImpl}" )
+
+/**
+ * ${substateImpl} SubMachine implementation overriding subclass.
+ *
+ * Override the action methods of the SubMachine individually if custom
+ * behavior is desired.
+ */
+class ${substateImpl} : public ${submImpl} {
+##
+## Declare spy friend class to faciliate testing
+
+    friend class ${substateImpl}Spy;
+
+public:
+    ${substateImpl} ();  // Default constructor
+    virtual ~${substateImpl} ();  // Default virtual destructor
+
+    /////////////////////////////////////////////////////////////////////////
+    // Override submachine-instance action and guard implementation methods
+    /////////////////////////////////////////////////////////////////////////
+#*--*##if( $autocoder.executionTraceOn )
+
+private:
+    char machineName[256];
+#*--*##end
+
+};
+#*----*##end
+#*--*##end
+#*--*##if( $autocoder.namespaceEnabled )
+#*----*##footerNamespaces
+#*--*##end
+#endif  /* ${nsDefPrefix}${className}_h */

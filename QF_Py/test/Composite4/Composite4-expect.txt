@@ -1,0 +1,36 @@
+# Composite4 checks a composite StateMachine with cross-hierarchy transitions
+
+<Composite4 S1 ENTRY
+>Ev1
+<Composite4 S1 Ev1
+<Composite4 S1 EXIT
+<Composite4 S2 ENTRY
+<Composite4 S21 ENTRY
+>Ev1
+<Composite4 S2 Ev1
+<Composite4 S21 EXIT
+<Composite4 S2 EXIT
+<Composite4 S1 ENTRY
+>Ev1
+<Composite4 S1 Ev1
+<Composite4 S1 EXIT
+<Composite4 S2 ENTRY
+<Composite4 S21 ENTRY
+>Ev3
+>Ev2
+<Composite4 S21 Ev2
+<Composite4 S21 EXIT
+<Composite4 S2 EXIT
+<Composite4 S1 ENTRY
+>Ev2
+<Composite4 S1 Ev2
+<Composite4 S1 EXIT
+<Composite4 S2 ENTRY
+<Composite4 S22 ENTRY
+>Ev3
+>Ev2
+>Ev1
+<Composite4 S2 Ev1
+<Composite4 S22 EXIT
+<Composite4 S2 EXIT
+<Composite4 S1 ENTRY

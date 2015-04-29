@@ -1,0 +1,1 @@
+-I. -I..\..\..\..\..\include -I..\..\..\..\..\qep\source -I..\..\..\..\..\qf\source -I..\..\..\..\..\qs\source -Iucos2.86

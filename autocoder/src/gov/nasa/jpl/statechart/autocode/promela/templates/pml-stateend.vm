@@ -1,0 +1,13 @@
+##
+## Done with state!
+##
+##- input vars (in addition to $model, etc.):
+##    * $stateName:  name of current State Machine state being implemented
+###############################################################################
+#*--*##set( $s = $mapper.indentation() )
+${s}:: else
+${s}fi;
+#*--*##set( $discard = $mapper.decIndent() )## decrease indentation
+#*--*##set( $s = $mapper.indentation() )
+${s}od;
+#*--*##set( $discard = $mapper.decIndent() )## decrease indentation

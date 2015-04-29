@@ -1,0 +1,25 @@
+##
+## Implement a composite state region
+##
+##- input var:
+##    * $region :  the State Machine region to implement
+##
+##* [SWC 2009.09.09] verified region func against old code in
+##     StateChartCWriter.writeOneRegionDefinition(), including
+##     .writeQHSMConstructor() and .writeInitialMethod().
+###############################################################################
+#*--*##set( $regionName = $mapper.mapToStructType($region) )
+#*--*##set( $regionType = "${regionName}Region" )
+#*--*##constructor( $region, $regionType, true )
+
+void ${regionType}_initial(${regionType}* me,  QEvent const *e) {
+##
+## Find the target state of the transition from the initial state
+##
+#*--*##set( $initialState = $model.getInitialState($region) )
+#*--*##set( $initTransition = $model.getInitialTransition($initialState) )
+#*--*##if( $initTransition )
+#*----*##set( $tgtState = $model.getTarget($initialState, $initTransition) )
+   Q_INIT(&$mapper.mapToFunctionName( $tgtState ));
+#*--*##end
+}

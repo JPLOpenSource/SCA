@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/autocoder/src/gov/nasa/jpl/statechart/Autocoder.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="gov.nasa.jpl.statechart.Autocoder"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-python Simple1.xml Simple2.xml Simple3.xml Simple4.xml Simple5.xml Composite1.xml Composite2.xml Composite3.xml Composite4.xml Composite5.xml Composite6_1.xml Composite6_2.xml Composite6_3.xml Composite7_1.xml Composite8_1.xml Composite8_2.xml Composite8_3.xml Composite9.xml"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="autocoder"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx128m"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:autocoder/test/files/python-suite/md16.6}"/>
+</launchConfiguration>

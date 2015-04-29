@@ -1,0 +1,34 @@
+# Composite4bb checks the distinction between local and self-transitions.
+#* QF supports exclusively the 'local' transition semantics, so the external
+#  and local transitions in this example behave identically.
+
+<Composite4b S1 ENTRY
+<Composite4b S11 ENTRY
+#
+# Transitions originating from composite state.
+>Ev1
+<Composite4b S1 Ev1
+<Composite4b S11 EXIT
+<Composite4b S11 ENTRY
+>Ev2
+<Composite4b S1 Ev2
+<Composite4b S11 EXIT
+<Composite4b S11 ENTRY
+#
+# Self-transition, the only one that exits and re-enters composite state.
+>Ev3
+<Composite4b S1 Ev3
+<Composite4b S11 EXIT
+<Composite4b S1 EXIT
+<Composite4b S1 ENTRY
+<Composite4b S11 ENTRY
+#
+# Transitions originating from leaf state.
+>Ev4
+<Composite4b S11 Ev4
+<Composite4b S11 EXIT
+<Composite4b S11 ENTRY
+>Ev5
+<Composite4b S11 Ev5
+<Composite4b S11 EXIT
+<Composite4b S11 ENTRY

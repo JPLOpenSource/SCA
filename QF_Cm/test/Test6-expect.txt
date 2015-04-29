@@ -1,0 +1,13 @@
+<(test6|testObj) Test6T6S1 ENTRY
+>Ev1
+<(test6|testObj) Test6T6S1 EXIT
+<(test6|testObj) Test6T6S2 ENTRY
+>Ev2
+<(test6|testObj) Test6T6S2 EXIT
+<(test6|testObj) Test6T6S2 ENTRY
+>Ev3
+<(test6|testObj) Test6T6S2 EXIT
+<(test6|testObj) Test6T6S2 ENTRY
+>Ev1
+<(test6|testObj) Test6T6S2 EXIT
+<(test6|testObj) Test6T6S1 ENTRY

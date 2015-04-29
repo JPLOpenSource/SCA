@@ -1,0 +1,14 @@
+##
+## Done with state!
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:  the State Machine state to implement
+###############################################################################
+##
+## Default: return parent state
+##
+    }
+#*--*##set( $parentState = $model.getParentStateWithinOrthogonal($state) )
+#*--*##set( $pStateName = $mapper.mapToPrefixedFunctionName($parentState, "${typeName}") )
+    return Q_SUPER(&${pStateName});
+}

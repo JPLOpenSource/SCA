@@ -1,0 +1,44 @@
+        <packagedElement xmi:type='uml:StateMachine' xmi:id='_12_5_9120299_1181847072635_251404_234' name='Test2' visibility='public'>
+            <xmi:Extension extender='MagicDraw UML 16.0' extenderID='MagicDraw UML 16.0'>
+                <modelExtension>
+                    <event xmi:idref='_12_5_9120299_1181847090299_442764_299'/>
+                    <event xmi:idref='_12_5_9120299_1181847095120_585082_319'/>
+                    <event xmi:idref='_12_5_9120299_1182274076255_549780_383'/>
+                </modelExtension>
+            </xmi:Extension>
+            <nestedClassifier xmi:type='uml:Signal' xmi:id='_12_5_9120299_1181847090283_973661_298' name='Ev1' visibility='public'/>
+            <nestedClassifier xmi:type='uml:Signal' xmi:id='_12_5_9120299_1182274076240_398028_382' name='Ev2' visibility='public'/>
+            <region xmi:type='uml:Region' xmi:id='_12_5_9120299_1181847072651_996954_235' visibility='public'>
+                <subvertex xmi:type='uml:State' xmi:id='_12_5_9120299_1181847080749_68197_255' name='T2S1' visibility='public'/>
+                <subvertex xmi:type='uml:State' xmi:id='_12_5_9120299_1181847084151_657970_269' name='T2S2' visibility='public'>
+                    <region xmi:type='uml:Region' xmi:id='_12_5_9120299_1182274028707_568655_295' visibility='public'>
+                        <subvertex xmi:type='uml:State' xmi:id='_12_5_9120299_1182274036504_446378_298' name='T2S21' visibility='public'/>
+                        <subvertex xmi:type='uml:State' xmi:id='_12_5_9120299_1182274046957_77651_312' name='T2S22' visibility='public'/>
+                        <subvertex xmi:type='uml:Pseudostate' xmi:id='_12_5_9120299_1182274053895_957825_326' visibility='public'/>
+                        <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1182274056114_743182_335' visibility='public' source='_12_5_9120299_1182274053895_957825_326' target='_12_5_9120299_1182274036504_446378_298'/>
+                        <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1182274063317_804781_367' visibility='public' source='_12_5_9120299_1182274046957_77651_312' target='_12_5_9120299_1182274036504_446378_298'>
+                            <trigger xmi:type='uml:Trigger' xmi:id='_12_5_9120299_1182274078818_746386_385' visibility='public' event='_12_5_9120299_1182274076255_549780_383'/>
+                        </transition>
+                        <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1182958817676_524300_211' visibility='public' source='_12_5_9120299_1182274036504_446378_298' target='_12_5_9120299_1182274046957_77651_312'>
+                            <trigger xmi:type='uml:Trigger' xmi:id='_12_5_9120299_1182958820864_234844_226' visibility='public' event='_12_5_9120299_1181847090299_442764_299'/>
+                        </transition>
+                    </region>
+                </subvertex>
+                <subvertex xmi:type='uml:Pseudostate' xmi:id='_12_5_9120299_1181847095526_334673_321' visibility='public'/>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1181847088223_734116_283' visibility='public' source='_12_5_9120299_1181847080749_68197_255' target='_12_5_9120299_1181847084151_657970_269'>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_12_5_9120299_1181847090314_355739_300' visibility='public' event='_12_5_9120299_1181847090299_442764_299'/>
+                </transition>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1181847097305_162303_330' visibility='public' source='_12_5_9120299_1181847095526_334673_321' target='_12_5_9120299_1181847080749_68197_255'/>
+                <transition xmi:type='uml:Transition' xmi:id='_12_5_9120299_1181847172122_377819_346' visibility='public' source='_12_5_9120299_1181847084151_657970_269' target='_12_5_9120299_1181847080749_68197_255'>
+                    <trigger xmi:type='uml:Trigger' xmi:id='_12_5_9120299_1181847174494_438465_361' visibility='public' event='_12_5_9120299_1181847090299_442764_299'/>
+                </transition>
+            </region>
+        </packagedElement>
+        <packagedElement xmi:type='uml:Package' href='UML_Standard_Profile.xml#magicdraw_uml_standard_profile_v_0001'>
+            <xmi:Extension extender='MagicDraw UML 16.0' extenderID='MagicDraw UML 16.0'>
+                <referenceExtension referentPath='UML Standard Profile' referentType='Package'/>
+            </xmi:Extension>
+        </packagedElement>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_12_5_9120299_1181847090299_442764_299' visibility='public' signal='_12_5_9120299_1181847090283_973661_298'/>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_12_5_9120299_1181847095120_585082_319' visibility='public'/>
+        <packagedElement xmi:type='uml:SignalEvent' xmi:id='_12_5_9120299_1182274076255_549780_383' visibility='public' signal='_12_5_9120299_1182274076240_398028_382'/>

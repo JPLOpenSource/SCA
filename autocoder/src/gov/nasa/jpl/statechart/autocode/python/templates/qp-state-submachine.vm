@@ -1,0 +1,26 @@
+##
+## Handle dispatch of events to submachine state
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##    * $eventName:  substate-prefixed name of the Signal- or TimeEvent object
+##    * $eventTransPair:  the event-transition pair
+##    * $isTimerEvent:    flag indicating if we're processing a TimerEvent
+##    * $query:      the IDesiredEvent query object
+##
+##* [SWC 2013.02.13] Enhanced miros Hsm class with ignore_dropped and handled
+##  flags, and added logic to ignore dropped event when dispatching event into
+##  a submachine.
+###############################################################################
+        elif self.tEvt['sType'] == "${eventName}":
+#*--*##if( $isTimerEvent )## mangle the signal name for Submachine
+#*----*##set( $submEvName = $mapper.mapEventToLiteral($eventTransPair.event, $query.getSubmachinePrefixOfEvent($eventTransPair)) )
+            self.tEvt['sType'] = "${submEvName}"  # strip substate for submachine
+#*--*##end
+            printf("%s %s %s", machine, state_name, self.tEvt['sType'])
+            self.__${stateName}.setIgnoreDropped(True)
+            self.__${stateName}.dispatch(self.tEvt)
+#*--*##if( $isTimerEvent )## restore the signal name
+            self.tEvt['sType'] = "${eventName}"  # restore
+#*--*##end

@@ -1,0 +1,405 @@
+Driving idle ENTRY
+
+>goDriveFast
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveFast ENTRY
+
+>goSlower
+Driving driveFast EXIT
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDriveSlow
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDriveFast
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveFast ENTRY
+
+>goSlower
+Driving driveFast EXIT
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goReverse
+Driving idle EXIT
+Driving backwardsstate ENTRY
+Driving backwards ENTRY
+
+>stop
+Driving backwards EXIT
+Driving backwardsstate EXIT
+Driving idle ENTRY
+
+>goReverse
+Driving idle EXIT
+Driving backwardsstate ENTRY
+Driving backwards ENTRY
+
+>stop
+Driving backwards EXIT
+
+Driving backwardsstate EXIT
+Driving idle ENTRY
+
+>goReverse
+Driving idle EXIT
+Driving backwardsstate ENTRY
+
+Driving backwards ENTRY
+
+>stop
+Driving backwards EXIT
+
+Driving backwardsstate EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goReverse
+Driving idle EXIT
+Driving backwardsstate ENTRY
+
+Driving backwards ENTRY
+
+>stop
+Driving backwards EXIT
+
+Driving backwardsstate EXIT
+Driving idle ENTRY
+
+>goDriveFast
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveFast ENTRY
+
+>goSlower
+Driving driveFast EXIT
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDriveSlow
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goReverse
+Driving idle EXIT
+Driving backwardsstate ENTRY
+Driving backwards ENTRY
+
+>stop
+Driving backwards EXIT
+Driving backwardsstate EXIT
+Driving idle ENTRY
+
+>goReverse
+Driving idle EXIT
+Driving backwardsstate ENTRY
+Driving backwards ENTRY
+
+>stop
+Driving backwards EXIT
+Driving backwardsstate EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDriveSlow
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDriveFast
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveFast ENTRY
+
+>goSlower
+Driving driveFast EXIT
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDriveSlow
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goReverse
+Driving idle EXIT
+Driving backwardsstate ENTRY
+Driving backwards ENTRY
+
+>stop
+Driving backwards EXIT
+Driving backwardsstate EXIT
+Driving idle ENTRY
+
+>goDriveSlow
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDriveSlow
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDriveSlow
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+Driving drivingState EXIT
+Driving idle ENTRY
+
+>goDrive
+Driving idle EXIT
+Driving drivingState ENTRY
+Driving driveMed ENTRY
+
+>goSlower
+Driving driveMed EXIT
+Driving driveSlow ENTRY
+
+>stop
+Driving driveSlow EXIT
+Driving drivingState EXIT
+Driving idle ENTRY

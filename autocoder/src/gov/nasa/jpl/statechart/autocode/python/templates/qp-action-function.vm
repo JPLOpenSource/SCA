@@ -1,0 +1,16 @@
+##
+## State entry/exit or Transition effect action as function call.
+##
+##- input vars (in addition to $model, etc.):
+##    * $funcCall:  Function Call object
+##
+##* [SWC 2009.09.17] ported from C template.
+##* [SWC 2010.01.19] refactored Velocity templates to be finer-grained, with
+##  more decision logic pushed into the Java writer class.
+##* [SWC 2010.05] added support for function arguments; 'e' is still special.
+##* [SWC 2010.06.01] added new mapper method to clean up velocity mess.
+###############################################################################
+##
+#*--*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+#*--*##set( $spc = $mapper.indentation() )
+$spc        self.__${funcName}(${mapper.mapArgsToInvocation($funcCall)})

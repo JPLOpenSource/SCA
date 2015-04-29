@@ -1,0 +1,154 @@
+# Composite10 checks for proper handling of choice and compound junctions.
+
+# Start with none of the Guards set to true, so default transition is taken.
+<Composite10 S1 ENTRY
+#- no other events should trigger anything
+>Ev2
+>Ev3
+>Ev4
+>Ev5
+>Ev1
+<Composite10 S1 Ev1
+Composite10.Guard1\(\) == False|Composite10.Guard2\(\) == False
+Composite10.Guard1\(\) == False|Composite10.Guard2\(\) == False
+Composite10.Action3\(\)
+<Composite10 S1 EXIT
+<Composite10 S3 ENTRY
+>Ev1
+<Composite10 S3 EXIT
+<Composite10 S1 ENTRY
+
+# Now we enable Guard1 and Guard6 for second path into S3
+>=IMPL['Composite10'].set("Guard1",True)
+Guard1 set to True
+>=IMPL['Composite10'].set("Guard6",True)
+Guard6 set to True
+>Ev1
+<Composite10 S1 Ev1
+Composite10.Guard1\(\) == True
+Composite10.Action1\(\)
+<Composite10 S1 EXIT
+<Composite10 S2 ENTRY
+<Composite10 S21 ENTRY
+<Composite10 S211 ENTRY
+>Ev4
+<Composite10 S211 Ev4
+<Composite10 S211 EXIT
+<Composite10 S212 ENTRY
+>Ev5
+<Composite10 S212 Ev5
+<Composite10 S212 EXIT
+<Composite10 S211 ENTRY
+>Ev2
+<Composite10 S21 Ev2
+Composite10.Guard6\(\) == True
+Composite10.Action6\(\)
+<Composite10 S211 EXIT
+<Composite10 S21 EXIT
+<Composite10 S3 ENTRY
+>Ev1
+<Composite10 S3 EXIT
+<Composite10 S1 ENTRY
+>=IMPL['Composite10'].set("Guard1",False)
+>=IMPL['Composite10'].set("Guard6",False)
+
+# And, enable Guard1/7/9 for final Guard1-based path to S3
+>=IMPL['Composite10'].set("Guard1",True)
+Guard1 set to True
+>=IMPL['Composite10'].set("Guard7",True)
+Guard7 set to True
+>=IMPL['Composite10'].set("Guard9",True)
+Guard9 set to True
+>Ev1
+<Composite10 S1 Ev1
+Composite10.Guard1\(\) == True
+Composite10.Action1\(\)
+<Composite10 S1 EXIT
+<Composite10 S2 ENTRY
+<Composite10 S21 ENTRY
+<Composite10 S211 ENTRY
+>Ev4
+<Composite10 S211 Ev4
+<Composite10 S211 EXIT
+<Composite10 S212 ENTRY
+>Ev2
+<Composite10 S21 Ev2
+Composite10.Guard7\(\) == True
+Composite10.Action7\(\)
+<Composite10 S212 EXIT
+<Composite10 S21 EXIT
+<Composite10 S22 ENTRY
+>Ev3
+<Composite10 S22 Ev3
+Composite10.Guard9\(\) == True
+Composite10.Action9\(\)
+<Composite10 S22 EXIT
+<Composite10 S3 ENTRY
+>Ev1
+<Composite10 S3 EXIT
+<Composite10 S1 ENTRY
+>=IMPL['Composite10'].set("Guard1",False)
+>=IMPL['Composite10'].set("Guard7",False)
+>=IMPL['Composite10'].set("Guard9",False)
+
+# Next, enable Guard2/4/9 for one path thru compound junction
+>=IMPL['Composite10'].set("Guard2",True)
+Guard2 set to True
+>=IMPL['Composite10'].set("Guard4",True)
+Guard4 set to True
+>=IMPL['Composite10'].set("Guard9",True)
+Guard9 set to True
+>Ev1
+<Composite10 S1 Ev1
+Composite10.Guard2\(\) == True
+Composite10.Action2\(\)
+Composite10.Guard4\(\) == True
+Composite10.Action4\(\)
+<Composite10 S1 EXIT
+<Composite10 S2 ENTRY
+<Composite10 S22 ENTRY
+>Ev3
+<Composite10 S22 Ev3
+Composite10.Guard9\(\) == True
+Composite10.Action9\(\)
+<Composite10 S22 EXIT
+<Composite10 S3 ENTRY
+>Ev1
+<Composite10 S3 EXIT
+<Composite10 S1 ENTRY
+>=IMPL['Composite10'].set("Guard2",False)
+>=IMPL['Composite10'].set("Guard4",False)
+>=IMPL['Composite10'].set("Guard9",False)
+
+# Finally, enable Guard2/7/10 to take the long path to non-exiting state S23
+>=IMPL['Composite10'].set("Guard2",True)
+Guard2 set to True
+>=IMPL['Composite10'].set("Guard7",True)
+Guard7 set to True
+>=IMPL['Composite10'].set("Guard10",True)
+Guard10 set to True
+>Ev1
+<Composite10 S1 Ev1
+Composite10.Guard2\(\) == True
+Composite10.Action2\(\)
+Composite10.Action5\(\)
+<Composite10 S1 EXIT
+<Composite10 S2 ENTRY
+<Composite10 S21 ENTRY
+<Composite10 S212 ENTRY
+>Ev2
+<Composite10 S21 Ev2
+Composite10.Guard7\(\) == True
+Composite10.Action7\(\)
+<Composite10 S212 EXIT
+<Composite10 S21 EXIT
+<Composite10 S22 ENTRY
+>Ev3
+<Composite10 S22 Ev3
+Composite10.Guard10\(\) == True
+Composite10.Action10\(\)
+<Composite10 S22 EXIT
+<Composite10 S23 ENTRY
+
+# N.B. All except one else transitions would have been exercised by this test,
+# so not exercising the /Action8 transition is immaterial.

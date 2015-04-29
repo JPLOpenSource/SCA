@@ -1,0 +1,29 @@
+# Simple3 checks a simple StateMachine with a self-transition
+
+<Simple3 S1 ENTRY
+>Ev2
+>Ev3
+>Ev1
+<Simple3 S1 Ev1
+<Simple3 S1 EXIT
+<Simple3 S2 ENTRY
+>Ev1
+<Simple3 S2 Ev1
+<Simple3 S2 EXIT
+<Simple3 S1 ENTRY
+>Ev1
+<Simple3 S1 Ev1
+<Simple3 S1 EXIT
+<Simple3 S2 ENTRY
+>Ev2
+<Simple3 S2 Ev2
+<Simple3 S2 EXIT
+<Simple3 S2 ENTRY
+>Ev3
+<Simple3 S2 Ev3
+<Simple3 S2 EXIT
+<Simple3 S2 ENTRY
+>Ev1
+<Simple3 S2 Ev1
+<Simple3 S2 EXIT
+<Simple3 S1 ENTRY

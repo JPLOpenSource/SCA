@@ -1,0 +1,55 @@
+// --------------------------------------------
+// Main.pml
+//
+// Main Promela Driver
+// This should be auto-generated
+//
+// --------------------------------------------
+
+// List of State-machine events
+#*--*##set( $val = 0 )
+#*--*##foreach( $signal in $model.sort($model.getSignals()) )
+#*----*##set( $val = $val + 1 )
+#*----*##set( $signalName = $mapper.sanitize($signal.name) )
+\#define ${signalName} ${val}
+#*--*##end
+## handle the time events, if any
+#*--*##foreach( $timeEvName in $model.getTimeEventNames($mapper) )
+#*----*##set( $val = $val + 1 )
+\#define ${timeEvName} ${val}
+#*--*##end
+## see if we need defs for orthogonal-region activate and exit events
+#*--*##if( $model.hasOrthogonalRegions() )
+#*----*##set( $val = $val + 1 )
+\#define ACTIVATE ${val}
+#*----*##set( $val = $val + 1 )
+\#define EXIT ${val}
+#*--*##end
+
+// Define an Event Type
+typedef eventType {byte sig};
+
+// Include manually-generated Promela routines
+\#include "ManStubs.pml"
+
+// Event Queue definitions
+\#define EV_Q_SIZE 1
+## Iterate over all state machines in the model
+#*--*##set( $val = 0 )
+#*--*##foreach( $statemachine in $model.sort($model.getStateMachines()) )
+\#define ${mapper.mapToTypeName($statemachine)}_ID $val
+#*----*##set( $val = $val + 1)
+#*--*##end
+#*--*##if( $val == 1 )## workaround for bug in Spin that warns when SM_MAX is 1
+#*----*##set( $val = $val + 1 )
+#*--*##end
+\#define SM_MAX $val
+chan evQ[SM_MAX] = [EV_Q_SIZE] of {eventType};
+
+// Include all the state-machine models
+#*--*##foreach( $statemachine in $model.sort($model.getStateMachines()) )
+\#include "${mapper.mapToFileName($statemachine)}.pml"
+#*--*##end
+
+// Include the init proc - which should be the driver.
+\#include "Init.pml"

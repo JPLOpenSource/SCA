@@ -1,0 +1,23 @@
+##
+## Implements the enums for the StateChart signals of this state machine.
+##
+##* [SWC 2009.09.09] verified simple state against old code in
+##     StateChartHeaderWriter.writeStateEnumDeclarations() of .writeDataTypes().
+###############################################################################
+
+/**
+ * Enumerate all the states that the state machine may be in at
+ * any given time.
+ */
+enum StateEnum${smName} {
+
+#*--*##set( $states = $model.sort($model.getStates($model.statemachine, true)) )
+#*--*##set( $maxlen = $mapper.getLongestString($mapper.getNamesInTargetLang($states)) )
+#*--*##set( $lastState = $states.size() - 1 )
+#*--*##foreach( $state in $states.entrySet() )
+#*----*##set( $name = $mapper.mapToEnumDecl($state) )
+#*----*##set( $pad  = $mapper.getPadding($name, $maxlen) )
+   ${name}#if( $velocityCount < $lastState ),#else #end${pad}/* State = $velocityCount */
+#*--*##end
+
+};

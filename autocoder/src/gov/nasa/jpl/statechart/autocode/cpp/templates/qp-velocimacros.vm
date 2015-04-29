@@ -1,0 +1,183 @@
+##
+## Macro definitions, define as few as possible, and only simple code.
+##
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+##* [SWC 2011.04.08] added macro to output C++ namespaces and closing braces.
+##* [SWC 2012.09.05] Changed completion-event handling to set the integer enum
+##  value of the "parent substate" at completion
+##* [SWC 2013.02.13] Enhanced QHsm with ignore_dropped and handled flags, and
+##  added logic after submachine event dispatch (footerSubmachineCaseEnd) to
+##  determine if handled, or whether to propagate to super state, thereby
+##  allowing dropped event to be caught.
+###############################################################################
+##
+## Macro to code namespaces, using the state machine object
+#macro( headerNamespaces )
+#*--*##if( $sm )
+#*----*##headerNamespacesWithPkgs($sm.packageNames)
+#*--*##else
+#*----*##headerNamespacesWithPkgs($model.splitByPkgs($autocoder.qfNamespace))
+#*--*##end
+#end
+##
+## Macro to code namespace closing braces, using the state machine object
+#macro( footerNamespaces )
+#*--*##if( $sm )
+#*----*##footerNamespacesWithPkgs($sm.packageNames)
+#*--*##else
+#*----*##footerNamespacesWithPkgs($model.splitByPkgs($autocoder.qfNamespace))
+#*--*##end
+#end
+##
+## Macro to code namespaces, given the packages
+#macro( headerNamespacesWithPkgs $pkgList )
+#*--*##set( $lvl = 0 )
+#*--*##foreach( $ns in $pkgList )
+#*----*##set( $s = $mapper.indentation($lvl) )
+${s}namespace $ns {
+#*----*##set( $lvl = $lvl + 1 )
+#*--*##end
+#end
+##
+## Macro to code namespace closing braces, given packages
+#macro( footerNamespacesWithPkgs $pkgList )
+## count levels of namespaces
+#*--*##set( $lvl = 0 )
+#*--*##foreach( $ns in $pkgList )
+#*----*##set( $lvl = $lvl + 1 )
+#*--*##end
+## insert closing braces innermost to outermost
+
+#*--*##foreach( $ns in $pkgList )
+#*----*##set( $lvl = $lvl - 1 )
+#*----*##set( $s = $mapper.indentation($lvl) )
+${s}}
+#*--*##end
+#end
+##
+## Macro to code a simple 'else', properly indented.
+#macro( elseStmt )
+#*--*##set( $s = $mapper.indentation() )
+${s}    } else {
+#end
+##
+## Macro to stamp out literal code from string, properly indented.
+#macro( literalCode $codeStr )
+#set( $s = $mapper.indentation() )
+${s}    // Literal code NOT supported: "${codeStr}"
+#end
+##
+## Macro to code default initial transitions in a Composite state.
+#macro( initialTransitionCase )
+
+    case ${qfNs}Q_INIT_SIG:
+#end
+##
+## Macro to code announcing a completion event from within a Submachine.
+## @param $exitPoint: if supplied, the Target exitPoint PseudoState via which to exit
+#macro( machineCompletionEvent $exitPoint )
+#*--*##set( $s = $mapper.indentation() )
+${s}    ${smName}::_COMPLETION_EVENT_.sig = ${mapper.mapToSignalEnum($sm)};
+#*--*##if( $SM_TERMINABLE )
+${s}    ${smName}::_COMPLETION_EVENT_.substate = me->parentState;
+#*----*##if( $exitPoint )
+${s}    ${smName}::_COMPLETION_EVENT_.exitPoint = ${mapper.mapToEnumDecl($exitPoint)};
+#*----*##end
+#*--*##else
+${s}    ${smName}::_COMPLETION_EVENT_.substate = 0;
+#*--*##end
+#*--*##publishEvent("&${smName}::_COMPLETION_EVENT_")
+#end
+##
+## Macro to code announcing a completion event from within a Composite state.
+#macro( stateCompletionEvent $containingState )
+#*--*##set( $s = $mapper.indentation() )
+${s}    ${smName}::_COMPLETION_EVENT_.sig = ${mapper.mapToSignalEnum($containingState)};
+${s}    ${smName}::_COMPLETION_EVENT_.substate = 0;  // _TOP_ state == none!
+#*--*##publishEvent("&${smName}::_COMPLETION_EVENT_")
+#end
+##
+## Macro to code a transition to the hidden final state.
+#macro( gotoHiddenFinal )
+#*--*##set( $s = $mapper.indentation() )
+${s}    return Q_TRAN(&${typeName}::final);
+#end
+##
+## Macro to code junction pseudostate with unknown branch.
+#macro( gotoChoiceBranchUnknown )
+#*--*##set( $s = $mapper.indentation() )
+${s}        // No junction guard conditions matched!
+#end
+##
+## Macro to code "terminate" pseudostate.
+#macro( gotoPseudostateTerminate )
+#*--*##set( $s = $mapper.indentation() )
+${s}    // TODO: terminate Pseudostate currently unsupported, do NOT use!
+#end
+##
+## Macro to code a print message warning of unknown target type.
+##
+## @param $target:  Target state of transition
+#macro( gotoTargetUnknown $target )
+#*--*##set( $s = $mapper.indentation() )
+${s}    // Encountered ${model.getType($target)}, which we don't yet know how to handle!
+#end
+##
+## Macro to code termination of a state transition guard block.
+#macro( footerGuardBlock )
+#*--*##set( $s = $mapper.indentation() )
+${s}    }
+#end
+##
+## Macro to code termination of a guarded case, meaning there is a guard block.
+#macro( footerGuardedCaseEnd )
+#*--*##if( $checkSubmInstance )
+#*----*##set( $discard = $mapper.decIndent() )
+#*--*##end
+#*--*##set( $s = $mapper.indentation() )
+${s}    }
+${s}    return Q_HANDLED();
+#end
+##
+## Macro to code termination of a case, already transitioned, in a state.
+## Nothing to do in C++.
+#macro( footerCaseEnd )
+#end
+##
+## Macro to code termination of a non-transition, but handled case in a state.
+#macro( footerCaseHandled )
+#*--*##set( $s = $mapper.indentation() )
+${s}    return Q_HANDLED();
+#end
+##
+## Macro to code termination of a non-transition case, but submachine state,
+## for which we need to check if the submachine handled the event.
+#macro( footerSubmachineCaseEnd )
+#*--*##set( $s = $mapper.indentation() )
+${s}    if (me->${mapper.mapToVarName($state)}->isHandled()) {
+${s}        return Q_HANDLED();  // Submachine handled the event
+${s}    } else {
+#*--*##set( $parentState = $model.getParentStateWithinOrthogonal($state) )
+${s}        return Q_SUPER(&${mapper.mapToFunctionName($parentState)});  // Submachine dropped the event!
+${s}    }
+#end
+##
+## Macro to code termination of the initial method.
+#macro( footerInitialMethod )
+}
+#end
+##
+## Macro to code termination of a C header definition.
+#macro( footerHeaderDef )
+
+#endif /* ${smDefName} */
+#end
+##
+## Macro to code friend classes.
+#macro( friendsClasses $friendList )
+#*--*##if( $friendList && !($friendList.isEmpty()) )
+#*----*##foreach( $friendName in $friendList )
+    friend class ${friendName};
+#*----*##end
+#*--*##end
+#end

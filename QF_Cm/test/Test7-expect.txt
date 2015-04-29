@@ -1,0 +1,17 @@
+<(test7|testObj) Test7T7S1 ENTRY
+>Ev1
+<(test7|testObj) Test7T7S1 EXIT
+<(test7|testObj) Test7T7S2 ENTRY
+<(test7|testObj) Test7T7S21 ENTRY
+>Ev2
+<(test7|testObj) Test7T7S21 EXIT
+<(test7|testObj) Test7T7S2 EXIT
+<(test7|testObj) Test7T7S1 ENTRY
+>Ev2
+<(test7|testObj) Test7T7S1 EXIT
+<(test7|testObj) Test7T7S2 ENTRY
+<(test7|testObj) Test7T7S22 ENTRY
+>Ev1
+<(test7|testObj) Test7T7S22 EXIT
+<(test7|testObj) Test7T7S2 EXIT
+<(test7|testObj) Test7T7S1 ENTRY

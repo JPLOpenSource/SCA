@@ -1,0 +1,166 @@
+          Hsm2_s1Enter\(\)
+          Hsm2_s11Enter\(\)
+      \*\*\* -> Ev5
+          Hsm2_s11Exit\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s12Exit\(\)
+          Hsm2_s1Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev4
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s12Exit\(\)
+          Hsm2_s1Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev4
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev5
+          Hsm2_s12Exit\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev3
+          Hsm2_s12Exit\(\)
+          Hsm2_s11Enter\(\)
+      \*\*\* -> Ev4
+          Hsm2_s11Exit\(\)
+          Hsm2_s1Exit\(\)
+          Hsm2_s3Entry\(\)
+          Hsm2_s31Entry\(\)
+          Hsm2_s311Entry\(\)
+      \*\*\* -> Ev1
+          Hsm2_s311Exit\(\)
+          Hsm2_s31Exit\(\)
+          Hsm2_s3Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev4
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+      \*\*\* -> Ev4
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev5
+          Hsm2_s12Exit\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev3
+          Hsm2_s12Exit\(\)
+          Hsm2_s11Enter\(\)
+      \*\*\* -> Ev4
+          Hsm2_s11Exit\(\)
+      \*\*\* -> Ev5
+          Hsm2_s1Exit\(\)
+          Hsm2_s3Entry\(\)
+          Hsm2_s31Entry\(\)
+          Hsm2_s311Entry\(\)
+      \*\*\* -> Ev2
+          Hsm2_s311Exit\(\)
+          Hsm2_s31Exit\(\)
+          Hsm2_s3Entry\(\)
+          Hsm2_s31Entry\(\)
+          Hsm2_s311Entry\(\)
+      \*\*\* -> Ev1
+          Hsm2_s311Exit\(\)
+          Hsm2_s31Exit\(\)
+          Hsm2_s3Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s2Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev4
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s12Exit\(\)
+          Hsm2_s1Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s2Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev4
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s12Exit\(\)
+          Hsm2_s1Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev4
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev3
+          Hsm2_s12Exit\(\)
+          Hsm2_s11Enter\(\)
+      \*\*\* -> Ev1
+          Hsm2_s11Exit\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s12Exit\(\)
+          Hsm2_s1Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev3
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+          Hsm2_s11Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s11Exit\(\)
+          Hsm2_s1Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev4
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s12Exit\(\)
+          Hsm2_s1Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s2Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev3
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+          Hsm2_s11Enter\(\)
+      \*\*\* -> Ev1
+          Hsm2_s11Exit\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev5
+          Hsm2_s12Exit\(\)
+          Hsm2_s12Enter\(\)
+      \*\*\* -> Ev3
+          Hsm2_s12Exit\(\)
+          Hsm2_s11Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s11Exit\(\)
+          Hsm2_s1Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s2Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev3
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+          Hsm2_s11Enter\(\)
+      \*\*\* -> Ev2
+          Hsm2_s11Exit\(\)
+          Hsm2_s1Exit\(\)
+          Hsm2_s2Enter\(\)
+      \*\*\* -> Ev4
+      \*\*\* -> Ev2
+          Hsm2_s2Exit\(\)
+          Hsm2_s1Enter\(\)
+          Hsm2_s12Enter\(\)
+          Hsm2_s12Exit\(\)
+          Hsm2_s1Exit\(\)
+      \*\*\* -> Ev2
+-------------
+depth-limit \(-u500 steps\) reached
+#processes: 2
+		queue 1 \(evQ\[0\]\): \[2\]
+		queue 2 \(evQ\[1\]\): 
+500:	proc  1 \(Hsm2\).*?39.*? \(state 61\)
+500:	proc  0 \(:init:\).*?16.*? \(state 51\)
+2 processes created

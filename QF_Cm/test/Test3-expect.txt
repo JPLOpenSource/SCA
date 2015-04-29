@@ -1,0 +1,27 @@
+<(test3|testObj) Test3T3S1 ENTRY
+>Ev1
+<(test3|testObj) Test3T3S1 EXIT
+<(test3|testObj) Test3T3S2 ENTRY
+<(test3|testObj) Test3T3S21 ENTRY
+>Ev1
+<(test3|testObj) Test3T3S21 EXIT
+<(test3|testObj) Test3T3S22 ENTRY
+>Ev3
+<(test3|testObj) Test3T3S22 EXIT
+<(test3|testObj) Test3T3S2 EXIT
+<(test3|testObj) Test3T3S3 ENTRY
+>Ev3
+<(test3|testObj) Test3T3S3 EXIT
+<(test3|testObj) Test3T3S2 ENTRY
+<(test3|testObj) Test3T3S22 ENTRY
+>Ev2
+<(test3|testObj) Test3T3S22 EXIT
+<(test3|testObj) Test3T3S21 ENTRY
+>Ev3
+<(test3|testObj) Test3T3S21 EXIT
+<(test3|testObj) Test3T3S2 EXIT
+<(test3|testObj) Test3T3S3 ENTRY
+>Ev3
+<(test3|testObj) Test3T3S3 EXIT
+<(test3|testObj) Test3T3S2 ENTRY
+<(test3|testObj) Test3T3S21 ENTRY

@@ -1,0 +1,29 @@
+##
+## Get some useful variables for the rest of the template 
+## 
+#*--*##set( $sm = $model.statemachine.value )
+#*--*##set( $smName = $mapper.mapToTypeName($sm) )
+##
+## Parse sub-templates to build code by modular parts
+##
+#*--*##parse( "${tpath}qpc.c-includes.vm" )
+#*--*##constructor( $model.statemachine, $smName, false )
+#*--*##parse( "${tpath}qpc.c-initial.vm" )
+##- handle each state or region
+#*--*##foreach( $stateOrRegion in $model.sort($model.getAllStates($sm)).entrySet() )
+#*----*##set( $objTypeName = $model.getType($stateOrRegion) )
+#*----*##if( $objTypeName.equals("region") )
+##- region:  make sure that it is an orthogonal one
+#*------*##set( $region = $stateOrRegion )
+#*------*##if( $region.value.state && $region.value.state.orthogonal )## yep, orthogonal!
+#*--------*##parse( "${tpath}qpc.c-region.vm" )
+#*------*##end
+#*----*##elseif( $objTypeName.equals("state") )
+##- state:  stamp out a state!
+#*------*##set( $state = $stateOrRegion )
+#*------*##parse( "${tpath}qpc.c-state.vm" )
+#*----*##end
+#*--*##end
+##
+## writeSubmachineCIncludes() ???
+##

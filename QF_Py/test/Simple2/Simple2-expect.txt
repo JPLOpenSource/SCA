@@ -1,0 +1,26 @@
+# Simple2 checks a simple StateMachine with internal transition
+
+<Simple2 S1 ENTRY
+>Ev1
+<Simple2 S1 Ev1
+<Simple2 S1 EXIT
+<Simple2 S2 ENTRY
+>Ev1
+<Simple2 S2 Ev1
+<Simple2 S2 EXIT
+<Simple2 S1 ENTRY
+>Ev1
+<Simple2 S1 Ev1
+<Simple2 S1 EXIT
+<Simple2 S2 ENTRY
+>Ev2
+<Simple2 S2 Ev2
+<Warning: no implementation object for handleEv2\(\)|Simple2.handleEv2\(\) default action implementation invoked
+>Ev2
+<Simple2 S2 Ev2
+<Warning: no implementation object for handleEv2\(\)|Simple2.handleEv2\(\) default action implementation invoked
+>Ev1
+<Simple2 S2 Ev1
+<Simple2 S2 EXIT
+<Simple2 S1 ENTRY
+>Ev2

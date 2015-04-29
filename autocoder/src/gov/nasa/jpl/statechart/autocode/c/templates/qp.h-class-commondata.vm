@@ -1,0 +1,71 @@
+##
+## Declares all submachines, orthogonal regions, and history variables.
+##
+##- input vars (in addition to $model, etc.):
+##    * $typeObj :  State Machine or Region
+##    * $typeName:  Type/struct name of the State Machine or Region object
+##    * $smName:    Type/struct name of the State Machine object
+##    * $implName:  Type/struct name of the State Machine Impl object
+##
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+##* [SWC 2011.09.27] Implemented SMAP C naming convention for module items
+##* [SWC 2012.01.19] Fix: objName declared regardless of trace; sized with macro
+##* [SWC 2012.01.23] Fix: removed ptr submachine/region types to elim. mallocs!
+###############################################################################
+## Must be second element, to hackishly access if needed
+    QActive *active;  // containing machine if this is a submachine instance
+#*--*##if( $autocoder.executionTraceOn )
+    char objName[#smNameLength()];
+#*--*##end
+#*--*##if( $isQHsm )
+    ${smName} *parent;  // parent active machine for access to timers
+#*--*##elseif( $SM_TERMINABLE )
+##- this SM is referenced as a submachine, declare a parent-substate field
+    #dataTypeInt32() parentState;  // parent substate of this submachine instance
+#*--*##end
+    ${implName} *impl;
+    enum ${smName}_state myState;
+#*--*##if( !$isQHsm && $model.hasMachineEntryPoint() )
+    #dataTypeInt32() entryPoint;  // designates submachine entry point
+    QEvent const *entryEvent;  // event that triggered entry into submachine
+#*--*##end
+##
+## Declare submachines
+##
+#*--*##set( $submStates = $model.sort($model.getSubmachineStates($typeObj)) )
+#*--*##if( !$submStates.empty )
+
+    /* Submachine instances */
+#*----*##foreach( $submState in $submStates )
+#*------*##set( $stateName = $mapper.mapToVarName($submState) )
+#*------*##set( $submImplName = $mapper.mapToImplTypeName($submState.submachine) )
+    #mapToTypeName($submState.submachine,"") ${stateName};
+    ${submImplName} ${stateName}_impl;
+    QEvent const *${stateName}LastEvt;
+#*----*##end
+#*--*##end
+##
+## Declare orthogonal regions
+##
+#*--*##set( $localRegions = $model.sort($model.getLocalOrthogonalRegions($typeObj)) )
+#*--*##if( !$localRegions.empty )
+
+    /* Orthogonal region instance pointers */
+#*----*##foreach( $localRegion in $localRegions )
+#*------*##set( $localRegionName = $mapper.mapToQualifiedName($localRegion) )
+#*------*##set( $varname = $mapper.mapToVarName($localRegion) )
+    ${localRegionName} *${varname};
+#*----*##end
+#*--*##end
+##
+## Declare deep history state variables
+##
+#*--*##set( $states = $model.getOOHistoryStates($typeObj) )
+#*--*##if( !$states.empty )
+
+    /* Deep-history state variables */
+#*----*##foreach( $anyState in $states )
+#*------*##set( $histStateName = $mapper.mapToVarName($model.getParentState($anyState)) )
+    #dataTypeStateHandler() ${histStateName}History;
+#*----*##end
+#*--*##end

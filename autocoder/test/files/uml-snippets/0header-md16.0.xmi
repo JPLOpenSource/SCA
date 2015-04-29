@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmi:version='2.1' xmlns:uml='http://schema.omg.org/spec/UML/2.1.2' xmlns:xmi='http://schema.omg.org/spec/XMI/2.1' xmlns:MagicDraw_Profile='http://www.magicdraw.com/schemas/MagicDraw_Profile.xmi' xmlns:UML_Standard_Profile='http://www.magicdraw.com/schemas/UML_Standard_Profile.xmi' xmlns:Validation_Profile='http://www.magicdraw.com/schemas/Validation_Profile.xmi' xmlns:DSL_Customization='http://www.magicdraw.com/schemas/DSL_Customization.xmi'>
+    <xmi:Documentation exporter='MagicDraw UML' exporterVersion='16.0'/>
+    <xmi:Extension extender='MagicDraw UML 16.0' extenderID='MagicDraw UML 16.0'>
+        <shareTable/>
+        <mountTable>
+            <module resource='file:/Applications/MagicDraw%20UML/profiles/UML_Standard_Profile.xml' autoloadType='ALWAYS_LOAD' readOnly='true' loadIndex='false' requiredVersion='-1'>
+                <mount mountPoint='magicdraw_uml_standard_profile_v_0001' mountedOn='eee_1045467100313_135436_1'/>
+            </module>
+        </mountTable>
+    </xmi:Extension>
+    <uml:Model xmi:id='eee_1045467100313_135436_1' name='Data' visibility='public'>
+        <xmi:Extension extender='MagicDraw UML 16.0' extenderID='MagicDraw UML 16.0'>
+            <moduleExtension ignoredInModule='true'/>
+        </xmi:Extension>
+        <ownedComment xmi:type='uml:Comment' xmi:id='_12_5_9120299_1181847054551_368900_98' body='Author:scheng.&#10;Created:8/11/09 11:42 AM.&#10;Title:.&#10;Comment:Snippets extracted from test-suite.&#10;'>
+            <annotatedElement xmi:idref='eee_1045467100313_135436_1'/>
+        </ownedComment>
+    

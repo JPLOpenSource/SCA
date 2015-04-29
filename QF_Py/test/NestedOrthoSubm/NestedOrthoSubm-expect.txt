@@ -1,0 +1,404 @@
+# NestedOrthoSubm tests the proper functions of doActivity and shallow history
+#   within submachines that sit inside orthogonal regions.
+
+# Initial entry
+NestedOrthoSubm Inactive ENTRY
+# Start the machine and test the do activity first.
+>ACTIVATE
+NestedOrthoSubm Inactive ACTIVATE
+NestedOrthoSubm Inactive EXIT
+NestedOrthoSubm Nested ENTRY
+NestedOrthoSubm SubmNested:NestedSubm ENTRY
+SubmNested:NestedSubm Inactive ENTRY
+NestedOrthoSubm OrthoNested ENTRY
+NestedOrthoSubm OrthoNested2a ENTRY
+NestedOrthoSubm OrthoNested2a1 ENTRY
+NestedOrthoSubm[.]doWorkNested2a1\(\) user impl-action invoked|NestedOrthoSubm[.]doWorkNested2b1\(\) user impl-action invoked
+NestedOrthoSubm[.]doWorkNested2a1\(\) user impl-action invoked|NestedOrthoSubm[.]doWorkNested2b1\(\) user impl-action invoked
+
+Running doWorkNested2a1 thread iteration 0|Running doWorkNested2b1 thread iteration 0
+Running doWorkNested2a1 thread iteration 0|Running doWorkNested2b1 thread iteration 0
+Running doWorkNested2a1 thread iteration 1|Running doWorkNested2b1 thread iteration 1
+Running doWorkNested2a1 thread iteration 1|Running doWorkNested2b1 thread iteration 1
+Running doWorkNested2a1 thread iteration 2|Running doWorkNested2b1 thread iteration 2
+Running doWorkNested2a1 thread iteration 2|Running doWorkNested2b1 thread iteration 2
+Running doWorkNested2a1 thread iteration 3|Running doWorkNested2b1 thread iteration 3
+Running doWorkNested2a1 thread iteration 3|Running doWorkNested2b1 thread iteration 3
+Running doWorkNested2a1 thread iteration 4|Running doWorkNested2b1 thread iteration 4
+Running doWorkNested2a1 thread iteration 4|Running doWorkNested2b1 thread iteration 4
+
+# Test for history inside orthogonal regions, entering/exiting at different levels
+>Ev5
+NestedOrthoSubm Nested Ev5
+NestedOrthoSubm Nested Region2 Ev5
+NestedOrthoSubm OrthoNested Ev5
+NestedOrthoSubm OrthoNested Region1 Ev5
+NestedOrthoSubm OrthoNested2a Ev5
+NestedOrthoSubm OrthoNested2a Region3 Ev5
+NestedOrthoSubm S2a3a Ev5
+NestedOrthoSubm S2a3a EXIT
+NestedOrthoSubm S2a3b:NestedSubm ENTRY
+S2a3b:NestedSubm Inactive ENTRY
+>Ev7
+NestedOrthoSubm Nested Ev7
+NestedOrthoSubm Nested Region2 Ev7
+NestedOrthoSubm OrthoNested Ev7
+NestedOrthoSubm OrthoNested Region1 Ev7
+NestedOrthoSubm OrthoNested2a Ev7
+NestedOrthoSubm OrthoNested2a Region3 Ev7
+NestedOrthoSubm OrthoNested2a3 Ev7
+NestedOrthoSubm S2a3b:NestedSubm EXIT
+S2a3b:NestedSubm Inactive EXIT
+NestedOrthoSubm OrthoNested2a3 EXIT
+NestedOrthoSubm OrthoNested2a4 ENTRY
+>Ev7
+NestedOrthoSubm Nested Ev7
+NestedOrthoSubm Nested Region2 Ev7
+NestedOrthoSubm OrthoNested Ev7
+NestedOrthoSubm OrthoNested Region1 Ev7
+NestedOrthoSubm OrthoNested2a Ev7
+NestedOrthoSubm OrthoNested2a Region3 Ev7
+NestedOrthoSubm OrthoNested2a4 Ev7
+NestedOrthoSubm OrthoNested2a4 EXIT
+NestedOrthoSubm OrthoNested2a3 ENTRY
+NestedOrthoSubm S2a3b:NestedSubm ENTRY
+S2a3b:NestedSubm Inactive ENTRY
+
+>Ev6
+NestedOrthoSubm Nested Ev6
+NestedOrthoSubm Nested Region2 Ev6
+NestedOrthoSubm OrthoNested Ev6
+NestedOrthoSubm OrthoNested Region2 Ev6
+NestedOrthoSubm OrthoNested2b Ev6
+NestedOrthoSubm OrthoNested2b Region6 Ev6
+NestedOrthoSubm S2b3a Ev6
+NestedOrthoSubm S2b3a EXIT
+NestedOrthoSubm S2b3b:NestedSubm ENTRY
+S2b3b:NestedSubm Inactive ENTRY
+>Ev8
+NestedOrthoSubm Nested Ev8
+NestedOrthoSubm Nested Region2 Ev8
+NestedOrthoSubm OrthoNested Ev8
+NestedOrthoSubm OrthoNested Region2 Ev8
+NestedOrthoSubm OrthoNested2b Ev8
+NestedOrthoSubm OrthoNested2b Region6 Ev8
+NestedOrthoSubm OrthoNested2b3 Ev8
+NestedOrthoSubm S2b3b:NestedSubm EXIT
+S2b3b:NestedSubm Inactive EXIT
+NestedOrthoSubm OrthoNested2b3 EXIT
+NestedOrthoSubm OrthoNested2b4 ENTRY
+>Ev8
+NestedOrthoSubm Nested Ev8
+NestedOrthoSubm Nested Region2 Ev8
+NestedOrthoSubm OrthoNested Ev8
+NestedOrthoSubm OrthoNested Region2 Ev8
+NestedOrthoSubm OrthoNested2b Ev8
+NestedOrthoSubm OrthoNested2b Region6 Ev8
+NestedOrthoSubm OrthoNested2b4 Ev8
+NestedOrthoSubm OrthoNested2b4 EXIT
+NestedOrthoSubm OrthoNested2b3 ENTRY
+NestedOrthoSubm S2b3b:NestedSubm ENTRY
+S2b3b:NestedSubm Inactive ENTRY
+
+>Ev3
+NestedOrthoSubm Nested Ev3
+NestedOrthoSubm Nested Region2 Ev3
+NestedOrthoSubm OrthoNested Ev3
+NestedOrthoSubm OrthoNested EXIT
+NestedOrthoSubm OrthoNested2a EXIT
+NestedOrthoSubm OrthoNested2a1 EXIT
+NestedOrthoSubm OrthoNested2a2:NestedSubm EXIT
+OrthoNested2a2:NestedSubm Inactive EXIT
+NestedOrthoSubm S2a3b:NestedSubm EXIT
+S2a3b:NestedSubm Inactive EXIT
+NestedOrthoSubm OrthoNested2a3 EXIT
+NestedOrthoSubm OrthoNested2b EXIT
+NestedOrthoSubm OrthoNested2b1 EXIT
+NestedOrthoSubm OrthoNested2b2:NestedSubm EXIT
+OrthoNested2b2:NestedSubm Inactive EXIT
+NestedOrthoSubm S2b3b:NestedSubm EXIT
+S2b3b:NestedSubm Inactive EXIT
+NestedOrthoSubm OrthoNested2b3 EXIT
+NestedOrthoSubm LeftOrtho ENTRY
+>Ev3
+NestedOrthoSubm Nested Ev3
+NestedOrthoSubm Nested Region2 Ev3
+NestedOrthoSubm LeftOrtho Ev3
+NestedOrthoSubm LeftOrtho EXIT
+NestedOrthoSubm OrthoNested ENTRY
+NestedOrthoSubm OrthoNested2a ENTRY
+NestedOrthoSubm OrthoNested2a1 ENTRY
+NestedOrthoSubm[.]doWorkNested2a1\(\) user impl-action invoked|NestedOrthoSubm[.]doWorkNested2b1\(\) user impl-action invoked
+NestedOrthoSubm[.]doWorkNested2a1\(\) user impl-action invoked|NestedOrthoSubm[.]doWorkNested2b1\(\) user impl-action invoked
+
+Running doWorkNested2a1 thread iteration 0|Running doWorkNested2b1 thread iteration 0
+Running doWorkNested2a1 thread iteration 0|Running doWorkNested2b1 thread iteration 0
+Running doWorkNested2a1 thread iteration 1|Running doWorkNested2b1 thread iteration 1
+Running doWorkNested2a1 thread iteration 1|Running doWorkNested2b1 thread iteration 1
+Running doWorkNested2a1 thread iteration 2|Running doWorkNested2b1 thread iteration 2
+Running doWorkNested2a1 thread iteration 2|Running doWorkNested2b1 thread iteration 2
+Running doWorkNested2a1 thread iteration 3|Running doWorkNested2b1 thread iteration 3
+Running doWorkNested2a1 thread iteration 3|Running doWorkNested2b1 thread iteration 3
+Running doWorkNested2a1 thread iteration 4|Running doWorkNested2b1 thread iteration 4
+Running doWorkNested2a1 thread iteration 4|Running doWorkNested2b1 thread iteration 4
+
+# get the two innermost history-scope states in different states to verify
+>Ev5
+NestedOrthoSubm Nested Ev5
+NestedOrthoSubm Nested Region2 Ev5
+NestedOrthoSubm OrthoNested Ev5
+NestedOrthoSubm OrthoNested Region1 Ev5
+NestedOrthoSubm OrthoNested2a Ev5
+NestedOrthoSubm OrthoNested2a Region3 Ev5
+NestedOrthoSubm S2a3b:NestedSubm Ev5
+NestedOrthoSubm S2a3b:NestedSubm EXIT
+S2a3b:NestedSubm Inactive EXIT
+NestedOrthoSubm S2a3a ENTRY
+
+>DEACTIVATE
+NestedOrthoSubm Nested DEACTIVATE
+NestedOrthoSubm Nested EXIT
+NestedOrthoSubm SubmNested:NestedSubm EXIT
+SubmNested:NestedSubm Inactive EXIT
+NestedOrthoSubm OrthoNested EXIT
+NestedOrthoSubm OrthoNested2a EXIT
+NestedOrthoSubm OrthoNested2a1 EXIT
+NestedOrthoSubm OrthoNested2a2:NestedSubm EXIT
+OrthoNested2a2:NestedSubm Inactive EXIT
+NestedOrthoSubm S2a3a EXIT
+NestedOrthoSubm OrthoNested2a3 EXIT
+NestedOrthoSubm OrthoNested2b EXIT
+NestedOrthoSubm OrthoNested2b1 EXIT
+NestedOrthoSubm OrthoNested2b2:NestedSubm EXIT
+OrthoNested2b2:NestedSubm Inactive EXIT
+NestedOrthoSubm S2b3b:NestedSubm EXIT
+S2b3b:NestedSubm Inactive EXIT
+NestedOrthoSubm OrthoNested2b3 EXIT
+NestedOrthoSubm Inactive ENTRY
+
+>ACTIVATE
+NestedOrthoSubm Inactive ACTIVATE
+NestedOrthoSubm Inactive EXIT
+NestedOrthoSubm Nested ENTRY
+NestedOrthoSubm SubmNested:NestedSubm ENTRY
+SubmNested:NestedSubm Inactive ENTRY
+NestedOrthoSubm OrthoNested ENTRY
+NestedOrthoSubm OrthoNested2a ENTRY
+NestedOrthoSubm OrthoNested2a1 ENTRY
+NestedOrthoSubm[.]doWorkNested2a1\(\) user impl-action invoked|NestedOrthoSubm[.]doWorkNested2b1\(\) user impl-action invoked
+NestedOrthoSubm[.]doWorkNested2a1\(\) user impl-action invoked|NestedOrthoSubm[.]doWorkNested2b1\(\) user impl-action invoked
+Running doWorkNested2a1 thread iteration 0|Running doWorkNested2b1 thread iteration 0
+Running doWorkNested2a1 thread iteration 0|Running doWorkNested2b1 thread iteration 0
+Running doWorkNested2a1 thread iteration 1|Running doWorkNested2b1 thread iteration 1
+Running doWorkNested2a1 thread iteration 1|Running doWorkNested2b1 thread iteration 1
+Running doWorkNested2a1 thread iteration 2|Running doWorkNested2b1 thread iteration 2
+Running doWorkNested2a1 thread iteration 2|Running doWorkNested2b1 thread iteration 2
+Running doWorkNested2a1 thread iteration 3|Running doWorkNested2b1 thread iteration 3
+Running doWorkNested2a1 thread iteration 3|Running doWorkNested2b1 thread iteration 3
+Running doWorkNested2a1 thread iteration 4|Running doWorkNested2b1 thread iteration 4
+Running doWorkNested2a1 thread iteration 4|Running doWorkNested2b1 thread iteration 4
+
+# Finally, test history within submachines, first just transitioning inside
+>SUB_ACTIVATE
+NestedOrthoSubm Nested SUB_ACTIVATE
+NestedOrthoSubm Nested Region1 SUB_ACTIVATE
+NestedOrthoSubm SubmNested:NestedSubm SUB_ACTIVATE
+SubmNested:NestedSubm Inactive SUB_ACTIVATE
+SubmNested:NestedSubm Inactive EXIT
+SubmNested:NestedSubm Active ENTRY
+SubmNested:NestedSubm S1 ENTRY
+NestedOrthoSubm Nested Region2 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested SUB_ACTIVATE
+NestedOrthoSubm OrthoNested Region1 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2a SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2a Region2 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2a2:NestedSubm SUB_ACTIVATE
+OrthoNested2a2:NestedSubm Inactive SUB_ACTIVATE
+OrthoNested2a2:NestedSubm Inactive EXIT
+OrthoNested2a2:NestedSubm Active ENTRY
+OrthoNested2a2:NestedSubm S1 ENTRY
+NestedOrthoSubm OrthoNested2a Region3 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested Region2 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2b SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2b Region5 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2b2:NestedSubm SUB_ACTIVATE
+OrthoNested2b2:NestedSubm Inactive SUB_ACTIVATE
+OrthoNested2b2:NestedSubm Inactive EXIT
+OrthoNested2b2:NestedSubm Active ENTRY
+OrthoNested2b2:NestedSubm S1 ENTRY
+NestedOrthoSubm OrthoNested2b Region6 SUB_ACTIVATE
+NestedOrthoSubm S2b3b:NestedSubm SUB_ACTIVATE
+S2b3b:NestedSubm Inactive SUB_ACTIVATE
+S2b3b:NestedSubm Inactive EXIT
+S2b3b:NestedSubm Active ENTRY
+S2b3b:NestedSubm S1 ENTRY
+
+>Ev1
+NestedOrthoSubm Nested Ev1
+NestedOrthoSubm Nested Region1 Ev1
+NestedOrthoSubm SubmNested:NestedSubm Ev1
+SubmNested:NestedSubm S1 Ev1
+SubmNested:NestedSubm S1 EXIT
+SubmNested:NestedSubm S2 ENTRY
+NestedOrthoSubm Nested Region2 Ev1
+NestedOrthoSubm OrthoNested Ev1
+NestedOrthoSubm OrthoNested Region1 Ev1
+NestedOrthoSubm OrthoNested2a Ev1
+NestedOrthoSubm OrthoNested2a Region2 Ev1
+NestedOrthoSubm OrthoNested2a2:NestedSubm Ev1
+OrthoNested2a2:NestedSubm S1 Ev1
+OrthoNested2a2:NestedSubm S1 EXIT
+OrthoNested2a2:NestedSubm S2 ENTRY
+NestedOrthoSubm OrthoNested2a Region3 Ev1
+NestedOrthoSubm OrthoNested Region2 Ev1
+NestedOrthoSubm OrthoNested2b Ev1
+NestedOrthoSubm OrthoNested2b Region5 Ev1
+NestedOrthoSubm OrthoNested2b2:NestedSubm Ev1
+OrthoNested2b2:NestedSubm S1 Ev1
+OrthoNested2b2:NestedSubm S1 EXIT
+OrthoNested2b2:NestedSubm S2 ENTRY
+NestedOrthoSubm OrthoNested2b Region6 Ev1
+NestedOrthoSubm S2b3b:NestedSubm Ev1
+S2b3b:NestedSubm S1 Ev1
+S2b3b:NestedSubm S1 EXIT
+S2b3b:NestedSubm S2 ENTRY
+
+>SUB_DEACTIVATE
+NestedOrthoSubm Nested SUB_DEACTIVATE
+NestedOrthoSubm Nested Region1 SUB_DEACTIVATE
+NestedOrthoSubm SubmNested:NestedSubm SUB_DEACTIVATE
+SubmNested:NestedSubm Active SUB_DEACTIVATE
+SubmNested:NestedSubm S2 EXIT
+SubmNested:NestedSubm Active EXIT
+SubmNested:NestedSubm Inactive ENTRY
+NestedOrthoSubm Nested Region2 SUB_DEACTIVATE
+NestedOrthoSubm OrthoNested SUB_DEACTIVATE
+NestedOrthoSubm OrthoNested Region1 SUB_DEACTIVATE
+NestedOrthoSubm OrthoNested2a SUB_DEACTIVATE
+NestedOrthoSubm OrthoNested2a Region2 SUB_DEACTIVATE
+NestedOrthoSubm OrthoNested2a2:NestedSubm SUB_DEACTIVATE
+OrthoNested2a2:NestedSubm Active SUB_DEACTIVATE
+OrthoNested2a2:NestedSubm S2 EXIT
+OrthoNested2a2:NestedSubm Active EXIT
+OrthoNested2a2:NestedSubm Inactive ENTRY
+NestedOrthoSubm OrthoNested2a Region3 SUB_DEACTIVATE
+NestedOrthoSubm OrthoNested Region2 SUB_DEACTIVATE
+NestedOrthoSubm OrthoNested2b SUB_DEACTIVATE
+NestedOrthoSubm OrthoNested2b Region5 SUB_DEACTIVATE
+NestedOrthoSubm OrthoNested2b2:NestedSubm SUB_DEACTIVATE
+OrthoNested2b2:NestedSubm Active SUB_DEACTIVATE
+OrthoNested2b2:NestedSubm S2 EXIT
+OrthoNested2b2:NestedSubm Active EXIT
+OrthoNested2b2:NestedSubm Inactive ENTRY
+NestedOrthoSubm OrthoNested2b Region6 SUB_DEACTIVATE
+NestedOrthoSubm S2b3b:NestedSubm SUB_DEACTIVATE
+S2b3b:NestedSubm Active SUB_DEACTIVATE
+S2b3b:NestedSubm S2 EXIT
+S2b3b:NestedSubm Active EXIT
+S2b3b:NestedSubm Inactive ENTRY
+
+# Now, transition out of the submachines, then go back in and check history
+>SUB_ACTIVATE
+NestedOrthoSubm Nested SUB_ACTIVATE
+NestedOrthoSubm Nested Region1 SUB_ACTIVATE
+NestedOrthoSubm SubmNested:NestedSubm SUB_ACTIVATE
+SubmNested:NestedSubm Inactive SUB_ACTIVATE
+SubmNested:NestedSubm Inactive EXIT
+SubmNested:NestedSubm Active ENTRY
+SubmNested:NestedSubm S2 ENTRY
+NestedOrthoSubm Nested Region2 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested SUB_ACTIVATE
+NestedOrthoSubm OrthoNested Region1 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2a SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2a Region2 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2a2:NestedSubm SUB_ACTIVATE
+OrthoNested2a2:NestedSubm Inactive SUB_ACTIVATE
+OrthoNested2a2:NestedSubm Inactive EXIT
+OrthoNested2a2:NestedSubm Active ENTRY
+OrthoNested2a2:NestedSubm S2 ENTRY
+NestedOrthoSubm OrthoNested2a Region3 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested Region2 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2b SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2b Region5 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2b2:NestedSubm SUB_ACTIVATE
+OrthoNested2b2:NestedSubm Inactive SUB_ACTIVATE
+OrthoNested2b2:NestedSubm Inactive EXIT
+OrthoNested2b2:NestedSubm Active ENTRY
+OrthoNested2b2:NestedSubm S2 ENTRY
+NestedOrthoSubm OrthoNested2b Region6 SUB_ACTIVATE
+NestedOrthoSubm S2b3b:NestedSubm SUB_ACTIVATE
+S2b3b:NestedSubm Inactive SUB_ACTIVATE
+S2b3b:NestedSubm Inactive EXIT
+S2b3b:NestedSubm Active ENTRY
+S2b3b:NestedSubm S2 ENTRY
+>Ev3
+NestedOrthoSubm Nested Ev3
+NestedOrthoSubm Nested Region2 Ev3
+NestedOrthoSubm OrthoNested Ev3
+NestedOrthoSubm OrthoNested EXIT
+NestedOrthoSubm OrthoNested2a EXIT
+NestedOrthoSubm OrthoNested2a1 EXIT
+NestedOrthoSubm OrthoNested2a2:NestedSubm EXIT
+OrthoNested2a2:NestedSubm S2 EXIT
+OrthoNested2a2:NestedSubm Active EXIT
+NestedOrthoSubm S2a3a EXIT
+NestedOrthoSubm OrthoNested2a3 EXIT
+NestedOrthoSubm OrthoNested2b EXIT
+NestedOrthoSubm OrthoNested2b1 EXIT
+NestedOrthoSubm OrthoNested2b2:NestedSubm EXIT
+OrthoNested2b2:NestedSubm S2 EXIT
+OrthoNested2b2:NestedSubm Active EXIT
+NestedOrthoSubm S2b3b:NestedSubm EXIT
+S2b3b:NestedSubm S2 EXIT
+S2b3b:NestedSubm Active EXIT
+NestedOrthoSubm OrthoNested2b3 EXIT
+NestedOrthoSubm LeftOrtho ENTRY
+>Ev3
+NestedOrthoSubm Nested Ev3
+NestedOrthoSubm Nested Region2 Ev3
+NestedOrthoSubm LeftOrtho Ev3
+NestedOrthoSubm LeftOrtho EXIT
+NestedOrthoSubm OrthoNested ENTRY
+NestedOrthoSubm OrthoNested2a ENTRY
+NestedOrthoSubm OrthoNested2a1 ENTRY
+NestedOrthoSubm[.]doWorkNested2a1\(\) user impl-action invoked|NestedOrthoSubm[.]doWorkNested2b1\(\) user impl-action invoked
+NestedOrthoSubm[.]doWorkNested2a1\(\) user impl-action invoked|NestedOrthoSubm[.]doWorkNested2b1\(\) user impl-action invoked
+Running doWorkNested2a1 thread iteration 0|Running doWorkNested2b1 thread iteration 0
+Running doWorkNested2a1 thread iteration 0|Running doWorkNested2b1 thread iteration 0
+Running doWorkNested2a1 thread iteration 1|Running doWorkNested2b1 thread iteration 1
+Running doWorkNested2a1 thread iteration 1|Running doWorkNested2b1 thread iteration 1
+Running doWorkNested2a1 thread iteration 2|Running doWorkNested2b1 thread iteration 2
+Running doWorkNested2a1 thread iteration 2|Running doWorkNested2b1 thread iteration 2
+Running doWorkNested2a1 thread iteration 3|Running doWorkNested2b1 thread iteration 3
+Running doWorkNested2a1 thread iteration 3|Running doWorkNested2b1 thread iteration 3
+Running doWorkNested2a1 thread iteration 4|Running doWorkNested2b1 thread iteration 4
+Running doWorkNested2a1 thread iteration 4|Running doWorkNested2b1 thread iteration 4
+>SUB_ACTIVATE
+NestedOrthoSubm Nested SUB_ACTIVATE
+NestedOrthoSubm Nested Region1 SUB_ACTIVATE
+NestedOrthoSubm SubmNested:NestedSubm SUB_ACTIVATE
+NestedOrthoSubm Nested Region2 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested SUB_ACTIVATE
+NestedOrthoSubm OrthoNested Region1 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2a SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2a Region2 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2a2:NestedSubm SUB_ACTIVATE
+OrthoNested2a2:NestedSubm Inactive SUB_ACTIVATE
+OrthoNested2a2:NestedSubm Inactive EXIT
+OrthoNested2a2:NestedSubm Active ENTRY
+OrthoNested2a2:NestedSubm S2 ENTRY
+NestedOrthoSubm OrthoNested2a Region3 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested Region2 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2b SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2b Region5 SUB_ACTIVATE
+NestedOrthoSubm OrthoNested2b2:NestedSubm SUB_ACTIVATE
+OrthoNested2b2:NestedSubm Inactive SUB_ACTIVATE
+OrthoNested2b2:NestedSubm Inactive EXIT
+OrthoNested2b2:NestedSubm Active ENTRY
+OrthoNested2b2:NestedSubm S2 ENTRY
+NestedOrthoSubm OrthoNested2b Region6 SUB_ACTIVATE
+NestedOrthoSubm S2b3b:NestedSubm SUB_ACTIVATE
+S2b3b:NestedSubm Inactive SUB_ACTIVATE
+S2b3b:NestedSubm Inactive EXIT
+S2b3b:NestedSubm Active ENTRY
+S2b3b:NestedSubm S2 ENTRY

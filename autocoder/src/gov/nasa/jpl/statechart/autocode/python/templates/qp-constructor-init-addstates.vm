@@ -1,0 +1,48 @@
+##
+## Obtain all the state names within this state machine
+##
+##- input vars (in addition to $model, etc.):
+##    * $typeObj :  State Machine or Region
+##
+##* [SWC 2013.02.13] SM_TERMINABLE check determines if $final state needed.
+###############################################################################
+##
+#*--*##set( $nonOrthoStates = $model.getStates($typeObj, false) )
+#*--*##set( $nameList = $mapper.getNamesInTargetLang($nonOrthoStates) )
+#*--*##set( $rv = $nameList.add("=======") )## for the longest label we have:  handler
+#*--*##set( $maxlen1 = $mapper.getLongestString($nameList) + 4 )
+#*--*##set( $maxlen2 = $maxlen1 + 6 )
+#*--*##set( $pad1 = $mapper.getPadding("state", $maxlen1) )
+#*--*##set( $pad2 = $mapper.getPadding("handler", $maxlen2) )
+        # --------------------------------------------------------------------
+        #               name ${pad1}         ${pad2}  parent's
+        #                of  ${pad1}  event  ${pad2}  event
+        #               state${pad1}  handler${pad2}  handler
+        # --------------------------------------------------------------------
+#*--*##set( $maxlen1 = $maxlen1 - 3 )## 3 for <"",>
+#*--*##set( $maxlen2 = $maxlen2 - 6 )## 6 for <self.,>
+#*--*##set( $pad1 = $mapper.getPadding("top", $maxlen1) )
+#*--*##set( $pad2 = $mapper.getPadding("top", $maxlen2) )
+        self.addState ( "top",${pad1}  self.top,${pad2}  None )
+#*--*##foreach( $nonOrthoState in $nonOrthoStates )
+#*----*##set( $parentName = $mapper.mapToFunctionName($model.getParentStateWithinOrthogonal($nonOrthoState)) )
+#*----*##set( $name = $mapper.mapToFunctionName($nonOrthoState) )
+#*----*##set( $pad1 = $mapper.getPadding($name, $maxlen1) )
+#*----*##set( $pad2 = $mapper.getPadding($name, $maxlen2) )
+        self.addState ( "${name}",${pad1}  self.${name},${pad2}  self.${parentName} )
+#*--*##end
+##
+#*--*##if( $SM_TERMINABLE || $isQHsm )
+##- add a final state for cleanly bailing out of submachine or region
+#*----*##set( $pad1 = $mapper.getPadding("final", $maxlen1) )
+#*----*##set( $pad2 = $mapper.getPadding("final", $maxlen2) )
+        self.addState ( "final",${pad1}  self.final,${pad2}  self.top )
+#*--*##end
+        #
+        # Initialize variable to store currently active state
+        self.__state_name = None
+#*--*##if( $model.hasMachineEntryPoint() )
+        #
+        # Initialize submachine entryPoint
+        self.__entryPoint = None
+#*--*##end

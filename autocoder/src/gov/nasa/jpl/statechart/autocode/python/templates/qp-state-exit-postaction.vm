@@ -1,0 +1,30 @@
+##
+## Generate Exit condition code, after the action list:
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##    * $isQHsm:     flag indicating whether we're in an Active or Hsm class
+###############################################################################
+##- disable Timers
+#*--*##foreach( $event in $model.getTimeEvents($state) )## usually just one
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($event) )
+## timers are ONLY defined in ACTIVE classes, so HSMs must access via active
+#*----*##if( $isQHsm )
+            self.__parent_obj.${timerName}.disarm()
+#*----*##else
+            self.${timerName}.disarm()
+#*----*##end
+#*--*##end
+##
+## exit from orthogonal subregions
+#*--*##foreach( $region in $model.getChildOrthogonalRegions($state) )
+#*----*##set( $varname = $mapper.mapToVarName($region) )
+            self.__${varname}.dispatch(BAIL_EVENT)
+#*--*##end
+##
+## exit from submachines
+#*--*##if( $state.submachineState )
+            self.__${stateName}.dispatch(BAIL_EVENT)
+#*--*##end
+            return 0

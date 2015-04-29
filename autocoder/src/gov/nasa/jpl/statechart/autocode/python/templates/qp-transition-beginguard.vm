@@ -1,0 +1,20 @@
+##
+## Handle state transition guard.
+##
+##- input vars (in addition to $model, etc.):
+##    * $exprStr:  transition object
+##    * $if     :  language guard keyword
+##
+##* [SWC 2009.09.17] ported from C template.
+##* [SWC 2010.01.19] refactored Velocity templates to be finer-grained, with
+##  more decision logic pushed into the Java writer class; file split into ~10.
+###############################################################################
+#*--*##set( $spc = $mapper.indentation() )
+#*--*##if( $model.isCallAction($exprStr) )
+#*----*##set( $funcCall = $model.getCallParts($exprStr) )
+#*----*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+##- there's parameters if callParts has more than 1 element
+$spc        ${if} self.__${funcName}(${mapper.mapArgsToInvocation($funcCall)}) == True:
+#*--*##else
+$spc        ${if} ${exprStr}:
+#*--*##end

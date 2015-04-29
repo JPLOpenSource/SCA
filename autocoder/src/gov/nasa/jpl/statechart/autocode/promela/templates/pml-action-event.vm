@@ -1,0 +1,17 @@
+##
+## State entry/exit or Transition effect action published as Signal Event.
+##
+##- input vars (in addition to $model, etc.):
+##    * $action:  action string to use as Signal Event
+##    * $s:       spacing to use before action
+##
+##* [SWC 2009.09.17] ported from C template.
+##* [SWC 2010.08.29] Refactored templates for minimal logic within templates.
+###############################################################################
+##
+#*--*##set( $evName = $mapper.sanitize($action) )
+${s}#*
+#*--*##foreach( $machine in $model.getMachinesForEvent($evName) )
+#*----*##set( $machName = $mapper.mapToTypeName($machine) )
+evQ[${machName}_ID]!${evName}; #*
+#*--*##end // Publish(${evName})

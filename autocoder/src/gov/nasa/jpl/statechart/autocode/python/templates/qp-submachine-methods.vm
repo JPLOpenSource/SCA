@@ -1,0 +1,16 @@
+##
+## Defines the submachine utility methods for a main machine to set entry point
+## and to retrieve last exit point.
+##
+##- input vars (in addition to $model, etc.):  None
+###############################################################################
+
+
+    def setEntryPoint(self, entry):
+        """
+        Sets the entry point into this StateMachine as a Submachine.
+        This should be invoked _before_ starting this StateMachine with
+        onStart() to affect the behavior of initial entry into this machine.
+        Setting entry to None causes default initial entry.
+        """
+        self.__entryPoint = entry

@@ -1,0 +1,21 @@
+##
+## Implement each state (variable $state defined in Velocity context).
+## This VM file is the beginning of state code, other files complete it.
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:      the State Machine state to implement
+##    * $stateName:  name of current State Machine state being implemented
+##
+##* [SWC 2009.09.02] coded from Python examples.
+##* [SWC 2009.09.18] verified against C template.
+##* [LJR 2009.10.27] taken from Python and partly transformed into Promela.
+##* [SWC 2010.09.07] New template file for refactoring to minimalist-style.
+###############################################################################
+#*--*##set( $s = $mapper.indentation() )
+${s}${stateName}:  do
+#*--*##set( $discard = $mapper.incIndent() )## increase indentation
+#*--*##set( $s = $mapper.indentation() )
+${s}:: inp?e ->
+#*--*##set( $discard = $mapper.incIndent() )## increase indentation
+#*--*##set( $s = $mapper.indentation() )
+${s}if

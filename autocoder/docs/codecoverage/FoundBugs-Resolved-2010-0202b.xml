@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="1.3.9" sequence="1" timestamp="1265132574260" analysisTimestamp="1265132564196" release="">
+  <Project></Project>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="gov.nasa.jpl.statechart.autocode.AbstractGenerator$WriterConfig">
+      <SourceLine classname="gov.nasa.jpl.statechart.autocode.AbstractGenerator$WriterConfig" sourcefile="AbstractGenerator.java" sourcepath="gov/nasa/jpl/statechart/autocode/AbstractGenerator.java"/>
+    </Class>
+    <Method classname="gov.nasa.jpl.statechart.autocode.AbstractGenerator$WriterConfig" name="&lt;init&gt;" signature="(Ljava/lang/Class;[Ljava/lang/Class;)V" isStatic="false">
+      <SourceLine classname="gov.nasa.jpl.statechart.autocode.AbstractGenerator$WriterConfig" start="45" end="48" startBytecode="0" endBytecode="124" sourcefile="AbstractGenerator.java" sourcepath="gov/nasa/jpl/statechart/autocode/AbstractGenerator.java"/>
+    </Method>
+    <Field classname="gov.nasa.jpl.statechart.autocode.AbstractGenerator$WriterConfig" name="paramList" signature="[Ljava/lang/Class;" isStatic="false">
+      <SourceLine classname="gov.nasa.jpl.statechart.autocode.AbstractGenerator$WriterConfig" sourcefile="AbstractGenerator.java" sourcepath="gov/nasa/jpl/statechart/autocode/AbstractGenerator.java"/>
+    </Field>
+    <LocalVariable name="params" register="2" pc="21" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="gov.nasa.jpl.statechart.autocode.AbstractGenerator$WriterConfig" start="47" end="47" startBytecode="21" endBytecode="21" sourcefile="AbstractGenerator.java" sourcepath="gov/nasa/jpl/statechart/autocode/AbstractGenerator.java"/>
+  </BugInstance>
+  <BugInstance type="MS_PKGPROTECT" priority="2" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="gov.nasa.jpl.statechart.autocode.UMLSnippetTestHarness">
+      <SourceLine classname="gov.nasa.jpl.statechart.autocode.UMLSnippetTestHarness" sourcefile="UMLSnippetTestHarness.java" sourcepath="gov/nasa/jpl/statechart/autocode/UMLSnippetTestHarness.java"/>
+    </Class>
+    <Field classname="gov.nasa.jpl.statechart.autocode.UMLSnippetTestHarness" name="reader" signature="Lgov/nasa/jpl/statechart/input/magicdraw/MagicDrawReader;" isStatic="true">
+      <SourceLine classname="gov.nasa.jpl.statechart.autocode.UMLSnippetTestHarness" sourcefile="UMLSnippetTestHarness.java" sourcepath="gov/nasa/jpl/statechart/autocode/UMLSnippetTestHarness.java"/>
+    </Field>
+    <SourceLine classname="gov.nasa.jpl.statechart.autocode.UMLSnippetTestHarness" start="55" end="55" startBytecode="1" endBytecode="1" sourcefile="UMLSnippetTestHarness.java" sourcepath="gov/nasa/jpl/statechart/autocode/UMLSnippetTestHarness.java"/>
+  </BugInstance>
+  <BugInstance type="MS_PKGPROTECT" priority="2" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="gov.nasa.jpl.statechart.playground.DocumentParsingTest">
+      <SourceLine classname="gov.nasa.jpl.statechart.playground.DocumentParsingTest" sourcefile="DocumentParsingTest.java" sourcepath="gov/nasa/jpl/statechart/playground/DocumentParsingTest.java"/>
+    </Class>
+    <Field classname="gov.nasa.jpl.statechart.playground.DocumentParsingTest" name="debugOn" signature="Z" isStatic="true">
+      <SourceLine classname="gov.nasa.jpl.statechart.playground.DocumentParsingTest" sourcefile="DocumentParsingTest.java" sourcepath="gov/nasa/jpl/statechart/playground/DocumentParsingTest.java"/>
+    </Field>
+    <SourceLine classname="gov.nasa.jpl.statechart.playground.DocumentParsingTest" start="18" end="18" startBytecode="1" endBytecode="1" sourcefile="DocumentParsingTest.java" sourcepath="gov/nasa/jpl/statechart/playground/DocumentParsingTest.java"/>
+  </BugInstance>
+  <BugInstance type="EQ_COMPARETO_USE_OBJECT_EQUALS" priority="2" abbrev="Eq" category="BAD_PRACTICE" first="1">
+    <Class classname="gov.nasa.jpl.statechart.uml.UMLNamedElement">
+      <SourceLine classname="gov.nasa.jpl.statechart.uml.UMLNamedElement" sourcefile="UMLNamedElement.java" sourcepath="gov/nasa/jpl/statechart/uml/UMLNamedElement.java"/>
+    </Class>
+    <Method classname="gov.nasa.jpl.statechart.uml.UMLNamedElement" name="compareTo" signature="(Ljava/lang/Object;)I" isStatic="false">
+      <SourceLine classname="gov.nasa.jpl.statechart.uml.UMLNamedElement" start="1" end="1" startBytecode="0" endBytecode="40" sourcefile="UMLNamedElement.java" sourcepath="gov/nasa/jpl/statechart/uml/UMLNamedElement.java"/>
+    </Method>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Tue, 2 Feb 2010 09:42:44 -0800" total_classes="287" referenced_classes="491" total_bugs="0" total_size="7758" num_packages="17" vm_version="1.5.0_22-147" cpu_seconds="13.74" clock_seconds="35.27" peak_mbytes="403.42" alloc_mbytes="893.12" gc_seconds="1.69">
+    <PackageStats package="gov.nasa.jpl.statechart" total_bugs="0" total_types="5" total_size="687">
+      <ClassStats class="gov.nasa.jpl.statechart.Autocoder" sourceFile="Autocoder.java" interface="false" size="318" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.Timer" sourceFile="Timer.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.Util" sourceFile="Util.java" interface="false" size="251" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.Util$1" sourceFile="Util.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.Version" sourceFile="Version.java" interface="false" size="93" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.autocode" total_bugs="0" total_types="15" total_size="304">
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.AbstractGenerator" sourceFile="AbstractGenerator.java" interface="false" size="55" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.AbstractGenerator$WriterConfig" sourceFile="AbstractGenerator.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.GeneratorKind" sourceFile="GeneratorKind.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.IGenerator" sourceFile="IGenerator.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.IGenerator$Kind" sourceFile="IGenerator.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.IGenerator$Kind$1" sourceFile="IGenerator.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.IGenerator$Kind$2" sourceFile="IGenerator.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.IGenerator$Kind$3" sourceFile="IGenerator.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.IGenerator$Kind$4" sourceFile="IGenerator.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.IGenerator$Kind$5" sourceFile="IGenerator.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.IGenerator$Kind$6" sourceFile="IGenerator.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.IGenerator$Kind$7" sourceFile="IGenerator.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.IWriter" sourceFile="IWriter.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.UMLSnippetTestHarness" sourceFile="UMLSnippetTestHarness.java" interface="false" size="53" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.UMLStateChartTemplateWriter" sourceFile="UMLStateChartTemplateWriter.java" interface="false" size="119" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.autocode.cm" total_bugs="0" total_types="6" total_size="217">
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.cm.CGenerator" sourceFile="CGenerator.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.cm.CMainWriter" sourceFile="CMainWriter.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.cm.CQuantumStateMachineWriter" sourceFile="CQuantumStateMachineWriter.java" interface="false" size="35" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.cm.COldSignalGenerator" sourceFile="CSignalGenerator.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.cm.CStateChartSignalWriter" sourceFile="CStateChartSignalWriter.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.cm.UMLToCMapper" sourceFile="UMLToCMapper.java" interface="false" size="132" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.autocode.cpp" total_bugs="0" total_types="4" total_size="318">
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.cpp.CppGenerator" sourceFile="CppGenerator.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.cpp.CppMainWriter" sourceFile="CppMainWriter.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.cpp.CppQuantumStateMachineWriter" sourceFile="CppQuantumStateMachineWriter.java" interface="false" size="248" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.cpp.UMLToCppMapper" sourceFile="UMLToCppMapper.java" interface="false" size="42" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.autocode.gui" total_bugs="0" total_types="2" total_size="34">
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.gui.PythonExecutionTraceWriter" sourceFile="PythonExecutionTraceWriter.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.gui.PythonGuiSignalWriter" sourceFile="PythonGuiSignalWriter.java" interface="false" size="15" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.autocode.promela" total_bugs="0" total_types="4" total_size="67">
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.promela.PromelaGenerator" sourceFile="PromelaGenerator.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.promela.PromelaMainWriter" sourceFile="PromelaMainWriter.java" interface="false" size="27" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.promela.PromelaStateMachineWriter" sourceFile="PromelaStateMachineWriter.java" interface="false" size="20" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.promela.UMLToPromelaMapper" sourceFile="UMLToPromelaMapper.java" interface="false" size="14" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.autocode.python" total_bugs="0" total_types="3" total_size="292">
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.python.PythonGenerator" sourceFile="PythonGenerator.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.python.PythonQuantumStateMachineWriter" sourceFile="PythonQuantumStateMachineWriter.java" interface="false" size="230" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.autocode.python.UMLToPythonMapper" sourceFile="UMLToPythonMapper.java" interface="false" size="44" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.input" total_bugs="0" total_types="5" total_size="186">
+      <ClassStats class="gov.nasa.jpl.statechart.input.AbstractXMLIdentifiers" sourceFile="AbstractXMLIdentifiers.java" interface="false" size="44" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.AbstractXmiReader" sourceFile="AbstractXmiReader.java" interface="false" size="90" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.IReader" sourceFile="IReader.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.ReaderNamespaceContext" sourceFile="ReaderNamespaceContext.java" interface="false" size="45" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.VersionSupport" sourceFile="VersionSupport.java" interface="true" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.input.identifiers" total_bugs="0" total_types="82" total_size="767">
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UML2_0" sourceFile="UML2_0.java" interface="false" size="36" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UML2_1_2" sourceFile="UML2_1_2.java" interface="false" size="57" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UML2_2" sourceFile="UML2_2.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLIdentifiers" sourceFile="UMLIdentifiers.java" interface="false" size="78" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel" sourceFile="UMLLabel.java" interface="false" size="134" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$1" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$10" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$11" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$12" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$13" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$14" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$15" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$16" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$17" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$18" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$19" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$2" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$20" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$21" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$22" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$23" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$24" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$25" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$26" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$27" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$28" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$29" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$3" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$30" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$31" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$32" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$33" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$34" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$35" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$36" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$37" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$38" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$39" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$4" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$40" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$41" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$42" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$43" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$44" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$45" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$46" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$47" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$48" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$49" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$5" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$50" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$51" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$52" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$53" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$54" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$55" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$56" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$57" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$58" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$59" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$6" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$60" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$61" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$62" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$7" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$8" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.UMLLabel$9" sourceFile="UMLLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMI2_1" sourceFile="XMI2_1.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMIIdentifiers" sourceFile="XMIIdentifiers.java" interface="false" size="50" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel" sourceFile="XMILabel.java" interface="false" size="34" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$1" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$10" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$11" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$12" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$2" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$3" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$4" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$5" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$6" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$7" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$8" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.identifiers.XMILabel$9" sourceFile="XMILabel.java" interface="false" size="5" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.input.magicdraw" total_bugs="0" total_types="32" total_size="537">
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawIdentifiers" sourceFile="MagicDrawIdentifiers.java" interface="false" size="49" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawIdentifiers$MD12_5" sourceFile="MagicDrawIdentifiers.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawIdentifiers$MD16_0" sourceFile="MagicDrawIdentifiers.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawIdentifiers$MD16_5" sourceFile="MagicDrawIdentifiers.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel" sourceFile="MagicDrawLabel.java" interface="false" size="62" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$1" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$10" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$11" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$12" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$13" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$14" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$15" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$16" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$17" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$18" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$19" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$2" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$20" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$21" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$22" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$23" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$24" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$25" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$26" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$3" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$4" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$5" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$6" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$7" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$8" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawLabel$9" sourceFile="MagicDrawLabel.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.magicdraw.MagicDrawReader" sourceFile="MagicDrawReader.java" interface="false" size="284" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.input.validator" total_bugs="0" total_types="8" total_size="467">
+      <ClassStats class="gov.nasa.jpl.statechart.input.validator.AbstractModelValidator" sourceFile="AbstractModelValidator.java" interface="false" size="64" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.validator.FatalModelException" sourceFile="FatalModelException.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.validator.IModelValidator" sourceFile="IModelValidator.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.validator.ModelException" sourceFile="ModelException.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.validator.UMLValidator" sourceFile="UMLValidator.java" interface="false" size="307" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.validator.UMLValidator$1" sourceFile="UMLValidator.java" interface="false" size="37" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.validator.Validate" sourceFile="Validate.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.input.validator.XMIValidator" sourceFile="XMIValidator.java" interface="false" size="17" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.model" total_bugs="0" total_types="4" total_size="198">
+      <ClassStats class="gov.nasa.jpl.statechart.model.BreadthFirstWalker" sourceFile="BreadthFirstWalker.java" interface="false" size="39" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.ModelGroup" sourceFile="ModelGroup.java" interface="true" size="8" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.PrefixOrderedWalker" sourceFile="PrefixOrderedWalker.java" interface="false" size="62" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.UMLModelGroup" sourceFile="UMLModelGroup.java" interface="false" size="89" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.model.diagram" total_bugs="0" total_types="9" total_size="230">
+      <ClassStats class="gov.nasa.jpl.statechart.model.diagram.DiagramData" sourceFile="DiagramData.java" interface="false" size="32" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.diagram.DiagramElement" sourceFile="DiagramElement.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.diagram.MachineElement" sourceFile="MachineElement.java" interface="false" size="36" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.diagram.SeparatorElement" sourceFile="SeparatorElement.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.diagram.TextElement" sourceFile="TextElement.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.diagram.TransitionElement" sourceFile="TransitionElement.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.diagram.TransitionToSelfElement" sourceFile="TransitionToSelfElement.java" interface="false" size="50" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.diagram.TransitionToSelfElement$Edge" sourceFile="TransitionToSelfElement.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.diagram.VertexElement" sourceFile="VertexElement.java" interface="false" size="50" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.model.visitor" total_bugs="0" total_types="27" total_size="501">
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.AbstractVisitor" sourceFile="AbstractVisitor.java" interface="false" size="29" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.AllTransitionVisitor" sourceFile="AllTransitionVisitor.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.AllVertexVisitor" sourceFile="AllVertexVisitor.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.AnonymousNameInjector" sourceFile="AnonymousNameInjector.java" interface="false" size="67" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.CallActionVisitor" sourceFile="CallActionVisitor.java" interface="false" size="44" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.Entry" sourceFile="Entry.java" interface="false" size="44" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.FinalStateVisitor" sourceFile="FinalStateVisitor.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.HistoryStateOOVisitor" sourceFile="HistoryStateOOVisitor.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.LeafStateVisitor" sourceFile="LeafStateVisitor.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.NotBelowOrthogonalVisitor" sourceFile="NotBelowOrthogonalVisitor.java" interface="false" size="46" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.OrthogonalRegionVisitor" sourceFile="OrthogonalRegionVisitor.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.RegionOOVisitor" sourceFile="RegionOOVisitor.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.RegionVisitor" sourceFile="RegionVisitor.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.SignalEventVisitor" sourceFile="SignalEventVisitor.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.SignalVisitor" sourceFile="SignalVisitor.java" interface="false" size="23" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.StateNameVisitor" sourceFile="StateNameVisitor.java" interface="false" size="53" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.StateOOVisitor" sourceFile="StateOOVisitor.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.StateTimeEventVisitor" sourceFile="StateTimeEventVisitor.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.StateVisitor" sourceFile="StateVisitor.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.SubmachineStateVisitor" sourceFile="SubmachineStateVisitor.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.SubmachineVisitor" sourceFile="SubmachineVisitor.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.TimeEventVisitor" sourceFile="TimeEventVisitor.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.TransitionSignalEventVisitor" sourceFile="TransitionSignalEventVisitor.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.TransitionTimeEventVisitor" sourceFile="TransitionTimeEventVisitor.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.TransitionTriggerVisitor" sourceFile="TransitionTriggerVisitor.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.VertexVisitor" sourceFile="VertexVisitor.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.model.visitor.Visitor" sourceFile="Visitor.java" interface="true" size="10" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.playground" total_bugs="0" total_types="2" total_size="146">
+      <ClassStats class="gov.nasa.jpl.statechart.playground.ClassLoaderFun" sourceFile="ClassLoaderFun.java" interface="false" size="79" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.playground.DocumentParsingTest" sourceFile="DocumentParsingTest.java" interface="false" size="67" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.template" total_bugs="0" total_types="12" total_size="1557">
+      <ClassStats class="gov.nasa.jpl.statechart.template.AbstractVelocityModel" sourceFile="AbstractVelocityModel.java" interface="false" size="233" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.AbstractVelocityModel$1" sourceFile="AbstractVelocityModel.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.AbstractVelocityModelTest" sourceFile="AbstractVelocityModelTest.java" interface="false" size="71" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.FlattenedVelocityModel" sourceFile="FlattenedVelocityModel.java" interface="false" size="91" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.FunctionCall" sourceFile="FunctionCall.java" interface="false" size="68" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.GlobalVelocityModel" sourceFile="GlobalVelocityModel.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.OOVelocityModel" sourceFile="OOVelocityModel.java" interface="false" size="76" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.OOVelocityModelTest" sourceFile="OOVelocityModelTest.java" interface="false" size="68" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.TargetLanguageMapper" sourceFile="TargetLanguageMapper.java" interface="false" size="141" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.TraceGuiVelocityModel" sourceFile="TraceGuiVelocityModel.java" interface="false" size="40" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.VelocityModel" sourceFile="VelocityModel.java" interface="false" size="232" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.template.VelocityModelTest" sourceFile="VelocityModelTest.java" interface="false" size="503" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="gov.nasa.jpl.statechart.uml" total_bugs="0" total_types="67" total_size="1250">
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Activity" sourceFile="Activity.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.AnyReceiveEvent" sourceFile="AnyReceiveEvent.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Behavior" sourceFile="Behavior.java" interface="true" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.BehavioredClassifier" sourceFile="BehavioredClassifier.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Class" sourceFile="Class.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Classifier" sourceFile="Classifier.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.ConnectionPointReference" sourceFile="ConnectionPointReference.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Constraint" sourceFile="Constraint.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Element" sourceFile="Element.java" interface="true" size="5" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Event" sourceFile="Event.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.FinalState" sourceFile="FinalState.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.LiteralString" sourceFile="LiteralString.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.MessageEvent" sourceFile="MessageEvent.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Model" sourceFile="Model.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.NamedElement" sourceFile="NamedElement.java" interface="true" size="8" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Namespace" sourceFile="Namespace.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.OpaqueBehavior" sourceFile="OpaqueBehavior.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.OpaqueExpression" sourceFile="OpaqueExpression.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Pseudostate" sourceFile="Pseudostate.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.PseudostateKind" sourceFile="PseudostateKind.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Region" sourceFile="Region.java" interface="true" size="8" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Signal" sourceFile="Signal.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.SignalEvent" sourceFile="SignalEvent.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.State" sourceFile="State.java" interface="true" size="11" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.StateMachine" sourceFile="StateMachine.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.TimeEvent" sourceFile="TimeEvent.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Transition" sourceFile="Transition.java" interface="true" size="11" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.TransitionKind" sourceFile="TransitionKind.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Trigger" sourceFile="Trigger.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLActivity" sourceFile="UMLActivity.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLAnyReceiveEvent" sourceFile="UMLAnyReceiveEvent.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLBehavior" sourceFile="UMLBehavior.java" interface="false" size="20" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLBehavioredClassifier" sourceFile="UMLBehavioredClassifier.java" interface="false" size="20" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLClass" sourceFile="UMLClass.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLClassifier" sourceFile="UMLClassifier.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLConnectionPointReference" sourceFile="UMLConnectionPointReference.java" interface="false" size="34" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLConstraint" sourceFile="UMLConstraint.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLElement" sourceFile="UMLElement.java" interface="false" size="110" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLEvent" sourceFile="UMLEvent.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLFinalState" sourceFile="UMLFinalState.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLLiteralString" sourceFile="UMLLiteralString.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLMessageEvent" sourceFile="UMLMessageEvent.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLModel" sourceFile="UMLModel.java" interface="false" size="147" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLModel$ModelData" sourceFile="UMLModel.java" interface="false" size="22" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLNamedElement" sourceFile="UMLNamedElement.java" interface="false" size="55" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLNamespace" sourceFile="UMLNamespace.java" interface="false" size="36" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLOpaqueBehavior" sourceFile="UMLOpaqueBehavior.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLOpaqueExpression" sourceFile="UMLOpaqueExpression.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLPseudostate" sourceFile="UMLPseudostate.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLRegion" sourceFile="UMLRegion.java" interface="false" size="54" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLSignal" sourceFile="UMLSignal.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLSignalEvent" sourceFile="UMLSignalEvent.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLState" sourceFile="UMLState.java" interface="false" size="71" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLStateMachine" sourceFile="UMLStateMachine.java" interface="false" size="37" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLStateMachineFullTest" sourceFile="UMLStateMachineFullTest.java" interface="false" size="195" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLTimeEvent" sourceFile="UMLTimeEvent.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLTransition" sourceFile="UMLTransition.java" interface="false" size="62" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLTrigger" sourceFile="UMLTrigger.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLValueSpecification" sourceFile="UMLValueSpecification.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.UMLVertex" sourceFile="UMLVertex.java" interface="false" size="45" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.ValueSpecification" sourceFile="ValueSpecification.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.Vertex" sourceFile="Vertex.java" interface="true" size="6" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.VisibilityKind" sourceFile="VisibilityKind.java" interface="false" size="23" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.VisibilityKind$1" sourceFile="VisibilityKind.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.VisibilityKind$2" sourceFile="VisibilityKind.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.VisibilityKind$3" sourceFile="VisibilityKind.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="gov.nasa.jpl.statechart.uml.VisibilityKind$4" sourceFile="VisibilityKind.java" interface="false" size="6" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteUnconditionalParamDerefs" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="45" maxMicrosecondsPerInvocation="629" standardDeviationMircosecondsPerInvocation="82"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.DepthFirstSearchFactory" totalMilliseconds="13" invocations="1427" avgMicrosecondsPerInvocation="9" maxMicrosecondsPerInvocation="204" standardDeviationMircosecondsPerInvocation="12"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.QuestionableBooleanAssignment" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="46" maxMicrosecondsPerInvocation="1044" standardDeviationMircosecondsPerInvocation="110"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DoInsideDoPrivileged" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="47" maxMicrosecondsPerInvocation="584" standardDeviationMircosecondsPerInvocation="80"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.InstantiateStaticClass" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="47" maxMicrosecondsPerInvocation="1043" standardDeviationMircosecondsPerInvocation="113"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.VarArgsProblems" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="47" maxMicrosecondsPerInvocation="1187" standardDeviationMircosecondsPerInvocation="116"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNakedNotify" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="47" maxMicrosecondsPerInvocation="1047" standardDeviationMircosecondsPerInvocation="110"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.InheritanceUnsafeGetResource" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="47" maxMicrosecondsPerInvocation="1021" standardDeviationMircosecondsPerInvocation="109"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EmptyZipFileEntry" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="48" maxMicrosecondsPerInvocation="1049" standardDeviationMircosecondsPerInvocation="117"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.Naming" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="48" maxMicrosecondsPerInvocation="321" standardDeviationMircosecondsPerInvocation="40"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.SuspiciousThreadInterrupted" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="48" maxMicrosecondsPerInvocation="1095" standardDeviationMircosecondsPerInvocation="114"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.IDivResultCastToDouble" totalMilliseconds="13" invocations="287" avgMicrosecondsPerInvocation="48" maxMicrosecondsPerInvocation="1073" standardDeviationMircosecondsPerInvocation="112"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindSelfComparison2" totalMilliseconds="13" invocations="261" avgMicrosecondsPerInvocation="53" maxMicrosecondsPerInvocation="752" standardDeviationMircosecondsPerInvocation="99"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindLocalSelfAssignment2" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="48" maxMicrosecondsPerInvocation="1056" standardDeviationMircosecondsPerInvocation="112"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindUnconditionalWait" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="48" maxMicrosecondsPerInvocation="1039" standardDeviationMircosecondsPerInvocation="114"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.StaticCalendarDetector" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="49" maxMicrosecondsPerInvocation="2217" standardDeviationMircosecondsPerInvocation="171"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.MutableLock" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="49" maxMicrosecondsPerInvocation="1054" standardDeviationMircosecondsPerInvocation="112"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.IncompatMask" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="49" maxMicrosecondsPerInvocation="1069" standardDeviationMircosecondsPerInvocation="119"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BadlyOverriddenAdapter" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="49" maxMicrosecondsPerInvocation="1031" standardDeviationMircosecondsPerInvocation="110"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindEmptySynchronizedBlock" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="50" maxMicrosecondsPerInvocation="1145" standardDeviationMircosecondsPerInvocation="118"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.WaitInLoop" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="50" maxMicrosecondsPerInvocation="1081" standardDeviationMircosecondsPerInvocation="118"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRunInvocations" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="50" maxMicrosecondsPerInvocation="1134" standardDeviationMircosecondsPerInvocation="118"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindUselessControlFlow" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="50" maxMicrosecondsPerInvocation="1146" standardDeviationMircosecondsPerInvocation="120"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.SuperfluousInstanceOf" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="50" maxMicrosecondsPerInvocation="1053" standardDeviationMircosecondsPerInvocation="118"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.StringConcatenation" totalMilliseconds="14" invocations="287" avgMicrosecondsPerInvocation="51" maxMicrosecondsPerInvocation="1123" standardDeviationMircosecondsPerInvocation="124"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.InefficientToArray" totalMilliseconds="15" invocations="287" avgMicrosecondsPerInvocation="52" maxMicrosecondsPerInvocation="1086" standardDeviationMircosecondsPerInvocation="128"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BadUseOfReturnValue" totalMilliseconds="15" invocations="287" avgMicrosecondsPerInvocation="52" maxMicrosecondsPerInvocation="1065" standardDeviationMircosecondsPerInvocation="125"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.MutableStaticFields" totalMilliseconds="15" invocations="287" avgMicrosecondsPerInvocation="52" maxMicrosecondsPerInvocation="1053" standardDeviationMircosecondsPerInvocation="118"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.WrongMapIterator" totalMilliseconds="15" invocations="287" avgMicrosecondsPerInvocation="53" maxMicrosecondsPerInvocation="1151" standardDeviationMircosecondsPerInvocation="124"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindFinalizeInvocations" totalMilliseconds="15" invocations="287" avgMicrosecondsPerInvocation="53" maxMicrosecondsPerInvocation="1069" standardDeviationMircosecondsPerInvocation="131"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReadReturnShouldBeChecked" totalMilliseconds="15" invocations="287" avgMicrosecondsPerInvocation="55" maxMicrosecondsPerInvocation="1217" standardDeviationMircosecondsPerInvocation="130"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.XMLFactoryBypass" totalMilliseconds="15" invocations="287" avgMicrosecondsPerInvocation="55" maxMicrosecondsPerInvocation="1081" standardDeviationMircosecondsPerInvocation="126"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindDoubleCheck" totalMilliseconds="16" invocations="287" avgMicrosecondsPerInvocation="58" maxMicrosecondsPerInvocation="1228" standardDeviationMircosecondsPerInvocation="137"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindUnsyncGet" totalMilliseconds="17" invocations="287" avgMicrosecondsPerInvocation="62" maxMicrosecondsPerInvocation="1085" standardDeviationMircosecondsPerInvocation="125"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DumbMethodInvocations" totalMilliseconds="20" invocations="267" avgMicrosecondsPerInvocation="75" maxMicrosecondsPerInvocation="1230" standardDeviationMircosecondsPerInvocation="140"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.SynchronizeAndNullCheckField" totalMilliseconds="20" invocations="287" avgMicrosecondsPerInvocation="70" maxMicrosecondsPerInvocation="1346" standardDeviationMircosecondsPerInvocation="155"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindUncalledPrivateMethods" totalMilliseconds="22" invocations="287" avgMicrosecondsPerInvocation="76" maxMicrosecondsPerInvocation="1499" standardDeviationMircosecondsPerInvocation="160"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.UnnecessaryMath" totalMilliseconds="22" invocations="287" avgMicrosecondsPerInvocation="78" maxMicrosecondsPerInvocation="9477" standardDeviationMircosecondsPerInvocation="567"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindSqlInjection" totalMilliseconds="24" invocations="280" avgMicrosecondsPerInvocation="88" maxMicrosecondsPerInvocation="2109" standardDeviationMircosecondsPerInvocation="200"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindMaskedFields" totalMilliseconds="24" invocations="280" avgMicrosecondsPerInvocation="88" maxMicrosecondsPerInvocation="9941" standardDeviationMircosecondsPerInvocation="601"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DuplicateBranches" totalMilliseconds="24" invocations="287" avgMicrosecondsPerInvocation="86" maxMicrosecondsPerInvocation="4975" standardDeviationMircosecondsPerInvocation="436"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.VolatileUsage" totalMilliseconds="25" invocations="287" avgMicrosecondsPerInvocation="90" maxMicrosecondsPerInvocation="12153" standardDeviationMircosecondsPerInvocation="722"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindUnrelatedTypesInGenericContainer" totalMilliseconds="26" invocations="261" avgMicrosecondsPerInvocation="100" maxMicrosecondsPerInvocation="1846" standardDeviationMircosecondsPerInvocation="210"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDeref" totalMilliseconds="27" invocations="267" avgMicrosecondsPerInvocation="102" maxMicrosecondsPerInvocation="1453" standardDeviationMircosecondsPerInvocation="174"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="27" invocations="490" avgMicrosecondsPerInvocation="57" maxMicrosecondsPerInvocation="740" standardDeviationMircosecondsPerInvocation="94"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="29" invocations="491" avgMicrosecondsPerInvocation="60" maxMicrosecondsPerInvocation="555" standardDeviationMircosecondsPerInvocation="84"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindSpinLoop" totalMilliseconds="30" invocations="287" avgMicrosecondsPerInvocation="106" maxMicrosecondsPerInvocation="14716" standardDeviationMircosecondsPerInvocation="874"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.HugeSharedStringConstants" totalMilliseconds="35" invocations="287" avgMicrosecondsPerInvocation="122" maxMicrosecondsPerInvocation="11186" standardDeviationMircosecondsPerInvocation="921"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindReturnRef" totalMilliseconds="35" invocations="287" avgMicrosecondsPerInvocation="122" maxMicrosecondsPerInvocation="3586" standardDeviationMircosecondsPerInvocation="320"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReflectiveClasses" totalMilliseconds="39" invocations="491" avgMicrosecondsPerInvocation="79" maxMicrosecondsPerInvocation="1314" standardDeviationMircosecondsPerInvocation="173"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.SynchronizeOnClassLiteralNotGetClass" totalMilliseconds="39" invocations="287" avgMicrosecondsPerInvocation="139" maxMicrosecondsPerInvocation="3498" standardDeviationMircosecondsPerInvocation="361"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteNonnullReturnValues" totalMilliseconds="41" invocations="287" avgMicrosecondsPerInvocation="142" maxMicrosecondsPerInvocation="12489" standardDeviationMircosecondsPerInvocation="749"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReadOfInstanceFieldInMethodInvokedByConstructorInSuperclass" totalMilliseconds="42" invocations="287" avgMicrosecondsPerInvocation="147" maxMicrosecondsPerInvocation="3517" standardDeviationMircosecondsPerInvocation="381"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindBadCast2" totalMilliseconds="43" invocations="265" avgMicrosecondsPerInvocation="163" maxMicrosecondsPerInvocation="5227" standardDeviationMircosecondsPerInvocation="507"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.TypeQualifierNullnessAnnotationDatabase" totalMilliseconds="43" invocations="17325" avgMicrosecondsPerInvocation="2" maxMicrosecondsPerInvocation="112" standardDeviationMircosecondsPerInvocation="6"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison" totalMilliseconds="43" invocations="283" avgMicrosecondsPerInvocation="155" maxMicrosecondsPerInvocation="2930" standardDeviationMircosecondsPerInvocation="348"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDerefsInvolvingNonShortCircuitEvaluation" totalMilliseconds="46" invocations="287" avgMicrosecondsPerInvocation="161" maxMicrosecondsPerInvocation="3415" standardDeviationMircosecondsPerInvocation="386"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindFieldSelfAssignment" totalMilliseconds="46" invocations="287" avgMicrosecondsPerInvocation="162" maxMicrosecondsPerInvocation="3432" standardDeviationMircosecondsPerInvocation="384"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FormatStringChecker" totalMilliseconds="46" invocations="287" avgMicrosecondsPerInvocation="162" maxMicrosecondsPerInvocation="3513" standardDeviationMircosecondsPerInvocation="390"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.SynchronizingOnContentsOfFieldToProtectField" totalMilliseconds="46" invocations="287" avgMicrosecondsPerInvocation="162" maxMicrosecondsPerInvocation="3451" standardDeviationMircosecondsPerInvocation="387"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.AppendingToAnObjectOutputStream" totalMilliseconds="46" invocations="287" avgMicrosecondsPerInvocation="163" maxMicrosecondsPerInvocation="3527" standardDeviationMircosecondsPerInvocation="390"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindBadForLoop" totalMilliseconds="46" invocations="287" avgMicrosecondsPerInvocation="163" maxMicrosecondsPerInvocation="3516" standardDeviationMircosecondsPerInvocation="387"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NumberConstructor" totalMilliseconds="47" invocations="287" avgMicrosecondsPerInvocation="164" maxMicrosecondsPerInvocation="3475" standardDeviationMircosecondsPerInvocation="386"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindDeadLocalStores" totalMilliseconds="47" invocations="284" avgMicrosecondsPerInvocation="166" maxMicrosecondsPerInvocation="11215" standardDeviationMircosecondsPerInvocation="848"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindFloatEquality" totalMilliseconds="47" invocations="287" avgMicrosecondsPerInvocation="165" maxMicrosecondsPerInvocation="3456" standardDeviationMircosecondsPerInvocation="392"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BadSyntaxForRegularExpression" totalMilliseconds="48" invocations="287" avgMicrosecondsPerInvocation="168" maxMicrosecondsPerInvocation="3577" standardDeviationMircosecondsPerInvocation="408"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.InfiniteRecursiveLoop" totalMilliseconds="48" invocations="287" avgMicrosecondsPerInvocation="169" maxMicrosecondsPerInvocation="3579" standardDeviationMircosecondsPerInvocation="416"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BadResultSetAccess" totalMilliseconds="49" invocations="287" avgMicrosecondsPerInvocation="171" maxMicrosecondsPerInvocation="3564" standardDeviationMircosecondsPerInvocation="408"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNonShortCircuit" totalMilliseconds="49" invocations="287" avgMicrosecondsPerInvocation="172" maxMicrosecondsPerInvocation="3774" standardDeviationMircosecondsPerInvocation="411"/>
+      <ClassProfile name="edu.umd.cs.findbugs.DetectorToDetector2Adapter" totalMilliseconds="49" invocations="28059" avgMicrosecondsPerInvocation="1" maxMicrosecondsPerInvocation="3182" standardDeviationMircosecondsPerInvocation="19"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LostLoggerDueToWeakReference" totalMilliseconds="49" invocations="287" avgMicrosecondsPerInvocation="174" maxMicrosecondsPerInvocation="3729" standardDeviationMircosecondsPerInvocation="413"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.SynchronizationOnSharedBuiltinConstant" totalMilliseconds="50" invocations="287" avgMicrosecondsPerInvocation="177" maxMicrosecondsPerInvocation="3692" standardDeviationMircosecondsPerInvocation="415"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.RepeatedConditionals" totalMilliseconds="51" invocations="287" avgMicrosecondsPerInvocation="177" maxMicrosecondsPerInvocation="3713" standardDeviationMircosecondsPerInvocation="421"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindPuzzlers" totalMilliseconds="52" invocations="287" avgMicrosecondsPerInvocation="181" maxMicrosecondsPerInvocation="3945" standardDeviationMircosecondsPerInvocation="428"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.InfiniteLoop" totalMilliseconds="52" invocations="287" avgMicrosecondsPerInvocation="181" maxMicrosecondsPerInvocation="3775" standardDeviationMircosecondsPerInvocation="427"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.SerializableIdiom" totalMilliseconds="55" invocations="287" avgMicrosecondsPerInvocation="191" maxMicrosecondsPerInvocation="30754" standardDeviationMircosecondsPerInvocation="1811"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindInconsistentSync2" totalMilliseconds="56" invocations="287" avgMicrosecondsPerInvocation="197" maxMicrosecondsPerInvocation="3544" standardDeviationMircosecondsPerInvocation="408"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CrossSiteScripting" totalMilliseconds="56" invocations="287" avgMicrosecondsPerInvocation="197" maxMicrosecondsPerInvocation="10237" standardDeviationMircosecondsPerInvocation="709"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="56" invocations="491" avgMicrosecondsPerInvocation="115" maxMicrosecondsPerInvocation="11790" standardDeviationMircosecondsPerInvocation="550"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.MethodReturnCheck" totalMilliseconds="57" invocations="287" avgMicrosecondsPerInvocation="199" maxMicrosecondsPerInvocation="4121" standardDeviationMircosecondsPerInvocation="471"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="58" invocations="490" avgMicrosecondsPerInvocation="119" maxMicrosecondsPerInvocation="6387" standardDeviationMircosecondsPerInvocation="365"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DumbMethods" totalMilliseconds="63" invocations="287" avgMicrosecondsPerInvocation="220" maxMicrosecondsPerInvocation="4890" standardDeviationMircosecondsPerInvocation="516"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindSelfComparison" totalMilliseconds="63" invocations="287" avgMicrosecondsPerInvocation="222" maxMicrosecondsPerInvocation="4420" standardDeviationMircosecondsPerInvocation="545"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindHEmismatch" totalMilliseconds="64" invocations="287" avgMicrosecondsPerInvocation="223" maxMicrosecondsPerInvocation="10350" standardDeviationMircosecondsPerInvocation="725"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.RuntimeExceptionCapture" totalMilliseconds="65" invocations="287" avgMicrosecondsPerInvocation="226" maxMicrosecondsPerInvocation="10388" standardDeviationMircosecondsPerInvocation="757"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.obl.ObligationAnalysis" totalMilliseconds="68" invocations="75" avgMicrosecondsPerInvocation="913" maxMicrosecondsPerInvocation="13129" standardDeviationMircosecondsPerInvocation="2007"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.UnreadFields" totalMilliseconds="68" invocations="287" avgMicrosecondsPerInvocation="240" maxMicrosecondsPerInvocation="4253" standardDeviationMircosecondsPerInvocation="498"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.SwitchFallthrough" totalMilliseconds="70" invocations="287" avgMicrosecondsPerInvocation="245" maxMicrosecondsPerInvocation="11164" standardDeviationMircosecondsPerInvocation="852"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LoadOfKnownNullValue" totalMilliseconds="80" invocations="259" avgMicrosecondsPerInvocation="310" maxMicrosecondsPerInvocation="14954" standardDeviationMircosecondsPerInvocation="1127"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.URLProblems" totalMilliseconds="86" invocations="287" avgMicrosecondsPerInvocation="302" maxMicrosecondsPerInvocation="12704" standardDeviationMircosecondsPerInvocation="999"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="90" invocations="1125" avgMicrosecondsPerInvocation="80" maxMicrosecondsPerInvocation="3162" standardDeviationMircosecondsPerInvocation="112"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="91" invocations="563" avgMicrosecondsPerInvocation="162" maxMicrosecondsPerInvocation="14476" standardDeviationMircosecondsPerInvocation="809"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="107" invocations="266" avgMicrosecondsPerInvocation="405" maxMicrosecondsPerInvocation="17924" standardDeviationMircosecondsPerInvocation="1873"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.LiveLocalStoreDataflowFactory" totalMilliseconds="110" invocations="1156" avgMicrosecondsPerInvocation="95" maxMicrosecondsPerInvocation="3354" standardDeviationMircosecondsPerInvocation="217"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="131" invocations="1257" avgMicrosecondsPerInvocation="104" maxMicrosecondsPerInvocation="12233" standardDeviationMircosecondsPerInvocation="401"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="135" invocations="1123" avgMicrosecondsPerInvocation="120" maxMicrosecondsPerInvocation="16414" standardDeviationMircosecondsPerInvocation="723"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="135" invocations="491" avgMicrosecondsPerInvocation="276" maxMicrosecondsPerInvocation="14302" standardDeviationMircosecondsPerInvocation="1123"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDeref$CheckCallSitesAndReturnInstructions" totalMilliseconds="136" invocations="1164" avgMicrosecondsPerInvocation="117" maxMicrosecondsPerInvocation="11886" standardDeviationMircosecondsPerInvocation="665"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.StreamResourceTracker" totalMilliseconds="147" invocations="118" avgMicrosecondsPerInvocation="1249" maxMicrosecondsPerInvocation="12805" standardDeviationMircosecondsPerInvocation="1649"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="174" invocations="491" avgMicrosecondsPerInvocation="355" maxMicrosecondsPerInvocation="6506" standardDeviationMircosecondsPerInvocation="783"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="206" invocations="1171" avgMicrosecondsPerInvocation="175" maxMicrosecondsPerInvocation="10642" standardDeviationMircosecondsPerInvocation="478"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="246" invocations="1172" avgMicrosecondsPerInvocation="209" maxMicrosecondsPerInvocation="11985" standardDeviationMircosecondsPerInvocation="650"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="264" invocations="5360" avgMicrosecondsPerInvocation="49" maxMicrosecondsPerInvocation="14514" standardDeviationMircosecondsPerInvocation="259"/>
+      <ClassProfile name="edu.umd.cs.findbugs.FindBugs2" totalMilliseconds="316" invocations="2" avgMicrosecondsPerInvocation="158027" maxMicrosecondsPerInvocation="246747" standardDeviationMircosecondsPerInvocation="88720"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="370" invocations="866" avgMicrosecondsPerInvocation="427" maxMicrosecondsPerInvocation="10395" standardDeviationMircosecondsPerInvocation="877"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="605" invocations="1223" avgMicrosecondsPerInvocation="495" maxMicrosecondsPerInvocation="20405" standardDeviationMircosecondsPerInvocation="1378"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="728" invocations="1164" avgMicrosecondsPerInvocation="625" maxMicrosecondsPerInvocation="30160" standardDeviationMircosecondsPerInvocation="1794"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="781" invocations="1171" avgMicrosecondsPerInvocation="667" maxMicrosecondsPerInvocation="22500" standardDeviationMircosecondsPerInvocation="1655"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="946" invocations="1465" avgMicrosecondsPerInvocation="645" maxMicrosecondsPerInvocation="34999" standardDeviationMircosecondsPerInvocation="2123"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="1027" invocations="1169" avgMicrosecondsPerInvocation="878" maxMicrosecondsPerInvocation="34689" standardDeviationMircosecondsPerInvocation="2478"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1265132574260" release="" codeSize="0" numClasses="0"/>
+  </History>
+</BugCollection>

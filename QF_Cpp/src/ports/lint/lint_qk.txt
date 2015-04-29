@@ -1,0 +1,12 @@
+
+--- Module:   ..\..\qk\source\qk.cpp
+_
+}
+..\..\qk\source\qk.cpp  106  Info 1762: Member function 'QActive::stop(void)'
+    could be made const
+
+--- Module:   ..\..\qk\source\qk_ext.cpp
+
+--- Module:   ..\..\qk\source\qk_mutex.cpp
+
+--- Module:   ..\..\qk\source\qk_sched.cpp

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script
+	id="Autocoder Activity Animation"
+	name="Simple menu item"
+	version="1.0"
+	provider-name="No Magic"
+	script-file="configuration.py"
+	requiresApi="1.0">
+</script>

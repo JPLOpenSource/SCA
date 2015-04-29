@@ -1,0 +1,20 @@
+# Simple4 checks a simple StateMachine with effect action on a transition
+
+<Simple4 S1 ENTRY
+>Ev2
+>Ev3
+>Ev1
+<Simple4 S1 Ev1
+<Simple4 S1 EXIT
+<Simple4 S2 ENTRY
+>Ev2
+<Simple4 S2 Ev2
+<Warning: no implementation object for handleEv2\(\)|Simple4.handleEv2\(\) default action implementation invoked|Simple4.handleEv2\(\)
+>Ev2
+<Simple4 S2 Ev2
+<Warning: no implementation object for handleEv2\(\)|Simple4.handleEv2\(\) default action implementation invoked|Simple4.handleEv2\(\)
+>Ev3
+>Ev1
+<Simple4 S2 Ev1
+<Simple4 S2 EXIT
+<Simple4 S1 ENTRY

@@ -1,0 +1,96 @@
+<project name="JPL Autocoder v2" default="all" basedir=".">
+
+    <!-- Global properties for this script -->
+    <property name="src" location="src" />
+    <property name="src2" location="src-notmpl" />
+    <property name="build" location="build" />
+    <property name="lib" value="lib" /><!-- set to value, NOT location -->
+    <property name="classes" location="bin.tmp" />
+    <property name="jars" location="." />
+    <property name="jarfile" value="autocoder" />
+    <property name="mainClass" value="gov.nasa.jpl.statechart.Autocoder" />
+    <property name="libJars" value="${lib}/velocity-1.6.2-dep.jar ${lib}/log4j-1.2.15.jar"/>
+
+    <patternset id="lib.pattern" includes="${libJars}" />
+    <path id="lib.path">
+        <fileset dir=".">
+            <patternset refid="lib.pattern" />
+        </fileset>
+    </path>
+
+    <target name="all" depends="autocoder.jar" description="Makefile-style, build all targets">
+	</target>
+
+    <target name="init">
+        <!-- Create the classes directory structure -->
+        <mkdir dir="${classes}" />
+    </target>
+
+    <target name="compile" depends="init" description="compiles all source files into ${classes}/">
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac debug="true" destdir="${classes}">
+            <src path="${src}"/>
+            <classpath refid="lib.path" />
+            <compilerarg value="-Xlint:unchecked" />
+        </javac>
+        <!-- copy template files -->
+        <copy todir="${classes}">
+            <fileset dir="${src}">
+                <include name="**/templates/*.vm"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="autocoder.jar" depends="compile" description="generates the template-based version: autocoder.jar">
+        <mkdir dir="${jars}" />
+        <jar destfile="${jars}/${jarfile}.jar"
+             index="true">
+            <fileset dir="${classes}" />
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Main-Class" value="${mainClass}"/>
+                <attribute name="Class-Path" value="${libJars}"/>
+            </manifest>
+            <indexjars refid="lib.path"/>
+       	</jar>
+        <!-- remove temp build directory -->
+        <delete dir="${classes}" />
+    </target>
+
+    <target name="clean" description="deletes ALL classes and Jar files">
+        <!-- Delete the ${build} and ${dist} directory trees -->
+        <delete dir="${classes}" />
+        <delete file="${jars}/xmlToQf.jar" />
+        <delete file="${jars}/${jarfile}.jar" />
+    </target>
+
+
+    <target name="old.compile" depends="init" description="compiles all source files into ${classes}/">
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac debug="true" destdir="${classes}">
+            <src path="${src}"/>
+            <src path="${src2}"/>
+            <classpath refid="lib.path" />
+            <compilerarg value="-Xlint:unchecked" />
+        </javac>
+    </target>
+
+    <target name="old.mkjar" depends="old.compile" description="generates the non-template version: xmlToQf.jar">
+        <!--
+            Put everything in ${classes} into a basic archive into
+            $(archive)/lib/JBProject-${DSTAMP}.jar
+        -->
+        <mkdir dir="${jars}" />
+        <jar jarfile="${jars}/xmlToQf.jar" basedir="${classes}" manifest="${build}/xmlToQf.manifest" />
+        <!-- remove temp build directory -->
+        <delete dir="${classes}" />
+    </target>
+
+    <target name="old.clean" description="deletes classes and old Jar archive">
+        <!-- Delete the ${build} and ${dist} directory trees -->
+        <delete dir="${classes}" />
+        <delete file="${jars}/xmlToQf.jar" />
+    </target>
+
+</project>

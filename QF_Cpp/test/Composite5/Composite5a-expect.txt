@@ -1,0 +1,50 @@
+# Composite5a checks a composite StateMachine with timer events
+
+<Composite5a S1 ENTRY
+>tick
+<Composite5a S1 S1(_t|T)imerEv
+<Composite5a S1 EXIT
+<Composite5a S2 ENTRY
+<Composite5a S21 ENTRY
+>Ev1
+<Composite5a S2 Ev1
+<Composite5a S21 EXIT
+<Composite5a S2 EXIT
+<Composite5a S1 ENTRY
+>Ev1
+<Composite5a S1 Ev1
+<Composite5a S1 EXIT
+<Composite5a S2 ENTRY
+<Composite5a S21 ENTRY
+>Ev2
+>tick
+>tick
+>tick
+<Composite5a S21 S21(_t|T)imerEv
+<Composite5a S21 EXIT
+<Composite5a S22 ENTRY
+>Ev1
+<Composite5a S2 Ev1
+<Composite5a S22 EXIT
+<Composite5a S2 EXIT
+<Composite5a S1 ENTRY
+>Ev1
+<Composite5a S1 Ev1
+<Composite5a S1 EXIT
+<Composite5a S2 ENTRY
+<Composite5a S21 ENTRY
+>tick
+>tick
+>tick
+<Composite5a S21 S21(_t|T)imerEv
+<Composite5a S21 EXIT
+<Composite5a S22 ENTRY
+>tick
+<Composite5a S22 S22(_t|T)imerEv
+<Composite5a S22 EXIT
+<Composite5a S21 ENTRY
+>tick
+<Composite5a S2 S2(_t|T)imerEv
+<Composite5a S21 EXIT
+<Composite5a S2 EXIT
+<Composite5a S1 ENTRY

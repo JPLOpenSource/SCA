@@ -1,0 +1,53 @@
+# Composite3b checks a composite StateMachine with 2 orthogonal regions,
+# where one region has the same Event enabled as an exit transition on the
+# orthogonal state.  The exit transition takes over, but only AFTER dispatching
+# the event into applicable orthogonal regions first.
+#
+# TODO This may not be the desired behavior
+
+Composite3b S1 ENTRY
+>Ev2
+>Ev3
+>Ev1
+Composite3b S1 Ev1
+Composite3b S1 EXIT
+Composite3b S2 ENTRY
+Composite3b S21 ENTRY
+Composite3b S23 ENTRY
+>Ev1
+Composite3b S2 Ev1
+Composite3b S2 Region2 Ev1
+Composite3b S23 Ev1
+Composite3b S23 EXIT
+Composite3b S24 ENTRY
+Composite3b S2 EXIT
+Composite3b S21 EXIT
+Composite3b S24 EXIT
+Composite3b S1 ENTRY
+
+>Ev1
+Composite3b S1 Ev1
+Composite3b S1 EXIT
+Composite3b S2 ENTRY
+Composite3b S21 ENTRY
+Composite3b S23 ENTRY
+>Ev2
+Composite3b S2 Region1 Ev2
+Composite3b S21 Ev2
+Composite3b S21 EXIT
+Composite3b S22 ENTRY
+>Ev2
+Composite3b S2 Region1 Ev2
+Composite3b S22 Ev2
+Composite3b S22 EXIT
+Composite3b S21 ENTRY
+>Ev1
+Composite3b S2 Ev1
+Composite3b S2 Region2 Ev1
+Composite3b S23 Ev1
+Composite3b S23 EXIT
+Composite3b S24 ENTRY
+Composite3b S2 EXIT
+Composite3b S21 EXIT
+Composite3b S24 EXIT
+Composite3b S1 ENTRY

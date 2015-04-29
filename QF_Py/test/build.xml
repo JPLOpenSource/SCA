@@ -1,0 +1,31 @@
+<project name="Test directory ant utility" default="clean" basedir=".">
+
+    <!-- Global properties for this script -->
+
+    <target name="init">
+    </target>
+
+    <target name="clean" description="deletes autocoder-generated output">
+    	<echo message="Deleting all .h, .c, .cpp, .py, .pyc and .log auto-generated files under ${basedir}."/>
+        <!-- Delete all .h, .c, .cpp, and .py files -->
+        <delete>
+            <fileset dir="${basedir}" includes="**/*.pyc,**/*.mdr,**/*.bak"/>
+            <fileset dir="${basedir}" includes="**/*.h,**/*.c,**/*.cpp,**/*.py">
+                <exclude name="playground/**/*"/>
+                <exclude name="**/autocode_orig/**/*"/>
+                <exclude name="**/*_original.py"/>
+                <exclude name="**/test*.py"/>
+                <exclude name="**/*Test.py"/>
+                <exclude name="**/Simple8/autocode/*Impl.py"/>
+                <exclude name="**/Simple9/autocode/*Impl.py"/>
+                <exclude name="**/NestedOrthoSubm/autocode/*Impl.py"/>
+                <exclude name="**/PubSub7Agents/autocode/*Impl.py"/>
+                <exclude name="**/Submachine2/autocode/*Impl.py"/>
+                <exclude name="**/Calculator/autocode/*Impl.py"/>
+                <exclude name="**/UserEvent/autocode/*Impl.py"/>
+            </fileset>
+            <fileset dir="${basedir}" includes="**/*.log,**/*.log.*"/>
+        </delete>
+    </target>
+
+</project>

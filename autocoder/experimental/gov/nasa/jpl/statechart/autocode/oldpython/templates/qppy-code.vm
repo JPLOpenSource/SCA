@@ -1,0 +1,91 @@
+##
+## Main Velocity Template for Python StateMachine code-generation
+##
+###############################################################################
+##
+## Get some useful variables for the rest of the template 
+## 
+#*--*##set( $sm = $model.statemachine )
+#*--*##set( $smName = $mapper.mapToTypeName($sm) )
+#*--*##set( $smGuiName = $smName.toLowerCase() )
+##
+## Parse sub-templates to build code by modular parts
+##
+#*--*##parse( "${tpath}qppy-imports.vm" )
+##
+## Iterate through and handle top-level StateMachine and the orthogonal regions
+## - DO NOT sort, use order as returned
+#*--*##foreach( $machineOrRegion in $model.getAllClassLevelElements() )
+##- first stamp out the class code
+## TODO store isQsm state, and propagate down to qppy-state!
+#*----*##set( $objTypeName = $model.getType($machineOrRegion) )
+#*----*##if( $objTypeName.equals("statemachine") )
+#*------*##set( $isQHsm = false )
+#*------*##makeClass( $machineOrRegion, $mapper.mapToTypeName($machineOrRegion), $isQHsm )
+#*----*##elseif( $objTypeName.equals("region") )
+#*------*##set( $isQHsm = true )
+#*------*##makeClass( $machineOrRegion, $mapper.mapToRegionClass($machineOrRegion), $isQHsm )
+#*----*##end
+##
+##- now iterate through states in the scope of the class
+#*----*##foreach( $state in $model.sort($model.getStates($machineOrRegion)) )
+#*------*##makeState( $state, $isQHsm )
+#*----*##end
+#*--*##end
+##
+## Finally, main method for testing
+##
+
+
+def main():
+    """
+    Basic standalone test harness that all Python
+    active object modules use for unit testing.
+    """
+    # Enable logger as info messages only.
+    LOGGER.setLevel(logging.INFO)
+    # Log to stdout only.
+    logger_output_handler = logging.StreamHandler(sys.stdout)
+    logger_output_handler.setLevel(logging.INFO)
+    # Include only message in output.
+    logger_formatter = logging.Formatter('%(message)s')
+    logger_output_handler.setFormatter(logger_formatter)
+    #
+    LOGGER.addHandler(logger_output_handler)
+##
+## Add LOGGER for submachines.
+##
+#*--*##set( $submachines = $model.sort($model.getSubmachines($sm)) )
+#*--*##if( !$submachines.isEmpty() )
+
+    # Add logger output for submachines.
+#*----*##foreach( $subm in $submachines )
+#*------*##set( $submName = "${mapper.mapToTypeName($subm)}Active" )
+    ${submName}.LOGGER.setLevel(logging.INFO)
+    ${submName}.LOGGER.addHandler(logger_output_handler)
+#*----*##end
+#*--*##end
+    #
+    # Instance the QF code for running main thread
+    # and create active object
+    qf = framework.QF.getInstance()
+    #
+    # Framework initiallization (GUI turned off)
+    #
+    qf.init(qf_gui=False)
+
+    # Active object start up and register with QF
+    ${smGuiName} = ${smName}Active()
+    # start active object register into qf
+    ${smGuiName}.startActive()
+    # start/initialize HSM
+    ${smGuiName}.onStart(${smGuiName}.top)
+    # start the active object thread
+    ${smGuiName}.start()
+    #
+    # Run event dispatch loop
+    qf.run()
+
+
+if __name__ == "__main__":
+    main()

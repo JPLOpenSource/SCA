@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<xmi:XMI xmi:version='2.1' xmlns:uml='http://www.omg.org/spec/UML/20090901' xmlns:xmi='http://schema.omg.org/spec/XMI/2.1' xmlns:Traceability_customization='http://www.magicdraw.com/schemas/Traceability_customization.xmi' xmlns:Validation_Profile='http://www.magicdraw.com/schemas/Validation_Profile.xmi' xmlns:MagicDraw_Profile='http://www.magicdraw.com/schemas/MagicDraw_Profile.xmi' xmlns:StandardProfileL3='http://schema.omg.org/spec/UML/2.3/StandardProfileL3.xmi' xmlns:StandardProfileL2='http://schema.omg.org/spec/UML/2.3/StandardProfileL2.xmi' xmlns:DSL_Customization='http://www.magicdraw.com/schemas/DSL_Customization.xmi' xmlns:SCAProfile='http://www.magicdraw.com/schemas/SCAProfile.xmi'>
+	<xmi:Documentation exporter='MagicDraw UML' exporterVersion='17.0'/>
+	<xmi:Extension extender='MagicDraw UML 17.0'>
+		<shareTable shareDescription='The StateChart Autocoder Profile to provide additional information to the autocoder when producing code.' shareVersion='-1' standardSystemProfile='false'>
+			<share sharedPackage='_17_0_1_8b90279_1303847347255_793034_1516'/>
+		</shareTable>
+		<mountTable>
+			<module resource='file:/Applications/MagicDraw%20UML%2017.0/profiles/UML_Standard_Profile.xml' autoloadType='ALWAYS_LOAD' readOnly='true' loadIndex='false' requiredVersion='-1' version='17.0'>
+				<mount mountPoint='magicdraw_uml_standard_profile_v_0001' mountedOn='eee_1045467100313_135436_1'/>
+			</module>
+		</mountTable>
+	</xmi:Extension>
+	<uml:Model xmi:id='eee_1045467100313_135436_1' name='Data' visibility='public'>
+		<ownedComment xmi:type='uml:Comment' xmi:id='_12_5_9120299_1181847054551_368900_98' body='Author:watney.&#10;Created:6/14/07 11:50 AM.&#10;Title:.&#10;Comment:.&#10;'>
+			<annotatedElement xmi:idref='eee_1045467100313_135436_1'/>
+		</ownedComment>
+		<packagedElement xmi:type='uml:Package' href='UML_Standard_Profile.xml#magicdraw_uml_standard_profile_v_0001'>
+			<xmi:Extension extender='MagicDraw UML 17.0'>
+				<referenceExtension referentPath='UML Standard Profile' referentType='Package'/>
+			</xmi:Extension>
+		</packagedElement>
+		<packagedElement xmi:type='uml:Package' xmi:id='_17_0_1_8b90279_1303847347255_793034_1516' name='SCAProfile' visibility='public'>
+			<xmi:Extension extender='MagicDraw UML 17.0'>
+				<moduleExtension moduleRoot='::SCAProfile'/>
+			</xmi:Extension>
+			<packagedElement xmi:type='uml:Stereotype' xmi:id='_17_0_1_8b90279_1303845175250_853868_1893' name='SCAFriends' visibility='public'>
+				<ownedAttribute xmi:type='uml:Property' xmi:id='_17_0_1_8b90279_1303845222095_780839_1900' name='base_StateMachine' visibility='private' association='_17_0_1_8b90279_1303845222095_657377_1899'>
+					<type xmi:type='uml:Class' href='http://www.omg.org/spec/UML/20090901/uml.xml#StateMachine'>
+						<xmi:Extension extender='MagicDraw UML 17.0'>
+							<referenceExtension referentPath='UML Standard Profile::UML2 Metamodel::StateMachines::BehaviorStateMachines::StateMachine' referentType='Class'/>
+						</xmi:Extension>
+					</type>
+				</ownedAttribute>
+				<ownedAttribute xmi:type='uml:Property' xmi:id='_17_0_1_8b90279_1303845261741_821038_1904' name='friendsList' visibility='private'>
+					<ownedComment xmi:type='uml:Comment' xmi:id='_17_0_1_8b90279_1303845375879_835643_1906' body='Comma-separated list of identifiers of friendly classes.'>
+						<annotatedElement xmi:idref='_17_0_1_8b90279_1303845261741_821038_1904'/>
+					</ownedComment>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type='uml:Extension' xmi:id='_17_0_1_8b90279_1303845222095_657377_1899' visibility='public'>
+				<memberEnd xmi:idref='_17_0_1_8b90279_1303845222095_780839_1900'/>
+				<memberEnd xmi:idref='_17_0_1_8b90279_1303845222095_416333_1901'/>
+				<navigableOwnedEnd xmi:idref='_17_0_1_8b90279_1303845222095_416333_1901'/>
+				<ownedEnd xmi:type='uml:ExtensionEnd' xmi:id='_17_0_1_8b90279_1303845222095_416333_1901' name='extension_SCAFriend' visibility='private' aggregation='composite' type='_17_0_1_8b90279_1303845175250_853868_1893' association='_17_0_1_8b90279_1303845222095_657377_1899'>
+					<xmi:Extension extender='MagicDraw UML 17.0'>
+						<modelExtension>
+							<upperValue xmi:type='uml:LiteralUnlimitedNatural' xmi:id='_17_0_1_8b90279_1303845222095_674815_1903' visibility='public' value='1'/>
+						</modelExtension>
+					</xmi:Extension>
+					<lowerValue xmi:type='uml:LiteralInteger' xmi:id='_17_0_1_8b90279_1303845222095_799148_1902' visibility='public'/>
+				</ownedEnd>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+	<xmi:Extension extender='MagicDraw UML 17.0'>
+		<mdOwnedDiagrams/>
+		<proxies>
+			<proxy xmi:type='uml:Package' xmi:id='magicdraw_uml_standard_profile_v_0001' name='UML Standard Profile' visibility='public'>
+				<xmi:Extension extender='MagicDraw UML 17.0'>
+					<moduleExtension moduleRoot='::UML Standard Profile' moduleName='UML_Standard_Profile.xml' remoteProjectID='' remoteModuleVersion='1295980426000' moduleUsedByProject='true'/>
+				</xmi:Extension>
+				<packagedElement xmi:type='uml:Profile' xmi:id='_be00301_1073394351331_445580_2' name='MagicDraw Profile' visibility='public'>
+					<packagedElement xmi:type='uml:Stereotype' xmi:id='_12_1_8f90291_1173963323875_662612_98' name='auxiliaryResource' visibility='public'>
+						<generalization xmi:type='uml:Generalization' xmi:id='_15_0_8f90291_1196866634537_680603_98' general='_9_0_be00301_1108044721245_236588_411'/>
+						<ownedAttribute xmi:type='uml:Property' xmi:id='_12_1_8f90291_1173963939937_52316_99' name='base_Package' visibility='private' type='_9_0_62a020a_1105704885298_713292_7913'/>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Stereotype' xmi:id='_9_0_be00301_1108044721245_236588_411' name='InvisibleStereotype' visibility='public'>
+						<ownedAttribute xmi:type='uml:Property' xmi:id='_10_0EAPbeta_be00301_1123081772098_411862_275' name='base_Element' visibility='private' type='_9_0_62a020a_1105704884807_371561_7741'/>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Extension' xmi:id='_10_0EAPbeta_be00301_1123081772098_323897_274' visibility='public'>
+						<memberEnd xmi:idref='_10_0EAPbeta_be00301_1123081772108_624594_276'/>
+						<memberEnd xmi:idref='_10_0EAPbeta_be00301_1123081772098_411862_275'/>
+						<ownedEnd xmi:type='uml:ExtensionEnd' xmi:id='_10_0EAPbeta_be00301_1123081772108_624594_276' name='extension_InvisibleStereotype' visibility='private' aggregation='composite' type='_9_0_be00301_1108044721245_236588_411'>
+							<xmi:Extension extender='MagicDraw UML 17.0'>
+								<modelExtension/>
+							</xmi:Extension>
+						</ownedEnd>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Extension' xmi:id='_12_1_8f90291_1173963939937_323574_98' visibility='public'>
+						<memberEnd xmi:idref='_12_1_8f90291_1173963939937_399630_100'/>
+						<memberEnd xmi:idref='_12_1_8f90291_1173963939937_52316_99'/>
+						<ownedEnd xmi:type='uml:ExtensionEnd' xmi:id='_12_1_8f90291_1173963939937_399630_100' name='extension_auxiliaryResource' visibility='private' aggregation='composite' type='_12_1_8f90291_1173963323875_662612_98'>
+							<xmi:Extension extender='MagicDraw UML 17.0'>
+								<modelExtension/>
+							</xmi:Extension>
+						</ownedEnd>
+					</packagedElement>
+				</packagedElement>
+				<packagedElement xmi:type='uml:Profile' xmi:id='_16_8beta_62a020a_1256807755193_508228_378' name='StandardProfileL3' visibility='public'>
+					<packagedElement xmi:type='uml:Stereotype' xmi:id='magicdraw_1046861421236_601240_36' name='metamodel' visibility='public'>
+						<ownedAttribute xmi:type='uml:Property' xmi:id='_10_0EAPbeta_be00301_1123081771136_271406_98' name='base_Model' visibility='private' type='_9_0_62a020a_1105704920340_825592_9329'/>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Extension' xmi:id='_10_0EAPbeta_be00301_1123081771136_824883_97' visibility='public'>
+						<memberEnd xmi:idref='_10_0EAPbeta_be00301_1123081771136_580423_99'/>
+						<memberEnd xmi:idref='_10_0EAPbeta_be00301_1123081771136_271406_98'/>
+						<ownedEnd xmi:type='uml:ExtensionEnd' xmi:id='_10_0EAPbeta_be00301_1123081771136_580423_99' name='extension_metamodel' visibility='private' aggregation='composite' type='magicdraw_1046861421236_601240_36'>
+							<xmi:Extension extender='MagicDraw UML 17.0'>
+								<modelExtension/>
+							</xmi:Extension>
+						</ownedEnd>
+					</packagedElement>
+				</packagedElement>
+				<packagedElement xmi:type='uml:Model' xmi:id='_9_0_be00301_1108053761194_467635_11463' name='UML2 Metamodel' visibility='public'>
+					<packagedElement xmi:type='uml:Package' xmi:id='_9_0_62a020a_1105705064233_676383_11042' name='Classes' visibility='public'>
+						<packagedElement xmi:type='uml:Package' xmi:id='_9_0_62a020a_1105705064323_957155_11049' name='Kernel' visibility='public'>
+							<packagedElement xmi:type='uml:Class' xmi:id='_9_0_62a020a_1105704884807_371561_7741' name='Element' visibility='public'>
+								<xmi:Extension extender='MagicDraw UML 17.0'>
+									<modelExtension/>
+								</xmi:Extension>
+							</packagedElement>
+							<packagedElement xmi:type='uml:Class' xmi:id='_9_0_62a020a_1105704885298_713292_7913' name='Package' visibility='public'/>
+						</packagedElement>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Package' xmi:id='_9_0_62a020a_1105705080802_729520_11402' name='AuxiliaryConstructs' visibility='public'>
+						<packagedElement xmi:type='uml:Package' xmi:id='_9_0_62a020a_1105705084263_818134_11536' name='Models' visibility='public'>
+							<packagedElement xmi:type='uml:Class' xmi:id='_9_0_62a020a_1105704920340_825592_9329' name='Model' visibility='public'/>
+						</packagedElement>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Package' xmi:id='_9_0_62a020a_1105705085040_847007_11600' name='StateMachines' visibility='public'>
+						<packagedElement xmi:type='uml:Package' xmi:id='_9_0_62a020a_1105705085320_978092_11614' name='BehaviorStateMachines' visibility='public'>
+							<packagedElement xmi:type='uml:Class' xmi:id='_9_0_62a020a_1105704932656_223024_9583' name='StateMachine' visibility='public'/>
+						</packagedElement>
+					</packagedElement>
+				</packagedElement>
+			</proxy>
+		</proxies>
+		<privateProxies>
+			<proxy xmi:type='uml:Package' xmi:id='magicdraw_uml_standard_profile_v_0001' name='UML Standard Profile' visibility='public'>
+				<xmi:Extension extender='MagicDraw UML 17.0'>
+					<moduleExtension moduleRoot='::UML Standard Profile' moduleName='UML_Standard_Profile.xml' remoteProjectID='' remoteModuleVersion='1295980426000' moduleUsedByProject='true'/>
+				</xmi:Extension>
+				<packagedElement xmi:type='uml:Profile' xmi:id='_be00301_1073394351331_445580_2' name='MagicDraw Profile' visibility='public'>
+					<packagedElement xmi:type='uml:Stereotype' xmi:id='_12_1_8f90291_1173963323875_662612_98' name='auxiliaryResource' visibility='public'>
+						<generalization xmi:type='uml:Generalization' xmi:id='_15_0_8f90291_1196866634537_680603_98' general='_9_0_be00301_1108044721245_236588_411'/>
+						<ownedAttribute xmi:type='uml:Property' xmi:id='_12_1_8f90291_1173963939937_52316_99' name='base_Package' visibility='private' type='_9_0_62a020a_1105704885298_713292_7913'/>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Stereotype' xmi:id='_9_0_be00301_1108044721245_236588_411' name='InvisibleStereotype' visibility='public'>
+						<ownedAttribute xmi:type='uml:Property' xmi:id='_10_0EAPbeta_be00301_1123081772098_411862_275' name='base_Element' visibility='private' type='_9_0_62a020a_1105704884807_371561_7741'/>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Extension' xmi:id='_10_0EAPbeta_be00301_1123081772098_323897_274' visibility='public'>
+						<memberEnd xmi:idref='_10_0EAPbeta_be00301_1123081772108_624594_276'/>
+						<memberEnd xmi:idref='_10_0EAPbeta_be00301_1123081772098_411862_275'/>
+						<ownedEnd xmi:type='uml:ExtensionEnd' xmi:id='_10_0EAPbeta_be00301_1123081772108_624594_276' name='extension_InvisibleStereotype' visibility='private' aggregation='composite' type='_9_0_be00301_1108044721245_236588_411'>
+							<xmi:Extension extender='MagicDraw UML 17.0'>
+								<modelExtension/>
+							</xmi:Extension>
+						</ownedEnd>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Extension' xmi:id='_12_1_8f90291_1173963939937_323574_98' visibility='public'>
+						<memberEnd xmi:idref='_12_1_8f90291_1173963939937_399630_100'/>
+						<memberEnd xmi:idref='_12_1_8f90291_1173963939937_52316_99'/>
+						<ownedEnd xmi:type='uml:ExtensionEnd' xmi:id='_12_1_8f90291_1173963939937_399630_100' name='extension_auxiliaryResource' visibility='private' aggregation='composite' type='_12_1_8f90291_1173963323875_662612_98'>
+							<xmi:Extension extender='MagicDraw UML 17.0'>
+								<modelExtension/>
+							</xmi:Extension>
+						</ownedEnd>
+					</packagedElement>
+				</packagedElement>
+				<packagedElement xmi:type='uml:Profile' xmi:id='_16_8beta_62a020a_1256807755193_508228_378' name='StandardProfileL3' visibility='public'>
+					<packagedElement xmi:type='uml:Stereotype' xmi:id='magicdraw_1046861421236_601240_36' name='metamodel' visibility='public'>
+						<ownedAttribute xmi:type='uml:Property' xmi:id='_10_0EAPbeta_be00301_1123081771136_271406_98' name='base_Model' visibility='private' type='_9_0_62a020a_1105704920340_825592_9329'/>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Extension' xmi:id='_10_0EAPbeta_be00301_1123081771136_824883_97' visibility='public'>
+						<memberEnd xmi:idref='_10_0EAPbeta_be00301_1123081771136_580423_99'/>
+						<memberEnd xmi:idref='_10_0EAPbeta_be00301_1123081771136_271406_98'/>
+						<ownedEnd xmi:type='uml:ExtensionEnd' xmi:id='_10_0EAPbeta_be00301_1123081771136_580423_99' name='extension_metamodel' visibility='private' aggregation='composite' type='magicdraw_1046861421236_601240_36'>
+							<xmi:Extension extender='MagicDraw UML 17.0'>
+								<modelExtension/>
+							</xmi:Extension>
+						</ownedEnd>
+					</packagedElement>
+				</packagedElement>
+				<packagedElement xmi:type='uml:Model' xmi:id='_9_0_be00301_1108053761194_467635_11463' name='UML2 Metamodel' visibility='public'>
+					<packagedElement xmi:type='uml:Package' xmi:id='_9_0_62a020a_1105705064233_676383_11042' name='Classes' visibility='public'>
+						<packagedElement xmi:type='uml:Package' xmi:id='_9_0_62a020a_1105705064323_957155_11049' name='Kernel' visibility='public'>
+							<packagedElement xmi:type='uml:Class' xmi:id='_9_0_62a020a_1105704884807_371561_7741' name='Element' visibility='public'>
+								<xmi:Extension extender='MagicDraw UML 17.0'>
+									<modelExtension/>
+								</xmi:Extension>
+							</packagedElement>
+							<packagedElement xmi:type='uml:Class' xmi:id='_9_0_62a020a_1105704885298_713292_7913' name='Package' visibility='public'/>
+						</packagedElement>
+					</packagedElement>
+					<packagedElement xmi:type='uml:Package' xmi:id='_9_0_62a020a_1105705080802_729520_11402' name='AuxiliaryConstructs' visibility='public'>
+						<packagedElement xmi:type='uml:Package' xmi:id='_9_0_62a020a_1105705084263_818134_11536' name='Models' visibility='public'>
+							<packagedElement xmi:type='uml:Class' xmi:id='_9_0_62a020a_1105704920340_825592_9329' name='Model' visibility='public'/>
+						</packagedElement>
+					</packagedElement>
+				</packagedElement>
+			</proxy>
+		</privateProxies>
+		<stereotypeApplicationForProxies>
+			<MagicDraw_Profile:auxiliaryResource xmi:id='_12_1_8f90291_1174411598625_504587_98' base_Package='magicdraw_uml_standard_profile_v_0001'/>
+			<StandardProfileL3:metamodel xmi:id='_10_0EAPbeta_be00301_1123081771126_233373_95' base_Model='_9_0_be00301_1108053761194_467635_11463'/>
+		</stereotypeApplicationForProxies>
+		<stereotypesIDS>
+			<stereotype name='MagicDraw_Profile:auxiliaryResource' stereotypeID='_12_1_8f90291_1173963323875_662612_98'/>
+			<stereotype name='StandardProfileL3:metamodel' stereotypeID='magicdraw_1046861421236_601240_36'/>
+		</stereotypesIDS>
+		<index/>
+	</xmi:Extension>
+</xmi:XMI>

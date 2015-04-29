@@ -1,0 +1,100 @@
+##
+## Defines Impl header file.
+##
+##* [SWC 2011.07.06] Updated legal declaration, disclaimer, and file info.
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+###############################################################################
+#*--*##set( $implName = "${mapper.mapToImplTypeName($sm)}" )
+#*--*##set( $defName = "${implName.toUpperCase()}_H" )
+##
+## File comments
+##
+//===========================================================================
+// This software contains Caltech/JPL confidential information.
+//
+// Copyright 2009-$year, by the California Institute of Technology.
+// ALL RIGHTS RESERVED. United States Government Sponsorship Acknowledged.
+// Any commercial use must be negotiated with the Office of Technology
+// Transfer at the California Institute of Technology.
+//
+// This software may be subject to US export control laws and
+// regulations. By accepting this document, the user agrees to comply
+// with all applicable U.S. export laws and regulations, including the
+// International Traffic and Arms Regulations, 22 C.F.R. 120-130 and the
+// Export Administration Regulations, 15 C.F.R. 730-744. User has the
+// responsibility to obtain export licenses, or other export authority as
+// may be required before exporting such information to foreign countries
+// or providing access to foreign persons.
+//===========================================================================
+//
+//       File: ${modulePathPrefix}${implName}.h
+// Created on: ${model.timestamp()}
+//     Author: ${model.username()}@jpl.nasa.gov
+// SCACmdLine: ${autocoder.cmdLineInvoked}
+//
+// This file was stubbed by the JPL StateChart Autocoders, which converts UML
+// Statecharts, in XML, to a C variant of Miro Samek's Quantum Framework.
+//===========================================================================
+#ifndef ${defName}
+\#define ${defName}
+
+#*--*##if( $autocoder.hasCustomQfInclude() )
+\#include <${autocoder.qfInclude}>
+#*--*##else
+\#include <qf_port.h>
+\#include <qassert.h>
+#*--*##end
+#*--*##customHeaderIncludes()
+#*--*##set( $submachines = $model.sort($model.getSubmachines($sm)) )
+#*--*##if( !$submachines.isEmpty() )
+/* Submachine impls */
+#*----*##foreach( $subm in $submachines )
+\#include <${modulePathPrefix}#mapToTypeName($subm,"impl").h>
+#*----*##end
+#*--*##end
+
+
+typedef struct ${implName} {
+#*--*##if( $autocoder.executionTraceOn )
+    char machineName[#smNameLength()];
+#*--*##end
+    /** Cache of pointer to the container QActive object, for ease of access */
+    QActive *active;
+##
+## Generate the boolean variable declarations
+##
+#*--*##foreach( $func in $model.getAllCallActions() )
+#*----*##set( $funcName = $mapper.sanitize($func.name()) )
+#*----*##if( $func.isGuard() )
+    #dataTypeBoolean() $funcName;
+#*----*##end
+#*--*##end
+} ${implName};
+
+${implName} *${implName}_constructor (${implName} *mepl);  // Default constructor
+void ${implName}_set_qactive (${implName} *mepl, QActive *active);
+#dataTypeInt32() ${implName}_get_verbosity ();
+////////////////////////////////////////////
+// Action and guard implementation methods
+////////////////////////////////////////////
+##
+## Generate the signatures for action methods
+##
+#*--*##foreach( $func in $model.getAllCallActions() )
+#*----*##set( $funcName = $mapper.sanitize($func.name()) )
+#*----*##set( $returnType = "void" )
+#*----*##if( $func.isGuard() )
+#*------*##set( $returnType = "#dataTypeBoolean()" )
+#*------*##if( $autocoder.ifDefineUnitTest() )## setter needed only for testing
+void ${implName}_set_${funcName} (${implName} *mepl, #dataTypeBoolean() flag);
+#*------*##end
+#*----*##end
+#*----*##if( $func.argList().isEmpty() )
+## TODO Impl action parameters: how to specify parameter types? perhaps incoming string be of form "param:Type"?
+${returnType} ${implName}_${funcName} (${implName} *mepl);
+#*----*##else
+${returnType} ${implName}_${funcName} (${implName} *mepl, ${mapper.mapArgsToDeclarations($func)});
+#*----*##end
+#*--*##end
+
+#endif  /* ${defName} */

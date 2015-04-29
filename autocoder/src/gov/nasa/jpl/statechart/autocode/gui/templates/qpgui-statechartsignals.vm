@@ -1,0 +1,74 @@
+#*--*##set( $canvasName = "cnv" )
+##
+#!/tps/bin/python
+# GUI application to issue signals to a state machine.
+#
+from Tkinter import *
+
+class StatechartSignals:
+    """
+    """
+    def __init__(self, clientSocket):
+        self.clientSocket = clientSocket
+        win = Tk()
+        # Grid sizing behavior for this window
+        win.grid_rowconfigure(1, weight=1)
+        win.grid_columnconfigure(0, weight=1)
+        label = Label(win, text = "Statechart Signals", font = ("Times", 16, "bold"))
+        label.grid(row=0, column=0, sticky='ew')
+        # Canvas
+        ${canvasName} = Canvas(win)
+        ${canvasName}.grid(row=1, column=0, sticky='nswe')
+        # vertical scrollbar for the canvas
+        vScroll = Scrollbar(win, orient=VERTICAL, command=${canvasName}.yview)
+        vScroll.grid(row=1, column=1, sticky='ns')
+        ${canvasName}.configure(yscrollcommand=vScroll.set)
+        # Frame in canvas
+        frm = Frame(${canvasName})
+        # This puts the frame in the canvas's scrollable zone
+        ${canvasName}.create_window(0, 0, window=frm, anchor='nw')
+##
+## create buttons for signals
+##
+#*--*##set( $enumVal = 4 )
+
+        callback = ButtonCallback(self.doButton, "${enumVal}")
+        b${enumVal} = Button(frm, text = "Tick", command=callback)
+        b${enumVal}.pack()
+#*--*##foreach( $signal in $model.sort($model.getSignals()) )
+#*----*##set( $enumVal = $enumVal + 1 )
+#*----*##set( $signalName = $mapper.sanitize($signal.name) )
+        callback = ButtonCallback(self.doButton, "${enumVal}")
+        b${enumVal} = Button(frm, text = "${signalName}", command=callback)
+        b${enumVal}.pack()
+#*--*##end
+##
+## footer
+##
+
+        # Update display to get correct dimensions
+        frm.update_idletasks()
+        # Configure size of frmvas's scrollable zone
+        ${canvasName}.configure(scrollregion=(0, 0, frm.winfo_width(), frm.winfo_height()))
+
+
+    def doButton(self,enumValue):
+        """
+        """
+        enumValue = enumValue + "\n"
+        self.clientSocket.send(enumValue)
+
+
+class ButtonCallback:
+    """
+    """
+    def __init__(self, callback, *firstArgs):
+        """
+        """
+        self.__callback = callback
+        self.__firstArgs = firstArgs
+
+    def __call__(self, *args):
+        """
+        """
+        return apply(self.__callback, self.__firstArgs + args)

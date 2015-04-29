@@ -1,0 +1,44 @@
+##
+## Handle "bail" event dispatched, either within the context of a submachine,
+##   or an orthogonal region of a composite state.
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:  the State Machine state to implement
+##    * $isQHsm:  the state is in an orthogonal region, needs BAIL_SIG always
+##    * $hasCompletionTransition:  flag indicating a completion transition
+##    * $sigName:  the signal name on which to switch case
+##    * $checkSubmInstance:  flag indicating whether to verify submachine name
+##
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+##* [SWC 2012.09.05] added entry_point enum to replace passing strings.
+##* [SWC 2012.10.08] added SM_TERMINABLE check to avoid unnecessary bail code.
+##* [SWC 2012.11.14] added isQHsm check to ensure BAIL always done for ortho.
+###############################################################################
+##
+## The BAIL signal should trigger code for "Completion Transition", if any!
+#*--*##if( ($SM_TERMINABLE || $isQHsm) && !$hasCompletionTransition )
+
+    case Q_BAIL_SIG:
+        return Q_TRAN(&${typeName}_final);
+#*--*##end
+#*--*##if( $consumeCompletionSig )
+
+    case ${consumeCompletionSig}:
+        // container will not handle this completion signal
+        return Q_HANDLED();
+
+#*--*##end
+#*--*##if( $hasCompletionTransition )
+
+#*----*##if( $SM_TERMINABLE || $isQHsm )
+    case Q_BAIL_SIG:
+#*----*##end
+    case ${sigName}:
+#*----*##if( $checkSubmInstance )
+        if (((QCompletionEvt *)e)->completion_evt.substate == ${mapper.mapToEnumDecl($state)}) {
+            exitPoint = ((QCompletionEvt *)e)->completion_evt.exitPoint;
+            // replace event object with the last dispatched to submachine
+            e = me->${mapper.mapToVarName($state)}LastEvt;
+#*------*##set( $discard = $mapper.incIndent() )
+#*----*##end
+#*--*##end

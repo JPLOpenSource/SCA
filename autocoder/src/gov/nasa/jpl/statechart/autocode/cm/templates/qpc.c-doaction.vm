@@ -1,0 +1,23 @@
+##
+## doAction function file for writing out an action
+##   (i.e., state entry, state exit, transition effect)
+##
+##- input var:
+##    * $_activity :  UML Behavior object from which to write action code
+###############################################################################
+#*--*##set( $sp = $mapper.indentation() )
+##
+#*--*##if( $_activity )
+#*----*##foreach( $action in $_activity.actionList() )
+#*------*##if( $model.isCallAction($action) )
+#*--------*##set( $funcCall = $model.getCallParts($action) )
+#*--------*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+#*--------*##set( $cmt = $mapper.implCallComment() )
+##- there's parameters if callParts has more than 1 element
+$sp   ${cmt}${smName}Impl_${funcName}(me->impl#if( $funcCall.hasArgs() ), ${funcCall.argStr()}#end);
+#*------*##else
+## Event action, so publish as signal event
+$sp   QF_publish( Q_NEW(QEvent, ${mapper.sanitize($action)}) );
+#*------*##end
+#*----*##end
+#*--*##end

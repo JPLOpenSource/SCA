@@ -1,0 +1,13 @@
+##
+## State entry/exit or Transition effect action as function call.
+##
+##- input vars (in addition to $model, etc.):
+##    * $funcCall:  Function Call object
+##
+##* [SWC 2010.02.09] implemented anew referencing C and new Python templates.
+###############################################################################
+##
+#*--*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+#*--*##set( $spc = $mapper.indentation() )
+##- there's parameters if callParts has more than 1 element
+$spc    me->impl->${funcName}(${mapper.mapArgsToInvocation($funcCall)});

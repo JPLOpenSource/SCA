@@ -1,0 +1,18 @@
+##
+## Implement class and constructor for a State Machine.
+##
+##- input vars:
+##    * $typeObj:   State machine object
+##    * $typeName:  Label of the State Machine object
+##
+##* [SWC 2010.09.15] Refactored templates for minimal logic within templates.
+###############################################################################
+##
+proctype ${typeName}(chan inp)
+{
+eventType e;
+#*--*##if( $model.hasGuardFunction($typeObj) )
+bool guard_return;
+#*--*##end
+##
+## Initialize any orthogonal region rendezvous channels and procs

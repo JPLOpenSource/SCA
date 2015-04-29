@@ -1,0 +1,17 @@
+##
+## Implements a connection point reference, which points to a connection point
+## Pseudostate in the target submachine.
+##
+##- input vars (in addition to $model, etc.):
+##    * $substate:  Submachine state on which is defined ConnectionPointReference 
+##    * $target:  Target state of transition
+###############################################################################
+#*--*##set( $spc = $mapper.indentation() )
+#*--*##set( $submType = $mapper.mapToTypeName($substate.submachine) )
+#*--*##set( $substateName = $mapper.mapToFunctionName($substate) )
+#*--*##set( $substateVar = $mapper.mapToVarName($substate) )
+#*--*##set( $entryPoint = $mapper.mapToEnumDecl($target) )
+$spc    // Invoke pseudostate to set initial target state and ev in submachine
+$spc    ((${submType}*) me->${substateVar})->setEntryPoint(${entryPoint}, e);
+$spc    // then transition to target state in main machine.
+$spc    return Q_TRAN(&${typeName}::${substateName});

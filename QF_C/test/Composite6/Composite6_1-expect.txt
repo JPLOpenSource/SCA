@@ -1,0 +1,60 @@
+# Composite6_1 checks a complex StateMachine with top-level orthogonal regions,
+# cross-dispatch between regions, and a hidden region that should be ignored.
+
+<Composite6_1 S1 ENTRY
+<Composite6_1 S11 ENTRY
+<Composite6_1 S21 ENTRY
+>Ev3
+>Ev1
+<Composite6_1 S1 Region1 Ev1
+<Composite6_1 S11 Ev1
+<Composite6_1 S11 EXIT
+<Composite6_1 S12 ENTRY
+<Composite6_1 S1 Region2 Ev2
+<Composite6_1 S21 Ev2
+<Composite6_1 S21 EXIT
+<Composite6_1 S22 ENTRY
+<Composite6_1 S1 Region1 Ev1
+<Composite6_1 S12 Ev1
+<Composite6_1 S12 EXIT
+<Composite6_1 S11 ENTRY
+<Composite6_1 S1 Region2 Ev2
+<Composite6_1 S21 Ev2
+<Composite6_1 S22 EXIT
+<Composite6_1 S21 ENTRY
+
+# 2nd rep
+<Composite6_1 S1 Region1 Ev1
+<Composite6_1 S11 Ev1
+<Composite6_1 S11 EXIT
+<Composite6_1 S12 ENTRY
+<Composite6_1 S1 Region2 Ev2
+<Composite6_1 S21 Ev2
+<Composite6_1 S21 EXIT
+<Composite6_1 S22 ENTRY
+<Composite6_1 S1 Region1 Ev1
+<Composite6_1 S12 Ev1
+<Composite6_1 S12 EXIT
+<Composite6_1 S11 ENTRY
+<Composite6_1 S1 Region2 Ev2
+<Composite6_1 S21 Ev2
+<Composite6_1 S22 EXIT
+<Composite6_1 S21 ENTRY
+
+# 3rd rep
+<Composite6_1 S1 Region1 Ev1
+<Composite6_1 S11 Ev1
+<Composite6_1 S11 EXIT
+<Composite6_1 S12 ENTRY
+<Composite6_1 S1 Region2 Ev2
+<Composite6_1 S21 Ev2
+<Composite6_1 S21 EXIT
+<Composite6_1 S22 ENTRY
+<Composite6_1 S1 Region1 Ev1
+<Composite6_1 S12 Ev1
+<Composite6_1 S12 EXIT
+<Composite6_1 S11 ENTRY
+<Composite6_1 S1 Region2 Ev2
+<Composite6_1 S21 Ev2
+<Composite6_1 S22 EXIT
+<Composite6_1 S21 ENTRY

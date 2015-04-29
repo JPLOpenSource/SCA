@@ -1,0 +1,23 @@
+##
+## Generate Exit condition code, first-half:
+##
+##- input vars (in addition to $model, etc.):
+##    * $state:  the State Machine state to implement
+##
+##* [SWC 2011.04.05] added support for QF namespace prefix.
+###############################################################################
+
+    case ${qfNs}Q_EXIT_SIG:
+##
+## stop Do activity
+###*--*##if( $model.hasDoActivity($state) )
+##        // Destroy instance and kill doActivity thread if alive...
+##        if this->doThread.isAlive() == True:
+##            this->doThread.kill()
+##        del this->doThread
+##
+###*--*##end
+#*--*##if( $autocoder.executionTraceOn )
+        strcat(logMsg, " EXIT");
+        LogEvent::log(logMsg);
+#*--*##end

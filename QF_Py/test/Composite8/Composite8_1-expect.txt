@@ -1,0 +1,91 @@
+# Composite8_1 checks a complex StateMachine of a composite state of 3
+# orthogonal regions, containing within it composites, multi-level transition,
+# and action list.
+
+<Composite8_1 S1 ENTRY
+<Composite8_1 S11 ENTRY
+<Composite8_1 S14 ENTRY
+<Composite8_1 S16 ENTRY
+<Composite8_1 S161 ENTRY
+<Composite8_1 S1611 ENTRY
+>Ev1
+<Composite8_1 S1 Region1 Ev1
+<Composite8_1 S11 Ev1
+<Composite8_1 S11 EXIT
+<Composite8_1 S12 ENTRY
+<Composite8_1 S121 ENTRY
+>Ev2
+<Composite8_1 S1 Region1 Ev2
+<Composite8_1 S121 Ev2
+<Composite8_1 S121 EXIT
+<Composite8_1 S122 ENTRY
+>Ev3
+<Composite8_1 S1 Region2 Ev3
+<Composite8_1 S14 Ev3
+<Composite8_1 S14 EXIT
+<Composite8_1 S15 ENTRY
+<Warning: no implementation object for Action1\(\)|Composite8_1.Action1\(\) default action implementation invoked
+<Warning: no implementation object for Action3\(\)|Composite8_1.Action3\(\) default action implementation invoked
+<Warning: no implementation object for Action4\(\)|Composite8_1.Action4\(\) default action implementation invoked
+<Composite8_1 S1 Region1 Ev2
+<Composite8_1 S122 Ev2
+<Composite8_1 S122 EXIT
+<Composite8_1 S121 ENTRY
+>Ev2
+<Composite8_1 S1 Region1 Ev2
+<Composite8_1 S121 Ev2
+<Composite8_1 S121 EXIT
+<Composite8_1 S122 ENTRY
+>Ev1
+<Composite8_1 S1 Region1 Ev1
+<Composite8_1 S122 Ev1
+<Composite8_1 S122 EXIT
+<Composite8_1 S12 EXIT
+<Composite8_1 S13 ENTRY
+>Ev3
+<Composite8_1 S1 Region2 Ev3
+<Composite8_1 S15 Ev3
+<Composite8_1 S15 EXIT
+<Composite8_1 S14 ENTRY
+>Ev4
+<Composite8_1 S1 Region3 Ev4
+<Composite8_1 S16 Ev4
+<Composite8_1 S1611 EXIT
+<Composite8_1 S161 EXIT
+<Composite8_1 S16 EXIT
+<Composite8_1 S17 ENTRY
+>Ev4
+<Composite8_1 S1 Region3 Ev4
+<Composite8_1 S17 Ev4
+<Composite8_1 S17 EXIT
+<Composite8_1 S16 ENTRY
+<Composite8_1 S161 ENTRY
+<Composite8_1 S1611 ENTRY
+>Ev4
+<Composite8_1 S1 Region3 Ev4
+<Composite8_1 S16 Ev4
+<Composite8_1 S1611 EXIT
+<Composite8_1 S161 EXIT
+<Composite8_1 S16 EXIT
+<Composite8_1 S17 ENTRY
+>Ev5
+<Composite8_1 S1 Region3 Ev5
+<Composite8_1 S17 Ev5
+<Composite8_1 S17 EXIT
+<Composite8_1 S16 ENTRY
+<Composite8_1 S161 ENTRY
+<Composite8_1 S1611 ENTRY
+>Ev4
+<Composite8_1 S1 Region3 Ev4
+<Composite8_1 S16 Ev4
+<Composite8_1 S1611 EXIT
+<Composite8_1 S161 EXIT
+<Composite8_1 S16 EXIT
+<Composite8_1 S17 ENTRY
+>Ev6
+<Composite8_1 S1 Region3 Ev6
+<Composite8_1 S17 Ev6
+<Composite8_1 S17 EXIT
+<Composite8_1 S16 ENTRY
+<Composite8_1 S161 ENTRY
+<Composite8_1 S1611 ENTRY

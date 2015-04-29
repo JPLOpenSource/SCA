@@ -1,0 +1,100 @@
+#*--*##set( $frame = $smDiagramElem.frameDimensions() )
+#*--*##set( $zoomFactor = $smDiagramElem.zoomFactor() )## defaults to 1.0
+    """
+    Build a simple trace GUI to follow state machine active states.
+    Grid a canvas with scrollbars, and add zoom in and zoom out control buttons.
+    Always follow the active state when zoomed.
+    Drag mouse over an area to zoom to that area.
+    """
+    def __init__(self, name, wparam=${frame.x}, hparam=${frame.y}, parent=None, big_name=None, size=16):
+        """
+        Construct the basic widget
+        """
+        if parent == None:
+            self.win = Tk()
+            self.win.title(name)
+        else:
+            self.win = parent
+                    
+        # Font scaling id and zdepth value
+        self.id = 0
+        self.zdepth = 1.0##${zoomFactor}
+        
+        # Canvas creation
+        self.${canvasName} = Canvas(self.win, width=wparam, height=hparam, background='white')
+        
+        # Add scroll bars
+        self.__addScrollBars(hparam,wparam)
+        
+        # Add zoom buttons
+        self.__addZoomButtons()
+
+        # Map state names to fill (outline?) colors:
+        self.colorDict = {
+#*--*##foreach( $vertex in $model.getAllStates() )
+#*----*##set( $diagramElem = $model.getVertexDiagramElement($vertex) )
+#*----*##set( $stateName = $mapper.mapToFunctionName($vertex) )
+#*----*##set( $color = "#${diagramElem.outlineColorText()}" )
+                          '${smName}${stateName}' : '${color}'#if( $velocityHasNext ),#end
+
+#*--*##end
+                          }
+
+        # Add a big title to the canvas widget that does not scale with zoom.
+        if big_name != None:
+            if big_name == True:
+                self.label = Label(self.${canvasName}, text=name, font=("Times", int(size), "bold"))
+            else:
+                self.label = Label(self.${canvasName}, text=big_name, font=("Times", int(size), "bold"))
+            self.label.pack()
+
+        # State diagram elements:
+#*--*##foreach( $vertex in $model.getAllStates() )
+#*----*##parse( "${tpath}qpgui-state.vm" )
+#*--*##end
+
+        # Separator elements:
+#*--*##foreach( $sepElem in $model.getSeparatorElements() )
+#*----*##set( $p1 = $sepElem.pointList().get(0) )
+#*----*##set( $p2 = $sepElem.pointList().get(1) )
+        self.separator${velocityCount} = self.${canvasName}.create_line(${p1.x}, ${p1.y}, ${p2.x}, ${p2.y}, width=1, fill="blue", stipple="gray25")
+#*--*##end
+
+        # Transition diagram elements:
+#*--*##foreach( $transition in $model.getAllTransitions() )
+#*----*##if( $model.getTransitionDiagramElement($transition) )## skip it if null
+#*------*##set( $transElem = $model.getTransitionDiagramElement($transition) )
+#*------*##if( $transElem.toSelf() )
+#*--------*##set( $arrowText = "LAST, smooth=TRUE" )
+#*------*##else
+#*--------*##set( $arrowText = "FIRST" )
+#*------*##end
+        self.tran${velocityCount} = self.${canvasName}.create_line(#foreach( $p in $transElem.pointList() )${p.x}, ${p.y}, #end
+width=2, arrow=${arrowText}, fill="red")
+#*----*##end
+#*--*##end
+
+        # Text diagram elements:
+#*--*##foreach( $textElem in $model.getTextElements() )
+#*----*##set( $p = $textElem.coord() )
+#*----*##set( $label = $textElem.text() )
+        self.textBox${velocityCount} = self.${canvasName}.create_text(${p.x}, ${p.y}, text="${label}", anchor=NW, font=("Times", 11));
+#*--*##end
+
+        # Map state names to states:
+        self.stateDict = {
+#*--*##foreach( $vertex in $model.getAllStates() )
+#*----*##set( $stateName = $mapper.mapToFunctionName($vertex) )
+                          '${smName}${stateName}' : self.${stateName}#if( $velocityHasNext ),#end
+
+#*--*##end
+                          }
+
+        # Map state names to states tag names:
+        self.stateTagDict = {
+#*--*##foreach( $vertex in $model.getAllStates() )
+#*----*##set( $stateName = $mapper.mapToFunctionName($vertex) )
+                          '${smName}${stateName}' : "${stateName}"#if( $velocityHasNext ),#end
+
+#*--*##end
+                          }

@@ -1,0 +1,100 @@
+# SubMachine2 checks a StateMachine referencing a SubMachine within a state
+# with orthogonal regions.
+
+# Initial entry
+SubMachine2 OrthoWithSubm ENTRY
+SubMachine2 S1:SubM ENTRY
+S1:SubM S1 ENTRY
+SubMachine2 S2:SubM ENTRY
+S2:SubM S1 ENTRY
+
+# Let's exercise SubMachines one step, then move away and back in main machine
+>Ev2
+SubMachine2 OrthoWithSubm Region1 Ev2
+SubMachine2 S1:SubM Ev2
+S1:SubM S1 Ev2
+S1:SubM S1 EXIT
+S1:SubM S2 ENTRY
+S1:SubM.takeAction\(\) overridden action implementation invoked
+SubMachine2 OrthoWithSubm Region2 Ev2
+SubMachine2 S2:SubM Ev2
+S2:SubM S1 Ev2
+S2:SubM S1 EXIT
+S2:SubM S2 ENTRY
+S2:SubM.takeAction\(\) overridden action implementation invoked
+
+>Ev1
+SubMachine2 OrthoWithSubm Ev1
+SubMachine2 OrthoWithSubm EXIT
+SubMachine2 S1:SubM EXIT
+S1:SubM S2 EXIT
+SubMachine2 S2:SubM EXIT
+S2:SubM S2 EXIT
+SubMachine2 Out ENTRY
+>Ev1
+SubMachine2 Out Ev1
+SubMachine2 Out EXIT
+SubMachine2 OrthoWithSubm ENTRY
+SubMachine2 S1:SubM ENTRY
+S1:SubM S1 ENTRY
+SubMachine2 S2:SubM ENTRY
+S2:SubM S1 ENTRY
+
+# No other events get dispatched to Submachine
+>Ev3
+>Ev4
+>Ev5
+@5@!SubMachine2 OrthoWithSubm Region.*
+
+# Let's exercise SubMachines two steps, then move away and back in main machine
+>Ev2
+SubMachine2 OrthoWithSubm Region1 Ev2
+SubMachine2 S1:SubM Ev2
+S1:SubM S1 Ev2
+S1:SubM S1 EXIT
+S1:SubM S2 ENTRY
+S1:SubM.takeAction\(\) overridden action implementation invoked
+SubMachine2 OrthoWithSubm Region2 Ev2
+SubMachine2 S2:SubM Ev2
+S2:SubM S1 Ev2
+S2:SubM S1 EXIT
+S2:SubM S2 ENTRY
+S2:SubM.takeAction\(\) overridden action implementation invoked
+>Ev2
+SubMachine2 OrthoWithSubm Region1 Ev2
+SubMachine2 S1:SubM Ev2
+S1:SubM S2 Ev2
+S1:SubM S2 EXIT
+S1:SubM FinalState0 ENTRY
+SubMachine2 OrthoWithSubm Region2 Ev2
+SubMachine2 S2:SubM Ev2
+S2:SubM S2 Ev2
+S2:SubM S2 EXIT
+S2:SubM FinalState0 ENTRY
+# SubMachines should not react to Ev2, except to acknowledge event received
+>Ev2
+SubMachine2 OrthoWithSubm Region1 Ev2
+SubMachine2 S1:SubM Ev2
+SubMachine2 OrthoWithSubm Region2 Ev2
+SubMachine2 S2:SubM Ev2
+>Ev2
+SubMachine2 OrthoWithSubm Region1 Ev2
+SubMachine2 S1:SubM Ev2
+SubMachine2 OrthoWithSubm Region2 Ev2
+SubMachine2 S2:SubM Ev2
+>Ev1
+SubMachine2 OrthoWithSubm Ev1
+SubMachine2 OrthoWithSubm EXIT
+SubMachine2 S1:SubM EXIT
+S1:SubM FinalState0 EXIT
+SubMachine2 S2:SubM EXIT
+S2:SubM FinalState0 EXIT
+SubMachine2 Out ENTRY
+>Ev1
+SubMachine2 Out Ev1
+SubMachine2 Out EXIT
+SubMachine2 OrthoWithSubm ENTRY
+SubMachine2 S1:SubM ENTRY
+S1:SubM S1 ENTRY
+SubMachine2 S2:SubM ENTRY
+S2:SubM S1 ENTRY

@@ -1,0 +1,154 @@
+          OrthoRegion_s1Enter\(\)
+      \*\*\* -> Ev1
+          OrthoRegion_s1Exit\(\)
+          OrthoRegion_s2Enter\(\)
+              OrthoRegion_s211Enter\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev3
+                  OrthoRegion_s221Exit\(\)
+                  OrthoRegion_s222Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s211Exit\(\)
+              OrthoRegion_s212Enter\(\)
+      \*\*\* -> Ev3
+                  OrthoRegion_s222Exit\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s212Exit\(\)
+              OrthoRegion_s211Enter\(\)
+      \*\*\* -> Ev3
+                  OrthoRegion_s221Exit\(\)
+                  OrthoRegion_s222Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s211Exit\(\)
+              OrthoRegion_s212Enter\(\)
+      \*\*\* -> Ev3
+                  OrthoRegion_s222Exit\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s212Exit\(\)
+              OrthoRegion_s211Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s211Exit\(\)
+              OrthoRegion_s212Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s212Exit\(\)
+              OrthoRegion_s211Enter\(\)
+      \*\*\* -> Ev2
+      \*\*\* -> Ev2
+              OrthoRegion_s211Exit\(\)
+              OrthoRegion_s212Enter\(\)
+              OrthoRegion_s212Exit\(\)
+              OrthoRegion_s211Enter\(\)
+      \*\*\* -> Ev1
+              OrthoRegion_s211Exit\(\)
+                  OrthoRegion_s221Exit\(\)
+          OrthoRegion_s2Exit\(\)
+          OrthoRegion_s1Enter\(\)
+      \*\*\* -> Ev1
+          OrthoRegion_s1Exit\(\)
+          OrthoRegion_s2Enter\(\)
+              OrthoRegion_s211Enter\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev1
+              OrthoRegion_s211Exit\(\)
+                  OrthoRegion_s221Exit\(\)
+          OrthoRegion_s2Exit\(\)
+          OrthoRegion_s1Enter\(\)
+      \*\*\* -> Ev1
+          OrthoRegion_s1Exit\(\)
+          OrthoRegion_s2Enter\(\)
+              OrthoRegion_s211Enter\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev1
+              OrthoRegion_s211Exit\(\)
+                  OrthoRegion_s221Exit\(\)
+          OrthoRegion_s2Exit\(\)
+          OrthoRegion_s1Enter\(\)
+      \*\*\* -> Ev1
+          OrthoRegion_s1Exit\(\)
+          OrthoRegion_s2Enter\(\)
+              OrthoRegion_s211Enter\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s211Exit\(\)
+              OrthoRegion_s212Enter\(\)
+      \*\*\* -> Ev1
+              OrthoRegion_s212Exit\(\)
+                  OrthoRegion_s221Exit\(\)
+          OrthoRegion_s2Exit\(\)
+          OrthoRegion_s1Enter\(\)
+      \*\*\* -> Ev1
+          OrthoRegion_s1Exit\(\)
+          OrthoRegion_s2Enter\(\)
+              OrthoRegion_s211Enter\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s211Exit\(\)
+              OrthoRegion_s212Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s212Exit\(\)
+              OrthoRegion_s211Enter\(\)
+      \*\*\* -> Ev1
+              OrthoRegion_s211Exit\(\)
+                  OrthoRegion_s221Exit\(\)
+          OrthoRegion_s2Exit\(\)
+          OrthoRegion_s1Enter\(\)
+      \*\*\* -> Ev1
+          OrthoRegion_s1Exit\(\)
+          OrthoRegion_s2Enter\(\)
+              OrthoRegion_s211Enter\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s211Exit\(\)
+              OrthoRegion_s212Enter\(\)
+      \*\*\* -> Ev1
+              OrthoRegion_s212Exit\(\)
+                  OrthoRegion_s221Exit\(\)
+          OrthoRegion_s2Exit\(\)
+          OrthoRegion_s1Enter\(\)
+      \*\*\* -> Ev1
+          OrthoRegion_s1Exit\(\)
+          OrthoRegion_s2Enter\(\)
+              OrthoRegion_s211Enter\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev1
+              OrthoRegion_s211Exit\(\)
+                  OrthoRegion_s221Exit\(\)
+          OrthoRegion_s2Exit\(\)
+          OrthoRegion_s1Enter\(\)
+      \*\*\* -> Ev1
+          OrthoRegion_s1Exit\(\)
+          OrthoRegion_s2Enter\(\)
+              OrthoRegion_s211Enter\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev3
+                  OrthoRegion_s221Exit\(\)
+                  OrthoRegion_s222Enter\(\)
+      \*\*\* -> Ev1
+              OrthoRegion_s211Exit\(\)
+                  OrthoRegion_s222Exit\(\)
+          OrthoRegion_s2Exit\(\)
+          OrthoRegion_s1Enter\(\)
+      \*\*\* -> Ev1
+          OrthoRegion_s1Exit\(\)
+          OrthoRegion_s2Enter\(\)
+              OrthoRegion_s211Enter\(\)
+                  OrthoRegion_s221Enter\(\)
+      \*\*\* -> Ev2
+              OrthoRegion_s211Exit\(\)
+              OrthoRegion_s212Enter\(\)
+      \*\*\* -> Ev3
+                  OrthoRegion_s221Exit\(\)
+                  OrthoRegion_s222Enter\(\)
+      \*\*\* -> Ev1
+-------------
+depth-limit \(-u500 steps\) reached
+#processes: 4
+		queue 1 \(evQ\[0\]\): 
+		queue 2 \(evQ\[1\]\): 
+500:	proc  3 \(OrthoRegions2Region2\).*?155.*? \(state 42\)
+500:	proc  2 \(OrthoRegions2Region1\).*?97.*? \(state 42\)
+500:	proc  1 \(OrthoRegion\).*?39.*? \(state 33\)
+500:	proc  0 \(:init:\).*?27.*? \(state 20\)
+4 processes created

@@ -1,0 +1,9 @@
+##
+## Macro definitions, define as few as possible, and only simple code.
+## This file defines macros pertaining to event publishing that might vary by
+## project, from the generic quantum usage.
+##
+##* [SWC 2011.05.09] created separate macros file for convenient project
+##  customization.
+###############################################################################
+##

@@ -1,0 +1,396 @@
+# This Calculator StateMachine set tests Entry/Exit behavior for
+# Composite and Submachine states
+>=IMPL['Calculator'].set("TESTING",True)
+
+# initial entries
+Calculator On ENTRY
+Calculator Ready ENTRY
+Calculator Begin ENTRY
+
+# first operand
+>Digit_0
+Calculator Ready Digit_0
+Calculator Begin EXIT
+Calculator Ready EXIT
+Calculator operand1:OperandX ENTRY
+operand1:OperandX Operand ENTRY
+operand1:OperandX Zero ENTRY
+>Digit_0
+Calculator operand1:OperandX Digit_0
+operand1:OperandX Zero Digit_0
+>Digit_1_9
+Calculator operand1:OperandX Digit_1_9
+operand1:OperandX Zero Digit_1_9
+operand1:OperandX Zero EXIT
+operand1:OperandX Int ENTRY
+>Digit_0
+Calculator operand1:OperandX Digit_0
+operand1:OperandX Int Digit_0
+>Digit_1_9
+Calculator operand1:OperandX Digit_1_9
+operand1:OperandX Int Digit_1_9
+>Point
+Calculator operand1:OperandX Point
+operand1:OperandX Int Point
+operand1:OperandX Int EXIT
+operand1:OperandX Frac ENTRY
+>Digit_0
+Calculator operand1:OperandX Digit_0
+operand1:OperandX Frac Digit_0
+>Digit_1_9
+Calculator operand1:OperandX Digit_1_9
+operand1:OperandX Frac Digit_1_9
+
+# operator
+>Oper
+Calculator operand1:OperandX Oper
+operand1:OperandX Operand Oper
+operand1:OperandX Frac EXIT
+operand1:OperandX Operand EXIT
+Calculator operand1:OperandX EXIT
+Calculator OpEntered ENTRY
+
+# second operand
+>Digit_0
+Calculator OpEntered Digit_0
+Calculator OpEntered EXIT
+Calculator operand2:OperandX ENTRY
+operand2:OperandX Operand ENTRY
+operand2:OperandX Zero ENTRY
+>Digit_0
+Calculator operand2:OperandX Digit_0
+operand2:OperandX Zero Digit_0
+>Digit_1_9
+Calculator operand2:OperandX Digit_1_9
+operand2:OperandX Zero Digit_1_9
+operand2:OperandX Zero EXIT
+operand2:OperandX Int ENTRY
+>Digit_0
+Calculator operand2:OperandX Digit_0
+operand2:OperandX Int Digit_0
+>Digit_1_9
+Calculator operand2:OperandX Digit_1_9
+operand2:OperandX Int Digit_1_9
+>Point
+Calculator operand2:OperandX Point
+operand2:OperandX Int Point
+operand2:OperandX Int EXIT
+operand2:OperandX Frac ENTRY
+>Digit_0
+Calculator operand2:OperandX Digit_0
+operand2:OperandX Frac Digit_0
+>Digit_1_9
+Calculator operand2:OperandX Digit_1_9
+operand2:OperandX Frac Digit_1_9
+
+# result
+>Equals
+Calculator operand2:OperandX Equals
+Calculator operand2:OperandX EXIT
+operand2:OperandX Frac EXIT
+operand2:OperandX Operand EXIT
+Calculator Ready ENTRY
+Calculator Result ENTRY
+
+
+# other kinds of first operands and clear
+>Digit_1_9
+Calculator Ready Digit_1_9
+Calculator Result EXIT
+Calculator Ready EXIT
+Calculator operand1:OperandX ENTRY
+operand1:OperandX Operand ENTRY
+operand1:OperandX Int ENTRY
+>Clear
+Calculator On Clear
+Calculator operand1:OperandX EXIT
+operand1:OperandX Int EXIT
+operand1:OperandX Operand EXIT
+Calculator On EXIT
+Calculator On ENTRY
+Calculator Ready ENTRY
+Calculator Begin ENTRY
+>Point
+Calculator Ready Point
+Calculator Begin EXIT
+Calculator Ready EXIT
+Calculator operand1:OperandX ENTRY
+operand1:OperandX Operand ENTRY
+operand1:OperandX Frac ENTRY
+>Clear
+Calculator On Clear
+Calculator operand1:OperandX EXIT
+operand1:OperandX Frac EXIT
+operand1:OperandX Operand EXIT
+Calculator On EXIT
+Calculator On ENTRY
+Calculator Ready ENTRY
+Calculator Begin ENTRY
+
+# negative first operands and ce
+>B_OP_MINUS
+Keyboard Accepting B_OP_MINUS
+Calculator Begin Oper
+Calculator.isKeyId\(\) == True
+Calculator Begin EXIT
+Calculator Ready EXIT
+Calculator Negated1 ENTRY
+>Digit_0
+Calculator Negated1 Digit_0
+Calculator Negated1 EXIT
+Calculator operand1:OperandX ENTRY
+operand1:OperandX Operand ENTRY
+operand1:OperandX Zero ENTRY
+>ClearEntry
+Calculator operand1:OperandX ClearEntry
+Calculator operand1:OperandX EXIT
+operand1:OperandX Zero EXIT
+operand1:OperandX Operand EXIT
+Calculator Ready ENTRY
+Calculator Begin ENTRY
+>B_OP_MINUS
+Keyboard Accepting B_OP_MINUS
+Calculator Begin Oper
+Calculator.isKeyId\(\) == True
+Calculator Begin EXIT
+Calculator Ready EXIT
+Calculator Negated1 ENTRY
+>Digit_1_9
+Calculator Negated1 Digit_1_9
+Calculator Negated1 EXIT
+Calculator operand1:OperandX ENTRY
+operand1:OperandX Operand ENTRY
+operand1:OperandX Int ENTRY
+>ClearEntry
+Calculator operand1:OperandX ClearEntry
+Calculator operand1:OperandX EXIT
+operand1:OperandX Int EXIT
+operand1:OperandX Operand EXIT
+Calculator Ready ENTRY
+Calculator Begin ENTRY
+>B_OP_MINUS
+Keyboard Accepting B_OP_MINUS
+Calculator Begin Oper
+Calculator.isKeyId\(\) == True
+Calculator Begin EXIT
+Calculator Ready EXIT
+Calculator Negated1 ENTRY
+>Point
+Calculator Negated1 Point
+Calculator Negated1 EXIT
+Calculator operand1:OperandX ENTRY
+operand1:OperandX Operand ENTRY
+operand1:OperandX Frac ENTRY
+>Digit_1_9
+Calculator operand1:OperandX Digit_1_9
+operand1:OperandX Frac Digit_1_9
+
+
+# other kinds of second operands and ce
+>Oper
+Calculator operand1:OperandX Oper
+operand1:OperandX Operand Oper
+operand1:OperandX Frac EXIT
+operand1:OperandX Operand EXIT
+Calculator operand1:OperandX EXIT
+Calculator OpEntered ENTRY
+>Digit_1_9
+Calculator OpEntered Digit_1_9
+Calculator OpEntered EXIT
+Calculator operand2:OperandX ENTRY
+operand2:OperandX Operand ENTRY
+operand2:OperandX Int ENTRY
+>ClearEntry
+Calculator operand2:OperandX ClearEntry
+Calculator operand2:OperandX EXIT
+operand2:OperandX Int EXIT
+operand2:OperandX Operand EXIT
+Calculator OpEntered ENTRY
+>Point
+Calculator OpEntered Point
+Calculator OpEntered EXIT
+Calculator operand2:OperandX ENTRY
+operand2:OperandX Operand ENTRY
+operand2:OperandX Frac ENTRY
+>Digit_0
+Calculator operand2:OperandX Digit_0
+operand2:OperandX Frac Digit_0
+>Digit_1_9
+Calculator operand2:OperandX Digit_1_9
+operand2:OperandX Frac Digit_1_9
+>ClearEntry
+Calculator operand2:OperandX ClearEntry
+Calculator operand2:OperandX EXIT
+operand2:OperandX Frac EXIT
+operand2:OperandX Operand EXIT
+Calculator OpEntered ENTRY
+
+# negative second operands and ce
+>B_OP_MINUS
+Keyboard Accepting B_OP_MINUS
+Calculator OpEntered Oper
+Calculator.isKeyId\(\) == True
+Calculator OpEntered EXIT
+Calculator Negated2 ENTRY
+>Point
+Calculator Negated2 Point
+Calculator Negated2 EXIT
+Calculator operand2:OperandX ENTRY
+operand2:OperandX Operand ENTRY
+operand2:OperandX Frac ENTRY
+>ClearEntry
+Calculator operand2:OperandX ClearEntry
+Calculator operand2:OperandX EXIT
+operand2:OperandX Frac EXIT
+operand2:OperandX Operand EXIT
+Calculator OpEntered ENTRY
+>B_OP_MINUS
+Keyboard Accepting B_OP_MINUS
+Calculator OpEntered Oper
+Calculator.isKeyId\(\) == True
+Calculator OpEntered EXIT
+Calculator Negated2 ENTRY
+>Digit_1_9
+Calculator Negated2 Digit_1_9
+Calculator Negated2 EXIT
+Calculator operand2:OperandX ENTRY
+operand2:OperandX Operand ENTRY
+operand2:OperandX Int ENTRY
+>Digit_0
+Calculator operand2:OperandX Digit_0
+operand2:OperandX Int Digit_0
+>ClearEntry
+Calculator operand2:OperandX ClearEntry
+Calculator operand2:OperandX EXIT
+operand2:OperandX Int EXIT
+operand2:OperandX Operand EXIT
+Calculator OpEntered ENTRY
+>B_OP_MINUS
+Keyboard Accepting B_OP_MINUS
+Calculator OpEntered Oper
+Calculator.isKeyId\(\) == True
+Calculator OpEntered EXIT
+Calculator Negated2 ENTRY
+>Digit_0
+Calculator Negated2 Digit_0
+Calculator Negated2 EXIT
+Calculator operand2:OperandX ENTRY
+operand2:OperandX Operand ENTRY
+operand2:OperandX Zero ENTRY
+
+
+# continue computing with operator 
+>Oper
+Calculator operand2:OperandX Oper
+operand2:OperandX Operand Oper
+operand2:OperandX Zero EXIT
+operand2:OperandX Operand EXIT
+Calculator.onError\(\) == False
+Calculator operand2:OperandX EXIT
+Calculator OpEntered ENTRY
+>Digit_0
+Calculator OpEntered Digit_0
+Calculator OpEntered EXIT
+Calculator operand2:OperandX ENTRY
+operand2:OperandX Operand ENTRY
+operand2:OperandX Zero ENTRY
+
+
+# compute result
+>Equals
+Calculator operand2:OperandX Equals
+Calculator.onError\(\) == False
+Calculator operand2:OperandX EXIT
+operand2:OperandX Zero EXIT
+operand2:OperandX Operand EXIT
+Calculator Ready ENTRY
+Calculator Result ENTRY
+# nothing should respond to ClearEntry event
+>ClearEntry
+@5@!Calculator.*
+# use result directly for next operation
+>Oper
+Calculator Ready Oper
+Calculator Result EXIT
+Calculator Ready EXIT
+Calculator OpEntered ENTRY
+>Digit_1_9
+Calculator OpEntered Digit_1_9
+Calculator OpEntered EXIT
+Calculator operand2:OperandX ENTRY
+operand2:OperandX Operand ENTRY
+operand2:OperandX Int ENTRY
+# induce an error
+>=IMPL['Calculator'].set("TESTING",False)
+#>B_OP_TIMES
+#Keyboard Accepting B_OP_TIMES
+>Oper
+Calculator operand2:OperandX Oper
+operand2:OperandX Operand Oper
+operand2:OperandX Int EXIT
+operand2:OperandX Operand EXIT
+ERROR computing result
+Calculator operand2:OperandX EXIT
+Calculator Error ENTRY
+>Clear
+Calculator On Clear
+Calculator Error EXIT
+Calculator On EXIT
+Calculator On ENTRY
+Calculator Ready ENTRY
+Calculator Begin ENTRY
+
+# make sure Oper at this point doesn't cause transition ANYWHERE!
+>Oper
+Calculator Begin Oper
+Calculator.isKeyId\(\) == False
+
+# erroneous results (no event except Clear and PowerOff should work)
+>B_1
+Keyboard Accepting B_1
+Calculator Ready Digit_1_9
+Calculator Begin EXIT
+Calculator Ready EXIT
+Calculator operand1:OperandX ENTRY
+operand1:OperandX Operand ENTRY
+operand1:OperandX Int ENTRY
+Calculator On OperandChanged
+>B_OP_DIVIDE
+Keyboard Accepting B_OP_DIVIDE
+Calculator operand1:OperandX Oper
+operand1:OperandX Operand Oper
+operand1:OperandX Int EXIT
+operand1:OperandX Operand EXIT
+Calculator operand1:OperandX EXIT
+Calculator OpEntered ENTRY
+>B_0
+Keyboard Accepting B_0
+Calculator OpEntered Digit_0
+Calculator OpEntered EXIT
+Calculator operand2:OperandX ENTRY
+operand2:OperandX Operand ENTRY
+operand2:OperandX Zero ENTRY
+Calculator On OperandChanged
+>B_EQUAL
+Keyboard Accepting B_EQUAL
+Calculator operand2:OperandX Equals
+.+? ZeroDivisionError
+Calculator.onError\(\) == .+? ZeroDivisionError
+Calculator operand2:OperandX EXIT
+operand2:OperandX Zero EXIT
+operand2:OperandX Operand EXIT
+Calculator Error ENTRY
+>Digit_0
+>Digit_1_9
+>Oper
+>Point
+>ClearEntry
+@5@!Calculator.*
+
+
+# power off
+>PowerOff
+Calculator On PowerOff
+Calculator Error EXIT
+Calculator On EXIT
+Calculator FinalState0 ENTRY

@@ -1,0 +1,18 @@
+##
+## Process regular state (also handles submachine state automagically) or final.
+##
+##- input vars (in addition to $model, etc.):
+##    * $target    :  Target state of transition
+##    * $isInitTran:  Flag indicating whether this is an initial transition
+###############################################################################
+#*--*##set( $spc = $mapper.indentation() )
+#*--*##set( $func = "stateTran" )
+#*--*##if( $isInitTran )
+#*----*##set( $func = "stateStart" )
+#*--*##end
+#*--*##set( $tgtStateName = $mapper.mapToFunctionName($target) )
+#*--*##if( $model.hasSubMachineEntryPoint($target) )
+$spc        # unset submachine initial target state for default transition
+$spc        self.__${tgtStateName}.setEntryPoint(None)
+#*--*##end
+$spc        self.${func}(self.${tgtStateName})

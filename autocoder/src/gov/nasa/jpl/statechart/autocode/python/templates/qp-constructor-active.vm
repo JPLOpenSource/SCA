@@ -1,0 +1,147 @@
+##
+## Implement class and constructor for a State Machine.
+##
+##- input vars:
+##    * $machine:  State Machine object
+##    * $typeName:  Type name of the State Machine object
+##
+##* [SWC 2009.09.02] coded from Python examples.
+##* [SWC 2009.09.18] verified against C template.
+##* [SWC 2009.09.22] added region instantiaton and fixed history state
+##* [SWC 2010.01.14] refactored Velocity templates to be finer-grained, with
+##  more decision logic pushed into the Java writer class.
+###############################################################################
+##
+#*--*##set( $typeObj = $machine)## for passing into parsed Velocity templates
+
+
+##
+## Class signature
+##
+class ${smName}Active(active.Active):
+    """
+    ${smName} state machine active object.
+    """
+    # Static reference to global LOGGER to facilitate import as submachine
+    LOGGER = LOGGER
+    
+    def __init__(self, impl_object=None, window_name="${smGuiName}", active_obj=None, instance_name=None, is_substate=False):
+        """
+        Constructor
+        """
+        active.Active.__init__(self)
+##
+## Obtain all the state names within this state machine
+##
+#*--*##parse( "${tpath}qp-constructor-init-addstates.vm" )
+##
+
+        # For GUI messages
+        self.__machine_name = "${smName}"
+        self.__is_substate = is_substate
+        if instance_name is not None:
+            self.__machine_name = instance_name + ":" + self.__machine_name
+        self.__window_name = window_name
+        # For manually coded implementation
+        # of all actions, guards, etc.
+        self.__impl_obj = impl_object
+        # For Active object access, 'None' if no super Active object
+        if active_obj is None:  # self IS the active object
+            self.__active_obj = self
+        else:
+            self.__active_obj = active_obj
+##
+## Obtain list of transitions in state machine with timer events
+##
+#*--*##set( $timerEvSet = $model.getTransitionTimeEvents($sm) )
+#*--*##set( $submTimerEvQuery = $model.querySubmachineTransitionTimeEvents($sm) )
+#*--*##if( !$timerEvSet.empty || !$submTimerEvQuery.eventTransitions.empty)
+        # Timer event object instances created here.
+#*--*##end
+#*--*##foreach( $timerEv in $timerEvSet )
+#*----*##set( $evName = $mapper.mapTimeEventToLiteral($timerEv) )
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($timerEv) )
+        self.${timerName} = time_event.TimeEvt(self.__active_obj, "${evName}")
+#*--*##end
+##- special handling for submachine timer events
+#*--*##foreach( $submTimerPair in $submTimerEvQuery.eventTransitions )
+#*----*##set( $evPrefix = $submTimerEvQuery.getSubstatePrefixOfEvent($submTimerPair) )
+#*----*##set( $evName = $mapper.mapTimeEventToLiteral($submTimerPair.event, $evPrefix) )
+#*----*##set( $timerName = $mapper.mapTimeEventToTimer($submTimerPair.event, $evPrefix) )
+        self.${timerName} = time_event.TimeEvt(self.__active_obj, "${evName}")
+#*--*##end
+##
+## Instantiate all orthogonal regions and declare all history variables
+##
+#*--*##parse( "${tpath}qp-constructor-init-regionandhistory.vm" )
+##
+## Define initialize method of State Machine
+##
+
+
+    def initialize(self):
+        """
+        Override active object initialize with
+        custom initialize routine.  Mostly used
+        to subscribe signals for state machine.
+        """
+##
+## Obtain unique signals thru list of transitions in state machine
+##  with signal events and time events
+##
+#*--*##set( $signalEvSet = $model.getTransitionSignalEvents($sm) )
+#*--*##set( $completionSet = $model.getStatesExpectingCompletionEvent($sm) )
+#*--*##if( $signalEvSet.empty && $timerEvSet.empty && $completionSet.empty )
+        pass
+#*--*##else
+        # Subscribe to signals here.
+#*----*##foreach( $signalEv in $signalEvSet )
+        self._subscribe("${mapper.mapSignalEventToLiteral($signalEv)}")
+#*----*##end
+        # Subscribe to "internal" events for completion transition.
+#*----*##foreach( $completionState in $completionSet )
+#*------*##set( $stateName = $mapper.mapToFunctionName($completionState) )
+#*------*##if( $completionState.submachineState )
+#*--------*##set( $submName = $mapper.mapToTypeName($completionState.submachine) )
+        self._subscribe("#${stateName}:${submName}_Complete#")
+#*------*##else
+        self._subscribe("#${stateName}_Complete#")
+#*------*##end
+#*----*##end
+#*--*##end
+
+
+    def isSubstate(self):
+        """
+        Return flag indicating whether this StateMachine instance
+        is instantiated as a substate of another StateMachine.
+        """
+        return self.__is_substate
+
+
+    def getCurrentState(self):
+        """
+        Return the currently active leaf state
+        """
+        return self.__state_name
+
+
+    def sendUpdate(self, state_name, entry_exit):
+        """
+        Send gui entry or exit messages.
+        """
+        windowName = self.__window_name
+        machineName = self.__machine_name
+        stateName = state_name.split(':')[0]
+        #
+        # determine if machine name has ':'
+        submParts = machineName.split(':')
+        if len(submParts) > 1:  # yes, reform window name
+            windowName = submParts[0] + '_' + submParts[1]
+            windowName = windowName.lower()
+            machineName = submParts[1]  # machine name should be a simple name
+        #
+        # now build the update string
+        str = "%s %s%s %s" % (windowName, machineName, stateName, entry_exit)
+        #print str
+        self.__active_obj._sendUpdate(str)

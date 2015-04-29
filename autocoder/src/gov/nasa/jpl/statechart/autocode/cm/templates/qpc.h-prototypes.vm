@@ -1,0 +1,55 @@
+##
+## Write out all the function declarations.
+##
+##* [SWC 2009.09.14] verified constructor against old code in
+##    StateChartHeaderWriter.writeFunctionPrototypes(), including
+##    .writeInitializationPrototypes(),
+##    .writeStateRegionPrototypes() w/ .writeOneRegionPrototypes(),
+##    and .writeStatePrototypes().
+##* StateChartHeaderWriter.writePrototypeComment() is not fully implemented to
+##    display an indented, line-separated list of regions and substates.
+###############################################################################
+
+/**
+ * Function prototypes for state machine creation and initialization
+ */
+${smName}* ${smName}_Constructor(${smName}* me, char* objNameNew, ${smName}Impl* implPtr);
+void ${smName}_initial($smName* me, QEvent const* e);
+##
+## Declare the constructors and initial states for all of the orthogonal 
+## regions contained within this state machine
+##
+#*--*##set( $localRegions = $model.getLocalOrthogonalRegions() )
+#*--*##foreach( $region in $model.sort($localRegions).entrySet() )
+#*----*##set( $regionName = $mapper.mapToStructType($region) )
+#*----*##set( $lRegionType = "${regionName}Region" )
+
+/**
+ * Subregion prototypes for ${region.value.name}
+ */
+${lRegionType}* ${lRegionType}_Constructor(${lRegionType}* me, char* objNameNew, ${smName}Impl* implPtr, QActive* parent );
+void ${lRegionType}_initial(${lRegionType}* me, QEvent const* e);
+#*--*##end
+##
+## Declare function prototypes for every state, but exclude the regions. 
+## Each state does need to reference its enclosing, orthogonal region in 
+## order to generate an appropriate "me" pointer type
+##
+#*--*##set( $states = $model.getStates($model.statemachine, false) )
+#*--*##if( ! $states.isEmpty() )
+
+/**
+ * Function prototypes for state handlers
+ */
+#*----*##foreach( $state in $model.sort($states).entrySet() )
+#*------*##set( $stateFunctionName = $mapper.mapToFunctionName($state) )
+#*------*##if( $model.getEnclosingOrthogonalRegion($state) )## not null
+#*--------*##set( $region = $model.getEnclosingOrthogonalRegion($state) )
+#*--------*##set( $regionName = $mapper.mapToStructType($region) )
+#*--------*##set( $implType = "${regionName}Region" )
+#*------*##else
+#*--------*##set( $implType = "${smName}" )
+#*------*##end
+QSTATE ${stateFunctionName}(${implType}* me, QEvent const* e);
+#*----*##end
+#*--*##end

@@ -1,0 +1,49 @@
+##
+## Implements the enums for the StateChart signals of this state machine.
+##
+##* [SWC 2010.02.08] implemented anew referencing C and new Python templates.
+##* [SWC 2011.08.04] adapted from C++ patterns, added module prefix support
+##* [SWC 2012.09.05] added entry_point enum to replace passing strings.
+##* [SWC 2012.10.04] changed "entry_point" to "conn_point" since it applies to
+##  just as well to exit point.
+###############################################################################
+## NOTE: 2nd-ed Quantum C implementation does NOT enumerate the States.
+##   Instead, state-handlers return their parent state, and that's the ONLY
+##   place in the code where state hierarchy information is encoded.
+## However, for efficiency and convenience reasons, we have extended the Samek
+##   pattern with state enumeration.
+
+/**
+ * Enumerate all the states that the state machine may be in at any given time.
+ * An addition to the Samek pattern, state enums facilitate convenient
+ * query of current state a State Machine is in at a given moment.
+ */
+typedef enum ${smName}_state {
+#*--*##set( $name = $mapper.mapToEnumDecl($sm) )
+    ${name}__TOP__, /* Top = 0 */
+#*--*##set( $states = $model.sort($model.getStatesBreadthFirst($sm, false)) )
+#*--*##set( $maxlen = $mapper.getLongestString($mapper.getNamesInTargetLang($states)) )
+#*--*##foreach( $state in $states )
+#*----*##set( $name = $mapper.mapToEnumDecl($state) )
+#*----*##set( $pad  = $mapper.getPadding($name, $maxlen) )
+#*----*##set( $i = $velocityCount + 1 )
+    ${name}#if( $velocityHasNext ),#else #end ${pad}/* State = $i */
+#*--*##end
+} ${smName}_state;
+##
+#*--*##if( !$connPointSet.empty )
+
+/**
+ * Enumerate all entry/exit points to allow parent machine to convey via which
+ * entry point this submachine was entered, and for submachine to convey via
+ * which exit point it was exited, if applicable.
+ */
+typedef enum ${smName}_state_conn_point {
+#*--*##set( $maxlen = $mapper.getLongestString($mapper.getNamesInTargetLang($connPointSet)) )
+#*--*##foreach( $connPoint in $connPointSet )
+#*----*##set( $name = $mapper.mapToEnumDecl($connPoint) )
+#*----*##set( $pad  = $mapper.getPadding($name, $maxlen) )
+    ${name}#if( $velocityHasNext ),#else #end ${pad}/* Entry Point = $velocityCount */
+#*--*##end
+} ${smName}_state_conn_point;
+#*--*##end

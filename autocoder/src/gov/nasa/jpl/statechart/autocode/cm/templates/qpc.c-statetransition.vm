@@ -1,0 +1,99 @@
+##
+## Implement state transition, handling guard, action list, and target state.
+##
+##- input vars:
+##    * $_state :       state to transition from
+##    * $_transition :  transition object
+##    * $_func :        name of transition function, "Q_TRAN" or "Q_INIT"
+##
+##* [SWC 2009.09.15] verified transition code against old code in
+##    StateChartCWriter.writeStateTransitionCode(), including
+##    .writeTransitionGuard()/.writeTransitionGuardClose(),
+##    .writeActionList(), and .writeToDeepHistory().
+##* [SWC 2009.09.24] added Euler tour of transitions to handle junction state
+###############################################################################
+#*--*##set( $sp = $mapper.indentation() )
+#*--*##if ( !$guardKeyword )#set( $guardKeyword = "if" )#end
+##
+## Handle guards
+##
+#*--*##if( $_transition.guard )## has guard!
+## TODO do we need to worry about "-quoted guard expression?
+#*----*##set( $exprStr = $_transition.guard.specification.body )
+#*----*##if( $model.isCallAction($exprStr) )
+#*------*##set( $funcCall = $model.getCallParts($exprStr) )
+#*------*##set( $funcName = $mapper.sanitize($funcCall.name()) )
+##- there's parameters if callParts has more than 1 element
+$sp   ${guardKeyword} (${smName}Impl_${funcName}(me->impl#if( $funcCall.hasArgs() ), ${funcCall.argStr()}#end)) {
+#*----*##else
+$sp   ${guardKeyword} (${exprStr}) {
+#*----*##end
+#*----*##set( $discard = $mapper.incIndent() )
+#*--*##end
+#*--*##set( $sp = $mapper.indentation() )
+##
+## Do action (future: may need to support list of actions!)
+##
+#*--*##doAction( $_transition.effect )
+##
+## Handle target state(s) by type, but only if transition is not "internal"
+##  (pseudostate handling not needed?:  join, fork, choice, entryPoint)
+##
+#*--*##if( !($_transition.internal) )
+#*----*##set( $tgtState = $model.getTarget($_state, $_transition) )
+#*----*##set( $objTypeName = $model.getType($tgtState) )
+#*----*##if( $objTypeName.equals("pseudostate:deepHistory") )
+##- process deep history pseudostate
+#*------*##set( $parentName = $mapper.sanitize($model.getParentState($tgtState).value.name) )
+#*------*##set( $histVar = "my${parentName}history" )
+#*------*##set( $histTransition = $model.getInitialTransition($tgtState) )
+#*------*##if( $histTransition )
+#*--------*##set( $histState = $model.getTarget($tgtState, $histTransition) )
+$sp   if(me->${histVar} == NULL) {
+$sp      Q_TRAN($mapper.mapToFunctionName($histState));
+$sp   } else{
+$sp      Q_TRAN_DYN(me->${histVar});
+$sp   }
+#*------*##end
+#*----*##elseif( $objTypeName.equals("pseudostate:junction") )
+##- process junction pseudostate
+##    obtain the junction outgoing transitions, then recurse stateTransition()
+#*------*##foreach( $juncTrans in $model.getJunctionTransitions($tgtState) )
+#*--------*##if( $velocityHasNext )## not last one yet
+#*----------*##stateTransition( $tgtState, $juncTrans, $_func )
+#*----------*##set( $guardKeyword = "else if" )## use else if after the first if
+#*--------*##else## last transition out, the "else"!
+$sp   else {
+#*----------*##if( $juncTrans )## valid no-guard transition
+#*------------*##set( $discard = $mapper.incIndent() )
+#*------------*##stateTransition( $tgtState, $juncTrans, $_func )
+#*------------*##set( $discard = $mapper.decIndent() )
+#*----------*##else
+$sp      printf("No junction guard conditions matched!")
+#*----------*##end
+$sp   }
+#*--------*##end
+#*------*##end
+#*------*##set( $guardKeyword = "if" )## restore to global-var problem
+#*----*##elseif( $objTypeName.equals("pseudostate:exitPoint") )
+##- TODO process exitPoint pseudostate
+##    refer to lines 1315--1330 in StateChartCWriter.writeToExitPoint()
+#*----*##elseif( $objTypeName.equals("pseudostate:terminate") )
+##- process terminate (final) pseudostate
+## TODO should this be done?!
+$sp   this->stop();
+#*----*##elseif( $objTypeName.equals("connectionPointReference") )
+##- TODO process connection point reference to a submachine?!
+##    refer to lines 1341--1380 in StateChartCWriter.writeToConnectionPointReference()
+#*----*##elseif( $objTypeName.equals("state") )
+##- just a regular state (probably also handles submachine state automagically?!)
+$sp   ${_func}($mapper.mapToFunctionName($tgtState));
+#*----*##else## don't know what to do?!
+$sp   /* Encountered $objTypeName, which we don't yet know how to handle! */
+#*----*##end
+#*--*##end
+#*--*##if( $_transition.guard )## close guard block
+#*----*##set( $discard = $mapper.decIndent() )
+#*----*##set( $sp = $mapper.indentation() )
+$sp   }
+#*--*##end
