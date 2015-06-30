@@ -21,7 +21,7 @@ at the command line.
 from verify import verifier
 
 # import all the suites to run
-from cmsuite import CSuite
+# from cmsuite import CSuite
 from csuite import CSuite1, CSuite2, CSuite3
 from cppsuite import CppSuite1, CppSuite2, CppSuite3
 from pythonsuite import PythonSuite1, PythonSuite2, PythonSuite3
