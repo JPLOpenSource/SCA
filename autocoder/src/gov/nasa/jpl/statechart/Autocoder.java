@@ -141,7 +141,8 @@ public class Autocoder {
     }
 
     private static String version () {
-        return "2.7.0 beta (build 20140321-2333)";   // Merged SMAP-adaptation changes, plus a fix that propagates multiple back-ends
+        return "2.7.1 (build 20150629-2335)";   // Updated Promela backend; add MD 17.0.5 support; fixed exactly-one xmi:Documentation limitation
+//        return "2.7.0 beta (build 20140321-2333)";   // Merged SMAP-adaptation changes, plus a fix that propagates multiple back-ends
 //        return "2.6.7 beta (build 20140306-0020)";   // Promela backend improvements to support Boeing model
 //        return "2.6.7 beta (build 20140227-1900)";   // Promela backend updates to support Boeing model
 //        return "2.6.6 beta (build 20131120-2000)"; // SCL-backend fix: fixed default entry transition to check that all children states are exited; updated UTs
