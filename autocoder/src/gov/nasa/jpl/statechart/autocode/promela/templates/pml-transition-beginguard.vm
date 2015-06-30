@@ -11,10 +11,6 @@
 ###############################################################################
 ##
 #*--*##set( $s = $mapper.indentation() )
-#*--*##if( $model.isCallAction($exprStr) )
-#*----*##set( $funcCall = $model.getCallParts($exprStr) )
-#*----*##set( $funcName = $mapper.sanitize($funcCall.name()) )
-#*--*##end
-${s}${smName}_${funcName}(guard_return);
+${s}${smName}_${guardName}(guard_return);
 ${s}if
 ${s}:: guard_return ->

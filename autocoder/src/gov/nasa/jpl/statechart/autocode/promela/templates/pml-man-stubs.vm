@@ -2,31 +2,49 @@
 ## Implement each state (variable $_state defined in parent velocity module scope)
 ##
 ##* [SWC 2010.04.07] Made guard code more efficient (removed 1->)
+##* [GJW 2013.12.30] Added support for ALH guard spec
 ###############################################################################
 // ------------------------------------------------------
 // Manually coded Promela functions
 // ------------------------------------------------------
-
 #*--*##foreach( $statemachine in $model.sort($model.getStateMachines()) )
-#*----*##set( $smName = $mapper.mapToTypeName($statemachine) )
+#*----*##set( $tmpSmName = $mapper.mapToTypeName($statemachine) )
+
 ## Iterate over states, ordered
 #*----*##foreach( $vertex in $model.sort($model.getVertices($statemachine, true)) )
+##
 ## Find the actions
 #*------*##foreach( $action in $model.getCallActionsOfVertex($vertex) )
 
-#*--------*##set( $actionName = $mapper.sanitize($action.name()) )
 #*--------*##if( $action.isGuard() )## special processing for guards
-inline ${smName}_${actionName}(retVal)
+#*----------*##set( $guardSpec = $mapper.CleanGuardSpec($action.getGuard().getSpecification().stringValue()) )
+#*----------*##set( $guardName = "$action.getGuard().getName()")
+#*----------*##set( $funcName = "${tmpSmName}_${guardName}")
+// Guard Function ${funcName} 
+//
+// Spec: ${guardSpec}
+//
+inline ${funcName}(retVal)
 {
+#*----------*##set($guardPromela = $mapper.TranslateGuardSpecToPromela($tmpSmName, $guardSpec))
+#*----------*##if(!$guardPromela)
   if 
   :: retVal = true
   :: retVal = false
   fi
+#*----------*##else
+  if
+  :: retVal = ${guardPromela}
+  fi
+#*----------*##end
 }
+##
 #*--------*##else## regular/entry/exit action
-inline ${smName}_${actionName}(${mapper.mapArgsToDeclarations($action)})
+#*----------*##set( $actionName = $mapper.sanitize($action.name()) )
+#*----------*##set( $funcName = "${tmpSmName}_${actionName}")
+inline ${funcName}(${mapper.mapArgsToDeclarations($action)})
 {
-  printf("${smName}_${actionName}()\n");
+  printf("${funcName}()\n");
 }
 #*--------*##end
 #*------*##end

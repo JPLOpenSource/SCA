@@ -37,23 +37,19 @@
       \*\*\* -> Ev3
           Simple_s1Enter()
       \*\*\* -> Ev1
-          Simple_s1Exit()
-          Simple_s2Enter()
-      \*\*\* -> Ev2
-          Simple_s2Exit()
-          Simple_s1Enter()
-      \*\*\* -> Ev1
-          Simple_s1Exit()
-          Simple_s2Enter()
-      \*\*\* -> Ev2
-          Simple_s2Exit()
-          Simple_s1Enter()
       \*\*\* -> Ev1
           Simple_s1Exit()
           Simple_s2Enter()
       \*\*\* -> Ev3
           Simple_s2Process()
       \*\*\* -> Ev2
+          Simple_s2Exit()
+          Simple_s1Enter()
+      \*\*\* -> Ev1
+          Simple_s1Exit()
+          Simple_s2Enter()
+      \*\*\* -> Ev2
+      \*\*\* -> Ev3
           Simple_s2Exit()
           Simple_s1Enter()
       \*\*\* -> Ev1
@@ -128,8 +124,8 @@
 -------------
 depth-limit \(-u500 steps\) reached
 #processes: 2
-		queue 1 \(evQ\[0\]\): \[3\]
+		queue 1 \(evQ\[0\]\):
 		queue 2 \(evQ\[1\]\): 
-500:	proc  1 \(Simple\).*?28.*? \(state 28\)
-500:	proc  0 \(:init:\).*?26.*? \(state 17\)
+500:	proc  1 \(Simple\).*?30.*? \(state 26\)
+500:	proc  0 \(:init:\).*?22.*? \(state 16\)
 2 processes created

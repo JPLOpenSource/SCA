@@ -149,18 +149,16 @@
           Hsm2_s1Exit\(\)
           Hsm2_s2Enter\(\)
       \*\*\* -> Ev4
-      \*\*\* -> Ev2
+      \*\*\* -> Ev4
           Hsm2_s2Exit\(\)
           Hsm2_s1Enter\(\)
           Hsm2_s12Enter\(\)
-          Hsm2_s12Exit\(\)
-          Hsm2_s1Exit\(\)
-      \*\*\* -> Ev2
+      \*\*\* -> Ev5
 -------------
 depth-limit \(-u500 steps\) reached
 #processes: 2
-		queue 1 \(evQ\[0\]\): \[2\]
+		queue 1 \(evQ\[0\]\):
 		queue 2 \(evQ\[1\]\): 
-500:	proc  1 \(Hsm2\).*?39.*? \(state 61\)
+500:	proc  1 \(Hsm2\).*?44.*? \(state 55\)
 500:	proc  0 \(:init:\).*?16.*? \(state 51\)
 2 processes created

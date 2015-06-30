@@ -72,7 +72,7 @@
           Hsm_s1Enter\(\)
           Hsm_s11Enter\(\)
       \*\*\* -> Ev2
-      \*\*\* -> Ev1
+      \*\*\* -> Ev2
           Hsm_s11Exit\(\)
           Hsm_s1Exit\(\)
           Hsm_s2Enter\(\)
