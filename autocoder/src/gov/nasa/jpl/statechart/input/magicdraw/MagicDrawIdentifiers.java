@@ -169,6 +169,13 @@ public abstract class MagicDrawIdentifiers extends AbstractXMLIdentifiers<MagicD
         }
     }
 
+    @VersionSupport(name=EXPORTER, version="17.0.5")
+    public static class MD17_0_5 extends MD17_0_2 {
+        protected MD17_0_5 () {
+            super();
+        }
+    }
+
 
     /** Singleton instance of this identifier class. */
     private static MagicDrawIdentifiers singleton = null;
