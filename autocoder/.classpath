@@ -3,8 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry excluding="files/|gov/nasa/jpl/statechart/template/UnusedVelocityModelTest.java" kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="var" path="LOG4J_HOME" sourcepath="/LOG4J_SRC_HOME"/>
-	<classpathentry kind="var" path="VELOCITY_HOME" sourcepath="/VELOCITY_SRC_HOME"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="lib/velocity-1.6.2-dep.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
