@@ -58,7 +58,7 @@ public final class Util {
      */
     public static void error (String msg) {
         if (isErrorLevel()) {
-            System.err.println(msg);
+            System.err.println("[ERROR] "+msg);
         }
     }
 
@@ -68,7 +68,8 @@ public final class Util {
      * @return  <code>true</code> if log level is warning or above, <code>false</code> otherwise.
      */
     public static boolean isWarningLevel () {
-        return Autocoder.isVerbose();
+        // warnings should come out even when NON-verbose!
+        return true; //Autocoder.isVerbose();
     }
 
     /**
@@ -77,7 +78,7 @@ public final class Util {
      */
     public static void warn (String msg) {
         if (isWarningLevel()) {
-            System.err.println(msg);
+            System.err.println("[WARN] "+msg);
         }
     }
 
@@ -86,7 +87,7 @@ public final class Util {
     }
     public static void info (String msg) {
         if (isInfoLevel()) {
-            System.out.println(msg);
+            System.out.println("[INFO] "+msg);
         }
     }
 
@@ -95,7 +96,7 @@ public final class Util {
     }
     public static void debug (String msg) {
         if (isDebugLevel()) {
-            System.out.println(msg);
+            System.out.println("[DEBUG] "+msg);
         }
     }
 
