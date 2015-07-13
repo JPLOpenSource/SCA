@@ -183,7 +183,7 @@ class CppVerifier(cv.CVerifier):
     def doTestCase(self, testSM, desc="Nondescript TestCase!",
                    dir=None, smList=[], script=None,
                    preserveImpl=False, useSimState=False,
-                   testAutocodeFailure=False, ext=".mdxml",
+                   testAutocodeFailure=False, ext=".xml",
                    expectFile=None, autocodeOpts=""):
         """
         The core of a testcase, it coordinates an individual test, running
