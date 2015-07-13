@@ -1,3 +1,9 @@
-LICENSE.docx .acignore .metadata/*
+LICENSE.docx
+.acignore
+.metadata
+bin
+linux
+autocode
+autocoder.jar
 *.pyc
 *.a
