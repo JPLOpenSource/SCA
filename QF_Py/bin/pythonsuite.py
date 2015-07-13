@@ -461,6 +461,51 @@ class PythonSuite3(pythonv.PythonVerifier):
                         expectFile="userevents-expect.txt")
 
 
+class PythonSuiteMDFormats(pythonv.PythonVerifier):
+    """
+    A set of test cases testing the four MagicDraw file formats.
+    """
+    def __init__(self, methodName='runTest'):
+        # Must call super class init to properly initialize unittest class
+        pythonv.PythonVerifier.__init__(self, methodName)
+        #
+        # Add suite info for reporting
+        if self.reporter is not None:
+            self.reporter.addSuite(self, "Python MagicDraw Formats Test Suite")
+
+    def testMDFormatMdxml(self):
+        """
+        MDFormat MDXML, Tests the MDXML format of MagicDraw UML Model
+        """
+        self.doTestCase("Simple1", "MDFormatMdxml, Tests the MDXML format of MagicDraw UML Model",
+                        dir="MDFormats",
+                        ext=".mdxml")
+
+    def testMDFormatMdzip(self):
+        """
+        MDFormat MDZIP, Tests the MDZIP format of MagicDraw UML Model
+        """
+        self.doTestCase("Simple1", "MDFormatMdzip, Tests the MDZIP format of MagicDraw UML Model",
+                        dir="MDFormats",
+                        ext=".mdzip")
+
+    def testMDFormatXml(self):
+        """
+        MDFormat XML, Tests the XML format of MagicDraw UML Model
+        """
+        self.doTestCase("Simple1", "MDFormatXml, Tests the XML format of MagicDraw UML Model",
+                        dir="MDFormats",
+                        ext=".xml")
+
+    def testMDFormatZip(self):
+        """
+        MDFormat XML.ZIP, Tests the XML.ZIP format of MagicDraw UML Model
+        """
+        self.doTestCase("Simple1", "MDFormatZip, Tests the XML ZIP format of MagicDraw UML Model",
+                        dir="MDFormats",
+                        ext=".xml.zip")
+
+
 class PythonSuite4(pythonv.PythonVerifier):
     """
     A set of test cases testing functionalities based on State Machine Example Designs
