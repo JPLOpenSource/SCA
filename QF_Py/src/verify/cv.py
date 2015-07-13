@@ -204,7 +204,7 @@ class CVerifier(verifier.Verifier):
     def doTestCase(self, testSM, desc="Nondescript TestCase!",
                    dir=None, smList=[], script=None,
                    preserveImpl=False, useSimState=False,
-                   testAutocodeFailure=False,
+                   testAutocodeFailure=False, ext=".xml",
                    expectFile=None, autocodeOpts=""):
         """
         The core of a testcase, it coordinates an individual test, running
@@ -231,6 +231,7 @@ class CVerifier(verifier.Verifier):
         @param testAutocodedFailure: flag indicating whether the test is
             simply to see if autocoding fails, which would NOT attempt to
             invoke the StateMachine code; default: False
+        @param ext: extension of model file; default: ".xml"
         @param expectFile: name of text file to use for pexpect, or default to
             testSM name appended with "-expect.txt"; default: None
         @param autocodeOpts: additional options to supply to the Autocoder;
@@ -260,7 +261,7 @@ class CVerifier(verifier.Verifier):
             opts = autocodeOpts + " -signals"
             for sm in smList:
                 opts += " -sm %s" % sm
-            self._autocoder(ext=".mdzip", target="-c",
+            self._autocoder(ext=ext, target="-c",
                             opts=opts, javaOpts="-DDEFINE_MAIN")
         #
         result = self.RESULT_FAIL
