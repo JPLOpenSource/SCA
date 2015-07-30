@@ -103,7 +103,7 @@ class SpinVerifier(verifier.Verifier):
             opts=autocodeOpts
             for sm in smList:
                 opts += " -sm %s" % sm
-            self._autocoder(ext=".zip", opts=opts, target="-promela")
+            self._autocoder(ext=".xml", opts=opts, target="-promela")
         #
         result = self.RESULT_FAIL
         if testAutocodeFailure:  # Only check if autocode failed
