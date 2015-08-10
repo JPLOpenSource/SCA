@@ -1,5 +1,5 @@
-SCA (JPL Statechart Autocoder Rev. 2)
-===
+JPL Statechart Autocoder (SCA) Rev. 2 Repository (NO FLIGHT CODE ALLOWED)
+=======
 
 The Statechart Autocoder (SCA) was developed at the Jet Propulsion Laboratory
 in Pasadena, CA.  SCA is a tool that takes UML Statecharts (essentially Harel 
@@ -24,7 +24,25 @@ Python with some GUI hooks added which will be explained later.
 
 Getting Started
 ===
-To Be Completed.
+
+Download the .zip archive and unzip, or `git clone` this repository.
+
+Environment setup:
+* Define `SCA_ROOT`: `setenv SCA_ROOT ./SCA` or `export SCA_ROOT=./SCA`
+* If csh: `cd $SCA_ROOT/QF_Py/bin; source cshrc.sh`
+* If bash: `cd $SCA_ROOT/QF_Py/bin; source bashrc.sh`
+
+Next, compile autocoder
+```
+cd $SCA_ROOT/autocoder
+ant clean all
+```
+
+Finally, autocode something; typically, create an `autocode` subdirectory and autocode model output into that path:
+* C: `cd $SCA_ROOT/QF_C/test/Calculator/autocode ; java -jar $SCA_ROOT/autocoder/autocoder.jar -c ../Calculator.xml`
+* C++: `cd $SCA_ROOT/QF_Cpp/test/Calculator/autocode ; java -jar $SCA_ROOT/autocoder/autocoder.jar -cpp ../Calculator.xml`
+* Python: `cd $SCA_ROOT/QF_Py/test/Calculator/autocode ; java -jar $SCA_ROOT/autocoder/autocoder.jar -python ../Calculator.xml`
+* Promela: `cd $SCA_ROOT/Spin/test/Calculator/autocode ; java -jar $SCA_ROOT/autocoder/autocoder.jar -promela ../Calculator.xml`
 
 Directory Structure
 ===
@@ -37,4 +55,3 @@ To Be Completed.
 Collaboration
 ===
 To Be Completed.
-
