@@ -4,3 +4,6 @@ LICENSE.docx .acignore .metadata/*
 /QF_Cpp/linux/libqf.a
 /QF_Cpp/linux/libqep.a
 /QF_Cm/linux/
+
+# Temporary or backup files from editors
+*~
