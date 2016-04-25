@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="autocoder/experimental"/>
+	<classpathentry kind="src" path="autocoder/src"/>
+	<classpathentry kind="src" path="autocoder/src-notmpl"/>
+	<classpathentry kind="src" path="autocoder/test"/>
+	<classpathentry kind="lib" path="autocoder/autocoder.jar"/>
+	<classpathentry kind="lib" path="autocoder/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="autocoder/lib/velocity-1.6.2-dep.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

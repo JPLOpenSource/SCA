@@ -1,0 +1,56 @@
+
+
+\#include "qep_port.h"
+\#include "application.h"
+\#include "qassert.h"
+
+\#include <termios.h>
+\#include <unistd.h>
+\#include <stdio.h>
+\#include <stdlib.h>
+\#include <string.h>
+\#include <strings.h>
+
+
+\#define MYQUEUESIZE 10
+
+#for $className in $classNameList:
+  #for $objectName in $classObjectDict[$className]:
+  $(className)Impl $(objectName)Impl;
+  $(className) $(objectName);
+  const QEvent * $(objectName)_queuestorage[MYQUEUESIZE];
+  #end for
+#end for
+  
+void applicationStart(int qsize)
+{
+
+#set $priority = 1
+#for $className in $classNameList:
+  #for $objectName in $classObjectDict[$className]:
+  $(className)Impl_Constructor(&$(objectName)Impl);
+  $(className)_Constructor(&$(objectName), "$(objectName)", &$(objectName)Impl, 0);
+  QActive_start((QActive *) & $(objectName), $priority, $(objectName)_queuestorage,  MYQUEUESIZE, NULL, 0, NULL);
+#set $priority = $priority + 1
+  #end for
+#end for
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//@fn setGuardAttribute()
+//@brief 
+//@param 
+//@return 
+////////////////////////////////////////////////////////////////////////////////
+void setGuardAttribute (const char *sm, const char *attr, const char *val) {
+	printf("Got sm '%s', attr name '%s', and value '%s'\n", sm, attr, val);
+	
+#for $className in $classNameList:
+  #for $objectName in $classObjectDict[$className]:
+	if (strcasecmp(sm, "$objectName") == 0) {
+	   AttributeMapper_set(&($(objectName)Impl), attr, AttributeMapper_strtobool(val));
+	}
+  #end for
+#end for
+}

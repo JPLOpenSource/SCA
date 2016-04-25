@@ -80,13 +80,13 @@ typedef struct ${typeName} {
  * and initializing the timers.
  */
 #*--*##if( $autocoder.executionTraceOn && $SM_TERMINABLE )## add name string && parent-substate parameters
-${typeName} *${typeName}_constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, #dataTypeInt32() parent_substate);
+${typeName} *${typeName}_Constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, #dataTypeInt32() parent_substate);
 #*--*##elseif( $autocoder.executionTraceOn && !$SM_TERMINABLE )## add name string parameter only
-${typeName} *${typeName}_constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active);
+${typeName} *${typeName}_Constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active);
 #*--*##elseif( !$autocoder.executionTraceOn && $SM_TERMINABLE )## add parent-substate parameter only
-${typeName} *${typeName}_constructor (${typeName} *me, ${implName} *implObj, QActive *active, #dataTypeInt32() parent_substate);
+${typeName} *${typeName}_Constructor (${typeName} *me, ${implName} *implObj, QActive *active, #dataTypeInt32() parent_substate);
 #*--*##else## no additional parameter
-${typeName} *${typeName}_constructor (${typeName} *me, ${implName} *implObj, QActive *active);
+${typeName} *${typeName}_Constructor (${typeName} *me, ${implName} *implObj, QActive *active);
 #*--*##end
 ##
 ## Getter method for pointer to impl object, which mission can disable if unneeded
@@ -95,7 +95,7 @@ ${typeName} *${typeName}_constructor (${typeName} *me, ${implName} *implObj, QAc
 /**
   * Returns the instance of the Implementation class for this QActive.
   */
-${implName} *${typeName}_get_impl (${typeName} *me);
+${implName} *${typeName}_getImpl (${typeName} *me);
 #*--*##end
 ##
 ## Getter methods for submachine QActive instance access
@@ -113,7 +113,7 @@ ${submTypeName} *${typeName}_get_subm_${stateTypeName} (${typeName} *me);
 /**
  * Returns the unique enum representing the current state of this machine.
  */
-${typeName}_state ${typeName}_get_current_state (${typeName} *me);
+${typeName}_state ${typeName}_get_CurrentState (${typeName} *me);
 ##
 #*--*##if( $SM_TERMINABLE || $SM_HAS_FINAL_STATE || $autocoder.ifDefineMain() || $autocoder.ifDefineUnitTest() )
 

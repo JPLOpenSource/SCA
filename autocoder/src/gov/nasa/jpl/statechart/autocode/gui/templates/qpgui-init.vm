@@ -35,7 +35,7 @@
 #*----*##set( $diagramElem = $model.getVertexDiagramElement($vertex) )
 #*----*##set( $stateName = $mapper.mapToFunctionName($vertex) )
 #*----*##set( $color = "#${diagramElem.outlineColorText()}" )
-                          '${smName}${stateName}' : '${color}'#if( $velocityHasNext ),#end
+                          '${stateName}' : '${color}'#if( $velocityHasNext ),#end
 
 #*--*##end
                           }
@@ -85,7 +85,7 @@ width=2, arrow=${arrowText}, fill="red")
         self.stateDict = {
 #*--*##foreach( $vertex in $model.getAllStates() )
 #*----*##set( $stateName = $mapper.mapToFunctionName($vertex) )
-                          '${smName}${stateName}' : self.${stateName}#if( $velocityHasNext ),#end
+                          '${stateName}' : self.${stateName}#if( $velocityHasNext ),#end
 
 #*--*##end
                           }
@@ -94,7 +94,7 @@ width=2, arrow=${arrowText}, fill="red")
         self.stateTagDict = {
 #*--*##foreach( $vertex in $model.getAllStates() )
 #*----*##set( $stateName = $mapper.mapToFunctionName($vertex) )
-                          '${smName}${stateName}' : "${stateName}"#if( $velocityHasNext ),#end
+                          '${stateName}' : "${stateName}"#if( $velocityHasNext ),#end
 
 #*--*##end
                           }

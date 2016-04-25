@@ -1,7 +1,7 @@
 //===========================================================================
 // This software contains Caltech/JPL confidential information.
 //
-// Copyright 2009-2011, by the California Institute of Technology.
+// Copyright 2009-2016, by the California Institute of Technology.
 // ALL RIGHTS RESERVED. United States Government Sponsorship Acknowledged.
 // Any commercial use must be negotiated with the Office of Technology
 // Transfer at the California Institute of Technology.
@@ -16,38 +16,46 @@
 // or providing access to foreign persons.
 //===========================================================================
 //
-//       File: My/UI/my_ui_keyboard_impl.h
-// Created on: 17-Aug-2011 13:30:36
-//     Author: scheng@jpl.nasa.gov
+//       File: Simple1Impl.c
+// Created on: 25-Apr-2016 10:11:52
+//     Author: watney@jpl.nasa.gov
+// SCACmdLine: -c -sm Simple1 ../Simple.mdxml
 //
 // This file was stubbed by the JPL StateChart Autocoders, which converts UML
 // Statecharts, in XML, to a C variant of Miro Samek's Quantum Framework.
 //===========================================================================
-#ifndef MY_UI_KEYBOARDIMPL_H
-#define MY_UI_KEYBOARDIMPL_H
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <log_event.h>
 #include <qf_port.h>
 #include <qassert.h>
+#include <assert.h>
+#include <Simple1Impl.h>
+#include <StatechartSignals.h>
 
 
-typedef struct my_ui_keyboard_impl {
-    char machineName[256];
-    /** Cache of pointer to the container QActive object, for ease of access */
-    QActive* active;
-} my_ui_keyboard_impl;
+int32_t Simple1Impl_verbosity_level = 0;
 
-my_ui_keyboard_impl* my_ui_keyboard_impl_constructor (my_ui_keyboard_impl* mepl);  // Default constructor
-void my_ui_keyboard_impl_destructor (my_ui_keyboard_impl* mepl);  // Best-practice destructor
-void my_ui_keyboard_impl_set_qactive (my_ui_keyboard_impl* mepl, QActive* active);
+
+Simple1Impl *Simple1Impl_Constructor (Simple1Impl *mepl) {
+    strncpy(mepl->machineName, "Simple1", 128);
+    mepl->machineName[128-1] = '\0';  // null-terminate to be sure
+
+    AttributeMapper_init(mepl);
+
+    return mepl;
+}
+
+void Simple1Impl_set_qactive (Simple1Impl *mepl, QActive *active) {
+    mepl->active = active;
+}
+
+int32_t Simple1Impl_get_verbosity () {
+    return Simple1Impl_verbosity_level;
+}
+
+
 ////////////////////////////////////////////
 // Action and guard implementation methods
 ////////////////////////////////////////////
-void my_ui_keyboard_impl_clearAll (my_ui_keyboard_impl* mepl);
-void my_ui_keyboard_impl_clearEntry (my_ui_keyboard_impl* mepl);
-void my_ui_keyboard_impl_powerOff (my_ui_keyboard_impl* mepl);
-void my_ui_keyboard_impl_sendEquals (my_ui_keyboard_impl* mepl);
-void my_ui_keyboard_impl_sendKey (my_ui_keyboard_impl* mepl, char arg1);
-void my_ui_keyboard_impl_sendOperator (my_ui_keyboard_impl* mepl, char arg1);
-void my_ui_keyboard_impl_sendPoint (my_ui_keyboard_impl* mepl);
-
-#endif  /* MY_UI_KEYBOARDIMPL_H */

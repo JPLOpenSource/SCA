@@ -218,7 +218,7 @@ public class UMLToCMapper extends TargetLanguageMapper {
 	 */
 	@Override
 	public String mapToNamespacePrefix (String... packages) {
-		return Util.joinWithPrefixes(packages, "", SEP).toLowerCase();
+		return Util.joinWithPrefixes(packages, "", SEP);
 	}
 
 	/* (non-Javadoc)
@@ -226,7 +226,7 @@ public class UMLToCMapper extends TargetLanguageMapper {
 	 */
 	@Override
 	public String mapToSimpleTypeName (NamedElement elem) {
-		return super.mapToSimpleTypeName(elem).toLowerCase();
+		return super.mapToSimpleTypeName(elem);
 	}
 
 	/**
@@ -240,11 +240,11 @@ public class UMLToCMapper extends TargetLanguageMapper {
 	@Override
 	public String mapToTypeName (NamedElement elem) {
 		return joinWithPrefix(sanitize(elem.getName()),
-				elem.getPackageNames()).toLowerCase();
+				elem.getPackageNames());
 	}
 
 	public String mapToImplTypeName (NamedElement elem) {
-		return mapToTypeName(elem)+SEP+"impl";
+		return mapToTypeName(elem)+"Impl";
 	}
 
 	/**
@@ -264,15 +264,15 @@ public class UMLToCMapper extends TargetLanguageMapper {
      */
     @Override
     public String mapToVarName (NamedElement elem, String...prefix) {
-        return joinWithPrefix(sanitize(elem.getName()), prefix).toLowerCase();
+        return joinWithPrefix(sanitize(elem.getName()), prefix);
     }
 
 	public String mapToVarName (String str, String...prefix) {
         String[] list = str.split(UML_SEPARATOR);
         if (list.length > 0 && list[list.length-1].length() > 0) {
-            return joinWithPrefix(sanitize(list[list.length-1]), prefix).toLowerCase();
+            return joinWithPrefix(sanitize(list[list.length-1]), prefix);
         } else {
-            return joinWithPrefix(sanitize(str), prefix).toLowerCase();
+            return joinWithPrefix(sanitize(str), prefix);
         }
     }
 
@@ -281,7 +281,7 @@ public class UMLToCMapper extends TargetLanguageMapper {
         if (QP_HSM_TOP.equals(name)) {
             return name;
         } else {
-            return joinWithPrefix(name, prefix).toLowerCase();
+            return joinWithPrefix(name, prefix);
         }
     }
 
@@ -292,7 +292,7 @@ public class UMLToCMapper extends TargetLanguageMapper {
 	public String mapToQualifiedName(NamedElement elem) {
         return joinWithPrefix(cleanQualifiedName(elem),
                 addToArray(autocodeDesignation, elem.getPackageNames()))
-                    .replace(UML_SEPARATOR, SEP).toLowerCase();
+                    .replace(UML_SEPARATOR, SEP);
 	}
 
 	/* (non-Javadoc)

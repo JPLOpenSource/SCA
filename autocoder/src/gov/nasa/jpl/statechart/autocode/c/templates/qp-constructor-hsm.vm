@@ -34,9 +34,9 @@ ${localRegionName} ${localRegionName}_inst;
  * ${smName} State Machine orthogonal-region ${typeName} Constructor
  */
 #*--*##if( $autocoder.executionTraceOn )## add name string parameter
-${typeName} *${typeName}_constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, ${smName} *parent) {
+${typeName} *${typeName}_Constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, ${smName} *parent) {
 #*--*##else## no additional parameter
-${typeName} *${typeName}_constructor (${typeName} *me, ${implName} *implObj, QActive *active, ${smName} *parent) {
+${typeName} *${typeName}_Constructor (${typeName} *me, ${implName} *implObj, QActive *active, ${smName} *parent) {
 #*--*##end
 ##
 ## Superclass constructor call

@@ -1,7 +1,7 @@
 //===========================================================================
 // This software contains Caltech/JPL confidential information.
 //
-// Copyright 2009-2011, by the California Institute of Technology.
+// Copyright 2009-2016, by the California Institute of Technology.
 // ALL RIGHTS RESERVED. United States Government Sponsorship Acknowledged.
 // Any commercial use must be negotiated with the Office of Technology
 // Transfer at the California Institute of Technology.
@@ -16,33 +16,32 @@
 // or providing access to foreign persons.
 //===========================================================================
 //
-//       File: operandx_impl.h
-// Created on: 02-Oct-2011 21:28:57
-//     Author: scheng@jpl.nasa.gov
+//       File: Simple1Impl.h
+// Created on: 25-Apr-2016 10:11:52
+//     Author: watney@jpl.nasa.gov
+// SCACmdLine: -c -sm Simple1 ../Simple.mdxml
 //
 // This file was stubbed by the JPL StateChart Autocoders, which converts UML
 // Statecharts, in XML, to a C variant of Miro Samek's Quantum Framework.
 //===========================================================================
-#ifndef _OPERANDX_IMPL_H
-#define _OPERANDX_IMPL_H
+#ifndef SIMPLE1IMPL_H
+#define SIMPLE1IMPL_H
 
 #include <qf_port.h>
 #include <qassert.h>
 
 
-typedef struct operandx_impl {
-    char machineName[256];
+typedef struct Simple1Impl {
+    char machineName[128];
     /** Cache of pointer to the container QActive object, for ease of access */
-    QActive* active;
-} operandx_impl;
+    QActive *active;
+} Simple1Impl;
 
-operandx_impl* operandx_impl_constructor (operandx_impl* mepl);  // Default constructor
-void operandx_impl_destructor (operandx_impl* mepl);  // Best-practice destructor
-void operandx_impl_set_qactive (operandx_impl* mepl, QActive* active);
+Simple1Impl *Simple1Impl_Constructor (Simple1Impl *mepl);  // Default constructor
+void Simple1Impl_set_qactive (Simple1Impl *mepl, QActive *active);
+int32_t Simple1Impl_get_verbosity ();
 ////////////////////////////////////////////
 // Action and guard implementation methods
 ////////////////////////////////////////////
-void operandx_impl_fraction (operandx_impl* mepl);
-void operandx_impl_insert (operandx_impl* mepl, QEvent const* e);
 
-#endif  /* _OPERANDX_IMPL_H */
+#endif  /* SIMPLE1IMPL_H */

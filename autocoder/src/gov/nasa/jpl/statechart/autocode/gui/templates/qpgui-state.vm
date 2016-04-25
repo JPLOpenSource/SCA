@@ -38,7 +38,7 @@
 #*----*##set( $lbp = $diagramElem.textCoord() )
 #*----*##if( $model.getParentOrthogonalState($vertex) )
 #*------*##set( $orthoParentName = $mapper.mapToFunctionName($model.getParentOrthogonalState($vertex)) )
-#*------*##set( $color = "self.colorDict['${smName}${orthoParentName}']" )
+#*------*##set( $color = "self.colorDict['${orthoParentName}']" )
 #*----*##end
         self.${stateName} = self.${canvasName}.create_rectangle(${p1.x}, ${p1.y}, ${p2.x}, ${p2.y}, fill=${color}, width=2, outline="blue", tag="${stateName}")
         self.${varName}Text = self.${canvasName}.create_text(${lbp.x}, ${lbp.y}, text="${stateName}", anchor=N, font=("Times", 12, "bold"))

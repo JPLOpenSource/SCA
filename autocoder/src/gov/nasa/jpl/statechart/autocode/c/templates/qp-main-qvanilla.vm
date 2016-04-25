@@ -237,8 +237,8 @@ int main(int argc, char *argv[]) {
 #*--*##foreach( $sm in $machines )
 #*----*##set( $smVar = $mapper.mapToVarName($sm) )
 #*----*##set( $priority = $smCount - $velocityCount )## must be > 0!
-    #mapToTypeName($sm,'impl')_constructor(&implObjs.${smVar}_impl);  // initialize impl obj
-    #mapToTypeName($sm,'')_constructor(&(activeObjs.${smVar}), "${smVar}", &implObjs.${smVar}_impl, (QActive *) 0 /*no parent*/);
+    #mapToTypeName($sm,'impl')_Constructor(&implObjs.${smVar}_impl);  // initialize impl obj
+    #mapToTypeName($sm,'')_Constructor(&(activeObjs.${smVar}), "${smVar}", &implObjs.${smVar}_impl, (QActive *) 0 /*no parent*/);
     QActive_start((QActive *) &(activeObjs.${smVar}), ${priority}, test_queuestorage${velocityCount}, Q_DIM(test_queuestorage${velocityCount}), (void *)0, 0, (QEvent *)0);
 #*--*##end
 

@@ -1,5 +1,7 @@
 LICENSE.docx
 .acignore
+.DS_Store
+.project
 .metadata
 bin
 linux

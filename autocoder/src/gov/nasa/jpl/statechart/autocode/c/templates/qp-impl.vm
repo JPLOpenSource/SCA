@@ -61,7 +61,7 @@
 #dataTypeInt32() ${implName}_verbosity_level = 0;
 
 
-${implName} *${implName}_constructor (${implName} *mepl) {
+${implName} *${implName}_Constructor (${implName} *mepl) {
 #*--*##if( $autocoder.executionTraceOn )
     strncpy(mepl->machineName, "${typeName}", #smNameLength());
     mepl->machineName[#smNameLength()-1] = '\0';  // null-terminate to be sure

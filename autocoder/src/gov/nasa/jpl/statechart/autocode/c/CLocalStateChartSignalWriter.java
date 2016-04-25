@@ -58,7 +58,7 @@ import java.util.SortedSet;
  */
 public class CLocalStateChartSignalWriter extends UMLStateChartTemplateWriter<UMLToCMapper> {
 
-    public static final String SIGNAL_FILENAME = "statechart_signals";
+    public static final String SIGNAL_FILENAME = "StatechartSignals";
 
     protected static final String QP_CODE = "qp-statechartsignals.vm";
 

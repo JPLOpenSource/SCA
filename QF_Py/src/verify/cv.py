@@ -50,7 +50,7 @@ class CVerifier(verifier.Verifier):
     def _findAllSignalFiles(self, dir):
         for f in os.listdir(dir):
             fPath = os.sep.join([dir, f])
-            m = re.match(r".*statechart_signals.h$", f)
+            m = re.match(r".*StatechartSignals.h$", f)
             if m is not None and os.path.exists(fPath):
                 # add signal file to list
                 self._signalFiles.append(fPath)
@@ -107,7 +107,7 @@ class CVerifier(verifier.Verifier):
             # Reading StatechartSignals.h
             while 1:
                 data = input.readline()
-                self.assertTrue(data, "*** Error in statechart_signals.h - expected a string: 'User defined signals'")
+                self.assertTrue(data, "*** Error in StatechartSignals.h - expected a string: 'User defined signals'")
                 m = re.match(r"^#include\s+[<\"](.*?id_range.h)[>\"]", data)
                 if m is not None:
                     self.__parseIdRange(os.sep.join([acDir, m.group(1)]))
