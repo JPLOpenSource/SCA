@@ -1,0 +1,455 @@
+2016-04-25 10:11:52,515 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,516 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,516 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,516 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,516 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,518 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,518 - Do unicode file recognition:  false
+2016-04-25 10:11:52,518 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,518 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,518 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,518 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,519 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,519 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,519 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,528 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,529 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,529 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,529 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,530 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,530 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,531 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,532 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,532 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,545 - Created '20' parsers.
+2016-04-25 10:11:52,548 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm
+2016-04-25 10:11:52,568 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,568 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm
+2016-04-25 10:11:52,580 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,580 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,580 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,580 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,580 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,598 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp.h-includes.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,611 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp.h-stateenum.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,631 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp.h-class-active.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,637 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp.h-class-commondata.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,644 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp.h-class-states.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,649 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-includes.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,661 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-constructor-active.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,671 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-constructor-commondata.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,677 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-method-initial.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,682 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-transition-state.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,688 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-statebegin.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,692 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-state-entry-begin.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,696 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-state-entry-postaction.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,697 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-state-exit-begin.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,700 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-state-exit-postaction.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,703 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-state-bail.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,704 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-state-eventtransition.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,705 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-stateend.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,718 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp.h-impl.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,726 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-impl.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,731 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,731 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,731 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,731 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,731 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,731 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,731 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,731 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,731 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,731 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,731 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,731 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,731 - Do unicode file recognition:  false
+2016-04-25 10:11:52,731 - Do unicode file recognition:  false
+2016-04-25 10:11:52,731 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,731 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,731 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,731 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,731 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,731 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,731 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,731 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,731 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,731 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,731 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,731 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,731 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,731 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,734 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,734 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,734 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,735 - Created '20' parsers.
+2016-04-25 10:11:52,735 - Created '20' parsers.
+2016-04-25 10:11:52,735 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm
+2016-04-25 10:11:52,735 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm
+2016-04-25 10:11:52,741 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,741 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,741 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm
+2016-04-25 10:11:52,741 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm
+2016-04-25 10:11:52,747 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,747 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,747 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,747 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,747 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,747 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,747 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,747 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,747 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,747 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,752 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-main-qvanilla.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,752 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-main-qvanilla.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,760 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-makefile.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,760 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-makefile.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,766 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,766 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,766 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,766 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,766 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,766 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,766 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,766 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,766 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,766 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,766 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,766 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,766 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,766 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,766 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,766 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,766 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,766 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,766 - Do unicode file recognition:  false
+2016-04-25 10:11:52,766 - Do unicode file recognition:  false
+2016-04-25 10:11:52,766 - Do unicode file recognition:  false
+2016-04-25 10:11:52,766 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,766 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,766 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,766 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,766 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,766 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,766 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,766 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,766 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,766 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,766 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,766 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,766 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,766 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,766 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,766 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,766 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,766 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,766 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,766 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,766 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,769 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,769 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,769 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,769 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,770 - Created '20' parsers.
+2016-04-25 10:11:52,770 - Created '20' parsers.
+2016-04-25 10:11:52,770 - Created '20' parsers.
+2016-04-25 10:11:52,770 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm
+2016-04-25 10:11:52,770 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm
+2016-04-25 10:11:52,770 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm
+2016-04-25 10:11:52,775 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,775 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,775 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,775 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm
+2016-04-25 10:11:52,775 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm
+2016-04-25 10:11:52,775 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm
+2016-04-25 10:11:52,783 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,783 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,783 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,783 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,783 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,783 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,783 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,783 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,783 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,783 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,783 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,783 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,783 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,783 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,783 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,790 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-statechartsignals.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,790 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-statechartsignals.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,790 - ResourceManager : found gov/nasa/jpl/statechart/autocode/c/templates/qp-statechartsignals.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,797 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,797 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,797 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,797 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,797 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,797 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,797 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,797 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,797 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,797 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,797 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,797 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,797 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,797 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,797 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,797 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,797 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,797 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,797 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,797 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,797 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,797 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,797 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,797 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,797 - Do unicode file recognition:  false
+2016-04-25 10:11:52,797 - Do unicode file recognition:  false
+2016-04-25 10:11:52,797 - Do unicode file recognition:  false
+2016-04-25 10:11:52,797 - Do unicode file recognition:  false
+2016-04-25 10:11:52,797 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,797 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,797 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,797 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,797 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,797 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,797 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,797 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,797 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,797 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,797 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,797 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,797 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,797 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,797 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,797 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,797 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,797 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,797 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,797 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,797 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,797 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,797 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,797 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,797 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,797 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,797 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,797 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,800 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,800 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,800 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,800 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,800 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,801 - Created '20' parsers.
+2016-04-25 10:11:52,801 - Created '20' parsers.
+2016-04-25 10:11:52,801 - Created '20' parsers.
+2016-04-25 10:11:52,801 - Created '20' parsers.
+2016-04-25 10:11:52,801 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/gui/templates/gui-velocimacros.vm
+2016-04-25 10:11:52,801 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/gui/templates/gui-velocimacros.vm
+2016-04-25 10:11:52,801 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/gui/templates/gui-velocimacros.vm
+2016-04-25 10:11:52,801 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/gui/templates/gui-velocimacros.vm
+2016-04-25 10:11:52,802 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/gui-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,802 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/gui-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,802 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/gui-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,802 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/gui-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,802 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/gui/templates/project-velocimacros.vm
+2016-04-25 10:11:52,802 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/gui/templates/project-velocimacros.vm
+2016-04-25 10:11:52,802 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/gui/templates/project-velocimacros.vm
+2016-04-25 10:11:52,802 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/gui/templates/project-velocimacros.vm
+2016-04-25 10:11:52,802 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,802 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,802 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,802 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,802 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,802 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,802 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,802 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,802 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,802 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,802 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,802 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,802 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,802 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,802 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,802 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,802 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,802 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,802 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,802 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,807 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-code.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,807 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-code.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,807 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-code.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,807 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-code.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,814 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-init.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,814 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-init.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,814 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-init.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,814 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-init.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,821 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-state.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,821 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-state.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,821 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-state.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,821 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-state.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,830 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,830 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,830 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,830 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,830 - Log4JLogChute initialized using file 'velocity.log'
+2016-04-25 10:11:52,830 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,830 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,830 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,830 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,830 - Starting Apache Velocity v1.6.2 (compiled: 2009-02-19 16:29:46)
+2016-04-25 10:11:52,830 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,830 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,830 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,830 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,830 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2016-04-25 10:11:52,830 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,830 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,830 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,830 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,830 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,830 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,830 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,830 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,830 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,830 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-04-25 10:11:52,830 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,830 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,830 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,830 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,830 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-04-25 10:11:52,830 - Do unicode file recognition:  false
+2016-04-25 10:11:52,830 - Do unicode file recognition:  false
+2016-04-25 10:11:52,830 - Do unicode file recognition:  false
+2016-04-25 10:11:52,830 - Do unicode file recognition:  false
+2016-04-25 10:11:52,830 - Do unicode file recognition:  false
+2016-04-25 10:11:52,830 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,830 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,830 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,830 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,830 - FileResourceLoader : adding path 'file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/'
+2016-04-25 10:11:52,830 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,830 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,830 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,830 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,830 - FileResourceLoader : adding path '/Users/watney/Development/SCA/test_harness-C/autocode'
+2016-04-25 10:11:52,830 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,830 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,830 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,830 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,830 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,831 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,831 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,831 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,831 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,831 - JarResourceLoader # of paths : 1
+2016-04-25 10:11:52,831 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,831 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,831 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,831 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,831 - JarResourceLoader : trying to load "jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/"
+2016-04-25 10:11:52,831 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,831 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,831 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,831 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,831 - JarHolder: attempting to connect to jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,831 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,831 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,831 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,831 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,831 - JarHolder: initialized JAR: jar:file:/Users/watney/Development/SCA/autocoder/autocoder.jar!/
+2016-04-25 10:11:52,851 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,851 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,851 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,851 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,851 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-04-25 10:11:52,851 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-04-25 10:11:52,852 - Created '20' parsers.
+2016-04-25 10:11:52,852 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/gui/templates/gui-velocimacros.vm
+2016-04-25 10:11:52,853 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/gui-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,853 - Velocimacro : adding VMs from VM library : gov/nasa/jpl/statechart/autocode/gui/templates/project-velocimacros.vm
+2016-04-25 10:11:52,853 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/project-velocimacros.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader
+2016-04-25 10:11:52,853 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-04-25 10:11:52,853 - Velocimacro : allowInlineToOverride = true : VMs defined inline may replace previous VM definitions
+2016-04-25 10:11:52,853 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-04-25 10:11:52,853 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-04-25 10:11:52,855 - ResourceManager : found gov/nasa/jpl/statechart/autocode/gui/templates/qpgui-statechartsignals.vm with loader org.apache.velocity.runtime.resource.loader.JarResourceLoader

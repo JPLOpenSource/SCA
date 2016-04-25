@@ -5,7 +5,6 @@ LICENSE.docx
 .metadata
 bin
 linux
-autocode
 autocoder.jar
 *.pyc
 *.a
