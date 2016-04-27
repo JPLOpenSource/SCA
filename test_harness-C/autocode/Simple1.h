@@ -17,7 +17,7 @@
 //===========================================================================
 //
 //       File: Simple1.h
-// Created on: 25-Apr-2016 10:11:52
+// Created on: 26-Apr-2016 16:57:32
 //     Author: watney@jpl.nasa.gov
 // SCACmdLine: -c -sm Simple1 ../Simple.mdxml
 //
@@ -73,7 +73,7 @@ Simple1Impl *Simple1_getImpl (Simple1 *me);
 /**
  * Returns the unique enum representing the current state of this machine.
  */
-Simple1_state Simple1_get_CurrentState (Simple1 *me);
+Simple1_state Simple1_getCurrentState (Simple1 *me);
 
 /**
  * Returns whether this StateMachine instance is instantiated as a substate

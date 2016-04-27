@@ -113,7 +113,7 @@ ${submTypeName} *${typeName}_get_subm_${stateTypeName} (${typeName} *me);
 /**
  * Returns the unique enum representing the current state of this machine.
  */
-${typeName}_state ${typeName}_get_CurrentState (${typeName} *me);
+${typeName}_state ${typeName}_getCurrentState (${typeName} *me);
 ##
 #*--*##if( $SM_TERMINABLE || $SM_HAS_FINAL_STATE || $autocoder.ifDefineMain() || $autocoder.ifDefineUnitTest() )
 
