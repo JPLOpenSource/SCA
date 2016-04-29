@@ -141,7 +141,8 @@ public class Autocoder {
     }
 
     private static String version () {
-        return "2.7.2 (build 20150728-2335)";   // Add MD 18.0 support, XMI & UML 2.5/20131001
+        return "2.8.0 (build 20160428-1745)";   // Removed the C back-end name mangling and add a test_harness-C
+//        return "2.7.2 (build 20150728-2335)";   // Add MD 18.0 support, XMI & UML 2.5/20131001
 //        return "2.7.1 (build 20150629-2335)";   // Updated Promela backend; add MD 17.0.5 support; fixed exactly-one xmi:Documentation limitation
 //        return "2.7.0 beta (build 20140321-2333)";   // Merged SMAP-adaptation changes, plus a fix that propagates multiple back-ends
 //        return "2.6.7 beta (build 20140306-0020)";   // Promela backend improvements to support Boeing model
