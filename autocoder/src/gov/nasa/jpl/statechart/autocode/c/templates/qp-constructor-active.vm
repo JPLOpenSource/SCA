@@ -36,13 +36,13 @@ ${localRegionName} ${localRegionName}_inst;
  * ${smName} Constructor
  */
 #*--*##if( $autocoder.executionTraceOn && $SM_TERMINABLE )## add name string && parent-substate parameters
-${typeName} *${typeName}_constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, #dataTypeInt32() parent_substate) {
+${typeName} *${typeName}_Constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, #dataTypeInt32() parent_substate) {
 #*--*##elseif( $autocoder.executionTraceOn && !$SM_TERMINABLE )## add name string parameter only
-${typeName} *${typeName}_constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active) {
+${typeName} *${typeName}_Constructor (${typeName} *me, const char *objNameNew, ${implName} *implObj, QActive *active) {
 #*--*##elseif( !$autocoder.executionTraceOn && $SM_TERMINABLE )## add parent-substate parameter only
-${typeName} *${typeName}_constructor (${typeName} *me, ${implName} *implObj, QActive *active, #dataTypeInt32() parent_substate) {
+${typeName} *${typeName}_Constructor (${typeName} *me, ${implName} *implObj, QActive *active, #dataTypeInt32() parent_substate) {
 #*--*##else## no additional parameter
-${typeName} *${typeName}_constructor (${typeName} *me, ${implName} *implObj, QActive *active) {
+${typeName} *${typeName}_Constructor (${typeName} *me, ${implName} *implObj, QActive *active) {
 #*--*##end
 ##
 ## Superclass constructor call
@@ -105,7 +105,7 @@ ${typeName} *${typeName}_constructor (${typeName} *me, ${implName} *implObj, QAc
 ## Getter method for pointer to impl object, which mission can disable if unneeded
 #*--*##if(! $autocoder.configOptionTrue("config.suppress.getimpl") )
 
-${implName} *${typeName}_get_impl (${typeName} *me) {
+${implName} *${typeName}_getImpl (${typeName} *me) {
     return me->impl;
 }
 #*--*##end
@@ -122,7 +122,7 @@ ${submTypeName} *${typeName}_get_subm_${stateTypeName} (${typeName} *me) {
 }
 #*--*##end
 
-${typeName}_state ${typeName}_get_current_state (${typeName} *me) {
+${typeName}_state ${typeName}_getCurrentState (${typeName} *me) {
     return me->myState;
 }
 ##

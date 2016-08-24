@@ -82,6 +82,8 @@ public class MagicDrawReader extends AbstractXmiReader {
 
     /** The native packed MagicDraw format. */
     private static final String EXT_MDZIP = "mdzip";
+    /** The MagicDraw packed XML format. */
+    private static final String EXT_XMLZIP = "xml.zip";
     /** General zip file, hopefully an XML resides within! */
     private static final String EXT_ZIP = "zip";
     /** The XMI XML file format. */
@@ -132,7 +134,8 @@ public class MagicDrawReader extends AbstractXmiReader {
             // perfect, just return file as input stream
             return new FileInputStream(canonPath);
         } else if (ext.equalsIgnoreCase(EXT_MDZIP)
-        		|| ext.equalsIgnoreCase(EXT_ZIP)) {
+        		|| ext.equalsIgnoreCase(EXT_ZIP)
+        		|| ext.equalsIgnoreCase(EXT_XMLZIP)) {
             // OK, need to unzip first, then return contained file as input stream
             ZipFile mdZip = new ZipFile(canonPath);
             Enumeration<? extends ZipEntry> entries = mdZip.entries();
@@ -144,13 +147,20 @@ public class MagicDrawReader extends AbstractXmiReader {
                 		|| ze.getName().endsWith(EXT_XML)) {  // found!
                     mdXmlEntry = ze;
                     break;
+                } else if (ze.getName().endsWith("magicdraw.uml_model.model")) {
+                	// found, but limited support!
+                	Util.warn("Support for MD Packed XML format is VERY limited; expect diagram info extraction error!");
+                    mdXmlEntry = ze;
+                    break;
                 }
             }
             if (mdXmlEntry != null) {
                 return mdZip.getInputStream(mdXmlEntry);
             }
             throw new FatalModelException("FATAL: Failed to find a ." + EXT_MDXML
-                    + " file in the supplied ." + EXT_MDZIP + " file!");
+                    + "/" + EXT_XML + "/com.nomagic.magicdraw.uml_model.model"
+            		+ " file in the supplied ." + EXT_MDZIP +"/."
+            		+ EXT_ZIP + " file!");
         } else {  // we don't understand this format, should bail!
             throw new FatalModelException("FATAL: File format '" + ext
                     + "' NOT supported by the MagicDrawReader!");

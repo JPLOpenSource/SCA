@@ -24,7 +24,7 @@ from verify import verifier
 from cmsuite import CSuite
 from csuite import CSuite1, CSuite2, CSuite3
 from cppsuite import CppSuite1, CppSuite2, CppSuite3
-from pythonsuite import PythonSuite1, PythonSuite2, PythonSuite3
+from pythonsuite import PythonSuite1, PythonSuite2, PythonSuite3, PythonSuiteMDFormats
 from spinsuite import SpinSuite1, SpinSuite2
 #from qfstress import SpecialQFSuite
 

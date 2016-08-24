@@ -39,24 +39,27 @@ init
 #*----*##set( $otherSmList = $model.sort($model.removeFromSet($smSet, $statemachine)) )
 ##- iterate through all leaf states in the state machine
 #*----*##foreach( $state in $model.sort($model.getLeafStatesAboveOrtho($statemachine)) )
-#*------*##set( $stateName = $mapper.mapToFunctionName($state) )
+#*------*##set( $enabledEvts = $model.getEnabledEvents($state, $mapper) )
+#*------*##if( $enabledEvts.size() > 0 )
+#*--------*##set( $stateName = $mapper.mapToFunctionName($state) )
   :: ${smName}@${stateName} ->
     if
 ##-- iterate through all the Events enabled in this leaf state
-#*------*##foreach( $ev in $model.getEnabledEvents($state, $mapper) )
-#*--------*##set( $signalName = $mapper.mapEventToLiteral($ev) )
+#*--------*##foreach( $ev in $enabledEvts )
+#*----------*##set( $signalName = $mapper.mapEventToLiteral($ev) )
     :: atomic { evQ[${smName}_ID]!${signalName}## no line break yet
 ##-- but also send the event to all other state machines that subscribe to it
-#*--------*##foreach( $otherSM in $otherSmList )
-#*----------*##set( $otherSMName = $mapper.mapToTypeName($otherSM) )
-#*----------*##if( $model.subscribesToEvent($otherSM, $ev, $mapper) )
+#*----------*##foreach( $otherSM in $otherSmList )
+#*------------*##set( $otherSMName = $mapper.mapToTypeName($otherSM) )
+#*------------*##if( $model.subscribesToEvent($otherSM, $ev, $mapper) )
 ; evQ[${otherSMName}_ID]!${signalName}## no line break yet
+#*------------*##end
 #*----------*##end
-#*--------*##end
 ; printf("*** -> ${signalName}\n"); }## OK, now an explicit line break
 
-#*------*##end
+#*--------*##end
     fi
+#*------*##end
 #*----*##end
 #*--*##end
   od

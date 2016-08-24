@@ -1,7 +1,7 @@
 /**
  * Created Aug 5, 2009.
  * <p>
- * Copyright 2009, by the California Institute of Technology. ALL RIGHTS
+ * Copyright 2009--2015, by the California Institute of Technology. ALL RIGHTS
  * RESERVED. United States Government Sponsorship acknowledged. Any commercial
  * use must be negotiated with the Office of Technology Transfer at the
  * California Institute of Technology.
@@ -45,7 +45,7 @@ import java.util.regex.Pattern;
 /**
  * The main class for invoking autocoders and querying system configurations.
  * <p>
- * Copyright &copy; 2009-2011 Jet Propulsion Lab / California Institute of Technology
+ * Copyright &copy; 2009--2015 Jet Propulsion Lab / California Institute of Technology
  * </p>
  * @author Shang-Wen Cheng <scheng@jpl.nasa.gov>
  *
@@ -141,7 +141,10 @@ public class Autocoder {
     }
 
     private static String version () {
-        return "2.7.0 beta (build 20140321-2333)";   // Merged SMAP-adaptation changes, plus a fix that propagates multiple back-ends
+        return "2.8.0 (build 20160428-1745)";   // Removed the C back-end name mangling and add a test_harness-C
+//        return "2.7.2 (build 20150728-2335)";   // Add MD 18.0 support, XMI & UML 2.5/20131001
+//        return "2.7.1 (build 20150629-2335)";   // Updated Promela backend; add MD 17.0.5 support; fixed exactly-one xmi:Documentation limitation
+//        return "2.7.0 beta (build 20140321-2333)";   // Merged SMAP-adaptation changes, plus a fix that propagates multiple back-ends
 //        return "2.6.7 beta (build 20140306-0020)";   // Promela backend improvements to support Boeing model
 //        return "2.6.7 beta (build 20140227-1900)";   // Promela backend updates to support Boeing model
 //        return "2.6.6 beta (build 20131120-2000)"; // SCL-backend fix: fixed default entry transition to check that all children states are exited; updated UTs

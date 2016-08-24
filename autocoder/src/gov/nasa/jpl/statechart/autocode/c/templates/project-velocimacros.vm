@@ -84,29 +84,29 @@ strlen($str)## no line break
 #macro( mapToFileName $elem $pkgs $appendix )
 #*--*##if ( $appendix.equals("signals") )
 ## treat $elem as a string to prepend designation; no path prefixes
-${model.joinWithPrefixes($pkgs,"#autocodeDesignation","_").toLowerCase()}${elem}## no line break
+${model.joinWithPrefixes($pkgs,"#autocodeDesignation","_")}${elem}## no line break
 #*--*##else## treat $elem per usual as NamedElement
 ${mapper.mapToNamespacePathPrefix($pkgs)}## don't lowercase...no line break
-${model.joinWithPrefixes($elem.getPackageNames(),"","_").toLowerCase()}## no line break
+${model.joinWithPrefixes($elem.getPackageNames(),"","_")}## no line break
 #*----*##if ( !$appendix.equals("impl") )## impl files are not "autocoded"
 #autocodeDesignation## no line break
 #*----*##end
 ${mapper.mapToSimpleTypeName($elem)}## no line break
-#*----*##if ( $appendix.equals("impl") )## append "_impl"
-_$appendix## no line break
+#*----*##if ( $appendix.equals("impl") )## append "Impl"
+Impl## no line break
 #*----*##end
 #*--*##end
 #end
 ##
 ## Macro to tailor the type name, such as additional autocode designation
 #macro( mapToTypeName $elem $appendix )
-${mapper.mapToNamespacePrefix($elem.packageNames).toLowerCase()}## no line break
+${mapper.mapToNamespacePrefix($elem.packageNames)}## no line break
 #*--*##if ( !$appendix.equals("impl") )## impl files are not "autocoded"
 #autocodeDesignation## no line break
 #*--*##end
 ${mapper.mapToSimpleTypeName($elem)}## no line break
-#*--*##if ( $appendix.equals("impl") )## append "_impl"
-_$appendix## no line break
+#*--*##if ( $appendix.equals("impl") )## append "Impl"
+Impl## no line break
 #*--*##end
 #end
 ##

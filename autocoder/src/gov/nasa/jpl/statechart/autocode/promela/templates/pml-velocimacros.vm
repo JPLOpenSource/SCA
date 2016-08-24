@@ -29,6 +29,12 @@ ${s}${ancestorName}_Init:##
 #*--*##set( $s = $mapper.indentation() )
 ${s}:: e.sig == ${evName} ->
 #end
+## Macro for one partial line of state label for null event
+#macro( nullEventBranch )
+#*--*##set( $s = $mapper.indentation() )
+${s}:: true ->
+#end
+##
 ##
 ## Macro to make a else followed by some Promela execution.
 #macro( elseExec )

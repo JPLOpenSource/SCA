@@ -5,7 +5,9 @@
 ##    * $stateName:  name of current State Machine state being implemented
 ###############################################################################
 #*--*##set( $s = $mapper.indentation() )
+#*--*##if( !$skipElseBranch )
 ${s}:: else
+#*--*##end
 ${s}fi;
 #*--*##set( $discard = $mapper.decIndent() )## decrease indentation
 #*--*##set( $s = $mapper.indentation() )

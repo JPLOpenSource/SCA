@@ -26,14 +26,14 @@
 #*------*##set( $smType = "#mapToTypeName($subm,'')" )
 #*------*##set( $smImpl = "#mapToTypeName($subm,'impl')" )
     // construct the ${smImpl} SM impl object
-    (void)${smImpl}_constructor(&(me->${stateName}_impl));
+    (void)${smImpl}_Constructor(&(me->${stateName}_impl));
     // then construct the ${smType} State Machine object
 ## generic "active" (me or parent) allows submachine access to master Active
 #*------*##if( $autocoder.executionTraceOn )
-    (void)${smType}_constructor(&(me->${stateName}), "${stateLabel}", &(me->${stateName}_impl), (QActive *)(me->active), (#dataTypeInt32())$stateEnum);
+    (void)${smType}_Constructor(&(me->${stateName}), "${stateLabel}", &(me->${stateName}_impl), (QActive *)(me->active), (#dataTypeInt32())$stateEnum);
     printf("SubMachine ${stateLabel}:${smType} addr: %p\n", &(me->${stateName}));
 #*------*##else
-    (void)${smType}_constructor(&(me->${stateName}), &(me->${stateName}_impl), (QActive *)(me->active), (#dataTypeInt32())$stateEnum);
+    (void)${smType}_Constructor(&(me->${stateName}), &(me->${stateName}_impl), (QActive *)(me->active), (#dataTypeInt32())$stateEnum);
 #*------*##end
 ## wire submachine time events to corresponding time events of this Active
 #*------*##set( $timerEvQuery = $model.querySubmachineTransitionTimeEvents($submState) )
@@ -56,13 +56,13 @@
 #*------*##set( $varname = $mapper.mapToVarName($localRegion) )
     me->${varname} = &${lRegionType}_inst;
 #*------*##if( $autocoder.executionTraceOn && $isQHsm )## supply state label
-    (void)${lRegionType}_constructor(me->${varname}, me->objName, me->impl, me->active, me->parent);
+    (void)${lRegionType}_Constructor(me->${varname}, me->objName, me->impl, me->active, me->parent);
 #*------*##elseif( !$autocoder.executionTraceOn && $isQHsm )## no state label
-    (void)${lRegionType}_constructor(me->${varname}, me->impl, me->active, me->parent);
+    (void)${lRegionType}_Constructor(me->${varname}, me->impl, me->active, me->parent);
 #*------*##elseif( $autocoder.executionTraceOn && !$isQHsm )## supply state label, and region expects specific Active subclass, "me"
-    (void)${lRegionType}_constructor(me->${varname}, me->objName, me->impl, me->active, me);
+    (void)${lRegionType}_Constructor(me->${varname}, me->objName, me->impl, me->active, me);
 #*------*##else## no state label, and region expects specific Active subclass, "me"
-    (void)${lRegionType}_constructor(me->${varname}, me->impl, me->active, me);
+    (void)${lRegionType}_Constructor(me->${varname}, me->impl, me->active, me);
 #*------*##end
 #*----*##end
 #*--*##end

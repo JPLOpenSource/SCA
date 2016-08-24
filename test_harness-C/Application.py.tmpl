@@ -1,0 +1,33 @@
+
+import sys
+sys.path.append('autocode')
+
+#for $className in $classNameList:
+import $(className)
+#end for
+
+def update():
+#for $className in $classNameList:
+#for $objectName in $classObjectDict[$className]:
+    $(objectName).win.update()
+#end for
+#end for
+
+#for $className in $classNameList:
+#for $objectName in $classObjectDict[$className]:
+$(objectName) = $(className).$(className)("$(objectName):$(className)")
+$(objectName).canvas.scale("all", 0.0, 0.0, 1.00, 1.00)
+$(objectName).win.geometry('979x755+14+58')
+#end for
+#end for
+
+
+mapCharts = {
+
+#for $className in $classNameList:
+  #for $objectName in $classObjectDict[$className]:
+    '$(objectName):$(className)': $(objectName),
+  #end for
+#end for
+
+}

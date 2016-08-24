@@ -1,0 +1,19 @@
+
+\#include "StatechartSignals.h"
+\#include "log_event.h"
+
+#for $className in $classNameList:
+\#include "$(className).h"
+\#include "$(className)Impl.h"
+#end for
+
+void applicationStart(int qsize);
+
+#for $className in $classNameList:
+  #for $objectName in $classObjectDict[$className]:
+    extern $(className)Impl $(objectName)Impl;
+  #end for
+#end for
+
+
+

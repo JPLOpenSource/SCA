@@ -86,12 +86,15 @@ public class XMI2_1 extends XMIIdentifiers {
         // Look for the xmi:Documentation element
         NodeList docNodes = doc.getElementsByTagNameNS(inst().lit(XMILabel.XMI_NS), inst().lit(XMILabel.TAG_DOCUMENTATION));
 
-        if (docNodes.getLength() != 1) {
+        int cnt = docNodes.getLength();
+        if (cnt < 1) {  // there must be at least ONE
             return null;
+        } else if (cnt > 1) {  // issue a warning
+            Util.warn("Found more than one ("+cnt+") xmi:Documentation elements, picking the last one!");
         }
 
-        // found XMI's Documentation tag, there should be only 1!
-        return (Element) docNodes.item(0);
+        // found XMI's Documentation tag, take the last one
+        return (Element) docNodes.item(cnt-1);
     }
 
     /* (non-Javadoc)

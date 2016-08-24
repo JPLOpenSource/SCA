@@ -183,7 +183,7 @@ class CppVerifier(cv.CVerifier):
     def doTestCase(self, testSM, desc="Nondescript TestCase!",
                    dir=None, smList=[], script=None,
                    preserveImpl=False, useSimState=False,
-                   testAutocodeFailure=False,
+                   testAutocodeFailure=False, ext=".xml",
                    expectFile=None, autocodeOpts=""):
         """
         The core of a testcase, it coordinates an individual test, running
@@ -240,7 +240,7 @@ class CppVerifier(cv.CVerifier):
             opts = autocodeOpts + " -cppsignals"
             for sm in smList:
                 opts += " -sm %s" % sm
-            self._autocoder(ext=".mdxml", target="-cpp",
+            self._autocoder(ext=ext, target="-cpp",
                             opts=opts, javaOpts="-DDEFINE_MAIN")
         #
         result = self.RESULT_FAIL

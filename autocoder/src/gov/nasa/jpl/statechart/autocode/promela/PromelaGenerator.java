@@ -48,5 +48,18 @@ public class PromelaGenerator extends AbstractGenerator {
         // Populate list of writer configurations
         addWriter(PromelaStateMachineWriter.class, ModelGroup.class);
     }
+    
+    /* (non-Javadoc)
+     * @see gov.nasa.jpl.statechart.autocode.AbstractGenerator#getValidationSkipList()
+     */
+    @Override
+    protected String[] getValidationSkipList () {
+        return new String[]{
+                "checkActionSignalsDefined" /* revisit when all actions specified..how to specialize and understand SCL model actions?? */,
+                "checkSignalEvent",
+                "checkTimeEvent",
+                "checkEmptyOutTransitions"
+        };
+    }
 	
 }

@@ -208,9 +208,7 @@ public class UMLValidator extends AbstractModelValidator {
             }
             @Override
             public void visit (StateMachine stateMachine) {
-                if (Util.isWarningLevel()) {
-                    Util.warn(">v> Checking State Machine '" + stateMachine.getQualifiedName() + "'");
-                }
+                Util.info(">v> Checking State Machine '" + stateMachine.getQualifiedName() + "'");
                 validateVertexOfType(StateMachine.class, stateMachine);
             }
             @Override

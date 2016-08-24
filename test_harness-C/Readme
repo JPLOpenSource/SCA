@@ -1,0 +1,53 @@
+This is the test harness for C generated state-machines.
+There is a default MagicDraw model here called SeisTransaction.mdxml which contains a state-machine called SeisTransaction
+
+
+Prerequisites:
+--------------
+Make sure the QF_C is built first - go into the ../QF_C directory and build
+
+To Build
+----------
+- make clean all
+
+To run:
+-------
+- setup.py
+
+
+Modify the default model and re-run
+------------------------------------
+Startup MagicDraw
+- mduml&
+Make mods to the model and save
+- make autoclean
+- make auto
+- If you added any new implementation files you will need to modify the Impl.c or .h in this directory
+- make clean all
+
+
+Try a different model:
+-----------------------
+
+Edit the Makefile - the CLASSNAME is the name of the MadicDraw mdxml file
+SMNAME is the name of the state-machine
+
+Edit the file 'config.dat'
+The first column is the name of the State-machine
+The second column is some instantiation name of your choice.
+
+Generate the glue code
+- gengluecode.py
+
+Build
+- make autoclean
+- make auto
+Move the generated implementation files to this directory
+- mv autocode/<smName>Impl.c .
+- mv autocode/<smName>Impl.h .
+
+Build
+- make clean all
+
+
+

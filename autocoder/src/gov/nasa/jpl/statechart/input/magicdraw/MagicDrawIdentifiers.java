@@ -169,6 +169,30 @@ public abstract class MagicDrawIdentifiers extends AbstractXMLIdentifiers<MagicD
         }
     }
 
+    @VersionSupport(name=EXPORTER, version="17.0.5")
+    public static class MD17_0_5 extends MD17_0_2 {
+        protected MD17_0_5 () {
+            super();
+        }
+    }
+
+    /**
+     * {@link AbstractXMLIdentifiers} subclass for reading MagicDraw 18.0 input.
+     * <ul>
+     * <li> <a href="http://www.omg.org/spec/XMI/20131001/">XMI 2.5 support</a>
+     * <li> <a href="http://www.omg.org/spec/UML/20131001/">UML 2.5 support</a>
+     * </ul>
+     * MagicDraw information page on
+     * <a href="http://www.nomagic.com/news/new-noteworthy/linked-pages/supported-uml-specification-changes-from-version-2-4-2-to-2-5.html#Metamodel_Changes">
+     * supported changes from UML 2.4.1 to 2.5</a>.
+     */
+    @VersionSupport(name=EXPORTER, version="18.0")
+    public static class MD18_0 extends MD17_0_5 {
+        protected MD18_0 () {
+            super();
+        }
+    }
+
 
     /** Singleton instance of this identifier class. */
     private static MagicDrawIdentifiers singleton = null;

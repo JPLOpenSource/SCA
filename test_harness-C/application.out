@@ -1,0 +1,22 @@
+Quantum Test
+QEP 4.2.00
+QF  4.2.00, QF/Linux port 4.1.05
+mySm:Simple1 S1 ENTRY
+mySm:Simple1 S1 Ev1
+mySm:Simple1 S1 EXIT
+mySm:Simple1 S2 ENTRY
+mySm:Simple1 S2 Ev1
+mySm:Simple1 S2 EXIT
+mySm:Simple1 S1 ENTRY
+mySm:Simple1 S1 Ev1
+mySm:Simple1 S1 EXIT
+mySm:Simple1 S2 ENTRY
+mySm:Simple1 S2 Ev1
+mySm:Simple1 S2 EXIT
+mySm:Simple1 S1 ENTRY
+mySm:Simple1 S1 Ev1
+mySm:Simple1 S1 EXIT
+mySm:Simple1 S2 ENTRY
+mySm:Simple1 S2 Ev1
+mySm:Simple1 S2 EXIT
+mySm:Simple1 S1 ENTRY

@@ -261,14 +261,12 @@ public class UMLModelGroup implements ModelGroup {
         IModelValidator xmiValidator = new XMIValidator();
         IModelValidator umlValidator = new UMLValidator();
         for (UMLModel model : models()) {
-            if (Util.isWarningLevel()) {
-                Util.warn("Validating Model '" + getModelFilename(model) + "'");
-            }
+            Util.info("Validating Model '" + getModelFilename(model) + "'");
 
             // TODO a hackish check for XMI validation...
             if (XMIValidator.hasXmiValidation) {
                 if (xmiValidator.validate(getDocument(model)) == Status.OK) {
-                    Util.warn("Other relevant XMI extensions validated OK.");
+                    Util.info("Other relevant XMI extensions validated OK.");
                 } else {
                     Util.error("XMI extensions did NOT validate!");
                 }
@@ -289,16 +287,12 @@ public class UMLModelGroup implements ModelGroup {
                 setFatalException(true);
                 break;
             case OK:
-                if (Util.isWarningLevel()) {
-                    Util.warn("UML Model '" + getModelFilename(model)
-                            + "' validated OK.");
-                }
+                Util.info("UML Model '" + getModelFilename(model)
+                        + "' validated OK.");
                 break;
             default:  // handle the ERROR case and any other future ones
-                if (Util.isWarningLevel()) {
-                    Util.warn("UML Model '" + getModelFilename(model)
-                            + "' did not validate successfully, but nothing fatal.");
-                }
+                Util.warn("UML Model '" + getModelFilename(model)
+                        + "' did not validate successfully, but nothing fatal.");
                 break;
             }
         }

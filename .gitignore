@@ -2,6 +2,16 @@
 __pycache__/
 *.py[cod]
 
+.acignore
+.DS_Store
+.project
+bin
+linux
+autocoder.jar
+*.pyc
+*.a
+
+
 # C extensions
 *.so
 

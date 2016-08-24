@@ -33,7 +33,7 @@ typedef eventType {byte sig};
 \#include "ManStubs.pml"
 
 // Event Queue definitions
-\#define EV_Q_SIZE 1
+\#define EV_Q_SIZE 3
 ## Iterate over all state machines in the model
 #*--*##set( $val = 0 )
 #*--*##foreach( $statemachine in $model.sort($model.getStateMachines()) )

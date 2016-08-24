@@ -71,7 +71,7 @@ typedef struct ${implName} {
 #*--*##end
 } ${implName};
 
-${implName} *${implName}_constructor (${implName} *mepl);  // Default constructor
+${implName} *${implName}_Constructor (${implName} *mepl);  // Default constructor
 void ${implName}_set_qactive (${implName} *mepl, QActive *active);
 #dataTypeInt32() ${implName}_get_verbosity ();
 ////////////////////////////////////////////

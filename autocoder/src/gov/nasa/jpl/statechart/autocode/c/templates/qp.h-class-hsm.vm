@@ -53,9 +53,9 @@ struct ${regionName} {
  * and initializing the timers.
  */
 #*--*##if( $autocoder.executionTraceOn )## add name string parameter
-${regionName} *${regionName}_constructor (${regionName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, ${smName} *parent);
+${regionName} *${regionName}_Constructor (${regionName} *me, const char *objNameNew, ${implName} *implObj, QActive *active, ${smName} *parent);
 #*--*##else## no additional parameter
-${regionName} *${regionName}_constructor (${regionName} *me, ${implName} *implObj, QActive *active, ${smName} *parent);
+${regionName} *${regionName}_Constructor (${regionName} *me, ${implName} *implObj, QActive *active, ${smName} *parent);
 #*--*##end
 
 /**

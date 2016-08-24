@@ -7,6 +7,7 @@ import os
 import sys
 import stat
 import time
+import fnmatch
 import re
 import atexit
 
@@ -174,6 +175,7 @@ class Verifier(TestCase):
     '''
     # Class static constants
     AUTOCODE_DIR = "autocode"  # defines default autocode dir
+    SUITE_VER_DIR = os.sep.join(["test","files","allsuite-versions"])
     RESULT_PASS = TestReporter.RESULT_PASS  # pass string
     RESULT_FAIL = TestReporter.RESULT_FAIL  # fail string
     # Constants initialized in setupPythonEnvPaths
@@ -197,6 +199,7 @@ class Verifier(TestCase):
     __enableGui = False
     __verbose = False
     __nocolors = False
+    __suiteVersion = None
     __execFromMain = False
 
     def __init__(self, methodName='runTest'):
@@ -226,6 +229,7 @@ class Verifier(TestCase):
         self._useSimStateStart = False
         self._enableGui = False
         self._verbose = False
+        self._suiteVersion = None
 
     @staticmethod
     @atexit.register
@@ -249,6 +253,7 @@ class Verifier(TestCase):
         self._useSimStateStart = Verifier.__useSimStateStart
         self._enableGui = Verifier.__enableGui
         self._verbose = Verifier.__verbose
+        self._suiteVersion = Verifier.__suiteVersion
 
     def _commonTearDown(self):
         """
@@ -276,6 +281,7 @@ class Verifier(TestCase):
         self._useSimStateStart = False
         self._enableGui = False
         self._verbose = False
+        self._suiteVersion = None
 
     def __cleanSubDir(self, dir, subPath):
         """
@@ -322,6 +328,15 @@ class Verifier(TestCase):
         """
         if file is None:
             file = self._testSM
+        # point to alternate version, if specified
+        if self._suiteVersion is not None:  # use alternate version
+            modelPath = os.sep.join([self.AUTOCODER_HOME, self.SUITE_VER_DIR, self._suiteVersion, file])
+            if os.path.exists(modelPath+ext):
+                print "**Suite version chosen: %s/%s" % (self._suiteVersion, file)
+            else:
+                modelPath = None
+        if modelPath is None:  # by default, model file is in parent dir
+            modelPath = "../"+file
         # create autocode dir if not exist
         acDir = os.sep.join([self._dir, self.AUTOCODE_DIR])
         if not os.path.exists(acDir):
@@ -337,7 +352,7 @@ class Verifier(TestCase):
               "java", javaOpts,
                     "-jar", self.AUTOCODER_JAR,
                     target, opts,
-                    "../"+file+ext,
+                    modelPath+ext,
               "; cd -"])
 # Run... EMMA instrumented code
 #        cmd = " ".join\
@@ -630,6 +645,10 @@ class Verifier(TestCase):
         Implements the common main method that should be invoked from
         main in subclasses.
         """
+        # set up system Python paths for spawned processes to work
+        setupPythonEnvPaths()
+        svers = fnmatch.filter(os.listdir(os.sep.join([Verifier.AUTOCODER_HOME,Verifier.SUITE_VER_DIR])), "[A-z]*")
+
         # enumerate suite of test cases by introspecting passed in globals
         if globalVars is None:
             globalVars = globals()
@@ -679,6 +698,9 @@ class Verifier(TestCase):
         parser.add_option("-s", "--sim-state", dest="use_sim_state_start",
                           help="Python: uses sim_state_start rather than run *Active.py",
                           action="store_true", default=False)
+        parser.add_option("-V", "--suite-version", dest="suite_version",
+                          help="Test suite version to use (%s); available vers:\t[ %s ]"%(svers[-1], ", ".join(svers)),
+                          action="store", default=svers[-1])
         parser.add_option("-q", "--quiet", dest="quiet",
                           help="Minimal output",
                           action="store_true", default=False)
@@ -700,6 +722,8 @@ class Verifier(TestCase):
         # set flag indicating whether to be verbose
         Verifier.__verbose = opt.verbose
         Verifier.__nocolors = opt.nocolors
+        # store test suite version to use
+        Verifier.__suiteVersion = opt.suite_version
         #
         # reconstruct argv for unittest.main()
         argv = [sys.argv[0]]
@@ -709,9 +733,6 @@ class Verifier(TestCase):
             argv += ['-q']
         argv += args
         #print "reconstructed argv:", argv
-
-        # set up system Python paths for spawned processes to work
-        setupPythonEnvPaths()
 
         Verifier.__execFromMain = True
 

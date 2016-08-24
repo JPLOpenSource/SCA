@@ -1,4 +1,4 @@
-          Test2_s1Enter\(\)
+              Test2_s1Enter\(\)
           Test1_s1Enter\(\)
       \*\*\* -> Ev3
               Test2_s1Exit\(\)
@@ -22,34 +22,92 @@
           Test1_s1Enter\(\)
       \*\*\* -> Ev1
               Test2_s1Exit\(\)
+      \*\*\* -> Ev1
               Test2_s2Enter\(\)
       \*\*\* -> Ev1
           Test1_s1Exit\(\)
       \*\*\* -> Ev4
               Test2_s2Exit\(\)
               Test2_s1Enter\(\)
+      \*\*\* -> Ev2
               Test2_s1Exit\(\)
               Test2_s2Enter\(\)
       \*\*\* -> Ev4
           Test1_s2Exit\(\)
-              Test2_s2Exit\(\)
           Test1_s1Enter\(\)
+              Test2_s2Exit\(\)
               Test2_s1Enter\(\)
-      \*\*\* -> Ev3
       \*\*\* -> Ev3
               Test2_s1Exit\(\)
               Test2_s2Enter\(\)
+      \*\*\* -> Ev4
+              Test2_s2Exit\(\)
+              Test2_s1Enter\(\)
+      \*\*\* -> Ev3
       \*\*\* -> Ev1
           Test1_s1Exit\(\)
+              Test2_s1Exit\(\)
+      \*\*\* -> Ev4
+              Test2_s2Enter\(\)
+          Test1_s2Exit\(\)
+          Test1_s1Enter\(\)
+              Test2_s2Exit\(\)
+              Test2_s1Enter\(\)
+      \*\*\* -> Ev1
+          Test1_s1Exit\(\)
+      \*\*\* -> Ev3
+      \*\*\* -> Ev3
+              Test2_s1Exit\(\)
+      \*\*\* -> Ev2
+      \*\*\* -> Ev2
+              Test2_s2Enter\(\)
+          Test1_s2Exit\(\)
+      \*\*\* -> Ev4
+          Test1_s1Enter\(\)
+              Test2_s2Exit\(\)
+              Test2_s1Enter\(\)
+      \*\*\* -> Ev1
+      \*\*\* -> Ev3
+              Test2_s1Exit\(\)
+          Test1_s1Exit\(\)
+              Test2_s2Enter\(\)
       \*\*\* -> Ev2
       \*\*\* -> Ev4
               Test2_s2Exit\(\)
               Test2_s1Enter\(\)
-      timeout
+          Test1_s2Exit\(\)
+          Test1_s1Enter\(\)
+      \*\*\* -> Ev3
+              Test2_s1Exit\(\)
+              Test2_s2Enter\(\)
+      \*\*\* -> Ev1
+      \*\*\* -> Ev4
+          Test1_s1Exit\(\)
+      \*\*\* -> Ev4
+              Test2_s2Exit\(\)
+          Test1_s2Exit\(\)
+              Test2_s1Enter\(\)
+          Test1_s1Enter\(\)
+              Test2_s1Exit\(\)
+      \*\*\* -> Ev1
+              Test2_s2Enter\(\)
+              Test2_s2Exit\(\)
+      \*\*\* -> Ev1
+              Test2_s1Enter\(\)
+      \*\*\* -> Ev3
+          Test1_s1Exit\(\)
+      \*\*\* -> Ev3
+              Test2_s1Exit\(\)
+              Test2_s2Enter\(\)
+      \*\*\* -> Ev4
+          Test1_s2Exit\(\)
+          Test1_s1Enter\(\)
+-------------
+depth-limit \(-u500 steps\) reached
 #processes: 3
-		queue 1 \(evQ\[0\]\): \[4\]
-		queue 2 \(evQ\[1\]\): 
-217:	proc  2 \(Test2\).*?16.*? \(state 12\)
-217:	proc  1 \(Test1\).*?32.*? \(state 18\)
-217:	proc  0 \(:init:\).*?33.*? \(state 28\)
+		queue 1 \(evQ\[0\]\):
+		queue 2 \(evQ\[1\]\): \[3\]\[4\]
+500:	proc  2 \(Test2\).*?30.*? \(state 23\)
+500:	proc  1 \(Test1\).*?27.*? \(state 13\)
+500:	proc  0 \(:init:\).*?17.*? \(state 33\)
 3 processes created
