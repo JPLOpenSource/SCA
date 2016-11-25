@@ -99,6 +99,10 @@ endif
 # the 'all' target ===========================================================
 
 all: $(BINDIR)/libqep.a $(BINDIR)/libqf.a	$(SPYLIB)
+	@if (test -d $(BINDIR)) then :;\
+               else echo "Creating directory "$(BINDIR)... ; \
+                      mkdir $(BINDIR); \
+	fi
 
 
 # QEP ========================================================================
